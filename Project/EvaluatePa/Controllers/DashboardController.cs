@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EvaluatePa.Controllers
 {
-    public class VideoController1 : Controller
+    public class DashboardController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Dashboard_Index()
         {
             return View();
         }
