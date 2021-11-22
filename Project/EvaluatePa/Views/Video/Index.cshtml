@@ -34,7 +34,7 @@
     <div class="col-sm-12 col-md-12  col-lg-6 col-xl-3 mt-2">
         <div class="card">
             <div class="card-header">
-                
+
                 <i class="fa fa-file-o fa-fw w3-margin-right w3-text-theme"></i>ไฟล์วีดิโอของฉัน
             </div>
             <div class="card-body">
@@ -73,13 +73,13 @@
                 <div class="w3-card w3-round">
                     <div class="w3-white">
                         @*<button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
-        <div id="Demo1" class="w3-hide w3-container">
-            <p>Some text..</p>
-        </div>
-        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
-        <div id="Demo2" class="w3-hide w3-container">
-            <p>Some other text..</p>
-        </div>*@
+                            <div id="Demo1" class="w3-hide w3-container">
+                                <p>Some text..</p>
+                            </div>
+                            <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
+                            <div id="Demo2" class="w3-hide w3-container">
+                                <p>Some other text..</p>
+                            </div>*@
                         <button onclick="myFunction('subject-1')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-margin-bottom"><i class="fa fa-film fa-fw w3-margin-right"></i> รหัสวิชา : M-101</button>
                         <div id="subject-1" class="w3-hide w3-container">
                             <div class="w3-row-padding">
@@ -87,7 +87,7 @@
                                 <div class="w3-half">
                                     <img src="~/images/lights.jpg" style="width:100%" class="w3-margin-bottom" onclick="loadVideo1()">
                                     <p class="w3-center">วันที่ 10-01-2564</p>
-                                    
+
                                 </div>
                                 <div class="w3-half">
                                     <img src="~/images/nature.jpg" style="width:100%" class="w3-margin-bottom">
@@ -135,7 +135,7 @@
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 mt-2">
         <div class="card">
             <div class="card-header">
-                <i class="fa fa-play fa-fw w3-margin-right w3-text-theme"></i>แสดงไฟล์วีดิโอ
+                <i class="fa fa-play fa-fw w3-margin-right w3-text-theme"></i>แสดงไฟล์วิดีโอ
             </div>
             <div class="card-body">
                 <div class="row align-items-center">
@@ -158,6 +158,10 @@
 
 
 @section Scripts {
+    <script type="text/javascript">
+        $('.active_').removeClass('active_');
+        $('.a-Video').addClass('active_');
+    </script>
 
     <script>
         // Accordion
@@ -193,3 +197,4 @@
     </script>
 
 }
+
