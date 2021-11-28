@@ -12,5 +12,9 @@ namespace EvaluatePa.Controllers
         {
             return View();
         }
+        public IActionResult PA_Form()
+        {
+            return View();
+        }
     }
 }
