@@ -8,7 +8,7 @@ namespace EvaluatePa.Controllers
 {
     public class VideoController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(int user)
         {
             return View();
         }
