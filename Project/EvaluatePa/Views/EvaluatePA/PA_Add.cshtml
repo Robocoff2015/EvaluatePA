@@ -8,15 +8,17 @@
     <style>
         * {
             box-sizing: border-box;
-            }
+        }
 
         .active {
             border: 1px solid #a9a7a7;
             border-radius: 7px 7px 0px 0px;
         }
+
         .border-bottom-2 {
             border-bottom: 2px solid #0d140d;
         }
+
         .subform {
             border: 0px;
             border-bottom: 1px solid #a9a7a7;
@@ -28,9 +30,11 @@
                 border-bottom: 0px;
                 border-radius: 7px 7px 0px 0px;
             }
-        input{
-            font:5rem;
+
+        input {
+            font: 5rem;
         }
+
         .close {
             position: absolute;
             right: 32px;
@@ -64,7 +68,7 @@
         #mdiv {
             width: 18px;
             height: 18px;
-/*            background-color: red;*/
+            /*            background-color: red;*/
             border: 0px solid black;
         }
 
@@ -84,115 +88,309 @@
             transform: rotate(90deg);
             Z-index: 2;
         }
-
-
-
-        </style>
+        textarea {
+        font-size:8px;
+        }
+    </style>
 }
 <div class="container">
-        <div class="col-lg-12 col-xl-12 mt-2">
-            <div class="card border-0">
-                <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
-                    <div class="border-bottom-2 pt-1">
-                        <form class="form-inline" asp-route="">
-                                <div id="page_1" class="mt-2 p-0 pl-4 pr-4 active" onclick='showpage_1();'>
-                                    <p class="m-0 mt-1 mb-1">แบบฟอร์มพัฒนางาน (PA)</p>
+    <div class="col-lg-12 col-xl-12 mt-2">
+        <div class="card border-0">
+            <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
+                <div class="border-bottom-2 pt-1">
+                    <form class="form-inline" asp-route="">
+                        <div id="page_1" class="mt-2 p-0 pl-4 pr-4 active" onclick='showpage_1();'>
+                            <p class="m-0 mt-1 mb-1">แบบฟอร์มพัฒนางาน (PA)</p>
+                        </div>
+                        <div id="page_2" class="mt-2 p-0 pl-4 pr-4" onclick='showpage_2();'>
+                            <p class="m-0 mt-1 mb-1">ข้อตกลงการพัฒนา</p>
+                        </div>
+                        <div id="page_3" class="mt-2 p-0 pl-4 pr-4" onclick='showpage_3();'>
+                            <p class="m-0 mt-1 mb-1">ประเด็นท้าทายในการพัฒนา</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body border-0 p-1">
+
+                <div id="page_1_form" style="display:block;">
+                    <div class="card-body border-light shadow">
+                        <form name="page_1_" asp-action="PA_1" asp-controller="EvaluatePA" style="border-style: none; border-color: #BEDDFE; width: auto;">
+                            <div class="row p-5 pt-1">
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">ชื่อ-นามสกุล</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;" />
+
+                                    </div>
+
                                 </div>
-                                <div id="page_2" class="mt-2 p-0 pl-4 pr-4" onclick='showpage_2();'>
-                                    <p class="m-0 mt-1 mb-1">ข้อตกลงการพัฒนา</p>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">ตำแหน่งวิทยฐานะ</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;" />
+
+                                    </div>
+
                                 </div>
-                                <div id="page_3" class="mt-2 p-0 pl-4 pr-4" onclick='showpage_3();'>
-                                    <p class="m-0 mt-1 mb-1">ประเด็นท้าทายในการพัฒนา</p>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">วันที่ได้รับวิทยฐานะ</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;" />
+
+                                    </div>
+
                                 </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">สถานศึกษา</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;" />
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">สังกัด</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;" />
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">รับเงินเดือนในอันดับ คศ.</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;" />
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">อัตราเงินเดือน</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;" />
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">ประเภทห้องเรียนที่จัดการเรียนรู้</label>
+                                        <label class="form-label" for="UserName">(สามารถระบุได้มากกว่า 1 ประเภทห้องเรียนตามสภาพการจัดการเรียนรู้จริง)</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;" />
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">ข้าพเจ้าขอแสดงเจตจำนงค์ทำข้อตกลงในการพัฒนางานตำแหน่งครู วิทยฐานะครูเชี่ยวชาญ ซึ่งเป็นตำแหน่งและวิทยฐานะที่ดำรงอยู่ในปัจจุบันกับ</label>
+                                        <label class="form-label" for="UserName">ผู้อำนวยการสถานศึกษา ไว้ดังนี้</label>
+                                    </div>
+
+                                </div>
+                                <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                    <div>
+                                        <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                        <div class="btn btn-outline-danger ml-5" onclick="location.href='@Url.Action("Factory_Main", "Factory")'" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                    </div>
+                                </div>
+
+
+                            </div>
                         </form>
+
                     </div>
                 </div>
-                <div class="card-body border-0 p-1">
-                    
-                    <div id="page_1_form" style="display:block;">
-                        <div class="card-body border-light shadow">
-                            <form name="page_1_" asp-action="PA_1" asp-controller="EvaluatePA" style="border-style: none; border-color: #BEDDFE; width: auto;">
-                                <div class="row p-5 pt-1">
+                <div id="page_2_form" style="display:none;">
+                    <div class="card border-light shadow">
+                        <div class="card-header bg-white sh p-0 pl-1 pr-1">
+                            <div class="pl-5 pr-5">
+                                <form class="form-inline subform" asp-route="">
+                                    <div id="subpage_1" class="mt-2 p-0 pl-4 pr-4 active" onclick='showsubpage_1();'>
+                                        <p class="m-0 mt-1 mb-1">ภาระงาน</p>
+                                    </div>
+                                    <div id="subpage_2" class="mt-2 p-0 pl-4 pr-4" onclick='showsubpage_2();'>
+                                        <p class="m-0 mt-1 mb-1">ด้านจัดการเรียนรู้</p>
+                                    </div>
+                                    <div id="subpage_3" class="mt-2 p-0 pl-4 pr-4" onclick='showsubpage_3();'>
+                                        <p class="m-0 mt-1 mb-1">ด้านการส่งเสริมและสนับสนุน</p>
+                                    </div>
+                                    <div id="subpage_4" class="mt-2 p-0 pl-4 pr-4" onclick='showsubpage_4();'>
+                                        <p class="m-0 mt-1 mb-1">ด้านการพัฒนาตนเองและวิชาชีพ</p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card-body border-0 p-5">
+                            <div id="page_1_subform" style="display:block;">
+                                <div class="card-body" style="padding:10px;">
+                                    <p>จะมีภาระงานเป็นไปตามที่ กคศ. กำหนด</p>
+
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-inline">
+                                            <label class="form-label" for="UserName">1.1 ชั่วโมงสอนตามตารางสอน รวมจำนวน </label>
+                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-5 mr-5" style="font-size:16px;height:35px;" />
+                                            <label class="form-label" for="UserName">ชั่วโมง/สัปดาห์ดังนี้ </label>
+                                            <table class="table table-hover border shadow m-2">
+
+                                                <!-- Table body -->
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div id="mdiv">
+                                                                <div class="mdiv">
+                                                                    <div class="md"></div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding:0;font-size:16px;">
+                                                            <div class="d-inline-flex pt-1 pb-1">
+                                                                <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
+                                                                <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-3 mr-3" style="font-size:16px;height:35px;" />
+                                                                <span class="pt-1">จำนวน</span>
+                                                                <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-3 mr-3" style="font-size:16px;height:35px;width:100px" />
+                                                                <span class="pt-1">ชั่วโมง/สัปดาห์</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div id="mdiv">
+                                                                <div class="mdiv">
+                                                                    <div class="md"></div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding:0;font-size:16px;">
+                                                            <div class="d-inline-flex pt-1 pb-1">
+                                                                <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
+                                                                <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-3 mr-3" style="font-size:16px;height:35px;" />
+                                                                <span class="pt-1">จำนวน</span>
+                                                                <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-3 mr-3" style="font-size:16px;height:35px;width:100px" />
+                                                                <span class="pt-1">ชั่วโมง/สัปดาห์</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="height:44px;">
+                                                        <td style="padding:7px 0px 7px 14px; font-size:18px;"><i class="fa fa-plus w3-text-theme text-success"></i></td>
+                                                        <td style="padding:0;font-size:16px;">
+                                                            <div class="d-inline-flex pt-1 pb-1">
+
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                                <!-- Table body -->
+                                            </table>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-inline">
+                                            <label class="form-label" for="UserName">1.2 งานส่งเสริมและสนับสนุนการเรียนรู้ จำนวน </label>
+                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-5 mr-5" style="font-size:16px;height:35px;" />
+                                            <label class="form-label" for="UserName">ชั่วโมง/สัปดาห์ </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-inline">
+                                            <label class="form-label" for="UserName">1.3 งานพัฒนาคุณภาพการจัดการการศึกษา จำนวน </label>
+                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-5 mr-5" style="font-size:16px;height:35px;" />
+                                            <label class="form-label" for="UserName">ชั่วโมง/สัปดาห์ </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-inline">
+                                            <label class="form-label" for="UserName">1.4 งานตอบสนองนโยบายและจุดเน้น จำนวน </label>
+                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-5 mr-5" style="font-size:16px;height:35px;" />
+                                            <label class="form-label" for="UserName">ชั่วโมง/สัปดาห์ </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                        <div>
+                                            <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                            <div class="btn btn-outline-danger ml-5" onclick="location.href='@Url.Action("Factory_Main", "Factory")'" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div id="page_2_subform" style="display:none;">
+                                <div class="card-body" style="padding:10px;">
+                                    <p>ลักษณะงานที่เสนอให้ครอบคลุมถึงการสร้างและ/หรือพัฒนาหลักสูตร</p>
+
                                     <div class="col-md-12 mb-4">
 
                                         <div class="form-outline">
-                                            <label class="form-label" for="UserName">ชื่อ-นามสกุล</label>
-                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;"/>
+                                            <label class="form-label" for="UserName">งาน (Task) (โปรดระบุ)</label>
+                                            <textarea id="firstName" name="firstName" class="form-control form-control-lg" placeholder="งาน" style="font-size:16px;"> </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="form-label" for="UserName">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
+                                            <textarea id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;" style="font-size:16px;"> </textarea>
 
                                         </div>
 
                                     </div>
                                     <div class="col-md-12 mb-4">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="UserName">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
+                                            <textarea id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;" style="font-size:16px;"> </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                        <div>
+                                            <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                            <div class="btn btn-outline-danger ml-5" onclick="location.href='@Url.Action("Factory_Main", "Factory")'" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="page_3_subform" style="display:none;">
+                                <div class="card-body" style="padding:10px;">
+                                    <p>ลักษณะงานที่เสนอให้ครอบคลุมถึงการจัดทำข้อมูลสารสนเทศ</p>
+                                    <div class="col-md-12 mb-4">
 
                                         <div class="form-outline">
-                                            <label class="form-label" for="UserName">ตำแหน่งวิทยฐานะ</label>
-                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;"/>
+                                            <label class="form-label" for="UserName">งาน (Task) (โปรดระบุ)</label>
+                                            <textarea id="firstName" name="firstName" class="form-control form-control-lg" placeholder="งาน" style="font-size:16px;"> </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="form-label" for="UserName">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
+                                            <textarea id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;"> </textarea>
 
                                         </div>
 
                                     </div>
                                     <div class="col-md-12 mb-4">
-
                                         <div class="form-outline">
-                                            <label class="form-label" for="UserName">วันที่ได้รับวิทยฐานะ</label>
-                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;"/>
-
+                                            <label class="form-label" for="UserName">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
+                                            <textarea id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;"> </textarea>
                                         </div>
-
-                                    </div>
-                                    <div class="col-md-12 mb-4">
-
-                                        <div class="form-outline">
-                                            <label class="form-label" for="UserName">สถานศึกษา</label>
-                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;"/>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-12 mb-4">
-
-                                        <div class="form-outline">
-                                            <label class="form-label" for="UserName">สังกัด</label>
-                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;"/>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-12 mb-4">
-
-                                        <div class="form-outline">
-                                            <label class="form-label" for="UserName">รับเงินเดือนในอันดับ คศ.</label>
-                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;"/>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-12 mb-4">
-
-                                        <div class="form-outline">
-                                            <label class="form-label" for="UserName">อัตราเงินเดือน</label>
-                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;"/>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-12 mb-4">
-
-                                        <div class="form-outline">
-                                            <label class="form-label" for="UserName">ประเภทห้องเรียนที่จัดการเรียนรู้</label>
-                                            <label class="form-label" for="UserName">(สามารถระบุได้มากกว่า 1 ประเภทห้องเรียนตามสภาพการจัดการเรียนรู้จริง)</label>
-                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;"/>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-12 mb-4">
-
-                                        <div class="form-outline">
-                                            <label class="form-label" for="UserName">ข้าพเจ้าขอแสดงเจตจำนงค์ทำข้อตกลงในการพัฒนางานตำแหน่งครู วิทยฐานะครูเชี่ยวชาญ ซึ่งเป็นตำแหน่งและวิทยฐานะที่ดำรงอยู่ในปัจจุบันกับ</label>
-                                            <label class="form-label" for="UserName">ผู้อำนวยการสถานศึกษา ไว้ดังนี้</label>
-                                        </div>
-
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
                                         <div>
@@ -201,313 +399,119 @@
                                         </div>
                                     </div>
 
-
-                                </div>    
-                            </form>
-                                
-                        </div>
-                    </div>
-                    <div id="page_2_form" style="display:none;">
-                        <div class="card border-light shadow">
-                            <div class="card-header bg-white sh p-0 pl-1 pr-1">
-                                <div class="pl-5 pr-5">
-                                    <form class="form-inline subform" asp-route="">
-                                        <div id="subpage_1" class="mt-2 p-0 pl-4 pr-4 active" onclick='showsubpage_1();'>
-                                            <p class="m-0 mt-1 mb-1">ภาระงาน</p>
-                                        </div>
-                                        <div id="subpage_2" class="mt-2 p-0 pl-4 pr-4" onclick='showsubpage_2();'>
-                                            <p class="m-0 mt-1 mb-1">ด้านจัดการเรียนรู้</p>
-                                        </div>
-                                        <div id="subpage_3" class="mt-2 p-0 pl-4 pr-4" onclick='showsubpage_3();'>
-                                            <p class="m-0 mt-1 mb-1">ด้านการส่งเสริมและสนับสนุน</p>
-                                        </div>
-                                        <div id="subpage_4" class="mt-2 p-0 pl-4 pr-4" onclick='showsubpage_4();'>
-                                            <p class="m-0 mt-1 mb-1">ด้านการพัฒนาตนเองและวิชาชีพ</p>
-                                        </div>
-                                    </form>
                                 </div>
                             </div>
-                            <div class="card-body border-0 p-5">
-                                <div id="page_1_subform" style="display:block;">
-                                    <div class="card-body" style="padding:10px;">
-                                        <p>จะมีภาระงานเป็นไปตามที่ กคศ. กำหนด</p>
+                            <div id="page_4_subform" style="display:none;">
+                                <div class="card-body" style="padding:10px;height:640px">
+                                    <p>ลักษณะงานที่เสนอให้ครอบคลุมถึงการพัฒนาตนเองอย่างเป็นระบบและต่อเนื่อง</p>
+                                    <div class="col-md-12 mb-4">
 
-                                        <div class="col-md-12 mb-4">
-
-                                            <div class="form-inline">
-                                                <label class="form-label" for="UserName">1.1 ชั่วโมงสอนตามตารางสอน รวมจำนวน </label>
-                                                <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-5 mr-5" style="font-size:18px;height:35px;" />
-                                                <label class="form-label" for="UserName">ชั่วโมง/สัปดาห์ดังนี้ </label>
-                                                <table class="table table-hover border shadow m-2">
-
-                                                    <!-- Table body -->
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div id="mdiv">
-                                                                    <div class="mdiv">
-                                                                        <div class="md"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="padding:0;font-size:16px;">
-                                                                <div class="d-inline-flex pt-1 pb-1">
-                                                                    <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
-                                                                    <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-3 mr-3" style="font-size:16px;height:35px;" />
-                                                                    <span class="pt-1">จำนวน</span>
-                                                                    <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-3 mr-3" style="font-size:16px;height:35px;width:100px" />
-                                                                    <span class="pt-1">ชั่วโมง/สัปดาห์</span>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div id="mdiv">
-                                                                    <div class="mdiv">
-                                                                        <div class="md"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="padding:0;font-size:16px;">
-                                                                <div class="d-inline-flex pt-1 pb-1">
-                                                                    <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
-                                                                    <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-3 mr-3" style="font-size:16px;height:35px;" />
-                                                                    <span class="pt-1">จำนวน</span>
-                                                                    <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-3 mr-3" style="font-size:16px;height:35px;width:100px" />
-                                                                    <span class="pt-1">ชั่วโมง/สัปดาห์</span>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr style="height:44px;">
-                                                            <td style="padding:7px 0px 7px 14px; font-size:18px;"><i class="fa fa-plus w3-text-theme text-success"></i></td>
-                                                            <td style="padding:0;font-size:16px;">
-                                                                <div class="d-inline-flex pt-1 pb-1">
-
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                    <!-- Table body -->
-                                                </table>
-
-
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 mb-4">
-
-                                            <div class="form-inline">
-                                                <label class="form-label" for="UserName">1.2 งานส่งเสริมและสนับสนุนการเรียนรู้ จำนวน </label>
-                                                <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-5 mr-5" style="font-size:18px;height:35px;" />
-                                                <label class="form-label" for="UserName">ชั่วโมง/สัปดาห์ </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 mb-4">
-
-                                            <div class="form-inline">
-                                                <label class="form-label" for="UserName">1.3 งานพัฒนาคุณภาพการจัดการการศึกษา จำนวน </label>
-                                                <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-5 mr-5" style="font-size:18px;height:35px;" />
-                                                <label class="form-label" for="UserName">ชั่วโมง/สัปดาห์ </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 mb-4">
-
-                                            <div class="form-inline">
-                                                <label class="form-label" for="UserName">1.4 งานตอบสนองนโยบายและจุดเน้น จำนวน </label>
-                                                <input type="text" id="firstName" name="firstName" class="form-control form-control-lg ml-5 mr-5" style="font-size:18px;height:35px;" />
-                                                <label class="form-label" for="UserName">ชั่วโมง/สัปดาห์ </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
-                                            <div>
-                                                <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
-                                                <div class="btn btn-outline-danger ml-5" onclick="location.href='@Url.Action("Factory_Main", "Factory")'" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
-                                            </div>
+                                        <div class="form-outline">
+                                            <label class="form-label" for="UserName">งาน (Task) (โปรดระบุ)</label>
+                                            <textarea id="firstName" name="firstName" class="form-control form-control-lg" placeholder="งาน" style="font-size:16px;"> </textarea>
                                         </div>
                                     </div>
+                                    <div class="col-md-12 mb-4">
 
-                                    
-                                </div>
-                                <div id="page_2_subform" style="display:none;">
-                                    <div class="card-body" style="padding:10px;">
-                                        <p>ลักษณะงานที่เสนอให้ครอบคลุมถึงการสร้างและ/หรือพัฒนาหลักสูตร</p>
+                                        <div class="form-outline">
+                                            <label class="form-label" for="UserName">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
+                                            <textarea id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;"> </textarea>
 
-                                        <div class="col-md-12 mb-4">
-
-                                            <div class="form-outline">                                                
-                                                    <label class="form-label" for="UserName">งาน (Task) (โปรดระบุ)</label>                                                
-                                                    <textarea id="firstName" name="firstName" class="form-control form-control-lg" placeholder="งาน"> </textarea>
-                                            </div>                                            
-                                        </div>
-                                        <div class="col-md-12 mb-4">
-
-                                            <div class="form-outline">
-                                                <label class="form-label" for="UserName">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
-                                                <textarea id="firstName" name="firstName" class="form-control form-control-lg"> </textarea>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-12 mb-4">
-                                            <div class="form-outline">
-                                                <label class="form-label" for="UserName">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
-                                                <textarea id="firstName" name="firstName" class="form-control form-control-lg"> </textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
-                                            <div>
-                                                <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
-                                                <div class="btn btn-outline-danger ml-5" onclick="location.href='@Url.Action("Factory_Main", "Factory")'" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="page_3_subform" style="display:none;">
-                                    <div class="card-body" style="padding:10px;">
-                                        <p>ลักษณะงานที่เสนอให้ครอบคลุมถึงการจัดทำข้อมูลสารสนเทศ</p>
-                                        <div class="col-md-12 mb-4">
-
-                                            <div class="form-outline">
-                                                <label class="form-label" for="UserName">งาน (Task) (โปรดระบุ)</label>
-                                                <textarea id="firstName" name="firstName" class="form-control form-control-lg" placeholder="งาน"> </textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 mb-4">
-
-                                            <div class="form-outline">
-                                                <label class="form-label" for="UserName">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
-                                                <textarea id="firstName" name="firstName" class="form-control form-control-lg"> </textarea>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-12 mb-4">
-                                            <div class="form-outline">
-                                                <label class="form-label" for="UserName">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
-                                                <textarea id="firstName" name="firstName" class="form-control form-control-lg"> </textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
-                                            <div>
-                                                <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
-                                                <div class="btn btn-outline-danger ml-5" onclick="location.href='@Url.Action("Factory_Main", "Factory")'" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
-                                            </div>
                                         </div>
 
                                     </div>
-                                </div>
-                                <div id="page_4_subform" style="display:none;">
-                                    <div class="card-body" style="padding:10px;height:640px">
-                                        <p>ลักษณะงานที่เสนอให้ครอบคลุมถึงการพัฒนาตนเองอย่างเป็นระบบและต่อเนื่อง</p>
-                                        <div class="col-md-12 mb-4">
-
-                                            <div class="form-outline">
-                                                <label class="form-label" for="UserName">งาน (Task) (โปรดระบุ)</label>
-                                                <textarea id="firstName" name="firstName" class="form-control form-control-lg" placeholder="งาน"> </textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 mb-4">
-
-                                            <div class="form-outline">
-                                                <label class="form-label" for="UserName">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
-                                                <textarea id="firstName" name="firstName" class="form-control form-control-lg"> </textarea>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-12 mb-4">
-                                            <div class="form-outline">
-                                                <label class="form-label" for="UserName">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
-                                                <textarea id="firstName" name="firstName" class="form-control form-control-lg"> </textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
-                                            <div>
-                                                <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
-                                                <div class="btn btn-outline-danger ml-5" onclick="location.href='@Url.Action("Factory_Main", "Factory")'" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
-                                            </div>
+                                    <div class="col-md-12 mb-4">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="UserName">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
+                                            <textarea id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;"> </textarea>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>                            
-                    </div>
-                            <div id="page_3_form" style="display:none;">
-                                <div class="card-body border-light shadow" style="padding:10px;">
-                                    <form name="page_1_" asp-action="PA_1" asp-controller="EvaluatePA" style="border-style: none; border-color: #BEDDFE; width: auto;">
-                                        <div class="row p-5 pt-1">
-                                            <div class="col-md-12 mb-4">
-
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="UserName">ประเด็นที่ท้าทายในการพัฒนาผลลัพธ์การเรียนรู้ของผู้เรียนของผู้จัดทำข้อตกลง ซึ่งปัจจุบันดำรงตำแหน่งครู วิทยฐานะครูชำนาญพิเศษ ต้องแสดงให้เห็นถึงระดับการปฏิบัติที่คาดหวังของวิทยฐานะเชี่ยวชาญ คือ การคิดค้น และการปรับเปลี่ยน ให้คุณภาพการเรียนรู้ของผู้เรียนสูงขึ้น เป็นแบบอย่างที่ดีและให้คำปรึกษาผู้อื่น (ทั้งนี้ ประเด็นท้าทายอาจจะแสดงให้เห็นถึงระดับการปฏิบัติที่คาดหวังในวิทยฐานะที่สูงกว่าได้)</label>
-                                                    <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" />
-
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-12 mb-4">
-
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="UserName">ประเด็นท้าทาย เรื่อง</label>
-                                                    <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" />
-
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-12 mb-4">
-
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="UserName">1.สภาพปัญหาการจัดการเรียนรู้ และคุณภาพการเรียนรู้ของผู้เรียน</label>
-                                                    <textarea id="firstName" name="firstName" class="form-control form-control-lg" > </textarea>
-
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-12 mb-4">
-
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="UserName">2.วิธีการดำเนินการให้บรรลุผล</label>
-                                                    <textarea id="firstName" name="firstName" class="form-control form-control-lg" > </textarea>
-
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-12 mb-4">
-
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="UserName">3. ผลลัพธ์การพัฒนาที่คาดหวัง 3.1 เชิงปริมาณ</label>
-                                                    <textarea id="firstName" name="firstName" class="form-control form-control-lg" > </textarea>
-
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-12 mb-4">
-
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="UserName">3.2 เชิงคุณภาพ</label>
-                                                    <textarea id="firstName" name="firstName" class="form-control form-control-lg" > </textarea>
-
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
-                                                <div>
-                                                    <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
-                                                    <div class="btn btn-outline-danger ml-5" onclick="location.href='@Url.Action("Factory_Main", "Factory")'" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
-                                                </div>
-                                            </div>
-
-
+                                    <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                        <div>
+                                            <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                            <div class="btn btn-outline-danger ml-5" onclick="location.href='@Url.Action("Factory_Main", "Factory")'" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div id="page_3_form" style="display:none;">
+                    <div class="card-body border-light shadow" style="padding:10px;">
+                        <form name="page_1_" asp-action="PA_1" asp-controller="EvaluatePA" style="border-style: none; border-color: #BEDDFE; width: auto;">
+                            <div class="row p-5 pt-1">
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">ประเด็นที่ท้าทายในการพัฒนาผลลัพธ์การเรียนรู้ของผู้เรียนของผู้จัดทำข้อตกลง ซึ่งปัจจุบันดำรงตำแหน่งครู วิทยฐานะครูชำนาญพิเศษ ต้องแสดงให้เห็นถึงระดับการปฏิบัติที่คาดหวังของวิทยฐานะเชี่ยวชาญ คือ การคิดค้น และการปรับเปลี่ยน ให้คุณภาพการเรียนรู้ของผู้เรียนสูงขึ้น เป็นแบบอย่างที่ดีและให้คำปรึกษาผู้อื่น (ทั้งนี้ ประเด็นท้าทายอาจจะแสดงให้เห็นถึงระดับการปฏิบัติที่คาดหวังในวิทยฐานะที่สูงกว่าได้)</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;" />
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">ประเด็นท้าทาย เรื่อง</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;"/>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">1.สภาพปัญหาการจัดการเรียนรู้ และคุณภาพการเรียนรู้ของผู้เรียน</label>
+                                        <textarea id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;"> </textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">2.วิธีการดำเนินการให้บรรลุผล</label>
+                                        <textarea id="firstName" name="firstName" class="form-control form-control-lg"  style="font-size:16px;"> </textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">3. ผลลัพธ์การพัฒนาที่คาดหวัง 3.1 เชิงปริมาณ</label>
+                                        <textarea id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;"> </textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="UserName">3.2 เชิงคุณภาพ</label>
+                                        <textarea id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;"> </textarea>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                    <div>
+                                        <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                        <div class="btn btn-outline-danger ml-5" onclick="location.href='@Url.Action("Factory_Main", "Factory")'" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 
 
 @section Scripts {
@@ -516,177 +520,190 @@
         $('.a-EvaluatePA').addClass('active_');
         $('.a-EvaluatePA').removeClass('text-dark');
     </script>
+    <script>
+        var tx = document.getElementsByTagName('textarea');
+        for (var i = 0; i < tx.length; i++) {
+            tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
+            tx[i].addEventListener("input", OnInput, false);
+        }
 
-<script>
-    var btn_p1 = document.getElementById("page_1");
-    var btn_p2 = document.getElementById("page_2");
-    var btn_p3 = document.getElementById("page_3");
-    var p1 = document.getElementById("page_1_form");
-    var p2 = document.getElementById("page_2_form");
-    var p3 = document.getElementById("page_3_form");
+        function OnInput(e) {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
 
-    var btn_sub_p1 = document.getElementById("subpage_1");
-    var btn_sub_p2 = document.getElementById("subpage_2");
-    var btn_sub_p3 = document.getElementById("subpage_3");
-    var btn_sub_p4 = document.getElementById("subpage_4");
-    var sub_p1 = document.getElementById("page_1_subform");
-    var sub_p2 = document.getElementById("page_2_subform");
-    var sub_p3 = document.getElementById("page_3_subform");
-    var sub_p4 = document.getElementById("page_4_subform");
+    </script>
+    
 
+    <script>
+        var btn_p1 = document.getElementById("page_1");
+        var btn_p2 = document.getElementById("page_2");
+        var btn_p3 = document.getElementById("page_3");
+        var p1 = document.getElementById("page_1_form");
+        var p2 = document.getElementById("page_2_form");
+        var p3 = document.getElementById("page_3_form");
 
-    function showpage_1() {
-        //alert("test");
-        
-        btn_p1.classList.add("active");
-        btn_p2.classList.remove("active");
-        btn_p3.classList.remove("active");
-        //var btn1_1 = document.getElementById("chart_watrLevel_btn");
-        //var btn1_2 = document.getElementById("chart_waterFlow_btn");
-        //var btn2 = document.getElementById("section_btn");
-        //var btn3 = document.getElementById("CCTV_btn");
-        
-        //var y_wf = document.getElementById("chart_WaterFlow");
-        //var z = document.getElementById("CCTV");
-        p1.style.display = "block";
-        p2.style.display = "none";
-        p3.style.display = "none";
-        //x.style.display = "none";
-        //z.style.display = "none";
-        //btn2.classList.add("btn_proface-primary");
-        //btn2.classList.remove("btn-success");
-        //btn3.classList.add("btn_proface-primary");
-        //btn3.classList.remove("btn-success");
-        //btn1.classList.remove("btn_proface-primary");
-        //btn1.classList.add("btn-success");
-        //btn1_1.classList.add("btn_proface-primary");
-        //btn1_1.classList.remove("btn-success");
-        //btn1_2.classList.add("btn_proface-primary");
-        //btn1_2.classList.remove("btn-success");
-
-    }
-    function showpage_2() {
-
-        btn_p1.classList.remove("active");
-        btn_p2.classList.add("active");
-        btn_p3.classList.remove("active");
-        p1.style.display = "none";
-        p2.style.display = "block";
-        p3.style.display = "none";
-        //var btn1_1 = document.getElementById("chart_watrLevel_btn");
-        //var btn1_2 = document.getElementById("chart_waterFlow_btn");
-        //var btn2 = document.getElementById("section_btn");
-        //var btn3 = document.getElementById("CCTV_btn");
-        //var x = document.getElementById("section");
-        //var y = document.getElementById("chart_");
-        //var y_wl = document.getElementById("chart_WaterLevel");
-        //var y_wf = document.getElementById("chart_WaterFlow");
-        //var z = document.getElementById("CCTV");
-        //y.style.display = "block";
-        //y_wl.style.display = "none";
-        //y_wf.style.display = "none";
-        //x.style.display = "none";
-        //z.style.display = "none";
-        //btn2.classList.add("btn_proface-primary");
-        //btn2.classList.remove("btn-success");
-        //btn3.classList.add("btn_proface-primary");
-        //btn3.classList.remove("btn-success");
-        //btn1.classList.remove("btn_proface-primary");
-        //btn1.classList.add("btn-success");
-        //btn1_1.classList.add("btn_proface-primary");
-        //btn1_1.classList.remove("btn-success");
-        //btn1_2.classList.add("btn_proface-primary");
-        //btn1_2.classList.remove("btn-success");
-
-    }
-    function showpage_3() {
-
-        btn_p1.classList.remove("active");
-        btn_p2.classList.remove("active");
-        btn_p3.classList.add("active");
-        p1.style.display = "none";
-        p2.style.display = "none";
-        p3.style.display = "block";
-        //var btn1_1 = document.getElementById("chart_watrLevel_btn");
-        //var btn1_2 = document.getElementById("chart_waterFlow_btn");
-        //var btn2 = document.getElementById("section_btn");
-        //var btn3 = document.getElementById("CCTV_btn");
-        //var x = document.getElementById("section");
-        //var y = document.getElementById("chart_");
-        //var y_wl = document.getElementById("chart_WaterLevel");
-        //var y_wf = document.getElementById("chart_WaterFlow");
-        //var z = document.getElementById("CCTV");
-        //y.style.display = "block";
-        //y_wl.style.display = "none";
-        //y_wf.style.display = "none";
-        //x.style.display = "none";
-        //z.style.display = "none";
-        //btn2.classList.add("btn_proface-primary");
-        //btn2.classList.remove("btn-success");
-        //btn3.classList.add("btn_proface-primary");
-        //btn3.classList.remove("btn-success");
-        //btn1.classList.remove("btn_proface-primary");
-        //btn1.classList.add("btn-success");
-        //btn1_1.classList.add("btn_proface-primary");
-        //btn1_1.classList.remove("btn-success");
-        //btn1_2.classList.add("btn_proface-primary");
-        //btn1_2.classList.remove("btn-success");
-
-    }
-
-    function showsubpage_1() {
-
-        btn_sub_p1.classList.add("active");
-        btn_sub_p2.classList.remove("active");
-        btn_sub_p3.classList.remove("active");
-        btn_sub_p4.classList.remove("active");
-        sub_p1.style.display = "block";
-        sub_p2.style.display = "none";
-        sub_p3.style.display = "none";
-        sub_p4.style.display = "none";
+        var btn_sub_p1 = document.getElementById("subpage_1");
+        var btn_sub_p2 = document.getElementById("subpage_2");
+        var btn_sub_p3 = document.getElementById("subpage_3");
+        var btn_sub_p4 = document.getElementById("subpage_4");
+        var sub_p1 = document.getElementById("page_1_subform");
+        var sub_p2 = document.getElementById("page_2_subform");
+        var sub_p3 = document.getElementById("page_3_subform");
+        var sub_p4 = document.getElementById("page_4_subform");
 
 
-    }
-    function showsubpage_2() {
+        function showpage_1() {
+            //alert("test");
 
-        btn_sub_p1.classList.remove("active");
-        btn_sub_p2.classList.add("active");
-        btn_sub_p3.classList.remove("active");
-        btn_sub_p4.classList.remove("active");
-        sub_p1.style.display = "none";
-        sub_p2.style.display = "block";
-        sub_p3.style.display = "none";
-        sub_p4.style.display = "none";
+            btn_p1.classList.add("active");
+            btn_p2.classList.remove("active");
+            btn_p3.classList.remove("active");
+            //var btn1_1 = document.getElementById("chart_watrLevel_btn");
+            //var btn1_2 = document.getElementById("chart_waterFlow_btn");
+            //var btn2 = document.getElementById("section_btn");
+            //var btn3 = document.getElementById("CCTV_btn");
+
+            //var y_wf = document.getElementById("chart_WaterFlow");
+            //var z = document.getElementById("CCTV");
+            p1.style.display = "block";
+            p2.style.display = "none";
+            p3.style.display = "none";
+            //x.style.display = "none";
+            //z.style.display = "none";
+            //btn2.classList.add("btn_proface-primary");
+            //btn2.classList.remove("btn-success");
+            //btn3.classList.add("btn_proface-primary");
+            //btn3.classList.remove("btn-success");
+            //btn1.classList.remove("btn_proface-primary");
+            //btn1.classList.add("btn-success");
+            //btn1_1.classList.add("btn_proface-primary");
+            //btn1_1.classList.remove("btn-success");
+            //btn1_2.classList.add("btn_proface-primary");
+            //btn1_2.classList.remove("btn-success");
+
+        }
+        function showpage_2() {
+
+            btn_p1.classList.remove("active");
+            btn_p2.classList.add("active");
+            btn_p3.classList.remove("active");
+            p1.style.display = "none";
+            p2.style.display = "block";
+            p3.style.display = "none";
+            //var btn1_1 = document.getElementById("chart_watrLevel_btn");
+            //var btn1_2 = document.getElementById("chart_waterFlow_btn");
+            //var btn2 = document.getElementById("section_btn");
+            //var btn3 = document.getElementById("CCTV_btn");
+            //var x = document.getElementById("section");
+            //var y = document.getElementById("chart_");
+            //var y_wl = document.getElementById("chart_WaterLevel");
+            //var y_wf = document.getElementById("chart_WaterFlow");
+            //var z = document.getElementById("CCTV");
+            //y.style.display = "block";
+            //y_wl.style.display = "none";
+            //y_wf.style.display = "none";
+            //x.style.display = "none";
+            //z.style.display = "none";
+            //btn2.classList.add("btn_proface-primary");
+            //btn2.classList.remove("btn-success");
+            //btn3.classList.add("btn_proface-primary");
+            //btn3.classList.remove("btn-success");
+            //btn1.classList.remove("btn_proface-primary");
+            //btn1.classList.add("btn-success");
+            //btn1_1.classList.add("btn_proface-primary");
+            //btn1_1.classList.remove("btn-success");
+            //btn1_2.classList.add("btn_proface-primary");
+            //btn1_2.classList.remove("btn-success");
+
+        }
+        function showpage_3() {
+
+            btn_p1.classList.remove("active");
+            btn_p2.classList.remove("active");
+            btn_p3.classList.add("active");
+            p1.style.display = "none";
+            p2.style.display = "none";
+            p3.style.display = "block";
+            //var btn1_1 = document.getElementById("chart_watrLevel_btn");
+            //var btn1_2 = document.getElementById("chart_waterFlow_btn");
+            //var btn2 = document.getElementById("section_btn");
+            //var btn3 = document.getElementById("CCTV_btn");
+            //var x = document.getElementById("section");
+            //var y = document.getElementById("chart_");
+            //var y_wl = document.getElementById("chart_WaterLevel");
+            //var y_wf = document.getElementById("chart_WaterFlow");
+            //var z = document.getElementById("CCTV");
+            //y.style.display = "block";
+            //y_wl.style.display = "none";
+            //y_wf.style.display = "none";
+            //x.style.display = "none";
+            //z.style.display = "none";
+            //btn2.classList.add("btn_proface-primary");
+            //btn2.classList.remove("btn-success");
+            //btn3.classList.add("btn_proface-primary");
+            //btn3.classList.remove("btn-success");
+            //btn1.classList.remove("btn_proface-primary");
+            //btn1.classList.add("btn-success");
+            //btn1_1.classList.add("btn_proface-primary");
+            //btn1_1.classList.remove("btn-success");
+            //btn1_2.classList.add("btn_proface-primary");
+            //btn1_2.classList.remove("btn-success");
+
+        }
+
+        function showsubpage_1() {
+
+            btn_sub_p1.classList.add("active");
+            btn_sub_p2.classList.remove("active");
+            btn_sub_p3.classList.remove("active");
+            btn_sub_p4.classList.remove("active");
+            sub_p1.style.display = "block";
+            sub_p2.style.display = "none";
+            sub_p3.style.display = "none";
+            sub_p4.style.display = "none";
 
 
-    }
-    function showsubpage_3() {
+        }
+        function showsubpage_2() {
 
-        btn_sub_p1.classList.remove("active");
-        btn_sub_p2.classList.remove("active");
-        btn_sub_p3.classList.add("active");
-        btn_sub_p4.classList.remove("active");
-        sub_p1.style.display = "none";
-        sub_p2.style.display = "none";
-        sub_p3.style.display = "block";
-        sub_p4.style.display = "none";
-
-
-    }
-    function showsubpage_4() {
-
-        btn_sub_p1.classList.remove("active");
-        btn_sub_p2.classList.remove("active");
-        btn_sub_p3.classList.remove("active");
-        btn_sub_p4.classList.add("active");
-        sub_p1.style.display = "none";
-        sub_p2.style.display = "none";
-        sub_p3.style.display = "none";
-        sub_p4.style.display = "block";
+            btn_sub_p1.classList.remove("active");
+            btn_sub_p2.classList.add("active");
+            btn_sub_p3.classList.remove("active");
+            btn_sub_p4.classList.remove("active");
+            sub_p1.style.display = "none";
+            sub_p2.style.display = "block";
+            sub_p3.style.display = "none";
+            sub_p4.style.display = "none";
 
 
-    }
+        }
+        function showsubpage_3() {
+
+            btn_sub_p1.classList.remove("active");
+            btn_sub_p2.classList.remove("active");
+            btn_sub_p3.classList.add("active");
+            btn_sub_p4.classList.remove("active");
+            sub_p1.style.display = "none";
+            sub_p2.style.display = "none";
+            sub_p3.style.display = "block";
+            sub_p4.style.display = "none";
 
 
-</script>
+        }
+        function showsubpage_4() {
+
+            btn_sub_p1.classList.remove("active");
+            btn_sub_p2.classList.remove("active");
+            btn_sub_p3.classList.remove("active");
+            btn_sub_p4.classList.add("active");
+            sub_p1.style.display = "none";
+            sub_p2.style.display = "none";
+            sub_p3.style.display = "none";
+            sub_p4.style.display = "block";
+
+
+        }
+
+
+    </script>
 }

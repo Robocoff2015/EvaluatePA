@@ -11,10 +11,13 @@ namespace EvaluatePa.Models
         public string UserName { get; set; }
         public string LastName { get; set; }
         public string UserPosition { get; set; }
-        public int School_Id { get; set; }
+        public string School { get; set; }
+        public string Province { get; set; }
         public string Phonenumber { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public int Status { get; set; }
+
+
     }
 }
