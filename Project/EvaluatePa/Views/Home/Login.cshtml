@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_Layout_NoMenu2";
+}
+
+    <section class="gradient-custom">
+        <div class="container py-5">
+            <div class="row justify-content-center align-items-center">                
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-2">
+                            <div class="w3-card w3-round w3-white">
+                                <div class="w3-container p-5">
+                                    <br>
+                                    <p class="w3-center"><img src="~/images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+                                    <hr>
+                                    <h4 class="w3-center">ลงชื่อเข้าใช้งาน</h4>
+                                    <hr>
+                                    <form name="login" asp-action="Login" asp-controller="Home" style="border-style: none; border-color: #BEDDFE; width: auto;">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-2">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="UserName">Username/Email</label>
+                                                    <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="Password">Password</label>
+                                                    <input type="password" id="Password" name="Password" class="form-control form-control-lg" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <div class="form-outline">
+                                                    <p class="loginhere">
+                                                        <a asp-controller="Home"
+                                                           asp-action="Registration">สร้างบัญชีผูใช้</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <div class="form-outline w3-center" >
+                                                    <input class="btn btn-success btn-lg" style="width:100%" type="submit" value="Submit" />
+                                                </div>                                                
+                                            </div>                                            
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                       
+                </div>
+            </div>
+        </div>
+    </section>

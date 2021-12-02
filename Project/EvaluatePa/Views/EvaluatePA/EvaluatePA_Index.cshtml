@@ -1,8 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<PA_Form_Short>
 @{
     ViewData["Title"] = "PA";
 }
@@ -67,42 +63,19 @@
                                         <!-- Table head -->
                                         <!-- Table body -->
                                         <tbody>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td>แบบฟอร์มพัฒนางาน 1</td>
-                                                <td>01/10/2564</td>
-                                                <td>
-                                                    <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
-                                                </td>
-                                                <td>
-                                                    <div id="model_.Factory_ID" class="btn edit bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
-                                                    <div id="model_.Factory_ID" class="btn delete bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td scope="row">2</td>
-                                                <td>แบบฟอร์มพัฒนางาน 2</td>
-                                                <td>11/11/2564</td>
-                                                <td>
-                                                    <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
-                                                </td>
-                                                <td>
-                                                    <div id="model_.Factory_ID" class="btn edit bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
-                                                    <div id="model_.Factory_ID" class="btn delete bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td scope="row">3</td>
-                                                <td>แบบฟอร์มพัฒนางาน 3</td>
-                                                <td>19/11/2564</td>
-                                                <td>
-                                                    <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
-                                                </td>
-                                                <td>
-                                                    <div id="model_.Factory_ID" class="btn edit bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
-                                                    <div id="model_.Factory_ID" class="btn delete bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
-                                                </td>
-                                            </tr>
+                                            @*<tr>
+                                                    <td scope="row">1</td>
+                                                    <td>แบบฟอร์มพัฒนางาน 1</td>
+                                                    <td>01/10/2564</td>
+                                                    <td>
+                                                        <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="model_.Factory_ID" class="btn edit bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
+                                                        <div id="model_.Factory_ID" class="btn delete bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
+                                                    </td>
+                                                </tr>*@
+
                                         </tbody>
                                         <!-- Table body -->
                                     </table>
@@ -128,5 +101,6 @@
     <script type="text/javascript">
         $('.active_').removeClass('active_');
         $('.a-EvaluatePA').addClass('active_');
+        $('.a-EvaluatePA').removeClass('text-dark');
     </script>
 }
