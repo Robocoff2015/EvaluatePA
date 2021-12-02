@@ -13,12 +13,13 @@ namespace EvaluatePa.Controllers
     public class DevelopPAController : Controller
 
     {
-        private string connectionString = @"Data Source = (localdb)\MSSQLLocalDB;Initial Catalog = EvaluateWork; Integrated Security = True";
-     
+        private string connectionString = @"Data Source = DESKTOP-UK1L50N\SQLEXPRESS;Initial Catalog = EvaluateWork; Integrated Security = True";
+        //private string connectionString = @"Data Source = (localdb)\MSSQLLocalDB;Initial Catalog = EvaluateWork; Integrated Security = True";
+        //DESKTOP-UK1L50N\SQLEXPRESS
         //string connectionString = @"Data Source = (localdb)\MSSQLLocalDB; Database = EvaluateWork; Integrated Security = True";
 
         // GET: DevelopPAController
-        
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -63,11 +64,11 @@ namespace EvaluatePa.Controllers
 
                 sqlcon.Open();
 
-                string query = " INSERT INTRO DevelopPA(IdPA,Name,Position,Cdate,Place,BelongTo,GetSalaty,RateSalary,TypeClassroom) VALUES (@IdPA,@Name,@Position,@Cdate,@Place,@BelongTo,@GetSalaty,@RateSalary,@TypeClassroom)";
+                string query = " INSERT INTO DevelopPA(Name,Position,Cdate,Place,BelongTo,GetSalary,RateSalary,TypeClassroom) VALUES (@Name,@Position,@Cdate,@Place,@BelongTo,@GetSalary,@RateSalary,@TypeClassroom)";
 
                 SqlCommand sqlcmd = new SqlCommand(query,sqlcon);
 
-                sqlcmd.Parameters.AddWithValue("@IdPA",DevelopPAs.IdPA);
+                //sqlcmd.Parameters.AddWithValue("@IdPA",DevelopPAs.IdPA);
 
                 sqlcmd.Parameters.AddWithValue("@Name", DevelopPAs.Name);
 
@@ -91,7 +92,7 @@ namespace EvaluatePa.Controllers
                 //Console.WriteLine("Success Create");
 
             }
-            return RedirectToAction("Index");
+            return RedirectToAction();
            
         }
 
