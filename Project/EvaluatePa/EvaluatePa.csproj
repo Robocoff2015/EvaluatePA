@@ -12,6 +12,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.21" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+<<<<<<< Updated upstream
+=======
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+>>>>>>> Stashed changes
   </ItemGroup>
 
 </Project>

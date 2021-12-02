@@ -1,0 +1,121 @@
+﻿@model EvaluatePa.Models.DevelopPAModels
+
+@*@{
+    ViewData["Title"] = "Create";
+    Layout = "DevelopPA_Form";
+}*@
+
+<h3>แบบประเมินผลงาน</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true)
+            <div class = "form-group"> 
+                @Html.Display("รหัส")
+               @*@Html.LabelFor(model => model.IdPA,new {@class = "control-label col-md-2"})*@
+               
+               <div class = "col-md-10">
+                  
+                    
+                    @Html.EditorFor(model => model.IdPA)
+
+                    @Html.ValidationMessageFor(model =>model.IdPA)
+
+                </div>
+                </div>
+
+                <div class = "form-group">
+                      @Html.LabelFor(model => model.Name,new {@class = "control-label col-md-2"})
+               
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model =>model.Name)
+
+                </div>
+                </div>
+
+                 <div class = "form-group">
+                @Html.LabelFor(model => model.Position,new {@class = "control-label col-md-2"})
+               
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.Position)
+                    @Html.ValidationMessageFor(model =>model.Position)
+
+                </div>
+                </div>
+
+                 <div class = "form-group">
+                @Html.LabelFor(model => model.Cdate,new {@class = "control-label col-md-2"})
+               
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.Cdate)
+                    @Html.ValidationMessageFor(model =>model.Cdate)
+
+                </div>
+                </div>
+
+                <div class = "form-group">
+                @Html.LabelFor(model => model.Place,new {@class = "control-label col-md-2"})
+               
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.Place)
+                    @Html.ValidationMessageFor(model =>model.Place)
+
+                </div>
+                </div>
+
+                <div class = "form-group">
+                @Html.LabelFor(model => model.BelongTo,new {@class = "control-label col-md-2"})
+               
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.BelongTo)
+                    @Html.ValidationMessageFor(model =>model.BelongTo)
+
+                </div>
+                </div>
+
+                <div class = "form-group">
+                @Html.LabelFor(model => model.GetSalary,new {@class = "control-label col-md-2"})
+               
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.GetSalary)
+                    @Html.ValidationMessageFor(model =>model.GetSalary)
+
+                </div>
+                </div>
+
+          
+                <div class = "form-group">
+                @Html.LabelFor(model => model.RateSalary,new {@class = "control-label col-md-2"})
+               
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.RateSalary)
+                    @Html.ValidationMessageFor(model =>model.RateSalary)
+
+                </div>
+                </div>
+
+                <div class = "form-group">
+                @Html.LabelFor(model => model.TypeClassroom,new {@class = "control-label col-md-2"})
+               
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.TypeClassroom)
+                    @Html.ValidationMessageFor(model =>model.TypeClassroom)
+
+                </div>
+                </div>
+            
+            <div class="form-group">
+                <input type="submit" value="บันทึก" class="btn btn-primary" />
+            </div>
+            
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+</div>
+}
+
