@@ -88,8 +88,9 @@
             transform: rotate(90deg);
             Z-index: 2;
         }
+
         textarea {
-        font-size:8px;
+            font-size: 8px;
         }
     </style>
 }
@@ -99,13 +100,13 @@
             <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
                 <div class="border-bottom-2 pt-1">
                     <form class="form-inline" asp-route="">
-                        <div id="page_1" class="mt-2 p-0 pl-4 pr-4 active" onclick='showpage_1();'>
+                        <div id="page_1" class="mt-2 p-0 pl-4 pr-4 active" onclick='showpage_1();fadout();'>
                             <p class="m-0 mt-1 mb-1">แบบฟอร์มพัฒนางาน (PA)</p>
                         </div>
-                        <div id="page_2" class="mt-2 p-0 pl-4 pr-4" onclick='showpage_2();'>
+                        <div id="page_2" class="mt-2 p-0 pl-4 pr-4" onclick='showpage_2();fadout();'>
                             <p class="m-0 mt-1 mb-1">ข้อตกลงการพัฒนา</p>
                         </div>
-                        <div id="page_3" class="mt-2 p-0 pl-4 pr-4" onclick='showpage_3();'>
+                        <div id="page_3" class="mt-2 p-0 pl-4 pr-4" onclick='showpage_3();fadout();'>
                             <p class="m-0 mt-1 mb-1">ประเด็นท้าทายในการพัฒนา</p>
                         </div>
                     </form>
@@ -117,15 +118,62 @@
                     <div class="card-body border-light shadow">
                         <form name="page_1_" asp-action="PA_1" asp-controller="EvaluatePA" style="border-style: none; border-color: #BEDDFE; width: auto;">
                             <div class="row p-5 pt-1">
-                                <div class="col-md-12 mb-4">
 
-                                    <div class="form-outline">
-                                        <label class="form-label" for="UserName">ชื่อ-นามสกุล</label>
-                                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;" />
+                                <div class="col-md-6 mb-4">
 
+                                    <h6 class="mb-2 pb-1">คำนำหน้า : </h6>
+
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input"
+                                               type="radio"
+                                               name="inlineRadioOptions"
+                                               id="mr"
+                                               value="option1"
+                                               checked />
+                                        <label class="form-check-label" for="femaleGender">นาย</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input"
+                                               type="radio"
+                                               name="inlineRadioOptions"
+                                               id="mrs"
+                                               value="option2" />
+                                        <label class="form-check-label" for="maleGender">นาง</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input"
+                                               type="radio"
+                                               name="inlineRadioOptions"
+                                               id="miss"
+                                               value="option3" />
+                                        <label class="form-check-label" for="otherGender">นางสาว</label>
                                     </div>
 
                                 </div>
+
+                                <div class="row pl-3 d-inline-flex">
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="form-label" for="FirstName">ชื่อ</label>
+                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;" />
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="form-label" for="Lastname">นามสกุล</label>
+                                            <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:18px;height:35px;" />
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
                                 <div class="col-md-12 mb-4">
 
                                     <div class="form-outline">
@@ -216,16 +264,16 @@
                         <div class="card-header bg-white sh p-0 pl-1 pr-1">
                             <div class="pl-5 pr-5">
                                 <form class="form-inline subform" asp-route="">
-                                    <div id="subpage_1" class="mt-2 p-0 pl-4 pr-4 active" onclick='showsubpage_1();'>
+                                    <div id="subpage_1" class="mt-2 p-0 pl-4 pr-4 active" onclick='fadin();showsubpage_1();fadout();'>
                                         <p class="m-0 mt-1 mb-1">ภาระงาน</p>
                                     </div>
-                                    <div id="subpage_2" class="mt-2 p-0 pl-4 pr-4" onclick='showsubpage_2();'>
+                                    <div id="subpage_2" class="mt-2 p-0 pl-4 pr-4" onclick='fadin();showsubpage_2();fadout();'>
                                         <p class="m-0 mt-1 mb-1">ด้านจัดการเรียนรู้</p>
                                     </div>
-                                    <div id="subpage_3" class="mt-2 p-0 pl-4 pr-4" onclick='showsubpage_3();'>
+                                    <div id="subpage_3" class="mt-2 p-0 pl-4 pr-4" onclick='fadin();showsubpage_3();fadout();'>
                                         <p class="m-0 mt-1 mb-1">ด้านการส่งเสริมและสนับสนุน</p>
                                     </div>
-                                    <div id="subpage_4" class="mt-2 p-0 pl-4 pr-4" onclick='showsubpage_4();'>
+                                    <div id="subpage_4" class="mt-2 p-0 pl-4 pr-4" onclick='fadin();showsubpage_4();fadout();'>
                                         <p class="m-0 mt-1 mb-1">ด้านการพัฒนาตนเองและวิชาชีพ</p>
                                     </div>
                                 </form>
@@ -454,7 +502,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="UserName">ประเด็นท้าทาย เรื่อง</label>
-                                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;"/>
+                                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;" />
 
                                     </div>
 
@@ -472,7 +520,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="UserName">2.วิธีการดำเนินการให้บรรลุผล</label>
-                                        <textarea id="firstName" name="firstName" class="form-control form-control-lg"  style="font-size:16px;"> </textarea>
+                                        <textarea id="firstName" name="firstName" class="form-control form-control-lg" style="font-size:16px;"> </textarea>
 
                                     </div>
 
@@ -513,8 +561,31 @@
     </div>
 </div>
 
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
+
+
+
 
 @section Scripts {
+    <script>
+        $(window).on("load", function () {
+            setTimeout(fadout, 500);
+        });
+        function fadin() {
+            $(".loader-wrapper").fadeIn(5);
+        }
+        function fadout() {
+            $(".loader-wrapper").fadeOut(500);
+        }
+        function animate() {
+            alert("");
+            fadin();
+            fadout();
+        }
+    </script>
+
     <script type="text/javascript">
         $('.active_').removeClass('active_');
         $('.a-EvaluatePA').addClass('active_');
@@ -532,7 +603,7 @@
             this.style.height = (this.scrollHeight) + 'px';
 
     </script>
-    
+
 
     <script>
         var btn_p1 = document.getElementById("page_1");

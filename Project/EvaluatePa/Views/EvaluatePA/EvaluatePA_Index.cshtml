@@ -28,8 +28,10 @@
                             </div>
                             <div class="right">
 
-                                <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Add", "EvaluatePA")'" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;บันทึกแบบฟอร์ม</div>
-
+                                @*<div class="btn btn-success p-0 pt-1" onclick="showModal();location.href='@Url.Action("PA_Add", "EvaluatePA")'" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;บันทึกแบบฟอร์ม</div>*@
+                                <div class="btn btn-success p-0 pt-1" onclick="showModal_Create();" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;สร้างแบบฟอร์ม</div>
+                                @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>*@
+                                @*<button type="button" class="btn btn-info btn-lg" onclick="showModal();">X</button>*@
                             </div>
 
                         </form>
@@ -64,17 +66,17 @@
                                         <!-- Table body -->
                                         <tbody>
                                             @*<tr>
-                                                    <td scope="row">1</td>
-                                                    <td>แบบฟอร์มพัฒนางาน 1</td>
-                                                    <td>01/10/2564</td>
-                                                    <td>
-                                                        <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
-                                                    </td>
-                                                    <td>
-                                                        <div id="model_.Factory_ID" class="btn edit bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
-                                                        <div id="model_.Factory_ID" class="btn delete bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
-                                                    </td>
-                                                </tr>*@
+                                        <td scope="row">1</td>
+                                        <td>แบบฟอร์มพัฒนางาน 1</td>
+                                        <td>01/10/2564</td>
+                                        <td>
+                                            <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
+                                        </td>
+                                        <td>
+                                            <div id="model_.Factory_ID" class="btn edit bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
+                                            <div id="model_.Factory_ID" class="btn delete bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
+                                        </td>
+                                    </tr>*@
 
                                         </tbody>
                                         <!-- Table body -->
@@ -97,10 +99,104 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" class="btn btn-default" onclick="hideModal('myModal');">Close</button>*@
+                <button type="button" class="btn btn-info btn-lg" onclick="hideModal('myModal');">X</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
+<div class="loader-wrapper2">
+    @*<span class="loader"><span class="loader-inner" onclick="hideModal();"></span>
+        </span>*@
+    
+
+    <div class="row p-5 pt-1">
+        <div class="col-md-12 mb-4">
+
+            <div class="form-outline">
+                <div class="card border shadow p-3">
+                    <div class="card-header bg-white border-0 border-top p-0 pl-3 pr-3">
+                        <div class="form-inline justify-content-between">                        
+                            <div class="pt-2">                            
+                                <label class="form-label" for="fileName">ชื่อแบบฟอร์ม :</label>                        
+                            </div>                        
+                            <span onclick="hideModal_fast();">
+                                <i class="fa fa-times"></i>
+                            </span>                            
+                        </div>
+                    </div>
+                    <div class="card-body p-1 pb-2">
+                        <input type="text" id="firstName" name="firstName" class="form-control form-control-lg mt-2" style="width:350px;font-size:16px;" />
+                        <div class="pt-2 pl-3">
+                            <label class="form-label" for="Level">ระดับวิทยฐานะ :</label>
+                        </div>
+                        <input type="text" id="Level" name="Level" class="form-control form-control-lg" style="width:350px;font-size:16px;" />
+                        <div class="btn btn-success mt-3 pt-2" onclick="hideModal();" style="width:350px;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
 @section Scripts {
+
+    <script>
+        $(window).on("load", function () {
+            setTimeout(fad_out, 500);
+        });
+
+        function fad_out() {
+            $(".loader-wrapper").fadeOut("slow");
+        }
+        function hideModal() {
+            $(".loader-wrapper2").fadeOut("slow");
+        }
+        function hideModal_fast() {
+            $(".loader-wrapper2").fadeOut("fast");
+        }
+        function showModal() {
+            $(".loader-wrapper").fadeIn("slow");
+            $(".loader-wrapper").fadeOut("slow");
+        }
+        function showModal_Create() {
+            $(".loader-wrapper2").css('display', 'flex');
+            $(".loader-wrapper2").fadeIn(2000);
+            //$(".loader-wrapper").fadeOut("slow");
+        }
+
+    </script>
     <script type="text/javascript">
         $('.active_').removeClass('active_');
         $('.a-EvaluatePA').addClass('active_');
         $('.a-EvaluatePA').removeClass('text-dark');
     </script>
+
+
 }
