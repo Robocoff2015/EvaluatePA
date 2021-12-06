@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,10 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Kanit&subset=thai,latin' type='text/css'>
-    
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     @RenderSection("Style_", required: false)
+    @{
+        var userId = @Context.Session.GetString("userId");
+    }
 </head>
 <body>
     <header>
@@ -41,7 +45,7 @@
                                 <a class="nav-link text-dark keep-padding-left a-Learn" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="EvaluatePA" asp-action=""><i class="fa fa-language fa-fw w3-margin-right w3-text-theme"></i>หน่วยการเรียนรู้</a>
                             </li>
                             <li class="nav-item box-shadow keep-margin-left text-nowrap">
-                                <a class="nav-link text-dark keep-padding-left a-EvaluatePA" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="EvaluatePA" asp-action="EvaluatePA_Index"><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-text-theme"></i>วิทยฐานะ</a>
+                                <a class="nav-link text-dark keep-padding-left a-EvaluatePA" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="EvaluatePA" asp-action="EvaluatePA_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-text-theme"></i>วิทยฐานะ</a>
                             </li>
                             <li class="nav-item box-shadow keep-margin-left text-nowrap">
                                 <a class="nav-link text-dark keep-padding-left a-Manage" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="EvaluatePA" asp-action=""><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i>จัดการผู้เรียน</a>
