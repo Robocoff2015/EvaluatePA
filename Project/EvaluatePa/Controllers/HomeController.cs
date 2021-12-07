@@ -135,8 +135,9 @@ namespace EvaluatePa.Controllers
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string myPassSHA = GenerateSHA256String(Password);
-
-                sqlString += " INSERT INTO [" + dbName + "].[dbo].[PA_User] ([UserName],[LastName],[UserPosition],[School_Id],[Phonenumber],[Email],[Password],[Status]) VALUES('" + UserName + "','" + LastName + "','" + UserPosition + "',0,'" + phoneNumber + "','" + Email + "','" + myPassSHA + "',1)";
+                string DateTime_ = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                sqlString += "IF NOT EXISTS (SELECT [Email] FROM [" + dbName + "].[dbo].[PA_User] WHERE [Email] = '" + Email + "')";
+                sqlString += " BEGIN INSERT INTO [" + dbName + "].[dbo].[PA_User] ([UserName],[LastName],[UserPosition],[School_Id],[Phonenumber],[Email],[Password],[JoinDate],[Status]) VALUES('" + UserName + "','" + LastName + "','" + UserPosition + "',0,'" + phoneNumber + "','" + Email + "','" + myPassSHA + "','" + DateTime_ + "',1) END";
                     connection.Open();
                     SqlCommand command2 = new SqlCommand(sqlString, connection);
                     command2.ExecuteNonQuery();
