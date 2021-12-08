@@ -21,7 +21,7 @@ namespace EvaluatePa.Controllers
         // GET: DevelopPAController
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult DevelopPA_Index()
         {
 
             DataTable dtblDevelopPA = new DataTable();
