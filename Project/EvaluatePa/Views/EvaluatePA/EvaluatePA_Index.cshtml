@@ -82,8 +82,8 @@
                                                             <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
                                                         </td>
                                                         <td  class="text-center">
-                                                            <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="Edit_PA(@PA_Report_Model.Form_Id, '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
-                                                            <div id="@PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="Delete_PA(@PA_Report_Model.Form_Id, '@PA_Report_Model.Form_Name');"  style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
+                                                            <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="Edit_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
+                                                            <div id="@PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="Delete_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');"  style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
                                                         </td>
                                                     </tr>
 
@@ -276,15 +276,53 @@
         }
 
         function Delete_PA(id, Name) {
-            alert("");
+            //alert("Delete PA : " + id + "-" + Name + " ?");
+            var param = "PA_Name=" + Name + "&Id=" + id
+                + "&submit=yes";
+            if (confirm("Delete PA : " + id + "-" + Name + " ?")) {
+                // Save it!
+                //console.log('Thing was saved to the database.');
 
-            alert(id + "-" + Name);
+                $.ajax({
+
+                    type: 'GET',
+                    url: '/EvaluatePA/DeleteForm_AJ?' + param,
+                    success: function (result) {
+                        //hideModal_Info();
+                        location.reload();
+                        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+                    }
+                });
+
+            } else {
+                // Do nothing!
+
+                //console.log('Thing was not saved to the database.');
+            }
 
         }
         function Edit_PA(id, Name) {
-            alert("");
+            //alert("");
 
-            alert(id + "-" + Name);
+            //let user_Id = Id;
+            //let PA_Name = Name;
+            var param = "PA_Name=" + Name + "&Id=" + id
+                + "&submit=yes";
+            //alert(param);
+            window.location.assign("/EvaluatePA/PA_Add?" + param);
+            //$.ajax({
+
+            //    type: 'GET',
+            //    url: '/EvaluatePA/EditForm_AJ?' + param,
+            //    success: function (result) {
+            //        //hideModal_Info();
+            //        //location.reload();
+            //        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+            //    }
+            //});
+            //hideModal();
 
         }
 
@@ -300,7 +338,7 @@
                 type: 'GET',
                 url: '/EvaluatePA/NewForm_AJ?' + param,
                 success: function (result) {
-                    hideModal_Info();
+                    //hideModal_Info();
                     location.reload();
                     //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
 
