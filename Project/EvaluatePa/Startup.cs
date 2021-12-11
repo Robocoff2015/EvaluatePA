@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using EvaluatePa.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EvaluatePa
 {
@@ -21,8 +23,12 @@ namespace EvaluatePa
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ConnectStringClass>(options => options.UseSqlServer(Configuration.GetConnectionString("connectionString")));
+
+
             services.AddControllersWithViews();
         }
 
@@ -51,7 +57,20 @@ namespace EvaluatePa
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+            });  
+         
+            
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=DevelopPA}/{action=Create}/{id?}");
+            //});
+
+        }
+
+        private class con
+        {
         }
     }
 }

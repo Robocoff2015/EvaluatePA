@@ -11,10 +11,12 @@ namespace EvaluatePa.Controllers
 {
     public class HomeController : Controller
     {
+        public string connectionString = @"Server=Localhost\MSSQLLocalDB;Database=EvaluateWork;Trusted_Connection=True";
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public static Microsoft.Extensions.Configuration.IConfiguration configuration;
+        public HomeController(Microsoft.Extensions.Configuration.IConfiguration config, ILogger<HomeController> logger)
         {
+            HomeController.configuration = config;
             _logger = logger;
         }
 

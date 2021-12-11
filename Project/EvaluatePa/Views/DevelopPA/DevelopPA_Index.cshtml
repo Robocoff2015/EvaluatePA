@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿@model System.Data.DataTable;
 
  @* @{
@@ -36,4 +37,48 @@
     }
 
 
+=======
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model System.Data.DataTable
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class = "table  table-bordered table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Place</th>
+        <th>Cdate</th>
+        <th>BelongTo</th>
+        <th>GetSalary</th>
+        <th>TypeClassroom1</th>
+        <th>TypeClassroom2</th>
+        <th>TypeClassroom3</th>
+        <th>TypeClassroom4</th>
+        <th>TypeClassroom5</th>
+   </tr>
+
+        @for(int  i = 0 ; i< Model.Rows.Count ; i++ )
+    {
+        <tr>
+                <td>@Model.Rows[i][1]</td>
+                <td>@Model.Rows[i][2]</td>
+                <td>@Model.Rows[i][3]</td>    
+                <td>@Model.Rows[i][4]</td>
+                <td>@Model.Rows[i][5]</td>
+               <td>@Model.Rows[i][6]</td>
+                <td>@Model.Rows[i][7]</td>    
+                <td>@Model.Rows[i][8]</td>
+                <td>@Model.Rows[i][9]</td>
+                <td>@Model.Rows[i][10]</td>
+                <td>@Model.Rows[i][11]</td>    
+      </tr>
+
+    }
+
+>>>>>>> Stashed changes
 </table>

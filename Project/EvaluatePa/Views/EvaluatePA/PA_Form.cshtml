@@ -1,4 +1,6 @@
-﻿@*
+﻿
+@model List<DevelopPA>;
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -32,7 +34,11 @@
                             </div>
                             <div class="right">
 
-                                <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Form", "EvaluatePA")'" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;บันทึกแบบฟอร์ม</div>
+                           <!--     <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Form", "EvaluatePA")'" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;">
+                                    <i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;บันทึกแบบฟอร์ม</div> -->
+
+                              <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("Create", "DevelopPA")'" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;">
+                                    <i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;บันทึกแบบฟอร์ม</div>
 
                             </div>
 
@@ -72,7 +78,8 @@
                                                 <td>แบบฟอร์มพัฒนางาน 1</td>
                                                 <td>01/10/2564</td>
                                                 <td>
-                                                    <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
+                                                    <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;">
+                                                        <i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
                                                 </td>
                                                 <td>
                                                     <div id="model_.Factory_ID" class="btn edit bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
@@ -96,7 +103,7 @@
                                                 <td>แบบฟอร์มพัฒนางาน 3</td>
                                                 <td>19/11/2564</td>
                                                 <td>
-                                                    <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
+                                                    <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF </div>
                                                 </td>
                                                 <td>
                                                     <div id="model_.Factory_ID" class="btn edit bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>

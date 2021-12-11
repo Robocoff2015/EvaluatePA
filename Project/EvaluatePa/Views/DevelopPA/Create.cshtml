@@ -1,10 +1,15 @@
+<<<<<<< Updated upstream
 ﻿@model EvaluatePa.Models.DevelopPAModels
+=======
+﻿@model EvaluatePa.Models.DevelopPA
+>>>>>>> Stashed changes
 
 @*@{
     ViewData["Title"] = "Create";
     Layout = "DevelopPA_Form";
 }*@
 
+<<<<<<< Updated upstream
 <h3>แบบประเมินผลงาน</h3>
 
 @using (Html.BeginForm())
@@ -119,3 +124,224 @@
 </div>
 }
 
+=======
+<h1>Create</h1>
+
+@using (@Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h4>DevelopPA</h4>
+<hr />
+
+<div class="row">
+    @Html.ValidationSummary(true)
+
+
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+
+                @Html.LabelFor(model => model.IdPA , (new {@class = "control-label col-md-2"} ))
+
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.IdPA)
+                    @Html.ValidationMessageFor(model => model.IdPA)
+                </div>
+                
+               @* <label asp-for="IdPA" class="control-label"></label>
+                <input asp-for="IdPA" class="form-control" />
+                <span asp-validation-for="IdPA" class="text-danger"></span>*@
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name , (new {@class = "control-label col-md-2"} ))
+
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+
+
+                @*<label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>*@
+
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Position , (new {@class = "control-label col-md-2"} ))
+
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.Position)
+                    @Html.ValidationMessageFor(model => model.Position)
+                </div>
+
+                @*<label asp-for="Position" class="control-label"></label>
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>*@
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cdate , (new {@class = "control-label col-md-2"} ))
+
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.Cdate)
+                    @Html.ValidationMessageFor(model => model.Cdate)
+                </div>
+
+                </div>
+
+
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.Place , (new {@class = "control-label col-md-2"} ))
+
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.Place)
+                    @Html.ValidationMessageFor(model => model.Place)
+                </div>
+
+
+               @* <label asp-for="Place" class="control-label"></label>
+                <input asp-for="Place" class="form-control" />
+                <span asp-validation-for="Place" class="text-danger"></span>*@
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.BelongTo , (new {@class = "control-label col-md-2"} ))
+
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.BelongTo)
+                    @Html.ValidationMessageFor(model => model.BelongTo)
+                </div>
+
+                @*<label asp-for="BelongTo" class="control-label"></label>
+                <input asp-for="BelongTo" class="form-control" />
+                <span asp-validation-for="BelongTo" class="text-danger"></span>*@
+            </div>
+
+
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.GetSalary , (new {@class = "control-label col-md-2"} ))
+
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.GetSalary)
+                    @Html.ValidationMessageFor(model => model.GetSalary)
+                </div>
+
+
+
+                @*<label asp-for="GetSalary" class="control-label"></label>
+                <input asp-for="GetSalary" class="form-control" />
+                <span asp-validation-for="GetSalary" class="text-danger"></span>*@
+
+            </div>
+
+
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.RateSalary , (new {@class = "control-label col-md-2"} ))
+
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.RateSalary)
+                    @Html.ValidationMessageFor(model => model.RateSalary)
+                </div>
+
+
+                @*@*<label asp-for="RateSalary" class="control-label"></label>
+                <input asp-for="RateSalary" class="form-control" />
+                <span asp-validation-for="RateSalary" class="text-danger"></span>*@
+
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TypeClassroom1 , (new {@class = "control-label col-md-2"} ))
+
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.TypeClassroom1)
+                    @Html.ValidationMessageFor(model => model.TypeClassroom1)
+                </div>
+
+
+
+               @* <label asp-for="TypeClassroom1" class="control-label"></label>
+                <input asp-for="TypeClassroom1" class="form-control" />
+                <span asp-validation-for="TypeClassroom1" class="text-danger"></span>*@
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TypeClassroom2 , (new {@class = "control-label col-md-2"} ))
+
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.TypeClassroom2)
+                    @Html.ValidationMessageFor(model => model.TypeClassroom2)
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.TypeClassroom3 , (new {@class = "control-label col-md-2"} ))
+
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.TypeClassroom3)
+                    @Html.ValidationMessageFor(model => model.TypeClassroom3)
+                </div>
+              
+            </div>
+
+
+            <div class="form-group">
+
+
+                 @Html.LabelFor(model => model.TypeClassroom4 , (new {@class = "control-label col-md-2"} ))
+
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.TypeClassroom4)
+                    @Html.ValidationMessageFor(model => model.TypeClassroom4)
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                 @Html.LabelFor(model => model.TypeClassroom5 , (new {@class = "control-label col-md-2"} ))
+
+                <div class = "col-md-10">
+                    @Html.EditorFor(model => model.TypeClassroom5)
+                    @Html.ValidationMessageFor(model => model.TypeClassroom5)
+                </div>
+                
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+}
+
+
+>>>>>>> Stashed changes

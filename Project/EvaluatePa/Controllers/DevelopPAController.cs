@@ -1,4 +1,5 @@
 ﻿using System;
+<<<<<<< Updated upstream
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,12 +8,23 @@ using System.Linq;
 //using System.Data.SqlClient;
 using Microsoft.Data.SqlClient;
 using EvaluatePa.Models;
+=======
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using EvaluatePa.Models;
+using System.Data;
+using System.Web;
+using Microsoft.Data.SqlClient;
+
+
+>>>>>>> Stashed changes
 
 namespace EvaluatePa.Controllers
 {
     public class DevelopPAController : Controller
 
     {
+<<<<<<< Updated upstream
         private string connectionString = @"Data Source = DESKTOP-UK1L50N\SQLEXPRESS;Initial Catalog = EvaluateWork; Integrated Security = True";
         //private string connectionString = @"Data Source = (localdb)\MSSQLLocalDB;Initial Catalog = EvaluateWork; Integrated Security = True";
         //DESKTOP-UK1L50N\SQLEXPRESS
@@ -137,5 +149,87 @@ namespace EvaluatePa.Controllers
                 return View();
             }
         }
+=======
+      // string  connectionString = @"Server=(localdb)\\MSSQLLocalDB;Database=EvaluateWork;Trusted_Connection=True" ;
+        string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=EvaluateWork;Trusted_Connection=True";
+
+
+        
+        [HttpGet]
+
+       public IActionResult Index()
+        {
+
+        DataTable  dtblDevelopPa = new DataTable();
+
+        using ( SqlConnection    sqlCon = new  SqlConnection(connectionString)) 
+        {
+           sqlCon.Open();
+
+           SqlDataAdapter sqlDa = new  SqlDataAdapter("SELECT  * FROM  DevelopPA",sqlCon);
+
+            sqlDa.Fill(dtblDevelopPa);
+
+          }
+
+                    return View(dtblDevelopPa);
+        }
+   
+
+        [HttpGet]
+       public IActionResult Create()
+        {
+            return View(new DevelopPA());
+        }
+
+        // Post table  DevelopPA
+
+        [HttpPost]
+        public IActionResult Create(DevelopPA developPA)
+        {
+            using ( SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                sqlCon.Open();
+                string query = "INSERT INTO DevelopPA VALUES(@IdPA,@Name,@Position,@Place,@Cdate,@BelongTo,@GetSalary,@RateSalary,@TypeClassroom1,@TypeClassroom2,@TypeClassroom3,@TypeClassroom4,@TypeClassroom5)";
+
+                SqlCommand sqlCmd = new SqlCommand(query,sqlCon);
+
+                sqlCmd.Parameters.AddWithValue("@IdPA", developPA.IdPA);
+                sqlCmd.Parameters.AddWithValue("@Name", developPA.Name);
+                sqlCmd.Parameters.AddWithValue("@Position", developPA.Position);
+                sqlCmd.Parameters.AddWithValue("@Place", developPA.Place);
+
+                sqlCmd.Parameters.AddWithValue("@Cdate", developPA.Cdate);
+                sqlCmd.Parameters.AddWithValue("@BelongTo", developPA.BelongTo);
+                sqlCmd.Parameters.AddWithValue("@GetSalary", developPA.GetSalary);
+                sqlCmd.Parameters.AddWithValue("@RateSalary", developPA.RateSalary);
+
+                sqlCmd.Parameters.AddWithValue("@TypeClassroom1", developPA.TypeClassroom1);
+                sqlCmd.Parameters.AddWithValue("@TypeClassroom2", developPA.TypeClassroom2);
+                sqlCmd.Parameters.AddWithValue("@TypeClassroom3", developPA.TypeClassroom3);
+                sqlCmd.Parameters.AddWithValue("@TypeClassroom4", developPA.TypeClassroom4);
+                sqlCmd.Parameters.AddWithValue("@TypeClassroom5", developPA.TypeClassroom5);
+
+                sqlCmd.ExecuteNonQuery();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+
+ 
+
+        /*  [HttpPost]
+           [ValidateAntiForgeryToken]                         // post data to attribute table
+           public IActionResult Create(DevelopPA context)
+           {
+               _context.Add(context);
+               _context.SaveChanges();
+               ViewBag.Message = "This Record  Success";
+               return View();
+           } */
+
+>>>>>>> Stashed changes
     }
 }
