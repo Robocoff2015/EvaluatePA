@@ -6,17 +6,225 @@
     ViewBag.Title = "WorkLoad_Index";
 }
 
-<h2> Workloas p#1</h2>
-<div class = "container" style = "max-width :640px "  >
-    <h4>งานส่วนแรก</h4>
-    <table>
-          <tr>
-              <td> จำนวนงาน </td>
-               <td><input type = "text" id = " amountworkload" />
-                 <span class ="error "> ต้องใส่จำนวนการทำงาน</span>
-               </td>        
-          </tr>
-    </table>
+h2>Workloas p#1</h2>
+<div class="container" style="max-width: 640px;">
+<h4>งานส่วนแรก</h4>
+<table style="width: 38.9662%;" >
+<tbody>
+<tr>
+    <div>
+     <th >จำนวนงาน</th>
+     <tr>
+        <td style="width: 40%;">
+              <input id=" amountworkload" type="text" /> 
+                @*<span class="error "> ต้องใส่จำนวนการทำงาน</span>*@</td>
+     </tr>
+</div>
+  </tr>
+</tbody>
+</table>
+
+</div>
+<div class="workload p#2">
+<h4>การภาระทำงานส่วน 2</h4>
+<table width="40%">
+<tbody>
+<tr>
+<th>Subject</th>
+<th>Hour</th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+    <td><input id="subject" type="text" /> 
+    <td><input id="Hour" type="text" /> 
+     <td><input type="button" name="Add" id="Add" value="Add"> </td>
+</tr>
+</tbody>
+
+</table>
+<div class="workload p#3">
+<div><br>
+</div>
+<table style="width: 40%;" width="40%">
+  <tbody>
+<tr>
+  <div>
+    <th> part 1.2 </th>
+    <tr>
+ <td style="width: 32.1429%;"><input id="hoursupportsubject" type="text" /> @* <span class="error "> ต้องใส่วิชาที่ต้องการ</span>*@</td>
+  </div> 
+  </tr>
+  
+  <tr>
+  <div> 
+     <th> part 1.3 </th>
+    <tr>
+      
+       <td style="width: 33.2707%;"><input id="hourqsubject" type="text" /> 
+           @* <span class="error "> ต้องใส่ชั่วโมงที่ต้องการ</span>*@</td>
+		
+	</tr>	
+  </div>
+  
+ <tr>
+  <div>
+      <th>ส่วน 1.4</th>
+      <tr>
+         <td style="width: 32.7068%;"><br /><input id="hourfoucs" type="text" /> @* <span class="error "> ต้องใส่ชั่วโมงที่ต้องการ</span>*@</td>
+       </tr>
+ </div>
+    
+</tr>
+<div>
+	     <td style="padding: 10px 0px; text-align: right">
+			 <input id ="Save" type="button" value="Save" style="padding:10px 5px "
+		  </td>
 </div>
 
+</tbody>
+</table>
+</div>
+</div>
 
+<link rel ="stylesheet" href ="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+@section Scripts
+{
+    <script src = "//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+    <script>
+        // data picker
+            $(document).ready(function()) {
+                var workload2 = [];
+
+                // Add buttom
+
+                $(#Add).click(function()  {
+                    var isValidItem = ture ;
+
+                    if($('#subject').val().trim() == "" ) {
+                        isValidItem = false ;
+                        $('#subject').siblings('span.error').css('visibility','visible');
+
+                    }
+                    else{
+                         $('#subject').siblings('span.error').css('visibility','hidden');
+
+                    }
+
+                     if($('#hour').val().trim() == "" and !isNAN($('#hour').val().trim() ) ){
+                        isValidItem = false ;                       ;
+                        $('#hour').siblings('span.error').css('visibility','visible');
+
+                    }
+                    else{
+                         $('#hour').siblings('span.error').css('visibility','hidden');
+                    }
+                    if (isValidItem){
+                        workload2.push{
+                            Subject : $('#subject').val().trim(),
+                            Hour:parseInt($('#hour').val().trim());
+
+                        });
+                        //clear field
+                        $('#subject').val(' ').focus() ;
+                        $('#hour').val(' ') ;
+                    }
+
+                });
+
+                // Save table
+                $('#save').click(function() {
+                    var isAllValid() = true;
+                    if(workload2.length) == 0) {
+                        $('#workload2').html('<span style = "color:red;">please add suject</span>');
+                         isAllValid = false;
+
+                    }
+
+                    if ($('#subject').val().trim()==' '){
+                        $('#subject').siblings('span.error').css('visibility','visible');
+                        isAllValid = false ;
+                    }
+                    else {
+                         $('#subject').siblings('span.error').css('visibility','hidden');
+                    }
+
+                     if ($('#hour').val().trim()==' '){
+                        $('#hour').siblings('span.error').css('visibility','visible');
+                        isAllValid = false ;
+                    }
+                    else {
+                         $('#hour').siblings('span.error').css('visibility','hidden');
+                    }
+
+                    // Save if valid
+                    if (isAllValid){
+                        var data = {
+                            AmountWorkLoad: $('#amountworkload').val().trim(),
+                            WorkLoadPart2: Workloadpart2s,
+                            HourSupportSubject:parseInt($(' hoursupportsubject').val().trim()),
+                            HourQSubject:parseInt($(' hourqsubject').val().trim()),
+                            Hourfocus:parseInt($(' hourfocus').val().trim())
+                        }
+                        $(this).val('please wait');
+
+                        $.ajax({
+                            url :' URL for POST',
+                            type :"POST",
+                            data: JSON.stringify (data),
+                            datatype :"JSON",
+                            contentType:"application/json",
+                            success:fubction(d){
+                                if(d.status == true){
+                                    alert('sucessful' done');
+                                    workload2 =[];
+                                    $('#amountworkload').val(' ');
+                                    $('#hoursupportsubject').val(' ');
+                                    $('#hourqsubject').val(' ');
+                                    $('#hourfocus').val(' ');
+                                    $('# workload2').val(' ');
+                                }
+                            },
+
+                            error : function() {
+                                alert(' error , plase try again');
+
+                            }
+
+
+                        })
+                    }
+
+                });
+
+
+
+
+
+
+
+
+
+                //GeneratedItemsTable
+                function GeneratedItemsTable(){
+
+                    if (workload2.length > 0)
+                         var $table = $('<table/>') ;
+                         $table.append('<thead><tr><th> Suject</th><th> Hour</th></thead>');
+
+                         var $tbody = $(' <tbody>');
+
+                         $.each(subject,function(i,val){
+                             var $row = $('<tr/>');
+                             $row.append($(' <td/>').html(val.Subject));
+                              $row.append($(' <td/>').html(val.Hour));  
+                              $tbody.append($row);
+
+                         });
+                         $table.append($tbody)
+                         $('workload2').html($table);
+                }
+
+            }
+
+    </script>
+}

@@ -6,7 +6,7 @@ namespace EvaluatePa.Models
     {
 
      [Key]
-     public string   IdPSubject { get; set; }
+     public string IdPSubject { get; set; }
 
      public int HourSupportSubject { get; set; }
 

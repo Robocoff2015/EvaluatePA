@@ -18,78 +18,22 @@ namespace EvaluatePa.Controllers
         }
 
 
+     /*   [HttpPost]
+        public JsonResult SaveWork(WorkLoadVM w)
 
-
-
-        // GET: WorkLoadController/Details/5
-        public ActionResult Details(int id)
         {
-            return View();
-        }
-
-        // GET: WorkLoadController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-
-
-        // POST: WorkLoadController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            bool status = false;
+            if(ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                using (MyDatabaseEntities  dc = new MyDatabaseEntities())
+                {
+                    WorkLoadPart1 workloadpart1 = new WorkLoadPart1 { AmountWorkLoad = w.AountWorkLoad};
+                    WorkLoadPart3 workloadpart3 = new WorkLoadPart3 { HourSupportSubject = w.HourSupportSubject, HourQsubject=w.HourQsubject , HourFocus =w.HourFocus};
+                     foreach (var i in w.WorkLoadPart2)
 
-        // GET: WorkLoadController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: WorkLoadController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: WorkLoadController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: WorkLoadController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-    }
-}
+                            {
+                               
+                    }
+                }*/
+            } 
+        } 
