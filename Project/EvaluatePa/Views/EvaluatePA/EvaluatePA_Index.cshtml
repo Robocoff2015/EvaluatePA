@@ -2,6 +2,7 @@
 @model IEnumerable<PA_Form_Short>
 @{
     ViewData["Title"] = "PA";
+    var id_ = @Context.Session.GetString("userId");
 }
 <div class="container">
     <div class="row">
@@ -14,8 +15,8 @@
                     </div>
                 </div>
                 <div class="card-body p-1">
-                    <input type="button" value="แบบฟอร์มพัฒนางาน (PA)" class="btn bg-light" style="width:100%;border-color:#d4d4d4;height:35px;">
-                    <input type="button" value="จัดการวิดีโอที่บันทึกในห้องเรียน" class="btn bg-light mt-1" style="width:100%;border-color:#d4d4d4;height:35px;">
+                    <input type="button" value="แบบฟอร์มพัฒนางาน (PA)" class="btn bg-light" onclick="location.href='@Url.Action("Main", "Home", new { user_id = @id_})'" style="width:100%;border-color:#d4d4d4;height:35px;">
+                    <input type="button" value="จัดการวิดีโอที่บันทึกในห้องเรียน" class="btn bg-light mt-1" onclick="showModal_Create();" style="width:100%;border-color:#d4d4d4;height:35px;">
                 </div>
             </div>
         </div>
@@ -81,9 +82,10 @@
                                                         <td  class="text-center">
                                                             <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
                                                         </td>
-                                                        <td  class="text-center">
+                                                        <td class="text-center">
+                                                            <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="View_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-eye w3-text-theme"></i></div>
                                                             <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="Edit_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
-                                                            <div id="@PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="Delete_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');"  style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
+                                                            <div id="@PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="Delete_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
                                                         </td>
                                                     </tr>
 
@@ -325,7 +327,29 @@
             //hideModal();
 
         }
+        function View_PA(id, Name) {
+            //alert("");
 
+            //let user_Id = Id;
+            //let PA_Name = Name;
+            var param = "PA_Name=" + Name + "&Id=" + id
+                + "&submit=yes";
+            //alert(param);
+            window.location.assign("/EvaluatePA/PA_View?" + param);
+            //$.ajax({
+
+            //    type: 'GET',
+            //    url: '/EvaluatePA/EditForm_AJ?' + param,
+            //    success: function (result) {
+            //        //hideModal_Info();
+            //        //location.reload();
+            //        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+            //    }
+            //});
+            //hideModal();
+
+        }
         function AJ_Save() {
             let user_Id = $('#userId').val();
             let PA_Name = $('#formName').val();

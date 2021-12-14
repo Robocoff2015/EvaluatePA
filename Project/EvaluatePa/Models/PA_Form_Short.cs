@@ -51,7 +51,8 @@ namespace EvaluatePa.Models
         ///
         //Agreement >> Work Load
         public string Total_Hour_Schedule_str { get; set; }
-        public List<Subject> Sbj_Hr { get; set; }
+        public string Sbj_Hr { get; set; }
+        //public List<Subject> Sbj_Hr { get; set; }
         public string Total_Hour_Learning_Promotion_Support_str { get; set; }      //Learning Promotion and Support Workload
         public string Total_Hour_Q_Education_Mng_Dev_str { get; set; }   //Quality of Education Management Developing Workload
         public string Total_Hour_Policy_Focus_Sup_str { get; set; }     //Policy and Focus Supporting Workload

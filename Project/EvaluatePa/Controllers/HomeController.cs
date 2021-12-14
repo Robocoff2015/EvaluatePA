@@ -42,7 +42,8 @@ namespace EvaluatePa.Controllers
             HttpContext.Session.SetString("userId", user_id);
             HttpContext.Session.SetString("userStatus", user.Status.ToString());
             HttpContext.Session.SetString("userPosition", user.UserPosition);
-            return View(user);
+            //return View(user);
+            return RedirectToAction("EvaluatePA_Index", "EvaluatePa", new { user = user_id });
         }
 
         public JsonResult UpdateUser_AJ(String Prefix, String FirstName, String LastName, String position, String school_id, String CDate, String memberOf, String salaryLevel, 

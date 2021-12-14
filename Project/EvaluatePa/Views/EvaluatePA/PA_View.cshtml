@@ -314,7 +314,7 @@
                         <div class="card-body border-0 p-5">
                             <div id="page_1_subform" style="display:block;">
                                 <div class="card-body" style="padding:10px;">
-                                    <p>1. ภาระงาน จะมีภาระงานเป็นไปตามที่ก.ค.ศ. กำหนด</p>
+                                    <p>จะมีภาระงานเป็นไปตามที่ กคศ. กำหนด</p>
 
                                     <div class="col-md-12 mb-4">
 
@@ -365,7 +365,7 @@
                                                         </tr>*@
                                                     <tr style="height:44px;">
                                                         <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
-                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','','tbody-subject');">
+                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','');">
                                                                 <i class="fa fa-plus w3-text-theme text-success"></i>
                                                             </div>
                                                         </td>
@@ -390,13 +390,50 @@
                                             <label class="form-label" for="Total_Hour_Learning_Promotion_Support_str">1.2 งานส่งเสริมและสนับสนุนการเรียนรู้ จำนวน </label>
                                             <input type="text" id="Total_Hour_Learning_Promotion_Support_str" name="Total_Hour_Learning_Promotion_Support_str" class="form-control form-control-lg ml-5 mr-5 text-center" style="font-size: 16px; height: 35px;width:100px;" value="@Model.Total_Hour_Learning_Promotion_Support_str" />
                                             <label class="form-label" for="">ชั่วโมง/สัปดาห์ </label>
-                                            <table id="table-subject-1" class="table table-hover border shadow m-2">
+                                            <table id="table-subject-2" class="table table-hover border shadow m-2">
 
                                                 <!-- Table body -->
-                                                <tbody id="tbody-subject-1">                                                    
+                                                <tbody id="tbody-subject-1">
+                                                    @*<tr style="height:44px;">
+                    <td style="padding:5px 0px 5px 5px;">
+                        <div id="mdiv" style="padding:5px 0px 4px 6px;" onclick="deleteItem();alert('Delete subject');">
+                            <div class="mdiv">
+                                <div class="md" ></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="padding:0;font-size:16px;">
+                        <div class="d-inline-flex pt-1 pb-1">
+                            <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
+                            <input type="text" id="subject" name="subject" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px;" />
+                            <span class="pt-1">จำนวน</span>
+                            <input type="text" id="Hours" name="Hours" class="form-control form-control-lg ml-3 mr-3 text-center" style="font-size: 14px; height: 35px; width: 100px" />
+                            <span class="pt-1">ชั่วโมง/สัปดาห์</span>
+
+                        </div>
+                    </td>
+                </tr>*@
+                                                    @*<tr>
+                    <td>
+                        <div id="mdiv">
+                            <div class="mdiv">
+                                <div class="md"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="padding:0;font-size:16px;">
+                        <div class="d-inline-flex pt-1 pb-1">
+                            <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
+                            <input type="text" id="subject" name="subject" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px;" />
+                            <span class="pt-1">จำนวน</span>
+                            <input type="text" id="Hours" name="Hours" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px; width: 100px" />
+                            <span class="pt-1">ชั่วโมง/สัปดาห์</span>
+                        </div>
+                    </td>
+                </tr>*@
                                                     <tr style="height:44px;">
                                                         <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
-                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','','tbody-subject-1');">
+                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','');">
                                                                 <i class="fa fa-plus w3-text-theme text-success"></i>
                                                             </div>
                                                         </td>
@@ -420,27 +457,6 @@
                                             <label class="form-label" for="Total_Hour_Q_Education_Mng_Dev_str">1.3 งานพัฒนาคุณภาพการจัดการการศึกษา จำนวน </label>
                                             <input type="text" id="Total_Hour_Q_Education_Mng_Devstr" name="Total_Hour_Q_Education_Mng_Dev_str" class="form-control form-control-lg ml-5 mr-5 text-center" style="font-size: 16px; height: 35px; width: 100px;" value="@Model.Total_Hour_Q_Education_Mng_Dev_str" />
                                             <label class="form-label" for="">ชั่วโมง/สัปดาห์ </label>
-                                            <table id="table-subject-2" class="table table-hover border shadow m-2">
-
-                                                <!-- Table body -->
-                                                <tbody id="tbody-subject-2">
-                                                    <tr style="height:44px;">
-                                                        <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
-                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','','tbody-subject-2');">
-                                                                <i class="fa fa-plus w3-text-theme text-success"></i>
-                                                            </div>
-                                                        </td>
-                                                        <td style="padding: 5px 0px 5px 0px; font-size:16px;text-align:center;">
-                                                            <div style="padding: 2px 0px 0px 0px; align-items:center; vertical-align: central;" id="mdiv2">
-                                                                <span class="pt-3">เพิ่มกลุ่มสาระการเรียนรู้ / รายวิชา</span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                </tbody>
-                                                <!-- Table body -->
-                                            </table>
-
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-4">
@@ -449,26 +465,6 @@
                                             <label class="form-label" for="Total_Hour_Policy_Focus_Sup_str">1.4 งานตอบสนองนโยบายและจุดเน้น จำนวน </label>
                                             <input type="text" id="Total_Hour_Policy_Focus_Sup_str" name="Total_Hour_Policy_Focus_Sup_str" class="form-control form-control-lg ml-5 mr-5 text-center" style="font-size: 16px; height: 35px; width: 100px;" value="@Model.Total_Hour_Policy_Focus_Sup_str" />
                                             <label class="form-label" for="">ชั่วโมง/สัปดาห์ </label>
-                                            <table id="table-subject-3" class="table table-hover border shadow m-2">
-
-                                                <!-- Table body -->
-                                                <tbody id="tbody-subject-3">
-                                                    <tr style="height:44px;">
-                                                        <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
-                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','','tbody-subject-3');">
-                                                                <i class="fa fa-plus w3-text-theme text-success"></i>
-                                                            </div>
-                                                        </td>
-                                                        <td style="padding: 5px 0px 5px 0px; font-size:16px;text-align:center;">
-                                                            <div style="padding: 2px 0px 0px 0px; align-items:center; vertical-align: central;" id="mdiv2">
-                                                                <span class="pt-3">เพิ่มกลุ่มสาระการเรียนรู้ / รายวิชา</span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                </tbody>
-                                                <!-- Table body -->
-                                            </table>
                                         </div>
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
@@ -802,7 +798,7 @@
             document.body.appendChild(divTag);
 
         }
-        function createRow(sbj,hr,tb) {
+        function createRow(sbj,hr) {
 
             //var targetTabel = document.getElementById(table-subject);
             //<div id="mdiv" style="padding:5px 0px 4px 6px;" onclick="deleteItem();alert('Delete subject');">
@@ -813,7 +809,7 @@
 
             var UUID_ = uuidv4();
             //alert('Add subject');
-            var table = document.getElementById(tb);
+            var table = document.getElementById("tbody-subject");
             var lastRow = table.rows[table.rows.length - 1];
             var lastRowIndex = table.rows.length - 1;
             //alert(table.rows[lastRowIndex]);

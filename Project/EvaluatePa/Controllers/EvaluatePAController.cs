@@ -40,8 +40,29 @@ namespace EvaluatePa.Controllers
             string sessionUser_ = HttpContext.Session.GetString("userId");
             PA_Form_Full PA_Form = getPAForm_detail(sessionUser_, Id);
             //string sessionUser_ = HttpContext.Session.GetString("userId");
+            if (PA_Form.Sbj_Hr == null || PA_Form.Sbj_Hr == "")
+            { PA_Form.Sbj_Hr = "[{\"Total\":0}]"; }
+            if (PA_Form == null)
+            { ViewBag.Sbj_Hr = "[{\"Total\":0}]"; }
+            else ViewBag.Sbj_Hr = PA_Form.Sbj_Hr;
+            //"[{\"Total\":10}]";
             HttpContext.Session.SetString("formId", PA_Form.Form_Id);
             return View("PA_Add",PA_Form);
+        }
+
+        public IActionResult PA_View(string PA_Name, string Id)
+        {
+            string sessionUser_ = HttpContext.Session.GetString("userId");
+            PA_Form_Full PA_Form = getPAForm_detail(sessionUser_, Id);
+            //string sessionUser_ = HttpContext.Session.GetString("userId");
+            if (PA_Form.Sbj_Hr == null || PA_Form.Sbj_Hr == "")
+            { PA_Form.Sbj_Hr = "[{\"Total\":0}]"; }
+            if (PA_Form == null)
+            { ViewBag.Sbj_Hr = "[{\"Total\":0}]"; }
+            else ViewBag.Sbj_Hr = PA_Form.Sbj_Hr;
+            //"[{\"Total\":10}]";
+            HttpContext.Session.SetString("formId", PA_Form.Form_Id);
+            return View("PA_View", PA_Form);
         }
 
         public List<PA_Form_Short> getPAForm(string uname)
@@ -100,7 +121,7 @@ namespace EvaluatePa.Controllers
                        + " ,[Problem_State],[Method_To_Acheivment],[QT_Expect_Result],[QL_Expect_Result]"
                        + " ,b.[Prefix],b.[UserName],b.[LastName],b.[UserPosition],b.[CDate] ,b.[School_Id]"
                        + " ,b.[School],b.[Phonenumber],b.[Email],b.[Password] ,b.[memberOf],b.[salaryLevel]"
-                       + " ,b.[salaryRate],b.[classroomType],b.[JoinDate],b.[Status]";
+                       + " ,b.[salaryRate],b.[classroomType],b.[JoinDate],b.[Status],a.[Subject_Hour]";
             sqlString += " FROM [" + dbName + "].[dbo].[PA_Form] as a right join [" + dbName + "].[dbo].[PA_User] as b on a.OwnerId = b.Id";
             sqlString += " where a.Id = CAST('" + Form_Id + "' as uniqueidentifier)  and a.[OwnerId] = " + User_Id + " and a.[Status] <> 204 ORDER BY[DateTime] ASC";
                       //+ " [Problem_State],[Method_To_Acheivment],[QT_Expect_Result],[QL_Expect_Result]  FROM [" + dbName + "].[dbo].[PA_Form_] as a right join[" + dbName + "].[dbo].[PA_User] as b on a.OwnerId = b.Id";
@@ -172,13 +193,14 @@ namespace EvaluatePa.Controllers
                     PA_Form_.UserInfo_salaryLevel = dt.Rows[i].ItemArray[40].ToString();
                     PA_Form_.UserInfo_salaryRate = dt.Rows[i].ItemArray[41].ToString();
                     PA_Form_.UserInfo_classroomType = dt.Rows[i].ItemArray[42].ToString();
+                    PA_Form_.Sbj_Hr = dt.Rows[i].ItemArray[45].ToString();
                     //PA_Form_.UserInfo_CDate = dt.Rows[i].ItemArray[29].ToString();
                     //PA_Form_.user = dt.Rows[i].ItemArray[30].ToString();
                     //+" ,b.[Prefix],b.[UserName],b.[LastName],b.[UserPosition],b.[CDate] ,b.[School_Id]"
                     //   + " ,b.[School],b.[Phonenumber],b.[Email],b.[Password] ,b.[memberOf],b.[salaryLevel]"
                     //   + " ,b.[salaryRate],b.[classroomType],b.[JoinDate],b.[Status]";
 
-
+                    
                     //PA_Form.Add(PA_Form_);
                 }
             }
@@ -187,17 +209,18 @@ namespace EvaluatePa.Controllers
 
 
         }
-        
+
         public IActionResult UpdateUserAll_AJ(string formId,
-            string Prefix ,string  FirstName ,string LastName,string position
-            ,string school_id,string CDate,string memberOf,string salaryLevel
-            ,string Total_Hour_Schedule_str, string Total_Hour_Learning_Promotion_Support_str, string Total_Hour_Q_Education_Mng_Devstr, string Total_Hour_Policy_Focus_Sup_str
-            ,string salaryRate,string classroomType,string user_Id
-            ,string LM_Task,string LM_Outcomes,string LM_Indicators
-            ,string PS_Task,string PS_Outcomes,string PS_Indicators
-            ,string SP_Dev_Task, string SP_Dev_Dev_Outcomes, string SP_Dev_Dev_Indicators
+            string Prefix, string FirstName, string LastName, string position
+            , string school_id, string CDate, string memberOf, string salaryLevel
+            , string Subject_Hour, string Total_Hour_Schedule_str, string Total_Hour_Learning_Promotion_Support_str
+            , string Total_Hour_Q_Education_Mng_Devstr, string Total_Hour_Policy_Focus_Sup_str
+            , string salaryRate,string classroomType,string user_Id
+            , string LM_Task,string LM_Outcomes,string LM_Indicators
+            , string PS_Task,string PS_Outcomes,string PS_Indicators
+            , string SP_Dev_Task, string SP_Dev_Dev_Outcomes, string SP_Dev_Dev_Indicators
             , string CL_Point,string CL_Point_Text,string Problem_State
-            ,string Method_To_Acheivment,string QT_Expect_Result,string QL_Expect_Result)
+            , string Method_To_Acheivment,string QT_Expect_Result,string QL_Expect_Result)
             {
             
             string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
@@ -217,7 +240,7 @@ namespace EvaluatePa.Controllers
                 //sqlString += "IF NOT EXISTS (SELECT [Name] FROM [" + dbName + "].[dbo].[PA_Form] WHERE [Name] = '" + PA_Name + "' and [Status] <> 204)";
                 //sqlString += " BEGIN INSERT INTO [" + dbName + "].[dbo].[PA_Form]([Id],[Name],[DateTime],[OwnerId],[Status]) VALUES (default,'" + PA_Name + "','" + DateTime_ + "'," + user_Id + ",0) END";
                 sqlString += " UPDATE [" + dbName + "].[dbo].[PA_Form]";
-                sqlString += " SET [Total_Hour_Schedule] = " + Total_Hour_Schedule_str + ",[Total_Hour_Learning_Promotion_Support] = " + Total_Hour_Learning_Promotion_Support_str + ",[Total_Hour_Q_Education_Mng_Dev] = " + Total_Hour_Q_Education_Mng_Devstr + ",[Total_Hour_Policy_Focus_Sup] = " + Total_Hour_Policy_Focus_Sup_str + "";
+                sqlString += " SET [Total_Hour_Schedule] = " + Total_Hour_Schedule_str + ",[Subject_Hour] = '" + Subject_Hour + "',[Total_Hour_Learning_Promotion_Support] = " + Total_Hour_Learning_Promotion_Support_str + ",[Total_Hour_Q_Education_Mng_Dev] = " + Total_Hour_Q_Education_Mng_Devstr + ",[Total_Hour_Policy_Focus_Sup] = " + Total_Hour_Policy_Focus_Sup_str + "";
                 sqlString += " ,[LM_Task] = '" + LM_Task + "',[LM_Outcomes] = '" + LM_Outcomes + "',[LM_Indicators] = '" + LM_Indicators + "'";
                 sqlString += " ,[PS_Task] = '" + PS_Task + "',[PS_Outcomes] = '" + PS_Outcomes + "',[PS_Indicators] = '" + PS_Indicators + "'";
                 sqlString += " ,[SP_Dev_Task] = '" + SP_Dev_Task + "',[SP_Dev_Dev_Outcomes] = '" + SP_Dev_Dev_Outcomes + "',[SP_Dev_Dev_Indicators] = '" + SP_Dev_Dev_Indicators + "'";
