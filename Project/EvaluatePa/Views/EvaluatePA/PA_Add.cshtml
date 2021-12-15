@@ -319,8 +319,8 @@
                                     <div class="col-md-12 mb-4">
 
                                         <div class="form-inline">
-                                            <label class="form-label" for="Total_Hour_Schedule_str">1.1 ชั่วโมงสอนตามตารางสอน รวมจำนวน </label>
-                                            <input type="text" id="Total_Hour_Schedule_str" name="Total_Hour_Schedule_str" class="form-control form-control-lg ml-5 mr-5 text-center" style="font-size: 16px; height: 35px;" value="@Model.Total_Hour_Schedule_str" />
+                                            <label class="form-label" for="Total_Hour_subject">1.1 ชั่วโมงสอนตามตารางสอน รวมจำนวน </label>
+                                            <input type="text" id="Total_Hour_subject" name="Total_Hour_subject" class="form-control form-control-lg ml-5 mr-5 text-center" style="font-size: 16px; height: 35px;" value="@Model.Total_Hour_Schedule_str" />
                                             <label class="form-label" for="">ชั่วโมง/สัปดาห์ดังนี้ </label>
                                             <table id="table-subject" class="table table-hover border shadow m-2">
 
@@ -365,7 +365,7 @@
                                                         </tr>*@
                                                     <tr style="height:44px;">
                                                         <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
-                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','','tbody-subject');">
+                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','','subject');">
                                                                 <i class="fa fa-plus w3-text-theme text-success"></i>
                                                             </div>
                                                         </td>
@@ -387,16 +387,16 @@
                                     <div class="col-md-12 mb-4">
 
                                         <div class="form-inline">
-                                            <label class="form-label" for="Total_Hour_Learning_Promotion_Support_str">1.2 งานส่งเสริมและสนับสนุนการเรียนรู้ จำนวน </label>
-                                            <input type="text" id="Total_Hour_Learning_Promotion_Support_str" name="Total_Hour_Learning_Promotion_Support_str" class="form-control form-control-lg ml-5 mr-5 text-center" style="font-size: 16px; height: 35px;width:100px;" value="@Model.Total_Hour_Learning_Promotion_Support_str" />
+                                            <label class="form-label" for="Total_Hour_subject-1">1.2 งานส่งเสริมและสนับสนุนการเรียนรู้ จำนวน </label>
+                                            <input type="text" id="Total_Hour_subject-1" name="Total_Hour_subject-1" class="form-control form-control-lg ml-5 mr-5 text-center" style="font-size: 16px; height: 35px;width:100px;" value="@Model.Total_Hour_Learning_Promotion_Support_str" />
                                             <label class="form-label" for="">ชั่วโมง/สัปดาห์ </label>
                                             <table id="table-subject-1" class="table table-hover border shadow m-2">
 
                                                 <!-- Table body -->
-                                                <tbody id="tbody-subject-1">                                                    
+                                                <tbody id="tbody-subject-1">
                                                     <tr style="height:44px;">
                                                         <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
-                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','','tbody-subject-1');">
+                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','','subject-1');">
                                                                 <i class="fa fa-plus w3-text-theme text-success"></i>
                                                             </div>
                                                         </td>
@@ -417,8 +417,8 @@
                                     <div class="col-md-12 mb-4">
 
                                         <div class="form-inline">
-                                            <label class="form-label" for="Total_Hour_Q_Education_Mng_Dev_str">1.3 งานพัฒนาคุณภาพการจัดการการศึกษา จำนวน </label>
-                                            <input type="text" id="Total_Hour_Q_Education_Mng_Devstr" name="Total_Hour_Q_Education_Mng_Dev_str" class="form-control form-control-lg ml-5 mr-5 text-center" style="font-size: 16px; height: 35px; width: 100px;" value="@Model.Total_Hour_Q_Education_Mng_Dev_str" />
+                                            <label class="form-label" for="Total_Hour_subject-2">1.3 งานพัฒนาคุณภาพการจัดการการศึกษา จำนวน </label>
+                                            <input type="text" id="Total_Hour_subject-2" name="Total_Hour_subject-2" class="form-control form-control-lg ml-5 mr-5 text-center" style="font-size: 16px; height: 35px; width: 100px;" value="@Model.Total_Hour_Q_Education_Mng_Dev_str" />
                                             <label class="form-label" for="">ชั่วโมง/สัปดาห์ </label>
                                             <table id="table-subject-2" class="table table-hover border shadow m-2">
 
@@ -426,7 +426,7 @@
                                                 <tbody id="tbody-subject-2">
                                                     <tr style="height:44px;">
                                                         <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
-                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','','tbody-subject-2');">
+                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','','subject-2');">
                                                                 <i class="fa fa-plus w3-text-theme text-success"></i>
                                                             </div>
                                                         </td>
@@ -446,8 +446,8 @@
                                     <div class="col-md-12 mb-4">
 
                                         <div class="form-inline">
-                                            <label class="form-label" for="Total_Hour_Policy_Focus_Sup_str">1.4 งานตอบสนองนโยบายและจุดเน้น จำนวน </label>
-                                            <input type="text" id="Total_Hour_Policy_Focus_Sup_str" name="Total_Hour_Policy_Focus_Sup_str" class="form-control form-control-lg ml-5 mr-5 text-center" style="font-size: 16px; height: 35px; width: 100px;" value="@Model.Total_Hour_Policy_Focus_Sup_str" />
+                                            <label class="form-label" for="Total_Hour_subject-3">1.4 งานตอบสนองนโยบายและจุดเน้น จำนวน </label>
+                                            <input type="text" id="Total_Hour_subject-3" name="Total_Hour_subject-3" class="form-control form-control-lg ml-5 mr-5 text-center" style="font-size: 16px; height: 35px; width: 100px;" value="@Model.Total_Hour_Policy_Focus_Sup_str" />
                                             <label class="form-label" for="">ชั่วโมง/สัปดาห์ </label>
                                             <table id="table-subject-3" class="table table-hover border shadow m-2">
 
@@ -455,7 +455,7 @@
                                                 <tbody id="tbody-subject-3">
                                                     <tr style="height:44px;">
                                                         <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
-                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','','tbody-subject-3');">
+                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','','subject-3');">
                                                                 <i class="fa fa-plus w3-text-theme text-success"></i>
                                                             </div>
                                                         </td>
@@ -483,7 +483,8 @@
                             </div>
                             <div id="page_2_subform" style="display:none;">
                                 <div class="card-body" style="padding:10px;">
-                                    <p> ลักษณะงานที่เสนอให้ครอบคลุมถึงการสร้างและหรือพัฒนาหลักสูตรการออกแบบการจัดการเรียนรู้การจัดกิจกรรมการเรียนรู้การสร้างและหรือพัฒนาสื่อ นวัตกรรม เทคโนโลยี และแหล่งเรียนรู้ การวัดและประเมินผลการจัดการเรียนรู้
+                                    <p>
+                                        ลักษณะงานที่เสนอให้ครอบคลุมถึงการสร้างและหรือพัฒนาหลักสูตรการออกแบบการจัดการเรียนรู้การจัดกิจกรรมการเรียนรู้การสร้างและหรือพัฒนาสื่อ นวัตกรรม เทคโนโลยี และแหล่งเรียนรู้ การวัดและประเมินผลการจัดการเรียนรู้
                                         การศึกษา วิเคราะห์ สังเคราะห์เพื่อแก้ปัญหาหรือพัฒนาการเรียนรู้ การจัดบรรยากาศที่ส่งเสริมและพัฒนาผู้เรียนและการอบรมและพัฒนา
                                         คุณลักษณะที่ดีของผู้เรียน
                                     </p>
@@ -682,10 +683,14 @@
     <script>
         $(window).on("load", function () {
             setTimeout(fadout, 500);
-            populate_sbj();
+            populate_sbj("subject", '@(ViewBag.Sbj_Hr)'.replace(/&quot;/g, '"'));
+            populate_sbj("subject-1", '@(ViewBag.Sbj_Hr_1)'.replace(/&quot;/g, '"'));
+            populate_sbj("subject-2", '@(ViewBag.Sbj_Hr_2)'.replace(/&quot;/g, '"'));
+            populate_sbj("subject-3", '@(ViewBag.Sbj_Hr_3)'.replace(/&quot;/g, '"'));
         });
-        function populate_sbj() {
-            var res = '@(ViewBag.Sbj_Hr)'.replace(/&quot;/g, '"');
+        function populate_sbj(sbj, sbj_hr) {
+    
+            var res = sbj_hr;//'@(ViewBag.Sbj_Hr)'.replace(/&quot;/g, '"');
             //alert(res);
             var sbj_Json = JSON.parse(res);
             //alert(sbj_Json.length);
@@ -696,13 +701,13 @@
                     var elem = document.createElement("div");
                     elem.innerHTML = str;
                     //alert(elem.textContent);
-                    createRow(elem.textContent, sbj_Json[s].hour);
+                    createRow(elem.textContent, sbj_Json[s].hour, sbj);
                     //https://stackoverflow.com/questions/31475747/convert-this-unicode-to-string-with-javascript-thai-language
                     //createRow(decodeURIComponent(escape(sbj_Json[s].subject)), sbj_Json[s].hour);
                 }
                 else if (sbj_Json[s].hasOwnProperty('Total')) {
                     //alert('subject');
-                    calculateTotal();
+                    calculateTotal(sbj);
                     //createRow(sbj_Json[s].subject, sbj_Json[s].hour);
                 }
             }
@@ -772,12 +777,14 @@
             var clickDiv = document.getElementsByClassName(x.className)[0];
             var td_ = clickDiv.parentNode;   //td
             var tr_ = td_.parentNode;   //tr
-            //alert(tr_.id);
+            var tbody_ = tr_.parentNode;
+            //alert(tbody_.id);
+            var thisSbj= tbody_.id.replace('table-','');
             //var deleteDiv = document.getElementById(tr_.id);
             //alert(deleteDiv.parentNode.childNodes.length);
             //alert(deleteDiv.rowIndex);
             tr_.parentNode.removeChild(tr_);
-            calculateTotal();
+            calculateTotal(thisSbj);
         }
 
         function uuidv4() {
@@ -791,7 +798,7 @@
 
 
         function createDiv() {
-            
+
 
             var divTag = document.createElement("div");
             divTag.id = "div1";
@@ -802,7 +809,7 @@
             document.body.appendChild(divTag);
 
         }
-        function createRow(sbj,hr,tb) {
+        function createRow(sbj_Name, hr, sbj) {
 
             //var targetTabel = document.getElementById(table-subject);
             //<div id="mdiv" style="padding:5px 0px 4px 6px;" onclick="deleteItem();alert('Delete subject');">
@@ -810,10 +817,11 @@
             //        <div class="md" ></div>
             //    </div>
             //</div>
-
+            //alert(sbj);
             var UUID_ = uuidv4();
             //alert('Add subject');
-            var table = document.getElementById(tb);
+            var table_ = "table-" + sbj;
+            var table = document.getElementById(table_);
             var lastRow = table.rows[table.rows.length - 1];
             var lastRowIndex = table.rows.length - 1;
             //alert(table.rows[lastRowIndex]);
@@ -855,23 +863,23 @@
 
             var inp_1 = document.createElement("INPUT");
             inp_1.className = "form-control form-control-lg ml-3 mr-3";
-            inp_1.id = "subject";
+            inp_1.id = sbj; //"subject";
             inp_1.style.fontSize = "14px";
             inp_1.style.width = "400px";
             inp_1.style.height = "35px";
             inp_1.setAttribute("type", "text");
-            inp_1.setAttribute("name", "subject-name");
-            inp_1.value = sbj;
+            inp_1.setAttribute("name", sbj + "-name");
+            inp_1.value = sbj_Name;
 
             var inp_2 = document.createElement("INPUT");
             inp_2.className = "form-control form-control-lg ml-3 mr-3 text-center";
-            inp_2.id = "subject-hour";
+            inp_2.id = sbj + "-hour";
             //inp_2.name = "subject-hour";
             inp_2.style.fontSize = "14px";
             inp_2.style.width = "100px";
             inp_2.style.height = "35px";
             inp_2.setAttribute("type", "text");
-            inp_2.setAttribute("name", "subject-hour");
+            inp_2.setAttribute("name", sbj + "-hour");
             inp_2.value = hr;
 
             inp_1.addEventListener("input", function (e) {
@@ -905,7 +913,8 @@
 
             inp_2.addEventListener("keyup", function (e) {
                 //alert(this.nodeValue);
-                calculateTotal();
+                //alert(sbj);
+                calculateTotal(sbj);
             });
             inp_2.addEventListener("keydown", function (e) {
                 if (e.keyCode == 40) {
@@ -954,12 +963,13 @@
 
         }
 
-        function calculateTotal() {
+        function calculateTotal(sbj_) {
 
-            let total = document.getElementById("Total_Hour_Schedule_str")
+            let total = document.getElementById("Total_Hour_" + sbj_)
+            //alert(total);
             //total.value = e.target.value;
             //alert(inputTextValue);
-            let input = document.getElementsByName("subject-hour");
+            let input = document.getElementsByName(sbj_ + "-hour");
             var sum = 0;
             for (var i = 0; i < input.length; i++) {
 
@@ -1213,10 +1223,16 @@
                 classroomType = $('#classroomType').val();
             //
 
-            let Total_Hour_Schedule_str = $('#Total_Hour_Schedule_str').val();
-            let Total_Hour_Learning_Promotion_Support_str = $('#Total_Hour_Learning_Promotion_Support_str').val();
-            let Total_Hour_Q_Education_Mng_Devstr = $('#Total_Hour_Q_Education_Mng_Devstr').val();
-            let Total_Hour_Policy_Focus_Sup_str = $('#Total_Hour_Policy_Focus_Sup_str').val();
+            //let Total_Hour_Schedule_str = $('#Total_Hour_Schedule_str').val();
+            //let Total_Hour_Learning_Promotion_Support_str = $('#Total_Hour_Learning_Promotion_Support_str').val();
+            //let Total_Hour_Q_Education_Mng_Devstr = $('#Total_Hour_Q_Education_Mng_Devstr').val();
+            //let Total_Hour_Policy_Focus_Sup_str = $('#Total_Hour_Policy_Focus_Sup_str').val();
+
+            let Total_Hour_Schedule_str = $('#Total_Hour_subject').val();
+            let Total_Hour_Learning_Promotion_Support_str = $('#Total_Hour_subject-1').val();
+            let Total_Hour_Q_Education_Mng_Devstr = $('#Total_Hour_subject-2').val();
+            let Total_Hour_Policy_Focus_Sup_str = $('#Total_Hour_subject-3').val();
+
 
             let formId = $('#formId').val();
             let LM_Task = $('#LM_Task').val();
@@ -1242,8 +1258,15 @@
             input_subject = document.getElementsByName("subject-name");
             input_ = document.getElementsByName("subject-hour");
             var JsonResult = JsonBuild(input_subject, input_);
-            let Subject_Hour = JsonResult;
+            //let Subject_Hour = JsonResult;
             //alert(JsonResult);
+
+            let Subject_Hour = JsonBuild(document.getElementsByName("subject-name"), document.getElementsByName("subject-hour"));
+            let Subject_1_Hour = JsonBuild(document.getElementsByName("subject-1-name"), document.getElementsByName("subject-1-hour"));
+            let Subject_2_Hour = JsonBuild(document.getElementsByName("subject-2-name"), document.getElementsByName("subject-2-hour"));
+            let Subject_3_Hour = JsonBuild(document.getElementsByName("subject-3-name"), document.getElementsByName("subject-3-hour"));
+
+
 
             if (Prefix_mr) {
                 Prefix = 1;
@@ -1269,13 +1292,18 @@
             var param = "Prefix=" + Prefix + "&FirstName=" + FirstName
                 + "&LastName=" + LastName + "&position=" + position + "&school_id=" + school + "&CDate=" + CDate
                 + "&memberOf=" + memberOf + "&salaryLevel=" + salaryLevel
-                + "&Total_Hour_Schedule_str=" + Total_Hour_Schedule_str + "&Subject_Hour=" + Subject_Hour + "&Total_Hour_Learning_Promotion_Support_str=" + Total_Hour_Learning_Promotion_Support_str + "&Total_Hour_Q_Education_Mng_Devstr=" + Total_Hour_Q_Education_Mng_Devstr + "&Total_Hour_Policy_Focus_Sup_str=" + Total_Hour_Policy_Focus_Sup_str
+                + "&Total_Hour_Schedule_str=" + Total_Hour_Schedule_str + "&Subject_Hour=" + Subject_Hour
+                + "&Total_Hour_Learning_Promotion_Support_str=" + Total_Hour_Learning_Promotion_Support_str + "&Subject_1_Hour=" + Subject_1_Hour
+                + "&Total_Hour_Q_Education_Mng_Devstr=" + Total_Hour_Q_Education_Mng_Devstr + "&Subject_2_Hour=" + Subject_2_Hour
+                + "&Total_Hour_Policy_Focus_Sup_str=" + Total_Hour_Policy_Focus_Sup_str + "&Subject_3_Hour=" + Subject_3_Hour
                 + "&salaryRate=" + salaryRate + "&classroomType=" + classroomType + "&user_Id=" + user_Id
                 + "&LM_Task=" + LM_Task + "&LM_Outcomes=" + LM_Outcomes + "&LM_Indicators=" + LM_Indicators
                 + "&PS_Task=" + PS_Task + "&PS_Outcomes=" + PS_Outcomes + "&PS_Indicators=" + PS_Indicators
                 + "&CL_Point=" + CL_Point + "&CL_Point_Text=" + CL_Point_Text + "&Problem_State=" + Problem_State
-                + "&Method_To_Acheivment=" + Method_To_Acheivment + "&QT_Expect_Result=" + QT_Expect_Result + "&QL_Expect_Result=" + QL_Expect_Result + "&formId=" + formId
+                + "&Method_To_Acheivment=" + Method_To_Acheivment + "&QT_Expect_Result=" + QT_Expect_Result
+                + "&QL_Expect_Result=" + QL_Expect_Result + "&formId=" + formId
                 + "&submit=yes";
+
             //alert(param);
             //alert(param);
 
@@ -1303,6 +1331,9 @@
                     salaryLevel: salaryLevel,
                     Total_Hour_Schedule_str: Total_Hour_Schedule_str,
                     Subject_Hour: Subject_Hour,
+                    Subject_1_Hour: Subject_1_Hour,
+                    Subject_2_Hour: Subject_2_Hour,
+                    Subject_3_Hour: Subject_3_Hour,
                     Total_Hour_Learning_Promotion_Support_str: Total_Hour_Learning_Promotion_Support_str,
                     Total_Hour_Q_Education_Mng_Devstr: Total_Hour_Q_Education_Mng_Devstr,
                     Total_Hour_Policy_Focus_Sup_str: Total_Hour_Policy_Focus_Sup_str,
@@ -1327,6 +1358,7 @@
                 function (data, status) {
                     //alert("Data: " + data + "\nStatus: " + status);
                     fadin();
+                    alert("Successfully Update Information..");
                     fadout();
                 });
 
@@ -1371,7 +1403,7 @@
                     sum_ = Number(sum_) + Number(this_input_[i].value);
                 }
 
-                
+
             }
 
             //let input_ = document.getElementsByName("subject-hour");

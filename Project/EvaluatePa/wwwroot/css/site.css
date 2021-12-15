@@ -27,8 +27,9 @@ td {
     height:35px;
     border-top:0px;
 }
+
 font-14 {
-    font-size:1.00rem;
+    font-size: 1.00rem;
 }
 
 .navbar {
@@ -435,4 +436,21 @@ input {
     .tooltip:hover .tooltiptext {
         visibility: visible;
     }
+/**/
+
+p.normal {
+    font-weight: normal;
+}
+
+p.light {
+    font-weight: lighter;
+}
+
+p.thick {
+    font-weight: bold;
+}
+
+p.thicker {
+    font-weight: 900;
+}
 /**/

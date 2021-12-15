@@ -73,6 +73,36 @@ namespace EvaluatePa.Controllers
             return Json("Ok");
         }
 
+        public IActionResult Logout()
+        {
+            //if (firstName == null || Password == null)
+            //    return View();
+
+            //string myPassSHA = GenerateSHA256String(Password);
+
+            //List<User> user_ = getUser(firstName, myPassSHA);
+
+            //if (user_.Count == 1)
+            //{
+            //    HttpContext.Session.SetString("userId", user_[0].Id.ToString());
+            //    HttpContext.Session.SetString("userEmail", user_[0].Email);
+            //    HttpContext.Session.SetString("userName", user_[0].Email);
+            //    return RedirectToAction("Main", new { user_Id = user_[0].Id });
+            //    // return RedirectToAction("EvaluatePA_Index", "EvaluatePA", new { user = user_[0].Id });
+            //}
+
+            //if (firstName == "service" && Password == "12345")
+            //{
+            //    HttpContext.Session.SetString("userName", firstName);
+            //    return RedirectToAction("EvaluatePA_Index", "EvaluatePA");
+            //}
+            HttpContext.Session.SetString("userId", "");
+            HttpContext.Session.SetString("userEmail", "");
+            HttpContext.Session.SetString("userName", "");
+            HttpContext.Session.SetString("userStatus", "0");
+            return View("Login");
+        }
+
         public IActionResult Login(string firstName, string Password)
         {
             if (firstName == null || Password == null)

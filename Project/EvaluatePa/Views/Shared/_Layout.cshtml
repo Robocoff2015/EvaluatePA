@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Kanit&subset=thai,latin' type='text/css'>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     @RenderSection("Style_", required: false)
@@ -55,6 +57,9 @@
                             </li>
                         </ul>
                     </div>
+                </div>
+                <div class="float-right">
+                    <div class="btn btn-outline-light ml-5" onclick="location.href='@Url.Action("Logout", "Home")'" style="font-size:12px;color:#464646; padding:3px;width:80px;height:28px;margin-left:0px;margin:4px;">Signout</div>
                 </div>
             </div>
         </nav>
