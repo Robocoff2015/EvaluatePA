@@ -11,6 +11,7 @@ namespace EvaluatePa.Models
         public string Form_Name { get; set; }
         public string Date_Time { get; set; }
         public string position { get; set; }
+        public string status { get; set; }
 
         //
 

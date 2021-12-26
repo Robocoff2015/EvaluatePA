@@ -35,6 +35,40 @@ namespace EvaluatePa.Controllers
             return View(new List<PA_Form_Short>());
         }
 
+        public IActionResult EvaluatePA_Work_ListAll(string user)
+        {
+            HttpContext.Session.SetString("userId", user);
+            if (user != null)
+            {
+                return View(getPAForm(user));
+            }
+            return View(new List<PA_Form_Short>());
+        }
+
+        public IActionResult Management_Index(string user_id, string mgSection)
+        {
+            ViewBag.mgSection = mgSection;  // "School";// mgSection;
+            HttpContext.Session.SetString("userId", user_id);
+            DateTime dt = DateTime.Now;
+            int today_ = (int)dt.DayOfWeek;
+            ViewBag.Today = today_;
+            if (user_id != null)
+            {
+                return View(getPAForm(user_id));
+            }
+            return View(new List<PA_Form_Short>());
+        }
+        public IActionResult Admin_Index(string user)
+        {
+            HttpContext.Session.SetString("userId", user);
+            if (user != null)
+            {
+                return View(getPAForm(user));
+            }
+            return View(new List<PA_Form_Short>());
+        }
+
+
         public IActionResult PA_Add(string PA_Name, string Id)
         {
             string sessionUser_ = HttpContext.Session.GetString("userId");
@@ -96,7 +130,7 @@ namespace EvaluatePa.Controllers
             String sqlString = null;
             //sqlString += " SELECT [Name],[Description],[Subject],[Type],[DateTime],a.[Status],b.[UserPosition],a.[Id]  FROM [" + dbName + "].[dbo].[PA_Media] as a right join [" + dbName + "].[dbo].[PA_User] as b on a.OwnerId = b.Id";
 
-            sqlString += " SELECT [Name],[Description],[Subject],[Type],[DateTime],a.[Status],b.[UserPosition],a.[Id]  FROM [" + dbName + "].[dbo].[PA_Form] as a right join [" + dbName + "].[dbo].[PA_User] as b on a.OwnerId = b.Id";
+            sqlString += " SELECT [Name],a.[Description],[Subject],[Type],a.[MDateTime],a.[Status],b.[UserPosition],a.[Id],c.[description]  FROM [" + dbName + "].[dbo].[PA_Form] as a right join [" + dbName + "].[dbo].[PA_User] as b on a.OwnerId = b.Id left join [" + dbName + "].[dbo].[PA_Submission_Status] as c on a.status = c.Id";
             sqlString += " where a.[OwnerId] = '" + uname + "' and a.[Status] <> 204 ORDER BY [DateTime] ASC";
             Microsoft.Data.SqlClient.SqlDataAdapter da = new SqlDataAdapter(sqlString, connectionString);
             da.Fill(dt);
@@ -111,6 +145,7 @@ namespace EvaluatePa.Controllers
                     PA_Form_.Date_Time = dt.Rows[i].ItemArray[4].ToString();
                     PA_Form_.position = dt.Rows[i].ItemArray[6].ToString();
                     PA_Form_.Form_Id = dt.Rows[i].ItemArray[7].ToString();
+                    PA_Form_.status = dt.Rows[i].ItemArray[8].ToString();
 
                     PA_Form.Add(PA_Form_);
                 }
@@ -264,7 +299,7 @@ namespace EvaluatePa.Controllers
                 //sqlString += "IF NOT EXISTS (SELECT [Name] FROM [" + dbName + "].[dbo].[PA_Form] WHERE [Name] = '" + PA_Name + "' and [Status] <> 204)";
                 //sqlString += " BEGIN INSERT INTO [" + dbName + "].[dbo].[PA_Form]([Id],[Name],[DateTime],[OwnerId],[Status]) VALUES (default,'" + PA_Name + "','" + DateTime_ + "'," + user_Id + ",0) END";
                 sqlString += " UPDATE [" + dbName + "].[dbo].[PA_Form]";
-                sqlString += " SET [Total_Hour_Schedule] = " + Total_Hour_Schedule_str + ",[Subject_Hour] = '" + Subject_Hour + "'"; 
+                sqlString += " SET [MDateTime] = '" + DateTime_ + "', [Total_Hour_Schedule] = " + Total_Hour_Schedule_str + ",[Subject_Hour] = '" + Subject_Hour + "'"; 
                 sqlString += " ,[Total_Hour_Learning_Promotion_Support] = " + Total_Hour_Learning_Promotion_Support_str + ",[Subject_1_Hour] = '" + Subject_1_Hour + "'"; 
                 sqlString += " ,[Total_Hour_Q_Education_Mng_Dev] = " + Total_Hour_Q_Education_Mng_Devstr + ",[Subject_2_Hour] = '" + Subject_2_Hour + "'"; 
                 sqlString += " ,[Total_Hour_Policy_Focus_Sup] = " + Total_Hour_Policy_Focus_Sup_str + ",[Subject_3_Hour] = '" + Subject_3_Hour + "'";
@@ -272,7 +307,7 @@ namespace EvaluatePa.Controllers
                 sqlString += " ,[PS_Task] = '" + PS_Task + "',[PS_Outcomes] = '" + PS_Outcomes + "',[PS_Indicators] = '" + PS_Indicators + "'";
                 sqlString += " ,[SP_Dev_Task] = '" + SP_Dev_Task + "',[SP_Dev_Dev_Outcomes] = '" + SP_Dev_Dev_Outcomes + "',[SP_Dev_Dev_Indicators] = '" + SP_Dev_Dev_Indicators + "'";
                 sqlString += " ,[CL_Point] = '" + CL_Point + "',[CL_Point_Text] = '" + CL_Point_Text + "',[Problem_State] = '" + Problem_State + "'";
-                sqlString += " ,[Method_To_Acheivment] = '" + Method_To_Acheivment + "',[QT_Expect_Result] = '" + QT_Expect_Result + "',[QL_Expect_Result] = '" + QL_Expect_Result + "'";
+                sqlString += " ,[Method_To_Acheivment] = '" + Method_To_Acheivment + "',[QT_Expect_Result] = '" + QT_Expect_Result + "',[QL_Expect_Result] = '" + QL_Expect_Result + "',[status] = " + "203" + "";
                 sqlString += " WHERE [Id] = CAST('" + formId + "' as uniqueidentifier)";
                 connection.Open();
                 SqlCommand command2 = new SqlCommand(sqlString, connection);
@@ -302,7 +337,7 @@ namespace EvaluatePa.Controllers
                 string DateTime_ = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 //sqlString += " INSERT INTO [" + dbName + "].[dbo].[PA_Media]([Name],[DateTime],[OwnerId],[Status]) VALUES ('" + PA_Name + "','" + DateTime_ + "'," + user_Id + ",0)";
                 sqlString += "IF NOT EXISTS (SELECT [Name] FROM [" + dbName + "].[dbo].[PA_Form] WHERE [Name] = '" + PA_Name + "' and [Status] <> 204 and OwnerId = '" + user_Id + "')";
-                sqlString += " BEGIN INSERT INTO [" + dbName + "].[dbo].[PA_Form]([Id],[Name],[DateTime],[OwnerId],[Status]) VALUES (default,'" + PA_Name + "','" + DateTime_ + "'," + user_Id + ",0) END";
+                sqlString += " BEGIN INSERT INTO [" + dbName + "].[dbo].[PA_Form]([Id],[Name],[DateTime],[MDateTime],[OwnerId],[Status]) VALUES (default,'" + PA_Name + "','" + DateTime_ + "','" + DateTime_ + "'," + user_Id + ",200) END";
                 connection.Open();
                 SqlCommand command2 = new SqlCommand(sqlString, connection);
                 command2.ExecuteNonQuery();
@@ -339,6 +374,35 @@ namespace EvaluatePa.Controllers
             }
             return RedirectToAction("EvaluatePA_Index", "EvaluatePA", new { user = HttpContext.Session.GetString("userId") });
         }
+
+        public IActionResult GetApprovedForm_AJ(String PA_Name, String Id)
+        {
+            if (PA_Name == "" || PA_Name == null)
+            {
+                return RedirectToAction("EvaluatePA_Index", "EvaluatePA", new { user = HttpContext.Session.GetString("userId") });
+            }
+            string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
+            string dbName = configuration.GetConnectionString("dbSource");
+            //connection.Open();
+            System.Data.DataTable dt = new DataTable();
+            String sqlString = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //string myPassSHA = GenerateSHA256String(Password);
+                string DateTime_ = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                //sqlString += " INSERT INTO [" + dbName + "].[dbo].[PA_Media]([Name],[DateTime],[OwnerId],[Status]) VALUES ('" + PA_Name + "','" + DateTime_ + "'," + user_Id + ",0)";
+                //sqlString += "IF NOT EXISTS (SELECT [Name] FROM [" + dbName + "].[dbo].[PA_Form] WHERE [Name] = '" + PA_Name + "')";
+                //sqlString += " DELETE FROM [" + dbName + "].[dbo].[PA_Form] WHERE [Id] = '" + Id + "'";
+                sqlString += " UPDATE [" + dbName + "].[dbo].[PA_Form] SET [Status] = 205, MDateTime = '" + DateTime_ + "' WHERE [Id] = '" + Id + "'";
+                connection.Open();
+                SqlCommand command2 = new SqlCommand(sqlString, connection);
+                command2.ExecuteNonQuery();
+                command2.Dispose();
+                connection.Close();
+            }
+            return RedirectToAction("EvaluatePA_Index", "EvaluatePA", new { user = HttpContext.Session.GetString("userId") });
+        }
+
 
         public IActionResult EditForm_AJ(String PA_Name, String Id)
         {

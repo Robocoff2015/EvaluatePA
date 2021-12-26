@@ -32,10 +32,9 @@
             padding-left: 0;
             padding-right: 0;
         }
-
     }
-
 </style>
+    
 </head>
 <body>
     <header>
@@ -46,8 +45,8 @@
             </div><div class="box"></div>
         </nav>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white pt-3 pb-1">
-            <div class="container-fluid pt-0 border-bottom" style="border-top: 2px solid #9e9eff">
-                <div class="container float-left">
+            <div class="container-fluid pt-0 pl-5 pr-5 border-bottom" style="border-top: 2px solid #9e9eff">
+                <div class="pl-5 pr-5">
                     <button class="navbar-toggler float-left" style="margin-top:-2px;" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -58,20 +57,10 @@
                                 <a class="nav-link text-dark keep-padding-left a-Dashboard" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="ManagementPA" asp-action="Dashboard_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-bar-chart fa-fw w3-margin-right w3-text-theme"></i>แดชบอร์ด</a>
                             </li>
                             <li class="nav-item box-shadow-blue keep-margin-left text-nowrap">
-                                <a class="nav-link text-dark keep-padding-left a-Course" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="EvaluatePA" asp-action="EvaluatePA_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-book fa-fw w3-margin-right w3-text-theme"></i>หลักสูตร</a>
+                                <a class="nav-link text-dark keep-padding-left a-Course" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="EvaluatePA2" asp-action="EvaluatePA2_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-book fa-fw w3-margin-right w3-text-theme"></i>ประเมินข้อตกลงพัฒนางาน (PA)</a>
                             </li>
-                            <li class="nav-item box-shadow keep-margin-left text-nowrap">
-                                <a class="nav-link text-dark keep-padding-left a-Learn" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="EvaluatePA" asp-action="EvaluatePA_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-language fa-fw w3-margin-right w3-text-theme"></i>หน่วยการเรียนรู้</a>
-                            </li>
-                            <li class="nav-item box-shadow keep-margin-left text-nowrap">
-                                <a class="nav-link text-dark keep-padding-left a-EvaluatePA" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="EvaluatePA" asp-action="EvaluatePA_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-text-theme"></i>วิทยฐานะ</a>
-                            </li>
-                            <li class="nav-item box-shadow keep-margin-left text-nowrap">
-                                <a class="nav-link text-dark keep-padding-left a-Manage" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="EvaluatePA" asp-action="EvaluatePA_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i>จัดการผู้เรียน</a>
-                            </li>
-                            <li class="nav-item box-shadow keep-margin-left text-nowrap">
-                                <a class="nav-link text-dark keep-padding-left a-Video" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="Video" asp-action="Index"><i class="fa fa-film fa-fw w3-margin-right w3-text-theme"></i>จัดการไฟล์วิดีโอ</a>
-                            </li>
+                            
+                           
                         </ul>
                     </div>
                 </div>

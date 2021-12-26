@@ -12,5 +12,17 @@ namespace EvaluatePa.Controllers
         {
             return View();
         }
+        public IActionResult Dashboard_Info()
+        {
+            return View();
+        }
+        public IActionResult Dashboard_Evaluation()
+        {
+            return View();
+        }
+        public IActionResult Dashboard_Result()
+        {
+            return View();
+        }
     }
 }

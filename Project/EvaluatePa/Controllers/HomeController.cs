@@ -42,7 +42,11 @@ namespace EvaluatePa.Controllers
             HttpContext.Session.SetString("userId", user_id);
             HttpContext.Session.SetString("userStatus", user.Status.ToString());
             HttpContext.Session.SetString("userPosition", user.UserPosition);
-            //return View(user);
+            if (user.Status == 0 || user.Status == 1)
+            {
+                return View(user);
+            }
+            //
             return RedirectToAction("EvaluatePA_Index", "EvaluatePa", new { user = user_id });
         }
 
