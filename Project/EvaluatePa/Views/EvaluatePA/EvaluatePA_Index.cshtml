@@ -5,160 +5,224 @@
     var id_ = @Context.Session.GetString("userId");
 }
 
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-3 mt-2">
-            <div class="card border-0">
-                <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
-                    <div class="border-top pt-2">
-                        <h5><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-text-theme"></i>วิทยฐานะ</h5>
-                        <input type="hidden" id="userId" name="userId" value="@Context.Session.GetString("userId")">
-                    </div>
-                </div>
-                <div class="card-body p-1">
-                    <input type="button" value="แบบฟอร์มพัฒนางาน (PA)" class="btn bg-light" onclick="location.href='@Url.Action("Main", "Home", new { user_id = @id_})'" style="width:100%;border-color:#d4d4d4;height:35px;">
-                    <input type="button" value="จัดการวิดีโอที่บันทึกในห้องเรียน" class="btn bg-light mt-1" onclick="location.href='@Url.Action("Index", "Video", new { user_id = @id_})'" style="width:100%;border-color:#d4d4d4;height:35px;">
+@section Style_{
+    <style>
+
+
+        .tools {
+            position: absolute;
+            right: 12px;
+            top: 13px;
+            width: 32px;
+            height: 32px;
+            opacity: 0.3;
+        }
+
+            .tools:hover {
+                opacity: 1;
+            }
+
+        #mdiv {
+            width: 18px;
+            height: 18px;
+            /*            background-color: red;*/
+            border: 0px solid black;
+        }
+
+        .mdiv {
+            height: 18px;
+            width: 3px;
+            margin-left: 7px;
+            background-color: red;
+            transform: rotate(45deg);
+            Z-index: 1;
+        }
+
+        .md {
+            height: 18px;
+            width: 3px;
+            background-color: red;
+            transform: rotate(90deg);
+            Z-index: 2;
+        }
+
+        label {
+            font-size: 12px;
+        }
+
+        date .local {
+            font-size: 14px;
+        }
+
+        .topic .local {
+            font-size: 12px;
+            color: #8e8e8e;
+        }
+
+        main {
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            /*background-color: chartreuse;*/
+        }
+    </style>
+}
+
+<div class="row h-100">
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-3 mt-2">
+        <div class="card border-0">
+            <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
+                <div class="border-top pt-2">
+                    <h5><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-text-theme"></i>วิทยฐานะ</h5>
+                    <input type="hidden" id="userId" name="userId" value="@Context.Session.GetString("userId")">
                 </div>
             </div>
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-9 mt-2">
-            <div class="card border-0">
-                <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
-                    <div class="border-top pt-1">
-                        <form class="form-inline justify-content-between" asp-route="">
-
-                            <div class="mt-2">
-                                <p><i class="fa fa-file fa-fw w3-margin-right w3-text-theme"></i>แบบฟอร์มพัฒนางาน (PA)</p>
-                            </div>
-                            <div class="right">
-
-                                @*<div class="btn btn-success p-0 pt-1" onclick="showModal();location.href='@Url.Action("PA_Add", "EvaluatePA")'" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;บันทึกแบบฟอร์ม</div>*@
-                                <div class="btn btn-success p-0 pt-1" onclick="showModal_Create();" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;สร้างแบบฟอร์ม</div>
-                                @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>*@
-                                @*<button type="button" class="btn btn-info btn-lg" onclick="showModal();">X</button>*@
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-                <div class="card-body border-0 p-1">
-                    <!--Grid row-->
-                    <div class="row wow fadeIn p-0">
-
-                        <!--Grid column-->
-                        <div class="col-md-12 mb-12 p0">
-
-                            <!--Card-->
-                            <div class="card border-0 p-0">
-
-                                <!--Card content-->
-                                <div class="card-body border-0 p-0">
-
-                                    <!-- Table  -->
-                                    <table class="table border-bottom">
-                                        <!-- Table head -->
-                                        <thead class="blue-grey lighten-4 border-top">
-                                            <tr>
-                                                <th class="text-center" style="width:10%">ลำดับ</th>
-                                                <th style="width:25%">แบบฟอร์มพัฒนางาน</th>
-                                                <th class="text-center" style="width:20%">Date/Time</th>
-                                                <th class="text-center" style="width:10%">สถานะ</th>
-                                                <th class="text-center" style="width:15%">Export</th>
-                                                <th class="text-center" style="width:20%">เครื่องมือ</th>
-
-                                            </tr>
-                                        </thead>
-                                        <!-- Table head -->
-                                        <!-- Table body -->
-                                        <tbody>
-
-                                            @if (Model != null)
-                                            {
-                                                var i = 1;
-                                                foreach (var PA_Report_Model in Model)
-                                                {
-
-                                            <tr>
-                                                @{string status_ = PA_Report_Model.status.Replace(" ", "");
-
-                                                    string status_text = PA_Report_Model.status;
-                                                    if (status_ == "WaitingforApproval")
-                                                    {
-                                                        status_text = "รออนุมัติ";
-
-                                                    }else if (status_ == "ApOK")
-                                                    {
-                                                        status_text = "อนุมัติ";
-
-                                                    }
-                                                    else if (status_ == "ApOKWithComment")
-                                                    {
-                                                        status_text = "อนุมัติแบบมีเงื่อนไข";
-
-                                                    }
-                                                    else if (status_ == "ApNOTOK")
-                                                    {
-                                                        status_text = "ไม่อนุมัติ";
-
-                                                    }
-                                                    else if (PA_Report_Model.status == "New")
-                                                    {
-                                                        status_text = "สร้างใหม่";
-
-                                                    }
-                                                    else if (PA_Report_Model.status == "Editted")
-                                                    {
-                                                        status_text = "อยู่ระหว่างการแก้ไข";
-
-                                                    }
-
-
-                                                    }
-                                                <td class="text-center" scope="row">@i</td>
-                                                <td>@PA_Report_Model.Form_Name</td>
-                                                <td class="text-center">@PA_Report_Model.Date_Time</td>
-                                                <td class="text-center">
-                                                    <div id="status_" class="text-nowrap status @status_ pl-1 pr-1">
-                                                        &nbsp;@status_text&nbsp;
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="View_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-eye w3-text-theme"></i></div>
-                                                    <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="Edit_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
-                                                    <div id="@PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="Delete_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
-
-                                                    <div id="@PA_Report_Model.Form_Id" class="btn approve bg-light btn-sm pt-0" onclick="Submit_For_Approve_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-share w3-text-theme"></i></div>
-                                                </td>
-                                            </tr>
-
-                                                    i++;
-                                                }
-                                            }
-                                            else
-                                            { }
-
-
-                                        </tbody>
-                                        <!-- Table body -->
-                                    </table>
-                                    <!-- Table  -->
-
-                                </div>
-
-                            </div>
-                            <!--/.Card-->
-
-                        </div>
-                        <!--Grid column-->
-
-                    </div>
-                    <!--Grid row-->
-                </div>
+            <div class="card-body p-1">
+                <input type="button" value="แบบฟอร์มพัฒนางาน (PA)" class="btn bg-light" onclick="location.href='@Url.Action("Main", "Home", new { user_id = @id_})'" style="width:100%;border-color:#d4d4d4;height:35px;">
+                <input type="button" value="จัดการวิดีโอที่บันทึกในห้องเรียน" class="btn bg-light mt-1" onclick="location.href='@Url.Action("Index", "Video", new { user_id = @id_})'" style="width:100%;border-color:#d4d4d4;height:35px;">
             </div>
         </div>
     </div>
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-9 mt-2">
+        <div class="card border-0">
+            <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
+                <div class="border-top pt-1">
+                    <form class="form-inline justify-content-between" asp-route="">
+
+                        <div class="mt-2">
+                            <p><i class="fa fa-file fa-fw w3-margin-right w3-text-theme"></i>แบบฟอร์มพัฒนางาน (PA)</p>
+                        </div>
+                        <div class="right">
+
+                            @*<div class="btn btn-success p-0 pt-1" onclick="showModal();location.href='@Url.Action("PA_Add", "EvaluatePA")'" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;บันทึกแบบฟอร์ม</div>*@
+                            <div class="btn btn-success p-0 pt-1" onclick="showModal_Create();" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;สร้างแบบฟอร์ม</div>
+                            @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>*@
+                            @*<button type="button" class="btn btn-info btn-lg" onclick="showModal();">X</button>*@
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="card-body border-0 p-1">
+                <!--Grid row-->
+                <div class="row wow fadeIn p-0">
+
+                    <!--Grid column-->
+                    <div class="col-md-12 mb-12 p0">
+
+                        <!--Card-->
+                        <div class="card border-0 p-0">
+
+                            <!--Card content-->
+                            <div class="card-body border-0 p-0">
+
+                                <!-- Table  -->
+                                <table class="table border-bottom">
+                                    <!-- Table head -->
+                                    <thead class="blue-grey lighten-4 border-top">
+                                        <tr>
+                                            <th class="text-center" style="width:10%">ลำดับ</th>
+                                            <th style="width:25%">แบบฟอร์มพัฒนางาน</th>
+                                            <th class="text-center" style="width:20%">Date/Time</th>
+                                            <th class="text-center" style="width:10%">สถานะ</th>
+                                            <th class="text-center" style="width:15%">Export</th>
+                                            <th class="text-center" style="width:20%">เครื่องมือ</th>
+
+                                        </tr>
+                                    </thead>
+                                    <!-- Table head -->
+                                    <!-- Table body -->
+                                    <tbody>
+
+                                        @if (Model != null)
+                                        {
+                                            var i = 1;
+                                            foreach (var PA_Report_Model in Model)
+                                            {
+
+                                                <tr>
+                                                    @{string status_ = PA_Report_Model.status.Replace(" ", "");
+
+                                                        string status_text = PA_Report_Model.status;
+                                                        if (status_ == "WaitingforApproval")
+                                                        {
+                                                            status_text = "รออนุมัติ";
+
+                                                        }
+                                                        else if (status_ == "ApOK")
+                                                        {
+                                                            status_text = "อนุมัติ";
+
+                                                        }
+                                                        else if (status_ == "ApOKWithComment")
+                                                        {
+                                                            status_text = "อนุมัติแบบมีเงื่อนไข";
+
+                                                        }
+                                                        else if (status_ == "ApNOTOK")
+                                                        {
+                                                            status_text = "ไม่อนุมัติ";
+
+                                                        }
+                                                        else if (PA_Report_Model.status == "New")
+                                                        {
+                                                            status_text = "สร้างใหม่";
+
+                                                        }
+                                                        else if (PA_Report_Model.status == "Editted")
+                                                        {
+                                                            status_text = "อยู่ระหว่างการแก้ไข";
+
+                                                        }
+
+
+                                                    }
+                                                    <td class="text-center" scope="row">@i</td>
+                                                    <td>@PA_Report_Model.Form_Name</td>
+                                                    <td class="text-center">@PA_Report_Model.Date_Time</td>
+                                                    <td class="text-center">
+                                                        <div id="status_" class="text-nowrap status @status_ pl-1 pr-1">
+                                                            &nbsp;@status_text&nbsp;
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="View_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-eye w3-text-theme"></i></div>
+                                                        <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="Edit_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
+                                                        <div id="@PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="Delete_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
+
+                                                        <div id="@PA_Report_Model.Form_Id" class="btn approve bg-light btn-sm pt-0" onclick="Submit_For_Approve_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-share w3-text-theme"></i></div>
+                                                    </td>
+                                                </tr>
+
+                                                i++;
+                                            }
+                                        }
+                                        else
+                                        { }
+
+
+                                    </tbody>
+                                    <!-- Table body -->
+                                </table>
+                                <!-- Table  -->
+
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <!-- Modal -->

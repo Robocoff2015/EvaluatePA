@@ -1,0 +1,202 @@
+﻿@model User;
+@{
+    ViewData["Title"] = "Video";
+}
+
+@*<div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
+
+
+<div class="row">
+    <!--<div class="col-sm-12 col-md-12 col-lg-6 col-xl-3 mt-2">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-id-badge fa-fw w3-margin-right w3-text-theme"></i>ข้อมูลส่วนตัว
+            </div>
+            <div class="card-body">
+                <div class="w3-card w3-round w3-white">
+                    <div class="w3-container">
+                        <br>
+                        <p class="w3-center"><img src="~/images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+                        <hr>
+                        <h4 class="w3-center">นายสอนดี มีมานะ</h4>
+                        <hr>-->
+                        @*<p><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-text-theme"></i>@Model.UserPosition</p>*@
+                        @*<p><i class="fa fa-university fa-fw w3-margin-right w3-text-theme"></i>@Model.School</p>*@
+                        @*<p><i class="fa fa-map-marker fa-fw w3-margin-right w3-text-theme"></i>@Model.Province</p>*@
+                    <!--</div>
+                </div>
+            </div>
+
+        </div>
+    </div>-->
+    <div class="col-sm-12 col-md-12  col-lg-6 col-xl-4 mt-2">
+        <div class="card">
+            <div class="card-header">
+
+                <i class="fa fa-file-o fa-fw w3-margin-right w3-text-theme"></i>ไฟล์วีดิโอของฉัน
+            </div>
+            <div class="card-body">
+                @*<div class="row align-items-center">
+                        <div class="col-sm-12 col-md-6 col-lg-12 col-xl-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    File#1
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-12 col-xl-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    File#2
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-12 col-xl-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    File#3
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-12 col-xl-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    File#4
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+                <!-- Accordion -->
+                <div class="w3-card w3-round">
+                    <div class="w3-white">
+                        @*<button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
+                            <div id="Demo1" class="w3-hide w3-container">
+                                <p>Some text..</p>
+                            </div>
+                            <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
+                            <div id="Demo2" class="w3-hide w3-container">
+                                <p>Some other text..</p>
+                            </div>*@
+                        <button onclick="myFunction('subject-1')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-margin-bottom"><i class="fa fa-film fa-fw w3-margin-right"></i> รหัสวิชา : M-101</button>
+                        <div id="subject-1" class="w3-hide w3-container">
+                            <div class="w3-row-padding">
+                                <br>
+                                <div class="w3-half">
+                                    <img src="~/images/lights.jpg" style="width:100%" class="w3-margin-bottom" onclick="loadVideo1()">
+                                    <p class="w3-center">วันที่ 10-01-2564</p>
+
+                                </div>
+                                <div class="w3-half">
+                                    <img src="~/images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+                                    <p class="w3-center">วันที่ 18-02-2564</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="myFunction('subject-2')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-margin-bottom"><i class="fa fa-film fa-fw w3-margin-right"></i> รหัสวิชา : M-102</button>
+                        <div id="subject-2" class="w3-hide w3-container">
+                            <div class="w3-row-padding">
+                                <br>
+
+                                <div class="w3-half">
+                                    <img src="~/images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
+                                    <p class="w3-center">วันที่ 14-06-2564</p>
+                                </div>
+                                <div class="w3-half">
+                                    <img src="~/images/forest.jpg" style="width:100%" class="w3-margin-bottom">
+                                    <p class="w3-center">วันที่ 02-07-2564</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="myFunction('subject-3')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-margin-bottom"><i class="fa fa-film fa-fw w3-margin-right"></i> รหัสวิชา : BIO-101</button>
+                        <div id="subject-3" class="w3-hide w3-container">
+                            <div class="w3-row-padding">
+                                <br>
+                                <div class="w3-half">
+                                    <img src="~/images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+                                    <p class="w3-center">วันที่ 11-09-2564</p>
+                                </div>
+                                <div class="w3-half">
+                                    <img src="~/images/snow.jpg" style="width:100%" class="w3-margin-bottom">
+                                    <p class="w3-center">วันที่ 17-10-2564</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 mt-2">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-play fa-fw w3-margin-right w3-text-theme"></i>แสดงไฟล์วิดีโอ
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <video controls="controls">
+                                    <source type="video/mp4" />
+                                    Your browser does not support HTML video.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $('.active_').removeClass('active_');
+        $('.a-Video').addClass('active_');
+        $('.a-Video').removeClass('text-dark');
+    </script>
+
+    <script>
+        // Accordion
+        function myFunction(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+                x.previousElementSibling.className += " w3-theme-d1";
+            } else {
+                x.className = x.className.replace("w3-show", "");
+                x.previousElementSibling.className =
+                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+            }
+        }
+
+        // Used to toggle the menu on smaller screens when clicking on the menu button
+        function openNav() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+
+        function loadVideo1() {
+            var videoEl = document.getElementsByTagName('video')[0];
+            var sourceEl = videoEl.getElementsByTagName('source')[0];
+            sourceEl.src = 'movies/M101.mp4';
+            videoEl.load();
+        }
+
+    </script>
+
+}
+

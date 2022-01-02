@@ -20,10 +20,21 @@
         var userId = @Context.Session.GetString("userId");
     }
 <style>
+    .container-fluid {
+        width: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+        min-height: 100%;
+        margin-bottom: 0px;
+        /*height:100%;*/
+    }
     main {
         width: 100%;
         padding-left: 10%;
         padding-right: 10%;
+        height: 85vh;
+        
+        /*height:100%;*/
     }
 
     @@media only screen and (max-width: 1370px) {
@@ -31,13 +42,23 @@
             width: 100%;
             padding-left: 0;
             padding-right: 0;
+            height: 80vh;
+          
         }
 
+    }
+    @@media only screen and (max-width: 780px) {
+        main {
+            width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+            height: 100%;
+        }
     }
 
 </style>
 </head>
-<body>
+<body class="bg-light">
     <header>
         <nav class="navbar navbar-expand-xl navbar-toggleable-xl navbar-light bg-green-custom box-shadow d-inline-flex">
             <div class="Narhu-container-top">
@@ -45,18 +66,21 @@
 
             </div><div class="box"></div>
         </nav>
+        
+    </header>
+    <div class="container-fluid mr-5">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white pt-3 pb-1">
             <div class="container-fluid pt-0 border-bottom" style="border-top: 2px solid #9e9eff">
-                <div class="container float-left">
+                <div class="float-left">
                     <button class="navbar-toggler float-left" style="margin-top:-2px;" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" style="margin-left:10px;padding-top:0px;">
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" style="margin-left:0px;padding-top:0px;">
                         <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item box-shadow keep-margin-left  keep-margin-top text-nowrap">
+                            @*<li class="nav-item box-shadow keep-margin-left  keep-margin-top text-nowrap" style="display:none">
                                 <a class="nav-link text-dark keep-padding-left a-Dashboard" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="ManagementPA" asp-action="Dashboard_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-bar-chart fa-fw w3-margin-right w3-text-theme"></i>แดชบอร์ด</a>
-                            </li>
+                            </li>*@
                             <li class="nav-item box-shadow-blue keep-margin-left text-nowrap">
                                 <a class="nav-link text-dark keep-padding-left a-Course" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="EvaluatePA" asp-action="EvaluatePA_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-book fa-fw w3-margin-right w3-text-theme"></i>หลักสูตร</a>
                             </li>
@@ -80,14 +104,12 @@
                 </div>
             </div>
         </nav>
-    </header>
-    <div class="container-fluid">
-        <main role="main">
+        <main role="main" class="bg-white">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-0 footer text-muted">
         @*<div class="container">
                 &copy; 2021 - EvaluatePa - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>*@

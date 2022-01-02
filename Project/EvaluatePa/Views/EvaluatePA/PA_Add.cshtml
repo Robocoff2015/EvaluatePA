@@ -270,7 +270,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
                                     <div>
                                         <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
@@ -316,7 +316,7 @@
                                         <p>1. ภาระงาน จะมีภาระงานเป็นไปตามที่ก.ค.ศ. กำหนด</p>
 
                                     </div>
-                                    
+
 
                                     <div class="col-md-12 mb-4">
 
@@ -330,42 +330,42 @@
                                                 <!-- Table body -->
                                                 <tbody id="tbody-subject">
                                                     @*<tr style="height:44px;">
-                            <td style="padding:5px 0px 5px 5px;">
-                                <div id="mdiv" style="padding:5px 0px 4px 6px;" onclick="deleteItem();alert('Delete subject');">
-                                    <div class="mdiv">
-                                        <div class="md" ></div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="padding:0;font-size:16px;">
-                                <div class="d-inline-flex pt-1 pb-1">
-                                    <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
-                                    <input type="text" id="subject" name="subject" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px;" />
-                                    <span class="pt-1">จำนวน</span>
-                                    <input type="text" id="Hours" name="Hours" class="form-control form-control-lg ml-3 mr-3 text-center" style="font-size: 14px; height: 35px; width: 100px" />
-                                    <span class="pt-1">ชั่วโมง/สัปดาห์</span>
+                                                            <td style="padding:5px 0px 5px 5px;">
+                                                                <div id="mdiv" style="padding:5px 0px 4px 6px;" onclick="deleteItem();alert('Delete subject');">
+                                                                    <div class="mdiv">
+                                                                        <div class="md" ></div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding:0;font-size:16px;">
+                                                                <div class="d-inline-flex pt-1 pb-1">
+                                                                    <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
+                                                                    <input type="text" id="subject" name="subject" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px;" />
+                                                                    <span class="pt-1">จำนวน</span>
+                                                                    <input type="text" id="Hours" name="Hours" class="form-control form-control-lg ml-3 mr-3 text-center" style="font-size: 14px; height: 35px; width: 100px" />
+                                                                    <span class="pt-1">ชั่วโมง/สัปดาห์</span>
 
-                                </div>
-                            </td>
-                        </tr>*@
+                                                                </div>
+                                                            </td>
+                                                        </tr>*@
                                                     @*<tr>
-                            <td>
-                                <div id="mdiv">
-                                    <div class="mdiv">
-                                        <div class="md"></div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="padding:0;font-size:16px;">
-                                <div class="d-inline-flex pt-1 pb-1">
-                                    <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
-                                    <input type="text" id="subject" name="subject" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px;" />
-                                    <span class="pt-1">จำนวน</span>
-                                    <input type="text" id="Hours" name="Hours" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px; width: 100px" />
-                                    <span class="pt-1">ชั่วโมง/สัปดาห์</span>
-                                </div>
-                            </td>
-                        </tr>*@
+                                                            <td>
+                                                                <div id="mdiv">
+                                                                    <div class="mdiv">
+                                                                        <div class="md"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding:0;font-size:16px;">
+                                                                <div class="d-inline-flex pt-1 pb-1">
+                                                                    <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
+                                                                    <input type="text" id="subject" name="subject" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px;" />
+                                                                    <span class="pt-1">จำนวน</span>
+                                                                    <input type="text" id="Hours" name="Hours" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px; width: 100px" />
+                                                                    <span class="pt-1">ชั่วโมง/สัปดาห์</span>
+                                                                </div>
+                                                            </td>
+                                                        </tr>*@
                                                     <tr style="height:44px;">
                                                         <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
                                                             <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','0','0','subject');">
@@ -687,6 +687,7 @@
 
 
 @section Scripts {
+    <script src="~/js/PA_View.js"></script>
     <script>
         $(window).on("load", function () {
             setTimeout(fadout, 500);
@@ -696,7 +697,7 @@
             populate_sbj("subject-3", '@(ViewBag.Sbj_Hr_3)'.replace(/&quot;/g, '"'));
         });
         function populate_sbj(sbj, sbj_hr) {
-    
+
             var res = sbj_hr;//'@(ViewBag.Sbj_Hr)'.replace(/&quot;/g, '"');
             //alert(res);
             var sbj_Json = JSON.parse(res);
@@ -786,7 +787,7 @@
             var tr_ = td_.parentNode;   //tr
             var tbody_ = tr_.parentNode;
             //alert(tbody_.id);
-            var thisSbj= tbody_.id.replace('table-','');
+            var thisSbj = tbody_.id.replace('table-', '');
             //var deleteDiv = document.getElementById(tr_.id);
             //alert(deleteDiv.parentNode.childNodes.length);
             //alert(deleteDiv.rowIndex);
@@ -816,242 +817,7 @@
             document.body.appendChild(divTag);
 
         }
-        function createRow(sbj_Name, hr, min, sbj) {
 
-            //var targetTabel = document.getElementById(table-subject);
-            //<div id="mdiv" style="padding:5px 0px 4px 6px;" onclick="deleteItem();alert('Delete subject');">
-            //    <div class="mdiv">
-            //        <div class="md" ></div>
-            //    </div>
-            //</div>
-            //alert(sbj);
-            var UUID_ = uuidv4();
-            //alert('Add subject');
-            var table_ = "table-" + sbj;
-            var table = document.getElementById(table_);
-            var lastRow = table.rows[table.rows.length - 1];
-            var lastRowIndex = table.rows.length - 1;
-            //alert(table.rows[lastRowIndex]);
-            var div_1 = document.createElement("DIV");
-
-            div_1.id = "mdiv";
-            div_1.className = uuidv4();
-            div_1.style.padding = "5px 0px 4px 6px";
-            div_1.setAttribute("onclick", "deleteItem(this);");
-            var div_2 = document.createElement("DIV");
-            div_2.className = "mdiv";
-            var div_3 = document.createElement("DIV");
-            div_3.className = "md";
-            div_2.appendChild(div_3)
-            div_1.appendChild(div_2)
-
-
-            var divTagTd1 = document.createElement("td");
-
-            divTagTd1.style.padding = "5px 0px 5px 5px";
-            var divTagTd2 = document.createElement("td");
-            divTagTd2.style.padding = "0px";
-            divTagTd2.style.fontSize = "14px";
-            //divTagTd2.innerHTML = "";
-
-            var div_4 = document.createElement("DIV");
-            div_4.className = ("d-inline-flex pt-1 pb-1");
-            //div_4.addClass("pt-1");
-            //div_4.addClass("pb-1");
-            var span_1 = document.createElement("SPAN");
-            span_1.className = "pt-1";
-            span_1.innerHTML = "กลุ่มสาระการเรียนรู้/รายวิชา";
-            var span_2 = document.createElement("SPAN");
-            span_2.className = "pt-1";
-            span_2.innerHTML = "จำนวน";
-            var span_3 = document.createElement("SPAN");
-            span_3.className = "pt-1";
-            span_3.innerHTML = "ชั่วโมง";
-
-            var span_4 = document.createElement("SPAN");
-            span_4.className = "pt-1";
-            span_4.innerHTML = "นาที /สัปดาห์";
-
-
-            var inp_1 = document.createElement("INPUT");
-            inp_1.className = "form-control form-control-lg ml-3 mr-3";
-            inp_1.id = sbj; //"subject";
-            inp_1.style.fontSize = "14px";
-            inp_1.style.width = "300px";
-            inp_1.style.height = "35px";
-            inp_1.setAttribute("type", "text");
-            inp_1.setAttribute("name", sbj + "-name");
-            inp_1.value = sbj_Name;
-
-            var inp_2 = document.createElement("INPUT");
-            inp_2.className = "form-control form-control-lg ml-3 mr-3 p-0 text-center";
-            inp_2.id = sbj + "-hour";
-            //inp_2.name = "subject-hour";
-            inp_2.style.fontSize = "14px";
-            inp_2.style.width = "50px";
-            inp_2.style.height = "35px";
-            inp_2.setAttribute("type", "text");
-            inp_2.setAttribute("name", sbj + "-hour");
-            inp_2.value = hr;
-
-            var inp_3 = document.createElement("INPUT");
-            inp_3.className = "form-control form-control-lg ml-3 mr-3 p-0 text-center";
-            inp_3.id = sbj + "-min";
-            //inp_2.name = "subject-hour";
-            inp_3.style.fontSize = "14px";
-            inp_3.style.width = "50px";
-            inp_3.style.height = "35px";
-            inp_3.setAttribute("type", "text");
-            inp_3.setAttribute("name", sbj + "-min");
-            inp_3.value = min;
-
-
-            inp_1.addEventListener("input", function (e) {
-                //alert(this.id);
-                var a, b, i, val = this.value;
-
-            });
-            inp_1.addEventListener("keydown", function (e) {
-
-                if (e.keyCode == 40) {
-                    /*If the arrow DOWN key is pressed,
-                    increase the currentFocus variable:*/
-                    //currentFocus++;
-                    /*and and make the current item more visible:*/
-                    //addActive(x);
-                } else if (e.keyCode == 38) { //up
-                    /*If the arrow UP key is pressed,
-                    decrease the currentFocus variable:*/
-                    //currentFocus--;
-                    /*and and make the current item more visible:*/
-                    //addActive(x);
-                } else if (e.keyCode == 13) {
-                    /*If the ENTER key is pressed, prevent the form from being submitted,*/
-                    e.preventDefault();
-                    //if (currentFocus > -1) {
-                    //    /*and simulate a click on the "active" item:*/
-                    //    if (x) x[currentFocus].click();
-                    //}
-                }
-            });
-
-            inp_2.addEventListener("keyup", function (e) {
-                //alert(this.nodeValue);
-                //alert(sbj);
-                calculateTotal(sbj);
-            });
-            inp_2.addEventListener("keydown", function (e) {
-                if (e.keyCode == 40) {
-                    /*If the arrow DOWN key is pressed,
-                    increase the currentFocus variable:*/
-                    //currentFocus++;
-                    /*and and make the current item more visible:*/
-                    //addActive(x);
-                } else if (e.keyCode == 38) { //up
-                    /*If the arrow UP key is pressed,
-                    decrease the currentFocus variable:*/
-                    //currentFocus--;
-                    /*and and make the current item more visible:*/
-                    //addActive(x);
-                } else if (e.keyCode == 13) {
-                    /*If the ENTER key is pressed, prevent the form from being submitted,*/
-                    e.preventDefault();
-                    //if (currentFocus > -1) {
-                    //    /*and simulate a click on the "active" item:*/
-                    //    if (x) x[currentFocus].click();
-                    //}
-                }
-
-            });
-
-            inp_3.addEventListener("keyup", function (e) {
-                //alert(this.nodeValue);
-                //alert(sbj);
-                calculateTotal(sbj);
-            });
-            inp_3.addEventListener("keydown", function (e) {
-                if (e.keyCode == 40) {
-                    /*If the arrow DOWN key is pressed,
-                    increase the currentFocus variable:*/
-                    //currentFocus++;
-                    /*and and make the current item more visible:*/
-                    //addActive(x);
-                } else if (e.keyCode == 38) { //up
-                    /*If the arrow UP key is pressed,
-                    decrease the currentFocus variable:*/
-                    //currentFocus--;
-                    /*and and make the current item more visible:*/
-                    //addActive(x);
-                } else if (e.keyCode == 13) {
-                    /*If the ENTER key is pressed, prevent the form from being submitted,*/
-                    e.preventDefault();
-                    //if (currentFocus > -1) {
-                    //    /*and simulate a click on the "active" item:*/
-                    //    if (x) x[currentFocus].click();
-                    //}
-                }
-
-            });
-
-
-            //<input type="text" id="subject" name="subject" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px;" />
-
-            div_4.appendChild(span_1);
-            div_4.appendChild(inp_1);
-            div_4.appendChild(span_2);
-            div_4.appendChild(inp_2);
-            div_4.appendChild(span_3);
-            div_4.appendChild(inp_3);
-            div_4.appendChild(span_4);
-
-            divTagTd2.appendChild(div_4);
-            var divTr = document.createElement("tr");
-            divTr.id = UUID_;
-            divTr.style.outerHeight = "44px";
-            divTagTd1.appendChild(div_1);
-            divTr.appendChild(divTagTd1);
-            divTr.appendChild(divTagTd2);
-
-            //document.getElementById("tbody-subject").appendChild(divTr);
-
-            table.insertBefore(divTr, table.lastElementChild);
-
-        }
-
-        function calculateTotal(sbj_) {
-
-            let total = document.getElementById("Total_Hour_" + sbj_);
-            total.value = '0' + '   ชั่วโมง   ' + '0' + '   นาที';
-            //alert(total);
-            //total.value = e.target.value;
-            //alert(inputTextValue);
-            let input = document.getElementsByName(sbj_ + "-hour");
-            let input_min = document.getElementsByName(sbj_ + "-min");
-            var sum_ = 0;
-            var sum_min = 0;
-            var sum_tot = 0;
-            for (var i = 0; i < input.length; i++) {
-
-                if (isNaN(input[i].value)) { }
-                else {
-                    sum_ = Number(sum_) + Number(input[i].value);
-
-                    sum_min = Number(sum_min) + Number(input_min[i].value);
-                    //sum_ = Number(sum_) + Number(this_input_[i].value);
-                    sum_tot = Number(sum_) * 60 + Number(sum_min);
-
-                }
-
-            }
-            
-            var min_remainder = Number(sum_tot) % 60;
-            //alert(min_remainder);
-            var hour_mod = (Number(sum_tot) - Number(min_remainder)) / 60;
-            //alert(hour_mod);
-            total.value = hour_mod + '   ชั่วโมง   ' + min_remainder + '   นาที';
-
-
-        }
 
     </script>
 

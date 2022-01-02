@@ -27,6 +27,7 @@ namespace EvaluatePa.Controllers
        
         public IActionResult EvaluatePA_Index(string user)
         {
+
             HttpContext.Session.SetString("userId", user);
             if (user != null)
             {
@@ -44,6 +45,35 @@ namespace EvaluatePa.Controllers
             }
             return View(new List<PA_Form_Short>());
         }
+
+        public IActionResult Calendar(string user_id, string dateTime, string mode)
+        {
+            ViewBag.mgSection = "Calendar";  // "School";// mgSection;
+            if (mode == null)
+            {
+                mode = "week";                
+            }
+            ViewBag.Mode = mode;
+            string userId = HttpContext.Session.GetString("userId");
+            //HttpContext.Session.SetString("userId", user_id);
+            DateTime dt = DateTime.Now;
+            int today_ = (int)dt.DayOfWeek;
+            ViewBag.Today = today_;
+            ViewBag.StartDate = DateTime.Now.AddDays(-1 * today_).ToString("dd-MMM-yyyy");
+            ViewBag.EndDate = DateTime.Now.AddDays(7 - today_ - 1).ToString("dd-MMM-yyyy");
+            ViewBag.ThisDate = DateTime.Now.AddDays(0).ToString("dd-MMM-yyyy");
+            ViewBag.StartTime = "08:20:00.000";
+            ViewBag.PeriodTime = 50;
+
+            ViewBag.TotalPeriod = 10;
+            if (userId != null)
+            {
+                List<CalendarInfo> calendarInfo_ = getCalendarInfo(userId, dateTime);
+                return View(calendarInfo_);
+            }
+            return View(getCalendarInfo(userId, dateTime));
+        }
+
 
         public IActionResult Management_Index(string user_id, string mgSection)
         {
@@ -113,10 +143,96 @@ namespace EvaluatePa.Controllers
             if (PA_Form == null)
             { ViewBag.Sbj_Hr = "[{\"Total\":0}]"; }
             else ViewBag.Sbj_Hr = PA_Form.Sbj_Hr;
+            //
+            if (PA_Form.Sbj_Hr_1 == null || PA_Form.Sbj_Hr_1 == "")
+            { PA_Form.Sbj_Hr_1 = "[{\"Total\":0}]"; }
+            if (PA_Form == null)
+            { ViewBag.Sbj_Hr_1 = "[{\"Total\":0}]"; }
+            else ViewBag.Sbj_Hr_1 = PA_Form.Sbj_Hr_1;
+            //
+            if (PA_Form.Sbj_Hr_2 == null || PA_Form.Sbj_Hr_2 == "")
+            { PA_Form.Sbj_Hr_2 = "[{\"Total\":0}]"; }
+            if (PA_Form == null)
+            { ViewBag.Sbj_Hr_2 = "[{\"Total\":0}]"; }
+            else ViewBag.Sbj_Hr_2 = PA_Form.Sbj_Hr_2;
+            //
+            if (PA_Form.Sbj_Hr_3 == null || PA_Form.Sbj_Hr_3 == "")
+            { PA_Form.Sbj_Hr_3 = "[{\"Total\":0}]"; }
+            if (PA_Form == null)
+            { ViewBag.Sbj_Hr_3 = "[{\"Total\":0}]"; }
+            else ViewBag.Sbj_Hr_3 = PA_Form.Sbj_Hr_3;
             //"[{\"Total\":10}]";
             HttpContext.Session.SetString("formId", PA_Form.Form_Id);
             return View("PA_View", PA_Form);
         }
+        public List<CalendarInfo> getCalendarInfo(String uid, String dateTime)
+        {
+
+            string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
+            string dbName = configuration.GetConnectionString("dbSource");
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            connection.Open();
+            System.Data.DataTable dt = new DataTable();
+            String sqlString = null;
+            //sqlString += " SELECT [Name],[Description],[Subject],[Type],[DateTime],a.[Status],b.[UserPosition],a.[Id]  FROM [" + dbName + "].[dbo].[PA_Media] as a right join [" + dbName + "].[dbo].[PA_User] as b on a.OwnerId = b.Id";
+            //
+
+            DateTime dt_ = DateTime.Now;
+            int today_ = (int)dt_.DayOfWeek;
+            
+            String StartDate = DateTime.Now.AddDays(-1 * today_).ToString("yyyy-MM-dd");
+            String EndDate = DateTime.Now.AddDays(7 - today_ - 1).ToString("yyyy-MM-dd");
+            String ThisDate = DateTime.Now.AddDays(0).ToString("yyyy-MM-dd");
+            //
+            sqlString += " SELECT [Event_Id],[Summary],[Description],[BDate],[EDate],[Location_Id],[RRULE],[RR_FREQ],[RR_UNTIL],[RR_INTERVAL],[RR_COUNT],[RR_BYDAY],[RR_BYWEEKNO],[RR_BYMONTH],[RR_BYMONTHDAY],[RR_BYYEARDAY],[RR_BYSETPOS],[RR_WKST],[User_Id],[Subject_Id],[SubSchool_Id],a.[School_Id],b.[Name],b.[province],c.[Name],d.[Name],d.[Level]";
+            sqlString += " FROM [devpa].[dbo].[PA_Event] as a left join PA_School as b on a.School_Id = b.School_Id left join PA_School_Room as c on a.Location_Id = c.Room_Id left join PA_Subject as d on a.Subject_Id = d.Id";
+            sqlString += " where User_Id = " + uid + " and a.BDate > '" + StartDate + " 00:00:00.000' and a.BDate < '" + EndDate + " 23:59:59.000'";
+            Microsoft.Data.SqlClient.SqlDataAdapter da = new SqlDataAdapter(sqlString, connectionString);
+            da.Fill(dt);
+            int c = dt.Rows.Count;
+            List<CalendarInfo> Calendar_Info_ = new List<CalendarInfo>();
+            if (c > 0)
+            {
+                for (int i = 0; i <= c - 1; i++)
+                {
+                    CalendarInfo calendarInfo_item = new CalendarInfo();
+                    calendarInfo_item.Event_Id = Convert.ToInt32(dt.Rows[i].ItemArray[0].ToString());
+                    calendarInfo_item.Summary = dt.Rows[i].ItemArray[1].ToString();
+                    calendarInfo_item.Description = dt.Rows[i].ItemArray[2].ToString();
+                    calendarInfo_item.BDate = Convert.ToDateTime(dt.Rows[i].ItemArray[3].ToString()).ToString("yyyy-MM-dd HH:mm:ss");
+                    calendarInfo_item.EDate = Convert.ToDateTime(dt.Rows[i].ItemArray[4].ToString()).ToString("yyyy-MM-dd HH:mm:ss");
+                    calendarInfo_item.Location_Id = dt.Rows[i].ItemArray[5].ToString();
+                    calendarInfo_item.RRULE = dt.Rows[i].ItemArray[6].ToString();
+                    calendarInfo_item.RR_FREQ = dt.Rows[i].ItemArray[7].ToString();
+                    calendarInfo_item.RR_UNTIL = dt.Rows[i].ItemArray[8].ToString();
+                    calendarInfo_item.RR_INTERVAL = dt.Rows[i].ItemArray[9].ToString();
+                    calendarInfo_item.RR_COUNT = dt.Rows[i].ItemArray[10].ToString();
+                    calendarInfo_item.RR_BYDAY = dt.Rows[i].ItemArray[11].ToString();
+                    calendarInfo_item.RR_BYWEEKNO = dt.Rows[i].ItemArray[12].ToString();
+                    calendarInfo_item.RR_BYMONT = dt.Rows[i].ItemArray[13].ToString();
+                    calendarInfo_item.RR_BYMONTHDAY = dt.Rows[i].ItemArray[14].ToString();
+                    calendarInfo_item.RR_BYYEARDAY = dt.Rows[i].ItemArray[15].ToString();
+                    calendarInfo_item.RR_BYSETPOS = dt.Rows[i].ItemArray[16].ToString();
+                    calendarInfo_item.RR_WKST = dt.Rows[i].ItemArray[17].ToString();
+                    calendarInfo_item.User_Id = dt.Rows[i].ItemArray[18].ToString();
+                    calendarInfo_item.Subject_Id = dt.Rows[i].ItemArray[19].ToString();
+                    calendarInfo_item.SubSchool_Id = dt.Rows[i].ItemArray[20].ToString();
+                    calendarInfo_item.Subject_Id = dt.Rows[i].ItemArray[21].ToString();
+                    calendarInfo_item.School_Name = dt.Rows[i].ItemArray[22].ToString();
+                    calendarInfo_item.Province = dt.Rows[i].ItemArray[23].ToString();
+                    calendarInfo_item.Location_Name = dt.Rows[i].ItemArray[24].ToString();
+                    calendarInfo_item.Subject_Name = dt.Rows[i].ItemArray[25].ToString();
+                    calendarInfo_item.Subject_Level = dt.Rows[i].ItemArray[26].ToString();
+                    Calendar_Info_.Add(calendarInfo_item);
+                }
+            }
+            
+            return Calendar_Info_;
+
+
+        }
+
 
         public List<PA_Form_Short> getPAForm(string uname)
         {

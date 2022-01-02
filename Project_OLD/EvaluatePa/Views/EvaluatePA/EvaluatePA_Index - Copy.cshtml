@@ -1,0 +1,133 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    ViewData["Title"] = "PA";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-3 mt-2">
+            <div class="card border-0">
+                <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
+                    <div class="border-top pt-2">
+                        <h5><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-text-theme"></i>วิทยฐานะ</h5>
+                    </div>
+                </div>
+                <div class="card-body p-1">
+                    <input type="button" value="แบบฟอร์มพัฒนางาน (PA)" class="btn bg-light" style="width:100%;border-color:#d4d4d4">
+                    <input type="button" value="จัดการวิดีโอที่บันทึกในห้องเรียน" class="btn bg-light mt-1" style="width:100%;border-color:#d4d4d4">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-9 mt-2">
+            <div class="card border-0">
+                <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
+                    <div class="border-top pt-1">
+                        <form class="form-inline justify-content-between" asp-route="">
+
+                            <div class="mt-2">
+                                <p><i class="fa fa-file fa-fw w3-margin-right w3-text-theme"></i>แบบฟอร์มพัฒนางาน (PA)</p>
+                            </div>
+                            <div class="right">
+
+                                <div class="btn btn-success p-0 pt-1" onclick="location.href = '@Url.Action("PA_Add", "EvaluatePA")';" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;บันทึกแบบฟอร์ม</div>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="card-body border-0 p-1">
+                    <!--Grid row-->
+                    <div class="row wow fadeIn p-0">
+
+                        <!--Grid column-->
+                        <div class="col-md-12 mb-12 p0">
+
+                            <!--Card-->
+                            <div class="card border-0 p-0">
+
+                                <!--Card content-->
+                                <div class="card-body border-0 p-0">
+
+                                    <!-- Table  -->
+                                    <table class="table table-hover border-bottom">
+                                        <!-- Table head -->
+                                        <thead class="blue-grey lighten-4 border-top">
+                                            <tr>
+                                                <th>ลำดับ</th>
+                                                <th>แบบฟอร์มพัฒนางาน</th>
+                                                <th>Date/Time</th>
+                                                <th>Export</th>
+                                                <th>เครื่องมือ</th>
+                                            </tr>
+                                        </thead>
+                                        <!-- Table head -->
+                                        <!-- Table body -->
+                                        <tbody>
+                                            <tr>
+                                                <td scope="row">1</td>
+                                                <td>แบบฟอร์มพัฒนางาน 1</td>
+                                                <td>01/10/2564</td>
+                                                <td>
+                                                    <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
+                                                </td>
+                                                <td>
+                                                    <div id="model_.Factory_ID" class="btn edit bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
+                                                    <div id="model_.Factory_ID" class="btn delete bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">2</td>
+                                                <td>แบบฟอร์มพัฒนางาน 2</td>
+                                                <td>11/11/2564</td>
+                                                <td>
+                                                    <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
+                                                </td>
+                                                <td>
+                                                    <div id="model_.Factory_ID" class="btn edit bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
+                                                    <div id="model_.Factory_ID" class="btn delete bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">3</td>
+                                                <td>แบบฟอร์มพัฒนางาน 3</td>
+                                                <td>19/11/2564</td>
+                                                <td>
+                                                    <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action("PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
+                                                </td>
+                                                <td>
+                                                    <div id="model_.Factory_ID" class="btn edit bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
+                                                    <div id="model_.Factory_ID" class="btn delete bg-light btn-sm pt-0" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <!-- Table body -->
+                                    </table>
+                                    <!-- Table  -->
+
+                                </div>
+
+                            </div>
+                            <!--/.Card-->
+
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+                    <!--Grid row-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $('.active_').removeClass('active_');
+        $('.a-EvaluatePA').addClass('active_');
+        $('.a-EvaluatePA').removeClass('text-dark');
+    </script>
+}

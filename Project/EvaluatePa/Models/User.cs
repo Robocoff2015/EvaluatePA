@@ -23,6 +23,7 @@ namespace EvaluatePa.Models
         public string salaryRate { get; set; }
         public string classroomType { get; set; }
         public int Status { get; set; }
+        public string UserRole { get; set; }
 
 
     }

@@ -95,6 +95,8 @@ html {
     font-size: 16px;
     position: relative;
     min-height: 100%;
+    /*height: 100%;*/
+    /*border:none;*/
     /*background-color: rgb(236,240,245);*/
 }
 header {
@@ -104,16 +106,18 @@ header {
 body {
     /* Margin bottom by footer height */
     margin: 0%;
-    padding:0;
-/*    margin-bottom: 60px;*/
+    padding: 0;
+    min-height: 100%;
+    border: none;
+    /*    margin-bottom: 60px;*/
 }
-.footer {
+/*.footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
-}
+  line-height: 60px;*/ /* Vertically center the text there */
+/*}*/
 
 
 /* Custom CSS */
@@ -153,7 +157,7 @@ video {
     height: auto;
 }
 
-ifram {
+iframe {
     width: 100%;
     height: auto;
 }
@@ -163,6 +167,10 @@ ifram {
     overflow: hidden;
     width: 100%;
     padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+.container {
+border:none;
+
 }
 
 /* Then style the iframe to fit in the container div with full height and width */
@@ -188,12 +196,14 @@ ifram {
     opacity: 0.8;
 }
 .loader-wrapper2 {
+    overflow-y: scroll;
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 45px;
+    top: 0px;
+    /*top: 45px;*/
     left: 0;
-    background-color: #8f8f8f;
+    background-color: rgba(210,210,210,0.8);
     display: none;
     justify-content: center;
     align-items: center;
@@ -202,14 +212,25 @@ ifram {
 
 .loader-wrapper-info {
     width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #8f8f8f;
+    background-color: #ffffff;
     display: none;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     opacity: 1.0;
+    border: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+.part-1 {
+    display: block;
+}
+.part-2 {
+    display: none;
 }
 
 .loader {
@@ -721,3 +742,84 @@ td .holiday {
     border-radius: 10px;
     border: 1px solid #a0a0a0;
 }
+
+/**/
+.floating-label-group {
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+    .floating-label {
+    font-size: 13px;
+    color: #cccccc;
+    position: absolute;
+    pointer-events: none;
+    top: 9px;
+    left: 12px;
+    transition: all 0.1s ease;
+}
+.chevron-label {
+    font-size: 25px;
+    color: #099882;
+    position: absolute;
+    pointer-events: none;
+    top: 10px;
+    left: 97px;
+    transition: all 0.1s ease;
+}
+
+input:focus ~ .floating-label,
+input:not(:focus):valid ~ .floating-label {
+    top: -14px;
+    bottom: 3px;
+    left: 1px;
+    font-size: 12px;
+    font-weight:100;
+    opacity: 1;
+    color: #404040;
+    text-shadow: 2px 2px 3px #FFffff;
+}
+
+/**/
+.chevron::before {
+    border-style: solid;
+    border-width: 0.25em 0.25em 0 0;
+    content: '';
+    display: inline-block;
+    height: 0.45em;
+    left: 0.15em;
+    position: relative;
+    top: 0.15em;
+    transform: rotate(-45deg);
+    vertical-align: top;
+    width: 0.45em;
+}
+
+.chevron.right:before {
+    left: 0;
+    transform: rotate(45deg);
+}
+
+.chevron.bottom:before {
+    top: 0;
+    transform: rotate(135deg);
+}
+
+.chevron.left:before {
+    left: 0.25em;
+    transform: rotate(-135deg);
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.form_input {
+    text-decoration: underline;
+}
+
+
