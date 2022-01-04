@@ -37,7 +37,22 @@ namespace EvaluatePa.Models
          public string Subject_Name { get; set; }
          public string Subject_Level { get; set; }
 
+        public string CDate { get; set; }
+        public string OpenDate { get; set; }
+        public string CloseDate { get; set; }
+        public string DDate { get; set; }
+        public int Parent_Event_Id { get; set; }
+
+        public string Event_Status_Name { get; set; }
+        public string Event_Type_Name { get; set; }
+        public string Event_SubType_Name { get; set; }
+        public int Unit_Id { get; set; }
+        public string UnitName { get; set; }
+
+        //public CalendarInfo createNew() { 
         
+        //}
+
 
     }
 }

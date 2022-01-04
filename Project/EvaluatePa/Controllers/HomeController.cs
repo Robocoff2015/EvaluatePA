@@ -35,14 +35,29 @@ namespace EvaluatePa.Controllers
             }
             return View();
         }
-        public IActionResult Main(string user_id)
-        {
 
+        public User setHttpContext_session(string user_id)
+        {
             User user = getUser_Details(user_id);
-            HttpContext.Session.SetString("userId", user_id);
-            HttpContext.Session.SetString("userStatus", user.Status.ToString());
-            HttpContext.Session.SetString("userPosition", user.UserPosition);
-            HttpContext.Session.SetString("userRole", user.UserRole);
+            if (user != null)
+            {
+                HttpContext.Session.SetString("userId", user_id);
+                HttpContext.Session.SetString("userName", user.UserName);
+                HttpContext.Session.SetString("userLastname", user.LastName);
+                HttpContext.Session.SetString("userPrefix", user.Prefix);
+                HttpContext.Session.SetString("userFullname", user.Prefix + " " + user.UserName + " " + user.LastName);
+                HttpContext.Session.SetString("userStatus", user.Status.ToString());
+                HttpContext.Session.SetString("userPosition", user.UserPosition);
+                HttpContext.Session.SetString("userRole", user.UserRole);
+            }
+            return user;
+
+        }
+        public IActionResult Main(string user_id)
+        {   
+            User user = setHttpContext_session(user_id); //Also implement HttpContext.Session.SetString("userId", user_id); 
+
+
             if (user.Status == 0 || user.Status == 1)
             {
                 return View(user);
@@ -203,6 +218,11 @@ namespace EvaluatePa.Controllers
             return result.ToString();
         }
 
+
+        /// <summary>
+        /// Begin common function
+
+
         public List<User> getUser(string uname, string pwd)
         {
 
@@ -288,7 +308,7 @@ namespace EvaluatePa.Controllers
                     user.Password = dt.Rows[i].ItemArray[7].ToString();
                     user.Status = Convert.ToInt32(dt.Rows[i].ItemArray[8].ToString());
                     user.Province = dt.Rows[i].ItemArray[9].ToString();
-                    user.Prefix = dt.Rows[i].ItemArray[10].ToString();
+                    user.Prefix = (dt.Rows[i].ItemArray[10].ToString())=="1"?"นาย":(dt.Rows[i].ItemArray[10].ToString() == "2")?"นาง":"นางสาว";
                     user.memberOf = dt.Rows[i].ItemArray[11].ToString();
                     user.CDate = dt.Rows[i].ItemArray[12].ToString();
                     user.salaryLevel = dt.Rows[i].ItemArray[13].ToString();
@@ -306,6 +326,9 @@ namespace EvaluatePa.Controllers
 
 
         }
+        /// End common function
+        /// </summary>
+
 
 
     }

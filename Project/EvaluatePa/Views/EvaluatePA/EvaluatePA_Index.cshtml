@@ -80,6 +80,7 @@
             <div class="card-body p-1">
                 <input type="button" value="แบบฟอร์มพัฒนางาน (PA)" class="btn bg-light" onclick="location.href='@Url.Action("Main", "Home", new { user_id = @id_})'" style="width:100%;border-color:#d4d4d4;height:35px;">
                 <input type="button" value="จัดการวิดีโอที่บันทึกในห้องเรียน" class="btn bg-light mt-1" onclick="location.href='@Url.Action("Index", "Video", new { user_id = @id_})'" style="width:100%;border-color:#d4d4d4;height:35px;">
+                <input type="button" value="จัดการตารางเรียน/ตารางสอน" class="btn bg-light mt-1" onclick="location.href='@Url.Action("Calendar", "EvaluatePA" , new { user_id=@id_})'" style="width:100%;border-color:#d4d4d4;height:35px;">
             </div>
         </div>
     </div>

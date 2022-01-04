@@ -21,6 +21,19 @@
             color: #ffffff;
             background-color: #0360c6;
         }
+            .event:hover {
+                color: #000000;
+                text-shadow: none;
+            }
+        .form-label {
+        font-size:12px;
+
+        }
+        /*.card-header{
+            height:20px;
+            color:black;
+            vertical-align:central;
+        }*/
     </style>
 }
 <div class="container">
@@ -36,6 +49,7 @@
                 <div class="card-body p-1">
                     <input type="button" value="แบบฟอร์มพัฒนางาน (PA)" class="btn bg-light" onclick="location.href='@Url.Action(" Main", "Home" , new { user_id=@id_})'" style="width:100%;border-color:#d4d4d4;height:35px;">
                     <input type="button" value="จัดการวิดีโอที่บันทึกในห้องเรียน" class="btn bg-light mt-1" onclick="location.href='@Url.Action(" Index", "Video" , new { user_id=@id_})'" style="width:100%;border-color:#d4d4d4;height:35px;">
+                    <input type="button" value="จัดการตารางเรียน/ตารางสอน" class="btn bg-light mt-1" onclick="location.href='@Url.Action(" Calendar", "EvaluatePA" , new { user_id=@id_})'" style="width:100%;border-color:#d4d4d4;height:35px;">
                 </div>
             </div>
         </div>
@@ -314,65 +328,82 @@
 
 
                                                     }
-                                                    <div class="days">
-                                                        @for (var d = 0; d <= 7; d++)
+                                            <div class="days">
+                                                @for (var d = 0; d <= 7; d++)
+                                                {
+
+                                                    if (d == 0)
+                                                    {
+                                                        <div class="dates_ prev-date mr-1 text-dark">
+                                                            <div class="dates_num pt-2">@PTime_Begin - @PTime_End</div>
+
+                                                        </div>
+
+                                                    }
+                                                    else if (d == 1)
+                                                    {
+                                                        <div class="dates_ prev-date">
+                                                            <div class="dates_num"></div>
+
+                                                        </div>
+
+                                                    }
+                                                    else if (d == 7)
+                                                    {
+                                                        <div class="dates_ next-date">
+                                                            <div class="dates_num"></div>
+
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                            <div id="@i@d" class="dates_" onclick="showModal_Calendar('คาบเรียนที่ : @i',this.id);">
+
+
+                                                @{var txt1 = "";
+                                                    var txt2 = "";
+                                                    var cls = "";
+                                                    foreach (var item in Model)
+                                                    {
+                                                        var date_ = Convert.ToDateTime(ViewBag.StartDate).AddDays(d - 1).ToString("yyyy-MM-dd");
+                                                        if (item.BDate.Substring(11, 5) == PTime_Begin && @item.BDate.Substring(0, 10) == date_)
                                                         {
+                                                            //txt1 = @item.Summary;
+                                                            //txt2 = @item.Location_Name;
+                                                            //cls = "event";
+                                                                                                <div class="dates_num text-center event">
+                                                                                                    <div id="EventID_@i@d" style="display:none">@item.Event_Id</div>
+                                                                                                    <div id="Day_@i@d" style="display:none">@d</div>
+                                                                                                    <div id="Period_@i@d" style="display:none">@i</div>
+                                                                                                    <div id="RoomId_@i@d" style="display:none">@item.Location_Id</div>
+                                                                                                    <div id="RoomName_@i@d" style="display:none">@item.Location_Name</div>
+                                                                                                    <div id="ClasstName_@i@d" style="display:none">@item.UnitName</div>
+                                                                                                    <div id="EventId_@i@d" style="display:none">@item.UnitName</div>
+                                                                                                    <div id="SubjectCode_@i@d">@item.Summary</div>
+                                                                                                    <div id="SubjectName_@i@d">@item.Description</div>
 
-                                                            if (d == 0)
-                                                            {
-                                                                <div class="dates_ prev-date mr-1 text-dark">
-                                                                    <div class="dates_num pt-2">@PTime_Begin - @PTime_End</div>
+                                                                                                </div>
 
-                                                                </div>
-
-                                                            }
-                                                            else if (d == 1)
-                                                            {
-                                                                <div class="dates_ prev-date">
-                                                                    <div class="dates_num"></div>
-
-                                                                </div>
-
-                                                            }
-                                                            else if (d == 7)
-                                                            {
-                                                                <div class="dates_ next-date">
-                                                                    <div class="dates_num"></div>
-
-                                                                </div>
-                                                            }
-                                                            else
-                                                            {
-                                                                var txt1 = "";
-                                                                var txt2 = "";
-                                                                var cls = "";
-                                                                foreach (var item in Model)
-                                                                {
-                                                                    var date_ = Convert.ToDateTime(ViewBag.StartDate).AddDays(d - 1).ToString("yyyy-MM-dd");
-                                                                    if (item.BDate.Substring(11, 5) == PTime_Begin && @item.BDate.Substring(0, 10) == date_)
-                                                                    {
-                                                                        txt1 = @item.Summary;
-                                                                        txt2 = @item.Location_Name;
-                                                                        cls = "event";
-                                                                    }
-                                                                        <div class="dates_" onclick="showModal_Calendar();">
-
-                                                                            <div class="dates_num align-items-center @cls">
-                                                                                <div class="card">
-                                                                                    <div class="card-header">
-                                                                                        @txt1
-                                                                                    </div>
-                                                                                    <div class="card-body">
-                                                                                        @txt2
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    
-                                                                }
-                                                            }
                                                         }
-                                                    </div>
+
+                                                        @*<div class="card">
+                    <div class="card-header">
+                        @txt1
+                    </div>
+                    <div class="card-body">
+                        @txt2
+                    </div>
+                </div>*@
+                                                        @*<span>@txt1 </br >@txt2</span>*@
+
+
+                                                    }
+                                                }
+
+                                            </div>
+                                                    }
+                                                }
+                                            </div>
                                                 }
                                             </div>
                                         </div>
@@ -487,243 +518,325 @@
 <div class="loader-wrapper">
     <span class="loader"><span class="loader-inner"></span></span>
 </div>
-<div class="loader-wrapper2">
-    @*<span class="loader">
-            <span class="loader-inner" onclick="hideModal();"></span>
-        </span>*@
-
-
-    <div class="row p-5 pt-1">
-        <div class="col-md-12 mb-4">
-
-            <div class="form-outline" style="opacity:1.0;">
-                <div class="card border shadow p-3">
-                    <div class="card-header bg-white border-0 border-top p-0 pl-3 pr-3">
-                        <div class="form-inline justify-content-between">
-                            <div class="pt-2">
-                                <label class="form-label" for="period">คาบเรียน :</label>
-                            </div>
-                            <span onclick="hideModal_fast();">
-                                <i class="fa fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="card-body p-1 pb-2">
-                        <form id="PA_Form">
-                            <input type="text" id="period" name="period" class="form-control form-control-lg mt-2" style="width:350px;font-size:16px;" />
-                            <div class="pt-2 pl-3">
-                                <label class="form-label" for="Level">วิชา :</label>
-                            </div>
-                            <input type="text" id="Room" name="Room" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="" />
-                            <div class="pt-2 pl-3">
-                                <label class="form-label" for="Room">ห้องเรียน :</label>
-                            </div>
-                            <input type="text" id="Class" name="Class" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="" />
-                            <div class="pt-2 pl-3">
-                                <label class="form-label" for="Class">ชั้นเรียน :</label>
-                            </div>
-                            <input type="text" id="Level" name="Level" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="" />
-                            <div class="btn btn-success mt-3 pt-2" onclick="AJ_Save();" style="width:350px;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>
-                        </form>
-
-                    </div>
-                </div>
-
-
-            </div>
-
+<div id="calendar-setup" class="loader-calendar-setup">
+    <div class="row p-1">
+        <div class="col-md-12">
+            <div class="btn btn-success mt-3 pt-2" onclick="AJ_Calendar_Save();" style="width:350px;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>
         </div>
-    </div>
+    </div>        
 </div>
+        <div class="loader-wrapper2">
+            @*<span class="loader">
+                <span class="loader-inner" onclick="hideModal();"></span>
+            </span>*@
+
+
+            <div class="row p-1">
+                <div class="col-lg-4 col-md-8 text-center">
+
+                    <div class="form-outline" style="opacity:1.0;width:325px;">
+                        <div class="card border shadow">
+                            <div class="card-header bg-green-custom border-0 border-top p-2 pb-1 text-white">
+                                <div class="form-inline justify-content-between pt-1">
+                                    <div>
+                                        <h5>ตารางเรียน</h5>
+                                    </div>
+                                    <span class="pointer-event" onclick="hideModal_fast();">
+                                        <i class="fa fa-times"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-body p-3 pt-1">
+                                <form id="PA_Form" class="flex-column">
+                                    
+                                    <div class="d-inline-flex floating-label-group m-0">
+                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color:#099882;width:95px;border-radius:10px 0px 0px 10px;">
+                                            <label class="form-label" for="Day_">วัน :</label>
+                                        </div>
+                                        <input type="text" id="Day_" name="Day_" class="form-control form-control-lg font-14" style="width:195px" value="" />
+                                        <label class="chevron-label"><span class="chevron right"></span></label>
+                                    </div>
+                                    <div class="d-inline-flex floating-label-group m-0">
+                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
+                                            <label class="form-label" for="Period">คาบเรียน :</label>
+                                        </div>
+                                        <input type="text" id="Period" name="Period" class="form-control form-control-lg font-14" style="width: 195px" value="" />
+                                        <label class="chevron-label"><span class="chevron right"></span></label>
+                                    </div>
+                                    <div class="d-inline-flex floating-label-group m-0">
+                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
+                                            <label class="form-label" for="Lecturer">ครูผู้สอน :</label>
+                                        </div>
+                                        <input type="text" id="Lecturer" name="Lecturer" class="form-control form-control-lg font-14" style="width: 195px" value="@ViewBag.Fullname" />
+                                        <label class="chevron-label"><span class="chevron right"></span></label>
+                                    </div>
+                                    <div class="d-inline-flex floating-label-group m-0">
+                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
+                                            <label class="form-label" for="SubjectCode">รหัสรายวิชา :</label>
+                                        </div>
+                                        <input type="text" id="SubjectCode" name="SubjectCode" class="form-control form-control-lg font-14" style="width: 195px" value="" />
+                                        <label class="chevron-label"><span class="chevron right"></span></label>
+                                    </div>
+                                    <div class="d-inline-flex floating-label-group m-0">
+                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
+                                            <label class="form-label" for="SubjectName">ชื่อรายวิชา :</label>
+                                        </div>
+                                        <input type="text" id="SubjectName" name="SubjectName" class="form-control form-control-lg font-14" style="width: 195px" value="" />
+                                        <label class="chevron-label"><span class="chevron right"></span></label>
+                                    </div>
+                                    <div class="d-inline-flex floating-label-group m-0">
+                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
+                                            <label class="form-label" for="Room">ห้องเรียน :</label>
+                                        </div>
+                                        <input type="text" id="Room" name="Room" class="form-control form-control-lg font-14" style="width: 195px" value="" />
+                                        <label class="chevron-label"><span class="chevron right"></span></label>
+                                    </div>
+                                    <div class="d-inline-flex floating-label-group m-0">
+                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
+                                            <label class="form-label" for="class">ชั้นเรียน :</label>
+                                        </div>
+                                        <input type="text" id="class" name="class" class="form-control form-control-lg font-14" style="width: 195px" value="" />
+                                        <label class="chevron-label"><span class="chevron right"></span></label>
+                                    </div>
 
 
 
-@section Scripts {
+                                    @*<div class="pt-2 pl-3">
+            <label class="form-label" for="Period">คาบเรียน :</label>
+        </div>
+        <input type="text" id="Period" name="Period" class="form-control form-control-lg" style="width:350px;font-size:16px;" />
 
-    <script>
-        $(window).on("load", function () {
-            setTimeout(fad_out, 500);
-        });
+        <div class="pt-2 pl-3">
+            <label class="form-label" for="Lecturer">ครูผู้สอน :</label>
+        </div>
+        <input type="text" id="Lecturer" name="Lecturer" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="@ViewBag.Fullname" />
 
-        function fad_out() {
-            $(".loader-wrapper").fadeOut("slow");
-        }
-        function hideModal() {
-            $(".loader-wrapper2").fadeOut("slow");
-        }
-        function hideModal_fast() {
-            $(".loader-wrapper2").fadeOut("fast");
-        }
-        function showModal() {
-            $(".loader-wrapper").fadeIn("slow");
-            $(".loader-wrapper").fadeOut("slow");
-        }
-        function showModal_Calendar() {
-            // $('.formName').val("");
-            //$('.Level').val("");
-            document.getElementById("PA_Form").reset();
-            $(".loader-wrapper2").css('display', 'flex');
-            $(".loader-wrapper2").fadeIn(2000);
-            //$(".loader-wrapper").fadeOut("slow");
-        }
+        <div class="pt-2 pl-3">
+            <label class="form-label" for="SubjectCode">รหัสรายวิชา :</label>
+        </div>
+        <input type="text" id="SubjectCode" name="SubjectCode" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="" />
 
-    </script>
-    <script type="text/javascript">
-        $('.active_').removeClass('active_');
-        $('.a-EvaluatePA').addClass('active_');
-        $('.a-EvaluatePA').removeClass('text-dark');
-    </script>
-    <script>
-        function AJ_Submit() {
-            let Prefix = 0;
+        <div class="pt-2 pl-3">
+            <label class="form-label" for="SubjectName">ชื่อรายวิชา :</label>
+        </div>
+        <input type="text" id="SubjectName" name="SubjectName" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="" />
+        <div class="pt-2 pl-3">
+            <label class="form-label" for="Room">ห้องเรียน :</label>
+        </div>
+        <input type="text" id="Room" name="Room" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="" />
+        <div class="pt-2 pl-3">
+            <label class="form-label" for="class">ชั้นเรียน :</label>
+        </div>
+        <input type="text" id="class" name="class" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="" />*@
+                                    <div class="btn btn-success mt-3 pt-2" onclick="AJ_Calendar_Save();" style="width:290px;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>
+                                </form>
 
-            let Prefix_mr = $('#mr').prop("checked"),
-                Prefix_mrs = $('#mrs').prop("checked"),
-                Prefix_miss = $('#miss').prop("checked"),
-                user_Id = $('#userId').val(),
-                FirstName = $('#FirstName').val(),
-                LastName = $('#LastName').val(),
-                position = $('#position').val(),
-                school = $('#school').val(),
-                CDate = $('#CDate').val(),
-                memberOf = $('#memberOf').val(),
-                salaryLevel = $('#salaryLevel').val(),
-                salaryRate = $('#salaryRate').val(),
-                classroomType = $('#classroomType').val();
-            if (Prefix_mr) {
-                Prefix = 1;
-            }
-            if (Prefix_mrs) {
-                Prefix = 2;
-            }
-            if (Prefix_miss) {
-                Prefix = 3;
-            }
+                            </div>
+                        </div>
 
-            //alert(Prefix);
-            //alert(FirstName);
-            //alert(LastName);
-            //alert(position);
-            //alert(school);
-            //alert(CDate);
-            //alert(memberOf);
-            //alert(salaryLevel);
-            //alert(salaryRate);
-            //alert(classroomType);
 
-            var param = "Prefix=" + Prefix + "&FirstName=" + FirstName
-                + "&LastName=" + LastName + "&position=" + position + "&school_id=" + school + "&CDate=" + CDate
-                + "&memberOf=" + memberOf + "&salaryLevel=" + salaryLevel
-                + "&salaryRate=" + salaryRate + "&classroomType=" + classroomType + "&user_Id=" + user_Id
-                + "&submit=yes";
-            //alert(param);
+                    </div>
 
-            $.ajax({
+                </div>
+            </div>
+        </div>
 
-                type: 'GET',
-                url: '/Home/UpdateUser_AJ?' + param,
-                success: function (result) {
-                    hideModal_Info();
-                    window.location.assign("/Home/Main?user_Id=" + user_Id);
 
-                }
-            });
-        }
 
-        function Delete_PA(id, Name) {
-            //alert("Delete PA : " + id + "-" + Name + " ?");
-            var param = "PA_Name=" + Name + "&Id=" + id
-                + "&submit=yes";
-            if (confirm("Delete PA : " + id + "-" + Name + " ?")) {
-                // Save it!
-                //console.log('Thing was saved to the database.');
+        @section Scripts {
 
-                $.ajax({
-
-                    type: 'GET',
-                    url: '/EvaluatePA/DeleteForm_AJ?' + param,
-                    success: function (result) {
-                        //hideModal_Info();
-                        location.reload();
-                        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
-
-                    }
+            <script>
+                $(window).on("load", function () {
+                    setTimeout(fad_out, 500);
                 });
 
-            } else {
-                // Do nothing!
+                function fad_out() {
+                    $(".loader-wrapper").fadeOut("slow");
+                }
+                function hideModal() {
+                    $(".loader-wrapper2").fadeOut("slow");
+                }
+                function hideModal_fast() {
+                    $(".loader-wrapper2").fadeOut("fast");
+                }
+                function showModal() {
+                    $(".loader-wrapper").fadeIn("slow");
+                    $(".loader-wrapper").fadeOut("slow");
+                }
+                function showModal_Calendar(period_, this_id) {
+                    // $('.formName').val("");
+                    //$('.Level').val("");
+                    //alert(this_id);
+                    const dayText = ["", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                    var id = "#SubjectCode_" + this_id;
+                    var subjectCode = ($("#SubjectCode_" + this_id).html());
+                    var subjectName = ($("#SubjectName_" + this_id).html());
+                    var className = ($("#ClasstName_" + this_id).html());
+                    var Day_ = ($("#Day_" + this_id).html());
+                    var this_dayText = dayText[Number(Day_)];
+                    //alert(this_dayText);
+                    //alert(Day_);
+                    var RoomName = ($("#RoomName_" + this_id).html());
+                    //alert(RoomName);
+                    var RoomId = ($("#RoomId_" + this_id).html());
+                    //alert(Day_);
+                    document.getElementById("PA_Form").reset();
+                    $("#Day_").val(this_dayText);
+                    $("#Period").val(period_);
+                    $("#SubjectCode").val(subjectCode);
+                    $("#SubjectName").val(subjectName);
+                    $("#Room").val(RoomName);
+                    $("#Class").val(className);
 
-                //console.log('Thing was not saved to the database.');
-            }
+                    $(".loader-wrapper2").css('display', 'flex');
+                    $(".loader-wrapper2").fadeIn(2000);
 
-        }
-        function Edit_PA(id, Name) {
-            //alert("");
+                    //$(".loader-wrapper2").css('display', 'flex');
+                    //$(".loader-wrapper2").fadeIn(2000);
+                    ////$(".loader-wrapper").fadeOut("slow");
+                }
 
-            //let user_Id = Id;
-            //let PA_Name = Name;
-            var param = "PA_Name=" + Name + "&Id=" + id
-                + "&submit=yes";
-            //alert(param);
-            window.location.assign("/EvaluatePA/PA_Add?" + param);
-            //$.ajax({
+            </script>
+            <script type="text/javascript">
+                $('.active_').removeClass('active_');
+                $('.a-EvaluatePA').addClass('active_');
+                $('.a-EvaluatePA').removeClass('text-dark');
+            </script>
+            <script>
 
-            //    type: 'GET',
-            //    url: '/EvaluatePA/EditForm_AJ?' + param,
-            //    success: function (result) {
-            //        //hideModal_Info();
-            //        //location.reload();
-            //        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+                function AJ_Calendar_Save_() {
 
-            //    }
-            //});
-            //hideModal();
+                    alert("Update");
+                }
+                function AJ_Calendar_Save() {
+                    //return false;
+                    alert("Update");
+                    //let Summary = $('#SubjectCode').val(),
+                    //    Description = $('#SubjectName').val();
+                    //    //LastName = $('#LastName').val(),
+                    //    //position = $('#position').val(),
+                    //    //school = $('#school').val(),
+                    //    //CDate = $('#CDate').val(),
+                    //    //memberOf = $('#memberOf').val(),
+                    //    //salaryLevel = $('#salaryLevel').val(),
+                    //    //salaryRate = $('#salaryRate').val(),
+                    //    //classroomType = $('#classroomType').val();
+                    //alert(Summary);
+                    //return false;
 
-        }
-        function View_PA(id, Name) {
-            //alert("");
+                    //var param = "Prefix=" + Prefix + "&FirstName=" + FirstName
+                    //    + "&LastName=" + LastName + "&position=" + position + "&school_id=" + school + "&CDate=" + CDate
+                    //    + "&memberOf=" + memberOf + "&salaryLevel=" + salaryLevel
+                    //    + "&salaryRate=" + salaryRate + "&classroomType=" + classroomType + "&user_Id=" + user_Id
+                    //    + "&submit=yes";
+                    ////alert(param);
 
-            //let user_Id = Id;
-            //let PA_Name = Name;
-            var param = "PA_Name=" + Name + "&Id=" + id
-                + "&submit=yes";
-            //alert(param);
-            window.location.assign("/EvaluatePA/PA_View?" + param);
-            //$.ajax({
+                    //$.ajax({
 
-            //    type: 'GET',
-            //    url: '/EvaluatePA/EditForm_AJ?' + param,
-            //    success: function (result) {
-            //        //hideModal_Info();
-            //        //location.reload();
-            //        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+                    //    type: 'GET',
+                    //    url: '/Home/UpdateUser_AJ?' + param,
+                    //    success: function (result) {
+                    //        hideModal_Info();
+                    //        window.location.assign("/Home/Main?user_Id=" + user_Id);
 
-            //    }
-            //});
-            //hideModal();
+                    //    }
+                    //});
+                }
 
-        }
-        function AJ_Save() {
-            let user_Id = $('#userId').val();
-            let PA_Name = $('#formName').val();
-            var param = "PA_Name=" + PA_Name + "&user_Id=" + user_Id
-                + "&submit=yes";
-            //alert(param);
+                function Delete_PA(id, Name) {
+                    //alert("Delete PA : " + id + "-" + Name + " ?");
+                    var param = "PA_Name=" + Name + "&Id=" + id
+                        + "&submit=yes";
+                    if (confirm("Delete PA : " + id + "-" + Name + " ?")) {
+                        // Save it!
+                        //console.log('Thing was saved to the database.');
 
-            $.ajax({
+                        $.ajax({
 
-                type: 'GET',
-                url: '/EvaluatePA/NewForm_AJ?' + param,
-                success: function (result) {
-                    //hideModal_Info();
-                    location.reload();
-                    //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+                            type: 'GET',
+                            url: '/EvaluatePA/DeleteForm_AJ?' + param,
+                            success: function (result) {
+                                //hideModal_Info();
+                                location.reload();
+                                //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+                            }
+                        });
+
+                    } else {
+                        // Do nothing!
+
+                        //console.log('Thing was not saved to the database.');
+                    }
 
                 }
-            });
-            hideModal();
+                function Edit_PA(id, Name) {
+                    //alert("");
+
+                    //let user_Id = Id;
+                    //let PA_Name = Name;
+                    var param = "PA_Name=" + Name + "&Id=" + id
+                        + "&submit=yes";
+                    //alert(param);
+                    window.location.assign("/EvaluatePA/PA_Add?" + param);
+                    //$.ajax({
+
+                    //    type: 'GET',
+                    //    url: '/EvaluatePA/EditForm_AJ?' + param,
+                    //    success: function (result) {
+                    //        //hideModal_Info();
+                    //        //location.reload();
+                    //        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+                    //    }
+                    //});
+                    //hideModal();
+
+                }
+                function View_PA(id, Name) {
+                    //alert("");
+
+                    //let user_Id = Id;
+                    //let PA_Name = Name;
+                    var param = "PA_Name=" + Name + "&Id=" + id
+                        + "&submit=yes";
+                    //alert(param);
+                    window.location.assign("/EvaluatePA/PA_View?" + param);
+                    //$.ajax({
+
+                    //    type: 'GET',
+                    //    url: '/EvaluatePA/EditForm_AJ?' + param,
+                    //    success: function (result) {
+                    //        //hideModal_Info();
+                    //        //location.reload();
+                    //        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+                    //    }
+                    //});
+                    //hideModal();
+
+                }
+                //function AJ_Calendar_Save() {
+                //    let user_Id = $('#userId').val();
+                //    let PA_Name = $('#formName').val();
+                //    var param = "PA_Name=" + PA_Name + "&user_Id=" + user_Id
+                //        + "&submit=yes";
+                //    //alert(param);
+
+                //    $.ajax({
+
+                //        type: 'GET',
+                //        url: '/EvaluatePA/NewForm_AJ?' + param,
+                //        success: function (result) {
+                //            //hideModal_Info();
+                //            location.reload();
+                //            //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+                //        }
+                //    });
+                //    hideModal();
+                //}
+            </script>
+
+
         }
-    </script>
-
-
-}

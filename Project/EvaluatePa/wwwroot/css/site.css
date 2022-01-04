@@ -226,6 +226,22 @@ border:none;
     overflow-x: hidden;
 
 }
+
+.loader-calendar-setup {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    display: none;
+    justify-content: center;
+    align-items: start;
+    opacity: 1.0;
+    border: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 .part-1 {
     display: block;
 }
@@ -764,7 +780,7 @@ td .holiday {
     position: absolute;
     pointer-events: none;
     top: 10px;
-    left: 97px;
+    left: 87px;
     transition: all 0.1s ease;
 }
 
