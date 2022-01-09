@@ -16,12 +16,16 @@ namespace EvaluatePa.Controllers
 {
     public class EvaluatePAController : Controller
     {
-        private readonly ILogger<EvaluatePAController> _logger;
         private readonly IConfiguration configuration;
+        string dbName = "";
+
+        private readonly ILogger<EvaluatePAController> _logger;
+        
         public EvaluatePAController(IConfiguration config, ILogger<EvaluatePAController> logger)
         {
             this.configuration = config;
             _logger = logger;
+            dbName = configuration.GetConnectionString("dbSource");
         }
 
 
@@ -33,7 +37,7 @@ namespace EvaluatePa.Controllers
         {
 
             string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
-            string dbName = configuration.GetConnectionString("dbSource");
+            //string dbName = configuration.GetConnectionString("dbSource");
             SqlConnection connection = new SqlConnection(connectionString);
 
             connection.Open();
@@ -161,12 +165,18 @@ namespace EvaluatePa.Controllers
             ViewBag.Position = HttpContext.Session.GetString("userPosition");
 
             ViewBag.TotalPeriod = 10;
+            ViewBag.School = getSchool_array();
+            ViewBag.Subject = getSubject_array();
+            ViewBag.Location = getLocation_array();
+            ViewBag.Class = getClass_array();
+
+
             if (userId != null)
             {
                 List<CalendarInfo> calendarInfo_ = getCalendarInfo(userId, dateTime);
                 return View(calendarInfo_);
             }
-            return View(getCalendarInfo(userId, dateTime));
+            return View(getCalendarInfo(user_id, dateTime));
         }
 
 
@@ -264,7 +274,7 @@ namespace EvaluatePa.Controllers
         {
 
             string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
-            string dbName = configuration.GetConnectionString("dbSource");
+           // string dbName = configuration.GetConnectionString("dbSource");
             SqlConnection connection = new SqlConnection(connectionString);
 
             connection.Open();
@@ -280,7 +290,7 @@ namespace EvaluatePa.Controllers
             String EndDate = DateTime.Now.AddDays(7 - today_ - 1).ToString("yyyy-MM-dd");
             String ThisDate = DateTime.Now.AddDays(0).ToString("yyyy-MM-dd");
             //
-            sqlString += " SELECT [Event_Id],[Summary],[Description],[BDate],[EDate],[Location_Id],[RRULE],[RR_FREQ],[RR_UNTIL],[RR_INTERVAL],[RR_COUNT],[RR_BYDAY],[RR_BYWEEKNO],[RR_BYMONTH],[RR_BYMONTHDAY],[RR_BYYEARDAY],[RR_BYSETPOS],[RR_WKST],[User_Id],[Subject_Id],[SubSchool_Id],a.[School_Id],b.[Name],b.[province],c.[Name],d.[Name],d.[Level]";
+            sqlString += " SELECT [Event_Id],[Summary],a.[Description],[BDate],[EDate],[Location_Id],[RRULE],[RR_FREQ],[RR_UNTIL],[RR_INTERVAL],[RR_COUNT],[RR_BYDAY],[RR_BYWEEKNO],[RR_BYMONTH],[RR_BYMONTHDAY],[RR_BYYEARDAY],[RR_BYSETPOS],[RR_WKST],[User_Id],[Subject_Id],[SubSchool_Id],a.[School_Id],b.[Name],b.[province],c.[Name],d.[Name],d.[Level]";
             sqlString += " FROM [devpa].[dbo].[PA_Event] as a left join PA_School as b on a.School_Id = b.School_Id left join PA_School_Room as c on a.Location_Id = c.Room_Id left join PA_Subject as d on a.Subject_Id = d.Id";
             sqlString += " where User_Id = " + uid + " and a.BDate > '" + StartDate + " 00:00:00.000' and a.BDate < '" + EndDate + " 23:59:59.000'";
             Microsoft.Data.SqlClient.SqlDataAdapter da = new SqlDataAdapter(sqlString, connectionString);
@@ -313,7 +323,7 @@ namespace EvaluatePa.Controllers
                     calendarInfo_item.User_Id = dt.Rows[i].ItemArray[18].ToString();
                     calendarInfo_item.Subject_Id = dt.Rows[i].ItemArray[19].ToString();
                     calendarInfo_item.SubSchool_Id = dt.Rows[i].ItemArray[20].ToString();
-                    calendarInfo_item.Subject_Id = dt.Rows[i].ItemArray[21].ToString();
+                    calendarInfo_item.School_Id = dt.Rows[i].ItemArray[21].ToString();
                     calendarInfo_item.School_Name = dt.Rows[i].ItemArray[22].ToString();
                     calendarInfo_item.Province = dt.Rows[i].ItemArray[23].ToString();
                     calendarInfo_item.Location_Name = dt.Rows[i].ItemArray[24].ToString();
@@ -333,7 +343,7 @@ namespace EvaluatePa.Controllers
         {
 
             string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
-            string dbName = configuration.GetConnectionString("dbSource");
+            //string dbName = configuration.GetConnectionString("dbSource");
             SqlConnection connection = new SqlConnection(connectionString);
 
             connection.Open();
@@ -371,7 +381,7 @@ namespace EvaluatePa.Controllers
         {
 
             string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
-            string dbName = configuration.GetConnectionString("dbSource");
+           // string dbName = configuration.GetConnectionString("dbSource");
             SqlConnection connection = new SqlConnection(connectionString);
 
             connection.Open();
@@ -477,24 +487,23 @@ namespace EvaluatePa.Controllers
 
 
         }
-
         public IActionResult UpdateUserAll_AJ(string formId,
-            string Prefix, string FirstName, string LastName, string position
-            , string school_id, string CDate, string memberOf, string salaryLevel
-            , string Subject_Hour, string Total_Hour_Schedule_str
-            , string Subject_1_Hour, string Total_Hour_Learning_Promotion_Support_str
-            , string Subject_2_Hour, string Total_Hour_Q_Education_Mng_Devstr
-            , string Subject_3_Hour, string Total_Hour_Policy_Focus_Sup_str
-            , string salaryRate,string classroomType,string user_Id
-            , string LM_Task,string LM_Outcomes,string LM_Indicators
-            , string PS_Task,string PS_Outcomes,string PS_Indicators
-            , string SP_Dev_Task, string SP_Dev_Dev_Outcomes, string SP_Dev_Dev_Indicators
-            , string CL_Point,string CL_Point_Text,string Problem_State
-            , string Method_To_Acheivment,string QT_Expect_Result,string QL_Expect_Result)
-            {
-            
+    string Prefix, string FirstName, string LastName, string position
+    , string school_id, string CDate, string memberOf, string salaryLevel
+    , string Subject_Hour, string Total_Hour_Schedule_str
+    , string Subject_1_Hour, string Total_Hour_Learning_Promotion_Support_str
+    , string Subject_2_Hour, string Total_Hour_Q_Education_Mng_Devstr
+    , string Subject_3_Hour, string Total_Hour_Policy_Focus_Sup_str
+    , string salaryRate, string classroomType, string user_Id
+    , string LM_Task, string LM_Outcomes, string LM_Indicators
+    , string PS_Task, string PS_Outcomes, string PS_Indicators
+    , string SP_Dev_Task, string SP_Dev_Dev_Outcomes, string SP_Dev_Dev_Indicators
+    , string CL_Point, string CL_Point_Text, string Problem_State
+    , string Method_To_Acheivment, string QT_Expect_Result, string QL_Expect_Result)
+        {
+
             string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
-            string dbName = configuration.GetConnectionString("dbSource");
+            //string dbName = configuration.GetConnectionString("dbSource");
             //connection.Open();
             System.Data.DataTable dt = new DataTable();
             String sqlString = null;
@@ -510,9 +519,9 @@ namespace EvaluatePa.Controllers
                 //sqlString += "IF NOT EXISTS (SELECT [Name] FROM [" + dbName + "].[dbo].[PA_Form] WHERE [Name] = '" + PA_Name + "' and [Status] <> 204)";
                 //sqlString += " BEGIN INSERT INTO [" + dbName + "].[dbo].[PA_Form]([Id],[Name],[DateTime],[OwnerId],[Status]) VALUES (default,'" + PA_Name + "','" + DateTime_ + "'," + user_Id + ",0) END";
                 sqlString += " UPDATE [" + dbName + "].[dbo].[PA_Form]";
-                sqlString += " SET [MDateTime] = '" + DateTime_ + "', [Total_Hour_Schedule] = " + Total_Hour_Schedule_str + ",[Subject_Hour] = '" + Subject_Hour + "'"; 
-                sqlString += " ,[Total_Hour_Learning_Promotion_Support] = " + Total_Hour_Learning_Promotion_Support_str + ",[Subject_1_Hour] = '" + Subject_1_Hour + "'"; 
-                sqlString += " ,[Total_Hour_Q_Education_Mng_Dev] = " + Total_Hour_Q_Education_Mng_Devstr + ",[Subject_2_Hour] = '" + Subject_2_Hour + "'"; 
+                sqlString += " SET [MDateTime] = '" + DateTime_ + "', [Total_Hour_Schedule] = " + Total_Hour_Schedule_str + ",[Subject_Hour] = '" + Subject_Hour + "'";
+                sqlString += " ,[Total_Hour_Learning_Promotion_Support] = " + Total_Hour_Learning_Promotion_Support_str + ",[Subject_1_Hour] = '" + Subject_1_Hour + "'";
+                sqlString += " ,[Total_Hour_Q_Education_Mng_Dev] = " + Total_Hour_Q_Education_Mng_Devstr + ",[Subject_2_Hour] = '" + Subject_2_Hour + "'";
                 sqlString += " ,[Total_Hour_Policy_Focus_Sup] = " + Total_Hour_Policy_Focus_Sup_str + ",[Subject_3_Hour] = '" + Subject_3_Hour + "'";
                 sqlString += " ,[LM_Task] = '" + LM_Task + "',[LM_Outcomes] = '" + LM_Outcomes + "',[LM_Indicators] = '" + LM_Indicators + "'";
                 sqlString += " ,[PS_Task] = '" + PS_Task + "',[PS_Outcomes] = '" + PS_Outcomes + "',[PS_Indicators] = '" + PS_Indicators + "'";
@@ -529,7 +538,123 @@ namespace EvaluatePa.Controllers
             return RedirectToAction("EvaluatePA_Index", "EvaluatePA", new { user = user_Id });
 
             //return View();
+        }
+
+        //
+
+        //"Summary=" + Summary + "&Description=" + SubjectName
+        //                + "&BDate=" + BDate + "&EDate=" + EDate
+        //                + "&Location_Id=" + Location_Id
+        //                + "&User_Id=" + uid + "&Subject_Id=" + Subject_Id
+        //                + "&SubSchool_Id=" + SubSchool_Id + "&School_Id=" + School_Id
+        //                + "&Unit_Id=" + '0' + "&UnitName=" + ''
+        //                + "&RR_FREQ=" + "WEEKLY" + "&RR_BYDAY=" + Day_.substring(0, 2).toUpperCase();
+        ////
+        public IActionResult UpdateEvent_AJ(string Summary, string Description, string BDate, string EDate
+            , string Location_Id, string Event_Id, string User_Id, string Subject_Id, string SubSchool_Id, string School_Id, string Unit_Id
+            , string UnitName, string RR_FREQ, string RR_BYDAY)
+            {
+            if (SubSchool_Id == null)
+            {
+                SubSchool_Id = "-1";
             }
+
+            if (Location_Id == null)
+            {
+                Location_Id = "-1";
+            }
+
+            if (Event_Id == null)
+            {
+                Event_Id = "-1";
+            }
+
+            if (Subject_Id == null)
+            {
+                Subject_Id = "-1";
+            }
+
+            if (School_Id == null)
+            {
+                School_Id = "-1";
+            }
+
+            if (Unit_Id == null)
+            {
+                Unit_Id = "-1";
+            }
+
+            string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
+            //string dbName = configuration.GetConnectionString("dbSource");
+            
+            System.Data.DataTable dt = new DataTable();
+            String sqlString = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+               
+                
+                string DateTime_ = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                sqlString += " UPDATE [" + dbName + "].[dbo].[PA_Event]";
+                sqlString += "  SET [Summary] = '" + Summary + "'";
+                sqlString += " ,[Description] = '" + Description + "'";
+                sqlString += " ,[BDate] = '" + BDate + "'";
+                sqlString += " ,[EDate] = '" + EDate + "'";
+                sqlString += " ,[Location_Id] = " + Location_Id + "";
+                sqlString += " ,[RRULE] = '" + "Y" + "'";
+                sqlString += " ,[RR_FREQ] = '" + RR_FREQ + "'";
+                sqlString += " ,[RR_UNTIL] = '" + "" + "'";
+                sqlString += " ,[RR_INTERVAL] = '" + "" + "'";
+                sqlString += " ,[RR_COUNT] = '" + "" + "'";
+                sqlString += " ,[RR_BYDAY] = '" + RR_BYDAY + "'";
+                sqlString += " ,[RR_BYWEEKNO] = '" + "" + "'";
+                sqlString += " ,[RR_BYMONTH] = '" + "" + "'";
+                sqlString += " ,[RR_BYMONTHDAY] = '" + "" + "'";
+                sqlString += " ,[RR_BYYEARDAY] = '" + "" + "'";
+                sqlString += " ,[RR_BYSETPOS] = '" + "" + "'";
+                sqlString += " ,[RR_WKST] = '" + "" + "'";
+                sqlString += " ,[User_Id] = " + User_Id + "";
+                sqlString += " ,[Subject_Id] = " + Subject_Id + "";
+                sqlString += " ,[SubSchool_Id] = " + SubSchool_Id + "";
+                sqlString += " ,[School_Id] = " + School_Id + "";
+                sqlString += " ,[CDate] = '" + "1900-01-01 00:00:00.000" + "'";
+                sqlString += " ,[OpenDate] = '" + "1900-01-01 00:00:00.000" + "'";
+                sqlString += " ,[CloseDate] = '" + "1900-01-01 00:00:00.000" + "'";
+                sqlString += " ,[DDate] = '" + "1900-01-01 00:00:00.000" + "'";
+                sqlString += " ,[Parent_Event_Id] = Null";
+                sqlString += " ,[Event_Status] = 100";
+                sqlString += " ,[Event_Type] = Null";
+                sqlString += " ,[Event_SubType] = Null";
+                sqlString += " ,[Unit_Id] = Null";
+                sqlString += " ,[UnitName] = '" + "" + "'";
+                sqlString += " WHERE [Event_Id] = " + Event_Id;
+
+                if (Event_Id == "-1")
+                {
+                    sqlString = "INSERT INTO [" + dbName + "].[dbo].[PA_Event]([Summary],[Description],[BDate],[EDate],[Location_Id],[RRULE],[RR_FREQ]";
+                    sqlString += ",[RR_UNTIL],[RR_INTERVAL],[RR_COUNT],[RR_BYDAY],[RR_BYWEEKNO],[RR_BYMONTH],[RR_BYMONTHDAY]";
+                    sqlString += ",[RR_BYYEARDAY],[RR_BYSETPOS],[RR_WKST],[User_Id],[Subject_Id],[SubSchool_Id],[School_Id],[CDate]";
+                    sqlString += ",[OpenDate],[CloseDate],[DDate],[Parent_Event_Id],[Event_Status],[Event_Type],[Event_SubType],[Unit_Id],[UnitName]) VALUES (";
+                    var dftDate = "1900-01-01 00:00:00.000";
+                    sqlString += "'" + Summary + "','" + Description + "','" + BDate + "','" + EDate + "'," + Location_Id + ",'" + "Y" + "','" + RR_FREQ + "','" +
+                    "" + "','" + "" + "','" + "" + "','" + RR_BYDAY + "','" + "" + "','" + "" + "','" + "" + "','" +
+                    "" + "','" + "" + "','" + "" + "'," + User_Id + "," + Subject_Id + "," + SubSchool_Id + "," + School_Id + ",'" + dftDate + "','" +
+                    dftDate + "','" + dftDate + "','" + dftDate + "'," + "-1" + "," + "100" + "," + "-1" + "," + "-1" + "," + "-1" + ",'" + "" + "'" + ")";
+
+                }
+                
+                    
+
+               //sqlString += " WHERE [Id] = CAST('" + formId + "' as uniqueidentifier)";
+               connection.Open();
+                SqlCommand command2 = new SqlCommand(sqlString, connection);
+                command2.ExecuteNonQuery();
+                command2.Dispose();
+                connection.Close();
+            }
+            //return RedirectToAction("Calendar", "EvaluatePA", new { user_id = user_Id });
+            return Ok();
+            //return View();
+        }
 
         public IActionResult NewForm_AJ(String PA_Name, String user_Id)
         {
@@ -538,7 +663,7 @@ namespace EvaluatePa.Controllers
                 return RedirectToAction("EvaluatePA_Index", "EvaluatePA", new { user = HttpContext.Session.GetString("userId") });
             }
             string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
-            string dbName = configuration.GetConnectionString("dbSource");
+            //string dbName = configuration.GetConnectionString("dbSource");
             //connection.Open();
             System.Data.DataTable dt = new DataTable();
             String sqlString = null;
@@ -565,7 +690,7 @@ namespace EvaluatePa.Controllers
                 return RedirectToAction("EvaluatePA_Index", "EvaluatePA", new { user = HttpContext.Session.GetString("userId") });
             }
             string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
-            string dbName = configuration.GetConnectionString("dbSource");
+            //string dbName = configuration.GetConnectionString("dbSource");
             //connection.Open();
             System.Data.DataTable dt = new DataTable();
             String sqlString = null;
@@ -593,7 +718,7 @@ namespace EvaluatePa.Controllers
                 return RedirectToAction("EvaluatePA_Index", "EvaluatePA", new { user = HttpContext.Session.GetString("userId") });
             }
             string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
-            string dbName = configuration.GetConnectionString("dbSource");
+            //string dbName = configuration.GetConnectionString("dbSource");
             //connection.Open();
             System.Data.DataTable dt = new DataTable();
             String sqlString = null;
@@ -642,6 +767,258 @@ namespace EvaluatePa.Controllers
             //}
             return RedirectToAction("PA_Add", "EvaluatePA", new { user = HttpContext.Session.GetString("userId"), Form_id = Id});
         }
+
+        private List<School> GetSchoolList()
+        {
+            string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            connection.Open();
+            System.Data.DataTable dt = new DataTable();
+            String sqlString = null;
+            sqlString += " SELECT [School_Id],[Name],[Province] FROM [" + dbName + "].[dbo].[PA_School]";
+
+            Microsoft.Data.SqlClient.SqlDataAdapter da = new Microsoft.Data.SqlClient.SqlDataAdapter(sqlString, connectionString);
+            da.Fill(dt);
+            int c = dt.Rows.Count;
+            List<School> School_ = new List<School> { };
+            if (c > 0)
+            {
+                for (int i = 0; i <= c - 1; i++)
+                {
+                    School school = new School();
+                    school.Id = Convert.ToInt32( dt.Rows[i].ItemArray[0].ToString());
+                    school.Name = dt.Rows[i].ItemArray[1].ToString();
+                    school.Description = dt.Rows[i].ItemArray[2].ToString();
+
+
+                    School_.Add(school);
+                }
+            }
+            return School_;
+
+        }
+
+        private List<School_Room> GetLocationList()
+        {
+            string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            connection.Open();
+            System.Data.DataTable dt = new DataTable();
+            String sqlString = null;
+            sqlString += " SELECT [Room_Id],[Name],[Description],[School_Id] FROM [" + dbName + "].[dbo].[PA_School_Room]";
+
+            Microsoft.Data.SqlClient.SqlDataAdapter da = new Microsoft.Data.SqlClient.SqlDataAdapter(sqlString, connectionString);
+            da.Fill(dt);
+            int c = dt.Rows.Count;
+            List<School_Room> School_Room_ = new List<School_Room> { };
+            if (c > 0)
+            {
+                for (int i = 0; i <= c - 1; i++)
+                {
+                    School_Room school_Room = new School_Room();
+                    school_Room.Id = Convert.ToInt32(dt.Rows[i].ItemArray[0].ToString());
+                    school_Room.Name = dt.Rows[i].ItemArray[1].ToString();
+                    school_Room.Description = dt.Rows[i].ItemArray[2].ToString();
+                    school_Room.School_Id = Convert.ToInt32(dt.Rows[i].ItemArray[3].ToString());
+
+                    School_Room_.Add(school_Room);
+                }
+            }
+            return School_Room_;
+
+        }
+
+        private List<School_Class> GetClassList()
+        {
+            string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            connection.Open();
+            System.Data.DataTable dt = new DataTable();
+            String sqlString = null;
+            sqlString += " SELECT [Class_Id],[Name],[Description],[School_Id] FROM [" + dbName + "].[dbo].[PA_School_Class]";
+
+            Microsoft.Data.SqlClient.SqlDataAdapter da = new Microsoft.Data.SqlClient.SqlDataAdapter(sqlString, connectionString);
+            da.Fill(dt);
+            int c = dt.Rows.Count;
+            List<School_Class> School_Class_ = new List<School_Class> { };
+            if (c > 0)
+            {
+                for (int i = 0; i <= c - 1; i++)
+                {
+                    School_Class school_Class = new School_Class();
+                    school_Class.Id = Convert.ToInt32(dt.Rows[i].ItemArray[0].ToString());
+                    school_Class.Name = dt.Rows[i].ItemArray[1].ToString();
+                    school_Class.Description = dt.Rows[i].ItemArray[2].ToString();
+                    school_Class.School_Id = Convert.ToInt32(dt.Rows[i].ItemArray[3].ToString());
+
+
+                    School_Class_.Add(school_Class);
+                }
+            }
+            return School_Class_;
+
+        }
+
+        private List<Subject> GetSubjectList()
+        {
+            string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            connection.Open();
+            System.Data.DataTable dt = new DataTable();
+            String sqlString = null;
+            sqlString += " SELECT [Id],[Name],[Level],[SubjectCode],[School_Id] FROM [" + dbName + "].[dbo].[PA_Subject]";
+
+            Microsoft.Data.SqlClient.SqlDataAdapter da = new Microsoft.Data.SqlClient.SqlDataAdapter(sqlString, connectionString);
+            da.Fill(dt);
+            int c = dt.Rows.Count;
+            List<Subject> Subject_ = new List<Subject> { };
+            if (c > 0)
+            {
+                for (int i = 0; i <= c - 1; i++)
+                {
+                    Subject subject = new Subject();
+                    subject.Id = Convert.ToInt32(dt.Rows[i].ItemArray[0].ToString());
+                    subject.Name = dt.Rows[i].ItemArray[1].ToString();
+                    subject.Description = dt.Rows[i].ItemArray[2].ToString();
+                    subject.SubjectCode = dt.Rows[i].ItemArray[3].ToString();
+                    subject.School_Id = Convert.ToInt32(dt.Rows[i].ItemArray[4].ToString());
+                    Subject_.Add(subject);
+                }
+            }
+            return Subject_;
+
+        }
+
+
+        private string getSchool_array()
+        {
+            List<School> School_list = GetSchoolList();
+            string objString = "";
+            //string F_Id_ = "";
+            for (int i = 0; i <= School_list.Count - 1; i++)
+            {
+                if (i == 0)
+                {
+                    objString += "[\"" + School_list[i].Id.ToString() + "\",";
+                    objString += "\"" + School_list[i].Name.ToString() + "\",";
+                    objString += "\"" + School_list[i].Description.ToString() + "\"]";
+
+                }
+                else
+                {
+                    objString += ", " + "[\"" + School_list[i].Id.ToString() + "\",";
+                    objString += "\"" + School_list[i].Name.ToString() + "\",";
+                    objString += "\"" + School_list[i].Description.ToString() + "\"]";
+
+                }
+
+
+            }
+            //ViewBag.Sensor_ = "[" + objString + "]";
+            return "[" + objString + "]";
+
+        }
+
+        private string getLocation_array()
+        {
+            List<School_Room> Location_list = GetLocationList();
+            string objString = "";
+            //string F_Id_ = "";
+            for (int i = 0; i <= Location_list.Count - 1; i++)
+            {
+                if (i == 0)
+                {
+                    objString += "[\"" + Location_list[i].Id.ToString() + "\",";
+                    objString += "\"" + Location_list[i].Name.ToString() + "\",";
+                    objString += "\"" + Location_list[i].Description.ToString() + "\",";
+                    objString += "\"" + Location_list[i].School_Id.ToString() + "\"]";
+
+                }
+                else
+                {
+                    objString += ", " + "[\"" + Location_list[i].Id.ToString() + "\",";
+                    objString += "\"" + Location_list[i].Name.ToString() + "\",";
+                    objString += "\"" + Location_list[i].Description.ToString() + "\",";
+                    objString += "\"" + Location_list[i].School_Id.ToString() + "\"]";
+
+                }
+
+
+            }
+            //ViewBag.Sensor_ = "[" + objString + "]";
+            return "[" + objString + "]";
+
+        }
+
+        private string getClass_array()
+        {
+            List<School_Class> Class_list = GetClassList();
+            string objString = "";
+            //string F_Id_ = "";
+            for (int i = 0; i <= Class_list.Count - 1; i++)
+            {
+                if (i == 0)
+                {
+                    objString += "[\"" + Class_list[i].Id.ToString() + "\",";
+                    objString += "\"" + Class_list[i].Name.ToString() + "\",";
+                    objString += "\"" + Class_list[i].Description.ToString() + "\",";
+                    objString += "\"" + Class_list[i].School_Id.ToString() + "\"]";
+
+                }
+                else
+                {
+                    objString += ", " + "[\"" + Class_list[i].Id.ToString() + "\",";
+                    objString += "\"" + Class_list[i].Name.ToString() + "\",";
+                    objString += "\"" + Class_list[i].Description.ToString() + "\",";
+                    objString += "\"" + Class_list[i].School_Id.ToString() + "\"]";
+
+                }
+
+
+            }
+            //ViewBag.Sensor_ = "[" + objString + "]";
+            return "[" + objString + "]";
+
+        }
+
+        private string getSubject_array()
+        {
+            List<Subject> Subject_list = GetSubjectList();
+            string objString = "";
+            //string F_Id_ = "";
+            for (int i = 0; i <= Subject_list.Count - 1; i++)
+            {
+                if (i == 0)
+                {
+                    objString += "[\"" + Subject_list[i].Id.ToString() + "\",";
+                    objString += "\"" + Subject_list[i].Name.ToString() + "\",";
+                    objString += "\"" + Subject_list[i].Description.ToString() + "\",";
+                    objString += "\"" + Subject_list[i].SubjectCode.ToString() + "\",";
+                    objString += "\"" + Subject_list[i].School_Id.ToString() + "\"]";
+
+                }
+                else
+                {
+                    objString += ", " + "[\"" + Subject_list[i].Id.ToString() + "\",";
+                    objString += "\"" + Subject_list[i].Name.ToString() + "\",";
+                    objString += "\"" + Subject_list[i].Description.ToString() + "\",";
+                    objString += "\"" + Subject_list[i].SubjectCode.ToString() + "\",";
+                    objString += "\"" + Subject_list[i].School_Id.ToString() + "\"]";
+
+                }
+
+
+            }
+            //ViewBag.Sensor_ = "[" + objString + "]";
+            return "[" + objString + "]";
+
+        }
+
+
 
 
     }

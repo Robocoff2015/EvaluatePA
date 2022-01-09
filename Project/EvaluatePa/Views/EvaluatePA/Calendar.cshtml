@@ -21,19 +21,24 @@
             color: #ffffff;
             background-color: #0360c6;
         }
+
             .event:hover {
                 color: #000000;
                 text-shadow: none;
             }
-        .form-label {
-        font-size:12px;
 
+        .form-label {
+            font-size: 12px;
         }
         /*.card-header{
             height:20px;
             color:black;
             vertical-align:central;
         }*/
+
+
+        /**/
+
     </style>
 }
 <div class="container">
@@ -43,7 +48,7 @@
                 <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
                     <div class="border-top pt-2">
                         <h5><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-text-theme"></i>วิทยฐานะ</h5>
-                        <input type="hidden" id="userId" name="userId" value="@Context.Session.GetString(" userId")">
+                        <input type="hidden" id="userId" name="userId" value="@Context.Session.GetString("userId")">
                     </div>
                 </div>
                 <div class="card-body p-1">
@@ -292,13 +297,13 @@
                                                         @{
                                                             string[] day_of_week = new String[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
                                                             int day_ = ViewBag.Today;
-                                                            for (int i = 0; i <= 6; i++)
+                                                            for (int d_ = 0; d_ <= 6; d_++)
                                                             {
                                                                 string class_ = "";
-                                                                if (day_ == i)
+                                                                if (day_ == d_)
                                                                 { class_ = "thisday"; }
 
-                                                                <div class="text-center @class_">@day_of_week[i]</div>
+                                                                <div class="text-center @class_">@day_of_week[d_]</div>
                                                             }
                                                         }
 
@@ -328,82 +333,94 @@
 
 
                                                     }
-                                            <div class="days">
-                                                @for (var d = 0; d <= 7; d++)
-                                                {
-
-                                                    if (d == 0)
-                                                    {
-                                                        <div class="dates_ prev-date mr-1 text-dark">
-                                                            <div class="dates_num pt-2">@PTime_Begin - @PTime_End</div>
-
-                                                        </div>
-
-                                                    }
-                                                    else if (d == 1)
-                                                    {
-                                                        <div class="dates_ prev-date">
-                                                            <div class="dates_num"></div>
-
-                                                        </div>
-
-                                                    }
-                                                    else if (d == 7)
-                                                    {
-                                                        <div class="dates_ next-date">
-                                                            <div class="dates_num"></div>
-
-                                                        </div>
-                                                    }
-                                                    else
-                                                    {
-                                            <div id="@i@d" class="dates_" onclick="showModal_Calendar('คาบเรียนที่ : @i',this.id);">
-
-
-                                                @{var txt1 = "";
-                                                    var txt2 = "";
-                                                    var cls = "";
-                                                    foreach (var item in Model)
-                                                    {
-                                                        var date_ = Convert.ToDateTime(ViewBag.StartDate).AddDays(d - 1).ToString("yyyy-MM-dd");
-                                                        if (item.BDate.Substring(11, 5) == PTime_Begin && @item.BDate.Substring(0, 10) == date_)
+                                                    <div class="days">
+                                                        @for (var d = 0; d <= 7; d++)
                                                         {
-                                                            //txt1 = @item.Summary;
-                                                            //txt2 = @item.Location_Name;
-                                                            //cls = "event";
-                                                                                                <div class="dates_num text-center event">
-                                                                                                    <div id="EventID_@i@d" style="display:none">@item.Event_Id</div>
-                                                                                                    <div id="Day_@i@d" style="display:none">@d</div>
-                                                                                                    <div id="Period_@i@d" style="display:none">@i</div>
-                                                                                                    <div id="RoomId_@i@d" style="display:none">@item.Location_Id</div>
-                                                                                                    <div id="RoomName_@i@d" style="display:none">@item.Location_Name</div>
-                                                                                                    <div id="ClasstName_@i@d" style="display:none">@item.UnitName</div>
-                                                                                                    <div id="EventId_@i@d" style="display:none">@item.UnitName</div>
-                                                                                                    <div id="SubjectCode_@i@d">@item.Summary</div>
-                                                                                                    <div id="SubjectName_@i@d">@item.Description</div>
 
-                                                                                                </div>
+                                                            if (d == 0)
+                                                            {
+                                                                <div class="dates_ prev-date mr-1 text-dark">
+                                                                    <div class="dates_num pt-2">@PTime_Begin - @PTime_End</div>
 
+                                                                </div>
+
+                                                            }
+                                                            else if (d == 1)
+                                                            {
+                                                                <div class="dates_ prev-date">
+                                                                    <div class="dates_num"></div>
+
+                                                                </div>
+
+                                                            }
+                                                            else if (d == 7)
+                                                            {
+                                                                <div class="dates_ next-date">
+                                                                    <div class="dates_num"></div>
+
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div id="@i@d" class="dates_" onclick="showModal_Calendar('คาบเรียนที่ : @i',this.id);">
+
+                                                                    @{var txt1 = "";
+                                                                        var txt2 = "";
+                                                                        var cls = "";
+                                                                        var found = 0;
+                                                                        foreach (var item in Model)
+                                                                        {
+                                                                            string[] day_week = new String[] { "SU", "MO", "TU", "WE", "TH", "FR", "SA" };
+                                                                            var date_ = Convert.ToDateTime(ViewBag.StartDate).AddDays(d - 1).ToString("yyyy-MM-dd");
+                                                                            if ((item.BDate.Substring(11, 5) == PTime_Begin && @item.BDate.Substring(0, 10) == date_) ||
+                                                                                            (item.RR_BYDAY.ToUpper() == day_week[d]))
+                                                                            {
+                                                                                //txt1 = @item.Summary;
+                                                                                //txt2 = @item.Location_Name;
+                                                                                //cls = "event";
+                                                                                found = 1;
+                                                                                <div class="dates_num text-center event">
+                                                                                    <div id="EventID_@i@d" style="display:none">@item.Event_Id</div>
+                                                                                    <div id="Day_@i@d" style="display:none">@d</div>
+                                                                                    <div id="Period_@i@d" style="display:none">@i</div>
+                                                                                    <div id="PTime_Begin_@i@d" style="display:none">@PTime_Begin</div>
+                                                                                    <div id="PTime_End_@i@d" style="display:none">@PTime_End</div>
+                                                                                    <div id="Room_Id_@i@d" style="display:none">@item.Location_Id</div>
+                                                                                    <div id="RoomName_@i@d" style="display:none">@item.Location_Name</div>
+                                                                                    <div id="ClasstName_@i@d" style="display:none">@item.UnitName</div>
+                                                                                    <div id="Subject_Id_@i@d">@item.Subject_Id</div>
+                                                                                    <div id="SubjectCode_@i@d">@item.Summary</div>
+                                                                                    <div id="SubjectName_@i@d">@item.Description</div>
+                                                                                    <div id="SubSchool_Id_@i@d">@item.SubSchool_Id</div>
+                                                                                    <div id="School_Id_@i@d">@item.School_Id</div>
+                                                                                    <div id="Method_@i@d" style="display:none">EDIT</div>
+                                                                                </div>
+                                                                            }
+                                                                        }
+                                                                        if (found == 0)
+                                                                        {
+                                                                            <div class="dates_num text-center">
+                                                                                <div id="EventID_@i@d" style="display:none"></div>
+                                                                                <div id="Day_@i@d" style="display:none">@d</div>
+                                                                                <div id="Period_@i@d" style="display:none">@i</div>
+                                                                                <div id="PTime_Begin_@i@d" style="display:none">@PTime_Begin</div>
+                                                                                <div id="PTime_End_@i@d" style="display:none">@PTime_End</div>
+                                                                                <div id="Room_Id_@i@d" style="display:none"></div>
+                                                                                <div id="RoomName_@i@d" style="display:none"></div>
+                                                                                <div id="ClasstName_@i@d" style="display:none"></div>
+                                                                                <div id="Subject_Id_@i@d"></div>
+                                                                                <div id="SubjectCode_@i@d"></div>
+                                                                                <div id="SubjectName_@i@d"></div>
+                                                                                <div id="SubSchool_Id_@i@d"></div>
+                                                                                <div id="School_Id_@i@d"></div>
+                                                                                <div id="Method_@i@d" style="display:none">NEW</div>
+                                                                            </div>
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                            }
                                                         }
-
-                                                        @*<div class="card">
-                    <div class="card-header">
-                        @txt1
-                    </div>
-                    <div class="card-body">
-                        @txt2
-                    </div>
-                </div>*@
-                                                        @*<span>@txt1 </br >@txt2</span>*@
-
-
-                                                    }
-                                                }
-
-                                            </div>
-                                                    }
-                                                }
-                                            </div>
+                                                    </div>
                                                 }
                                             </div>
                                         </div>
@@ -475,12 +492,9 @@
                                             <!-- Table body -->
                                         </table>
                                         <!-- Table  -->
-
                                     </div>
-
                                 </div>
                                 <!--/.Card-->
-
                             </div>
                             <!--Grid column-->
                         }
@@ -495,7 +509,6 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -510,11 +523,8 @@
                 <button type="button" class="btn btn-info btn-lg" onclick="hideModal('myModal');">X</button>
             </div>
         </div>
-
     </div>
 </div>
-
-
 <div class="loader-wrapper">
     <span class="loader"><span class="loader-inner"></span></span>
 </div>
@@ -523,320 +533,444 @@
         <div class="col-md-12">
             <div class="btn btn-success mt-3 pt-2" onclick="AJ_Calendar_Save();" style="width:350px;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>
         </div>
-    </div>        
+    </div>
 </div>
-        <div class="loader-wrapper2">
-            @*<span class="loader">
-                <span class="loader-inner" onclick="hideModal();"></span>
-            </span>*@
+<div class="loader-wrapper2">
+    @*<span class="loader">
+            <span class="loader-inner" onclick="hideModal();"></span>
+        </span>*@
 
 
-            <div class="row p-1">
-                <div class="col-lg-4 col-md-8 text-center">
-
-                    <div class="form-outline" style="opacity:1.0;width:325px;">
-                        <div class="card border shadow">
-                            <div class="card-header bg-green-custom border-0 border-top p-2 pb-1 text-white">
-                                <div class="form-inline justify-content-between pt-1">
-                                    <div>
-                                        <h5>ตารางเรียน</h5>
-                                    </div>
-                                    <span class="pointer-event" onclick="hideModal_fast();">
-                                        <i class="fa fa-times"></i>
-                                    </span>
-                                </div>
+    <div class="row p-1">
+        <div class="col-lg-4 col-md-8 text-center">
+            <div class="form-outline" style="opacity:1.0;width:325px;">
+                <div class="card border shadow">
+                    <div class="card-header bg-green-custom border-0 border-top p-2 pb-1 text-white">
+                        <div class="form-inline justify-content-between pt-1">
+                            <div>
+                                <h5>ตารางเรียน</h5>
                             </div>
-                            <div class="card-body p-3 pt-1">
-                                <form id="PA_Form" class="flex-column">
-                                    
-                                    <div class="d-inline-flex floating-label-group m-0">
-                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color:#099882;width:95px;border-radius:10px 0px 0px 10px;">
-                                            <label class="form-label" for="Day_">วัน :</label>
-                                        </div>
-                                        <input type="text" id="Day_" name="Day_" class="form-control form-control-lg font-14" style="width:195px" value="" />
-                                        <label class="chevron-label"><span class="chevron right"></span></label>
-                                    </div>
-                                    <div class="d-inline-flex floating-label-group m-0">
-                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
-                                            <label class="form-label" for="Period">คาบเรียน :</label>
-                                        </div>
-                                        <input type="text" id="Period" name="Period" class="form-control form-control-lg font-14" style="width: 195px" value="" />
-                                        <label class="chevron-label"><span class="chevron right"></span></label>
-                                    </div>
-                                    <div class="d-inline-flex floating-label-group m-0">
-                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
-                                            <label class="form-label" for="Lecturer">ครูผู้สอน :</label>
-                                        </div>
-                                        <input type="text" id="Lecturer" name="Lecturer" class="form-control form-control-lg font-14" style="width: 195px" value="@ViewBag.Fullname" />
-                                        <label class="chevron-label"><span class="chevron right"></span></label>
-                                    </div>
-                                    <div class="d-inline-flex floating-label-group m-0">
-                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
-                                            <label class="form-label" for="SubjectCode">รหัสรายวิชา :</label>
-                                        </div>
-                                        <input type="text" id="SubjectCode" name="SubjectCode" class="form-control form-control-lg font-14" style="width: 195px" value="" />
-                                        <label class="chevron-label"><span class="chevron right"></span></label>
-                                    </div>
-                                    <div class="d-inline-flex floating-label-group m-0">
-                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
-                                            <label class="form-label" for="SubjectName">ชื่อรายวิชา :</label>
-                                        </div>
-                                        <input type="text" id="SubjectName" name="SubjectName" class="form-control form-control-lg font-14" style="width: 195px" value="" />
-                                        <label class="chevron-label"><span class="chevron right"></span></label>
-                                    </div>
-                                    <div class="d-inline-flex floating-label-group m-0">
-                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
-                                            <label class="form-label" for="Room">ห้องเรียน :</label>
-                                        </div>
-                                        <input type="text" id="Room" name="Room" class="form-control form-control-lg font-14" style="width: 195px" value="" />
-                                        <label class="chevron-label"><span class="chevron right"></span></label>
-                                    </div>
-                                    <div class="d-inline-flex floating-label-group m-0">
-                                        <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
-                                            <label class="form-label" for="class">ชั้นเรียน :</label>
-                                        </div>
-                                        <input type="text" id="class" name="class" class="form-control form-control-lg font-14" style="width: 195px" value="" />
-                                        <label class="chevron-label"><span class="chevron right"></span></label>
-                                    </div>
-
-
-
-                                    @*<div class="pt-2 pl-3">
-            <label class="form-label" for="Period">คาบเรียน :</label>
-        </div>
-        <input type="text" id="Period" name="Period" class="form-control form-control-lg" style="width:350px;font-size:16px;" />
-
-        <div class="pt-2 pl-3">
-            <label class="form-label" for="Lecturer">ครูผู้สอน :</label>
-        </div>
-        <input type="text" id="Lecturer" name="Lecturer" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="@ViewBag.Fullname" />
-
-        <div class="pt-2 pl-3">
-            <label class="form-label" for="SubjectCode">รหัสรายวิชา :</label>
-        </div>
-        <input type="text" id="SubjectCode" name="SubjectCode" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="" />
-
-        <div class="pt-2 pl-3">
-            <label class="form-label" for="SubjectName">ชื่อรายวิชา :</label>
-        </div>
-        <input type="text" id="SubjectName" name="SubjectName" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="" />
-        <div class="pt-2 pl-3">
-            <label class="form-label" for="Room">ห้องเรียน :</label>
-        </div>
-        <input type="text" id="Room" name="Room" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="" />
-        <div class="pt-2 pl-3">
-            <label class="form-label" for="class">ชั้นเรียน :</label>
-        </div>
-        <input type="text" id="class" name="class" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="" />*@
-                                    <div class="btn btn-success mt-3 pt-2" onclick="AJ_Calendar_Save();" style="width:290px;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>
-                                </form>
-
-                            </div>
+                            <span class="pointer-event" onclick="hideModal_fast();">
+                                <i class="fa fa-times"></i>
+                            </span>
                         </div>
-
-
                     </div>
-
+                    <div class="card-body p-3 pt-1">
+                        <form id="PA_Form" class="flex-column">
+                            <div class="d-inline-flex floating-label-group m-0">
+                                <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color:#099882;width:95px;border-radius:10px 0px 0px 10px;">
+                                    <label class="form-label" for="Day_">วัน :</label>
+                                </div>
+                                <input type="text" id="Day_" name="Day_" class="form-control form-control-lg font-14" style="width:195px" value="" />
+                                <label class="chevron-label"><span class="chevron right"></span></label>
+                            </div>
+                            <div class="d-inline-flex floating-label-group m-0">
+                                <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
+                                    <label class="form-label" for="Period">คาบเรียน :</label>
+                                </div>
+                                <input type="text" id="Period" name="Period" class="form-control form-control-lg font-14" style="width: 195px" value="" />
+                                <label class="chevron-label"><span class="chevron right"></span></label>
+                            </div>
+                            <div class="d-inline-flex floating-label-group m-0">
+                                <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
+                                    <label class="form-label" for="Lecturer">ครูผู้สอน :</label>
+                                </div>
+                                <input type="text" id="Lecturer" name="Lecturer" class="form-control form-control-lg font-14" style="width: 195px" value="@ViewBag.Fullname" />
+                                <label class="chevron-label"><span class="chevron right"></span></label>
+                            </div>
+                            <div class="d-inline-flex floating-label-group m-0">
+                                <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color:#099882;width:95px;border-radius:10px 0px 0px 10px;">
+                                    <label class="form-label" for="SubjectCode">รหัสรายวิชา :</label>
+                                </div>
+                                <input type="text" id="SubjectCode" name="SubjectCode" autocomplete="off" class="form-control form-control-lg font-14" style="width:195px" value="" />
+                                <input type="text" id="School_Id_" name="School_Id_" hidden class="form-control form-control-lg font-14" style="width:195px" value="" />
+                                <label class="chevron-label"><span class="chevron right"></span></label>
+                            </div>
+                            <div class="d-inline-flex floating-label-group m-0">
+                                <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
+                                    <label class="form-label" for="SubjectName">ชื่อรายวิชา :</label>
+                                </div>
+                                <input type="text" id="SubjectName" name="SubjectName" class="form-control form-control-lg font-14" style="width: 195px" disabled value="" />
+                                <input type="text" id="SubjectId" name="SubjectId" hidden class="form-control form-control-lg font-14" style="width: 195px" disabled value="" />
+                                <label class="chevron-label"><span class="chevron right"></span></label>
+                            </div>
+                            <div class="d-inline-flex floating-label-group m-0">
+                                <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
+                                    <label class="form-label" for="Room">ห้องเรียน :</label>
+                                </div>
+                                <input type="text" id="Room" name="Room" class="form-control form-control-lg font-14" style="width: 195px" value="" />
+                                <label class="chevron-label"><span class="chevron right"></span></label>
+                            </div>
+                            <div class="d-inline-flex floating-label-group m-0">
+                                <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
+                                    <label class="form-label" for="Class">ชั้นเรียน :</label>
+                                </div>
+                                <input type="text" id="Class" name="Class" class="form-control form-control-lg font-14" style="width: 195px" value="" />
+                                <label class="chevron-label"><span class="chevron right"></span></label>
+                                <input type="hidden" id="blockNum" name="blockNum" value="" />
+                            </div>
+                            <div class="btn btn-success mt-3 pt-2" onclick="AJ_Calendar_Save();" style="width:290px;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
 
 
-        @section Scripts {
+@section Scripts {
 
-            <script>
-                $(window).on("load", function () {
-                    setTimeout(fad_out, 500);
-                });
+    <script>
+        $(window).on("load", function () {
+            setTimeout(fad_out, 500);
+        });
 
-                function fad_out() {
-                    $(".loader-wrapper").fadeOut("slow");
-                }
-                function hideModal() {
-                    $(".loader-wrapper2").fadeOut("slow");
-                }
-                function hideModal_fast() {
-                    $(".loader-wrapper2").fadeOut("fast");
-                }
-                function showModal() {
-                    $(".loader-wrapper").fadeIn("slow");
-                    $(".loader-wrapper").fadeOut("slow");
-                }
-                function showModal_Calendar(period_, this_id) {
-                    // $('.formName').val("");
-                    //$('.Level').val("");
-                    //alert(this_id);
-                    const dayText = ["", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-                    var id = "#SubjectCode_" + this_id;
-                    var subjectCode = ($("#SubjectCode_" + this_id).html());
-                    var subjectName = ($("#SubjectName_" + this_id).html());
-                    var className = ($("#ClasstName_" + this_id).html());
-                    var Day_ = ($("#Day_" + this_id).html());
-                    var this_dayText = dayText[Number(Day_)];
-                    //alert(this_dayText);
-                    //alert(Day_);
-                    var RoomName = ($("#RoomName_" + this_id).html());
-                    //alert(RoomName);
-                    var RoomId = ($("#RoomId_" + this_id).html());
-                    //alert(Day_);
-                    document.getElementById("PA_Form").reset();
-                    $("#Day_").val(this_dayText);
-                    $("#Period").val(period_);
-                    $("#SubjectCode").val(subjectCode);
-                    $("#SubjectName").val(subjectName);
-                    $("#Room").val(RoomName);
-                    $("#Class").val(className);
+        function fad_out() {
+            $(".loader-wrapper").fadeOut("slow");
+        }
+        function hideModal() {
+            $(".loader-wrapper2").fadeOut("slow");
+        }
+        function hideModal_fast() {
+            $(".loader-wrapper2").fadeOut("fast");
+        }
+        function showModal() {
+            $(".loader-wrapper").fadeIn("slow");
+            $(".loader-wrapper").fadeOut("slow");
+        }
+        function showModal_Calendar(period_, this_id) {
+            // $('.formName').val("");
+            //$('.Level').val("");
+            //alert(this_id);
+            const dayText = ["", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            var id = "#SubjectCode_" + this_id;
+            var subjectCode = ($("#SubjectCode_" + this_id).html());
+            var subjectName = ($("#SubjectName_" + this_id).html());
+            var className = ($("#ClasstName_" + this_id).html());
+            var Day_ = ($("#Day_" + this_id).html());
+            var this_dayText = dayText[Number(Day_)];
+            //alert(this_dayText);
+            //alert(Day_);
+            var RoomName = ($("#RoomName_" + this_id).html());
+            //alert(RoomName);
+            var RoomId = ($("#RoomId_" + this_id).html());
+            //alert(Day_);
+            document.getElementById("PA_Form").reset();
+            $("#Day_").val(this_dayText);
+            $("#Period").val(period_);
+            $("#SubjectCode").val(subjectCode);
+            $("#SubjectName").val(subjectName);
+            $("#Room").val(RoomName);
+            $("#Class").val(className);
+            $("#blockNum").val(this_id);
+            $(".loader-wrapper2").css('display', 'flex');
+            $(".loader-wrapper2").fadeIn(2000);
 
-                    $(".loader-wrapper2").css('display', 'flex');
-                    $(".loader-wrapper2").fadeIn(2000);
+            //$(".loader-wrapper2").css('display', 'flex');
+            //$(".loader-wrapper2").fadeIn(2000);
+            ////$(".loader-wrapper").fadeOut("slow");
+        }
 
-                    //$(".loader-wrapper2").css('display', 'flex');
-                    //$(".loader-wrapper2").fadeIn(2000);
-                    ////$(".loader-wrapper").fadeOut("slow");
-                }
-
-            </script>
-            <script type="text/javascript">
-                $('.active_').removeClass('active_');
-                $('.a-EvaluatePA').addClass('active_');
-                $('.a-EvaluatePA').removeClass('text-dark');
-            </script>
-            <script>
+    </script>
+    <script type="text/javascript">
+        $('.active_').removeClass('active_');
+        $('.a-EvaluatePA').addClass('active_');
+        $('.a-EvaluatePA').removeClass('text-dark');
+    </script>
+    <script>
 
                 function AJ_Calendar_Save_() {
 
                     alert("Update");
                 }
                 function AJ_Calendar_Save() {
-                    //return false;
-                    alert("Update");
-                    //let Summary = $('#SubjectCode').val(),
-                    //    Description = $('#SubjectName').val();
-                    //    //LastName = $('#LastName').val(),
-                    //    //position = $('#position').val(),
-                    //    //school = $('#school').val(),
-                    //    //CDate = $('#CDate').val(),
-                    //    //memberOf = $('#memberOf').val(),
-                    //    //salaryLevel = $('#salaryLevel').val(),
-                    //    //salaryRate = $('#salaryRate').val(),
-                    //    //classroomType = $('#classroomType').val();
-                    //alert(Summary);
-                    //return false;
 
-                    //var param = "Prefix=" + Prefix + "&FirstName=" + FirstName
+                    let this_id_ = $('#blockNum').val();
+                    let eid = $("#EventID_" + this_id_).html();
+                    //alert(eid);
+
+                    let Summary = $('#SubjectCode').val();
+                    let SubjectName = $("#SubjectName").val();
+                    var PTime_Begin = $("#PTime_Begin_" + this_id_).html();
+                    var PTime_End = $("#PTime_End_" + this_id_).html();
+
+                    let uid = '@Context.Session.GetString("userId")';
+                    //alert(uid);
+                    var Location_Id = $("#Room_Id_" + this_id_).html();
+                    //alert(Location_Id);
+                    //var Subject_Id = $("#Subject_Id_" + this_id_).html();
+                    var Subject_Id = $("#SubjectId").val();
+                    alert(Subject_Id);
+                    var SubSchool_Id = $("#SubSchool_Id_" + this_id_).html();
+                    //alert(SubSchool_Id);
+
+                    //$("#School_Id_" + this_id_).html();
+                    var School_Id = $('#School_Id_').val();
+                    //alert(School_Id);
+
+                    var today = new Date();
+                    var dd = String(today.getDate()).padStart(2, '0');
+                    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                    var yyyy = today.getFullYear();
+
+                    today = yyyy + '-' + mm + '-' + dd;
+                    var BDate = today + ' ' + PTime_Begin.replace('.', ':') + ':00';
+                    var EDate = today + ' ' + PTime_End.replace('.', ':') + ':00';
+
+                    //alert(PTime_Begin);
+                    //alert(PTime_End);
+                    let StartDate = '@ViewBag.StartDate';
+                    let StartTime = '@ViewBag.StartTime';
+                    //alert(StartDate + " " + StartTime);
+                    //alert("Update");
+
+                    let Day_ = $("#Day_").val();
+                    let Period = $("#Period").val();
+                    let Room = $("#Room").val();
+                    let Class = $("#Class").val();
+                    //alert(Summary);
+                    //alert(Day_);
+                    //alert(Period);
+                    //alert(SubjectName);
+                    //alert(Room);
+                    //alert(Class);
+                    //return false;
+                    //[Summary],[Description],[BDate],[EDate],[Location_Id],[RRULE],[RR_FREQ],[RR_UNTIL],[RR_INTERVAL]
+                    //, [RR_COUNT], [RR_BYDAY], [RR_BYWEEKNO], [RR_BYMONTH], [RR_BYMONTHDAY], [RR_BYYEARDAY], [RR_BYSETPOS]
+                    //, [RR_WKST], [User_Id], [Subject_Id], [SubSchool_Id], [School_Id], [CDate], [OpenDate], [CloseDate]
+                    //, [DDate], [Parent_Event_Id], [Event_Status], [Event_Type], [Event_SubType], [Unit_Id], [UnitName]
+
+                    var param = "Summary=" + Summary + "&Description=" + SubjectName
+                        + "&BDate=" + BDate + "&EDate=" + EDate
+                        + "&Location_Id=" + Location_Id + "&Event_Id=" + eid
+                        + "&User_Id=" + uid + "&Subject_Id=" + Subject_Id
+                        + "&SubSchool_Id=" + SubSchool_Id + "&School_Id=" + School_Id
+                        + "&Unit_Id=" + '0' + "&UnitName=" + ''
+                        + "&RR_FREQ=" + "WEEKLY" + "&RR_BYDAY=" + Day_.substring(0, 2).toUpperCase();
+                    //alert(param);
+                        //+ "BDate=" + BDate + "&EDate=" + EDate
+                        //+ "BDate=" + BDate + "&EDate=" + EDate
+
                     //    + "&LastName=" + LastName + "&position=" + position + "&school_id=" + school + "&CDate=" + CDate
                     //    + "&memberOf=" + memberOf + "&salaryLevel=" + salaryLevel
                     //    + "&salaryRate=" + salaryRate + "&classroomType=" + classroomType + "&user_Id=" + user_Id
                     //    + "&submit=yes";
                     ////alert(param);
 
-                    //$.ajax({
+                    $.ajax({
 
-                    //    type: 'GET',
-                    //    url: '/Home/UpdateUser_AJ?' + param,
-                    //    success: function (result) {
-                    //        hideModal_Info();
-                    //        window.location.assign("/Home/Main?user_Id=" + user_Id);
+                        type: 'GET',
+                        url: '/EvaluatePA/UpdateEvent_AJ?' + param,
+                        success: function (result) {
+                            hideModal('myModal');
+                            window.location.assign("/EvaluatePA/Calendar?user_Id=" + user_Id);
 
-                    //    }
-                    //});
+                       }
+                    });
                 }
 
-                function Delete_PA(id, Name) {
-                    //alert("Delete PA : " + id + "-" + Name + " ?");
-                    var param = "PA_Name=" + Name + "&Id=" + id
-                        + "&submit=yes";
-                    if (confirm("Delete PA : " + id + "-" + Name + " ?")) {
-                        // Save it!
-                        //console.log('Thing was saved to the database.');
 
-                        $.ajax({
 
-                            type: 'GET',
-                            url: '/EvaluatePA/DeleteForm_AJ?' + param,
-                            success: function (result) {
-                                //hideModal_Info();
-                                location.reload();
-                                //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+                
+    </script>
+    <script>
 
-                            }
+        function autocompleteV2(inp, sbj_arr) {
+            //alert(sbj_arr[0].value);
+            /*the autocomplete function takes two arguments,
+            the text field element and an array of possible autocompleted values:*/
+            var currentFocus;
+            inp.addEventListener("click", function (e) {
+                var a, b, i, val = this.value;
+                /*close any already open lists of autocompleted values*/
+                closeAllLists();
+                //if (!val) { return false;}
+                currentFocus = -1;
+                /*create a DIV element that will contain the items (values):*/
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-list");
+                a.setAttribute("class", "autocomplete-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                this.parentNode.appendChild(a);
+                /*for each item in the array...*/
+                for (i = 0; i < sbj_arr.length; i++) {
+                    /*check if the item starts with the same letters as the text field value:*/
+                    //alert(sbj_arr.length);
+                    if (true == true) {
+                        /*create a DIV element for each matching element:*/
+                        b = document.createElement("DIV");
+                        /*make the matching letters bold:*/
+                        b.innerHTML = "<strong>" + sbj_arr[i][3].substr(0, val.length) + "</strong>";
+                        b.innerHTML += sbj_arr[i][3].substr(val.length);
+                        var ext = sbj_arr[i][1];
+                        if (sbj_arr[i][1].length > 30) {
+                            ext = sbj_arr[i][1].substr(0, 30) + " ... ";
+                        }
+
+                        b.innerHTML += " : <small>" + ext + "</small>";
+
+                        /*insert a input field that will hold the current array item's value:*/
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][0] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][1] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][2] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][3] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][4] + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].Mobile_num + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_HH + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_H + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_L + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_LL + "'>";
+                        /*execute a function when someone clicks on the item value (DIV element):*/
+                        b.addEventListener("click", function (e) {
+                            /*insert the value for the autocomplete text field:*/
+                            //alert(inp.value);
+                            inp.value = this.getElementsByTagName("input")[3].value;
+                            //alert(document.getElementById("SubjectName").value);
+                            //alert(this.getElementsByTagName("input")[4].value);
+                            document.getElementById("SubjectId").value = this.getElementsByTagName("input")[0].value;
+                            document.getElementById("SubjectName").value = this.getElementsByTagName("input")[1].value;
+                            document.getElementById("School_Id_").value = this.getElementsByTagName("input")[4].value;
+                            //alert(this.getElementsByTagName("input")[1].value);
+                            //document.getElementById("Factory_MobileNum").value = this.getElementsByTagName("input")[1].value;
+                            //document.getElementById("Factory_HH").value = this.getElementsByTagName("input")[2].value;
+                            //document.getElementById("Factory_H").value = this.getElementsByTagName("input")[3].value;
+                            //document.getElementById("Factory_L").value = this.getElementsByTagName("input")[4].value;
+                            //document.getElementById("Factory_LL").value = this.getElementsByTagName("input")[5].value;
+                            /*close the list of autocompleted values,
+                            (or any other open lists of autocompleted values:*/
+                            closeAllLists();
                         });
-
-                    } else {
-                        // Do nothing!
-
-                        //console.log('Thing was not saved to the database.');
+                        a.appendChild(b);
                     }
-
                 }
-                function Edit_PA(id, Name) {
-                    //alert("");
-
-                    //let user_Id = Id;
-                    //let PA_Name = Name;
-                    var param = "PA_Name=" + Name + "&Id=" + id
-                        + "&submit=yes";
-                    //alert(param);
-                    window.location.assign("/EvaluatePA/PA_Add?" + param);
-                    //$.ajax({
-
-                    //    type: 'GET',
-                    //    url: '/EvaluatePA/EditForm_AJ?' + param,
-                    //    success: function (result) {
-                    //        //hideModal_Info();
-                    //        //location.reload();
-                    //        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
-
-                    //    }
-                    //});
-                    //hideModal();
-
+            });
+            /*execute a function when someone writes in the text field:*/
+            inp.addEventListener("input", function (e) {
+                var a, b, i, val = this.value;
+                /*close any already open lists of autocompleted values*/
+                closeAllLists();
+                if (!val) { return false; }
+                currentFocus = -1;
+                /*create a DIV element that will contain the items (values):*/
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-list");
+                a.setAttribute("class", "autocomplete-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                this.parentNode.appendChild(a);
+                /*for each item in the array...*/
+                for (i = 0; i < sbj_arr.length; i++) {
+                    /*check if the item starts with the same letters as the text field value:*/
+                    if (sbj_arr[i][3].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                        /*create a DIV element for each matching element:*/
+                        b = document.createElement("DIV");
+                        /*make the matching letters bold:*/
+                        b.innerHTML = "<strong>" + sbj_arr[i][3].substr(0, val.length) + "</strong>";
+                        b.innerHTML += sbj_arr[i][3].substr(val.length);
+                        b.innerHTML += " : " + sbj_arr[i][1];
+                        /*insert a input field that will hold the current array item's value:*/
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][0] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][1] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][2] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][3] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][4] + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].Serial_Num + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].Mobile_num + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_HH + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_H + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_L + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_LL + "'>";
+                        /*execute a function when someone clicks on the item value (DIV element):*/
+                        b.addEventListener("click", function (e) {
+                            /*insert the value for the autocomplete text field:*/
+                            inp.value = this.getElementsByTagName("input")[3].value;
+                            //alert("");
+                            document.getElementById("SubjectId").value = this.getElementsByTagName("input")[0].value;
+                            document.getElementById("SubjectName").value = this.getElementsByTagName("input")[1].value;
+                            document.getElementById("School_Id_").value = this.getElementsByTagName("input")[4].value;
+                            //alert(this.getElementsByTagName("input")[1].value);
+                            ////document.getElementById("Factory_MobileNum").value = this.getElementsByTagName("input")[1].value;
+                            ////document.getElementById("Factory_HH").value = this.getElementsByTagName("input")[2].value;
+                            ////document.getElementById("Factory_H").value = this.getElementsByTagName("input")[3].value;
+                            ////document.getElementById("Factory_L").value = this.getElementsByTagName("input")[4].value;
+                            ////document.getElementById("Factory_LL").value = this.getElementsByTagName("input")[5].value;
+                            /*close the list of autocompleted values,
+                            (or any other open lists of autocompleted values:*/
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                    }
                 }
-                function View_PA(id, Name) {
-                    //alert("");
-
-                    //let user_Id = Id;
-                    //let PA_Name = Name;
-                    var param = "PA_Name=" + Name + "&Id=" + id
-                        + "&submit=yes";
-                    //alert(param);
-                    window.location.assign("/EvaluatePA/PA_View?" + param);
-                    //$.ajax({
-
-                    //    type: 'GET',
-                    //    url: '/EvaluatePA/EditForm_AJ?' + param,
-                    //    success: function (result) {
-                    //        //hideModal_Info();
-                    //        //location.reload();
-                    //        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
-
-                    //    }
-                    //});
-                    //hideModal();
-
+            });
+            /*execute a function presses a key on the keyboard:*/
+            inp.addEventListener("keydown", function (e) {
+                var x = document.getElementById(this.id + "autocomplete-list");
+                if (x) x = x.getElementsByTagName("div");
+                if (e.keyCode == 40) {
+                    /*If the arrow DOWN key is pressed,
+                    increase the currentFocus variable:*/
+                    currentFocus++;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 38) { //up
+                    /*If the arrow UP key is pressed,
+                    decrease the currentFocus variable:*/
+                    currentFocus--;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 13) {
+                    /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                    e.preventDefault();
+                    if (currentFocus > -1) {
+                        /*and simulate a click on the "active" item:*/
+                        if (x) x[currentFocus].click();
+                    }
                 }
-                //function AJ_Calendar_Save() {
-                //    let user_Id = $('#userId').val();
-                //    let PA_Name = $('#formName').val();
-                //    var param = "PA_Name=" + PA_Name + "&user_Id=" + user_Id
-                //        + "&submit=yes";
-                //    //alert(param);
-
-                //    $.ajax({
-
-                //        type: 'GET',
-                //        url: '/EvaluatePA/NewForm_AJ?' + param,
-                //        success: function (result) {
-                //            //hideModal_Info();
-                //            location.reload();
-                //            //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
-
-                //        }
-                //    });
-                //    hideModal();
-                //}
-            </script>
-
-
+            });
+            function addActive(x) {
+                /*a function to classify an item as "active":*/
+                if (!x) return false;
+                /*start by removing the "active" class on all items:*/
+                removeActive(x);
+                if (currentFocus >= x.length) currentFocus = 0;
+                if (currentFocus < 0) currentFocus = (x.length - 1);
+                /*add class "autocomplete-active":*/
+                x[currentFocus].classList.add("autocomplete-active");
+            }
+            function removeActive(x) {
+                /*a function to remove the "active" class from all autocomplete items:*/
+                for (var i = 0; i < x.length; i++) {
+                    x[i].classList.remove("autocomplete-active");
+                }
+            }
+            function closeAllLists(elmnt) {
+                /*close all autocomplete lists in the document,
+                except the one passed as an argument:*/
+                var x = document.getElementsByClassName("autocomplete-items");
+                for (var i = 0; i < x.length; i++) {
+                    if (elmnt != x[i] && elmnt != inp) {
+                        x[i].parentNode.removeChild(x[i]);
+                    }
+                }
+            }
+            /*execute a function when someone clicks in the document:*/
+            document.addEventListener("click", function (e) {
+                closeAllLists(e.target);
+            });
         }
+
+        //alert("");
+        //var School_arr = [[ "300001", "โรงเรียนน้ำยืนวิทยา", "อุบลราชธานี" ]];
+        var School_arr = @Html.Raw(ViewBag.School);
+        //alert(School_arr[0][0]);
+    var Subject_arr = @Html.Raw(ViewBag.Subject);
+    var Location_arr =  @Html.Raw(ViewBag.Location);
+    var Class_arr =  @Html.Raw(ViewBag.Class);
+        autocompleteV2(document.getElementById("SubjectCode"), Subject_arr);
+        
+        //alert("");
+    </script>
+
+
+}
