@@ -94,7 +94,7 @@
                                 <a class="nav-link text-dark keep-padding-left a-Manage" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="EvaluatePA" asp-action="EvaluatePA_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i>จัดการผู้เรียน</a>
                             </li>
                             <li class="nav-item box-shadow keep-margin-left text-nowrap">
-                                <a class="nav-link text-dark keep-padding-left a-Video" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="Video" asp-action="Index"><i class="fa fa-film fa-fw w3-margin-right w3-text-theme"></i>จัดการไฟล์วิดีโอ</a>
+                                <a class="nav-link text-dark keep-padding-left a-Video" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="Video" asp-action="Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-film fa-fw w3-margin-right w3-text-theme"></i>จัดการไฟล์วิดีโอ</a>
                             </li>
                         </ul>
                     </div>

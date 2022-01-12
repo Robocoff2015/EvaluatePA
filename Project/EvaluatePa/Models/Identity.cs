@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EvaluatePa.Controllers
 {
-    public class Identity
+       public class Identity
     {
         //object School;
         //Object Lecturer;
@@ -19,8 +19,10 @@ namespace EvaluatePa.Controllers
     }
 
     public class School : Identity
-    { 
-            
+    {
+        public string CreatedDate { get; set; }
+        public int OwnerId { get; set; }
+
     }
     //public class Lecturer : Identity
     //{

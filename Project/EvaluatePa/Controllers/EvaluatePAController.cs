@@ -141,6 +141,10 @@ namespace EvaluatePa.Controllers
 
         public IActionResult Calendar(string user_id, string dateTime, string mode)
         {
+            if (user_id == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             ViewBag.mgSection = "Calendar";  // "School";// mgSection;
             if (mode == null)
             {
@@ -150,10 +154,20 @@ namespace EvaluatePa.Controllers
             string userId = HttpContext.Session.GetString("userId");
             //HttpContext.Session.SetString("userId", user_id);
             DateTime dt = DateTime.Now;
+            if (dateTime == null)
+            {
+            }
+            else {
+                dt = Convert.ToDateTime(dateTime);
+            
+            }
+
+
+            
             int today_ = (int)dt.DayOfWeek;
             ViewBag.Today = today_;
-            ViewBag.StartDate = DateTime.Now.AddDays(-1 * today_).ToString("dd-MMM-yyyy");
-            ViewBag.EndDate = DateTime.Now.AddDays(7 - today_ - 1).ToString("dd-MMM-yyyy");
+            ViewBag.StartDate = dt.AddDays(-1 * today_).ToString("dd-MMM-yyyy");
+            ViewBag.EndDate = dt.AddDays(7 - today_ - 1).ToString("dd-MMM-yyyy");
             ViewBag.ThisDate = DateTime.Now.AddDays(0).ToString("dd-MMM-yyyy");
             ViewBag.StartTime = "08:20:00.000";
             ViewBag.PeriodTime = 50;
@@ -171,12 +185,12 @@ namespace EvaluatePa.Controllers
             ViewBag.Class = getClass_array();
 
 
-            if (userId != null)
+            if (user_id != null)
             {
-                List<CalendarInfo> calendarInfo_ = getCalendarInfo(userId, dateTime);
-                return View(calendarInfo_);
+                List<CalendarInfo> calendarInfo_ = getCalendarInfo(user_id, dateTime);
+                return View("Calendar",calendarInfo_);
             }
-            return View(getCalendarInfo(user_id, dateTime));
+            return View("Calendar", getCalendarInfo(userId, dateTime));
         }
 
 
@@ -290,8 +304,8 @@ namespace EvaluatePa.Controllers
             String EndDate = DateTime.Now.AddDays(7 - today_ - 1).ToString("yyyy-MM-dd");
             String ThisDate = DateTime.Now.AddDays(0).ToString("yyyy-MM-dd");
             //
-            sqlString += " SELECT [Event_Id],[Summary],a.[Description],[BDate],[EDate],[Location_Id],[RRULE],[RR_FREQ],[RR_UNTIL],[RR_INTERVAL],[RR_COUNT],[RR_BYDAY],[RR_BYWEEKNO],[RR_BYMONTH],[RR_BYMONTHDAY],[RR_BYYEARDAY],[RR_BYSETPOS],[RR_WKST],[User_Id],[Subject_Id],[SubSchool_Id],a.[School_Id],b.[Name],b.[province],c.[Name],d.[Name],d.[Level]";
-            sqlString += " FROM [devpa].[dbo].[PA_Event] as a left join PA_School as b on a.School_Id = b.School_Id left join PA_School_Room as c on a.Location_Id = c.Room_Id left join PA_Subject as d on a.Subject_Id = d.Id";
+            sqlString += " SELECT [Event_Id],[Summary],a.[Description],[BDate],[EDate],[Location_Id],[RRULE],[RR_FREQ],[RR_UNTIL],[RR_INTERVAL],[RR_COUNT],[RR_BYDAY],[RR_BYWEEKNO],[RR_BYMONTH],[RR_BYMONTHDAY],[RR_BYYEARDAY],[RR_BYSETPOS],[RR_WKST],[User_Id],[Subject_Id],[SubSchool_Id],a.[School_Id],b.[Name],b.[province],c.[Name],d.[Name],d.[Level],a.[UnitName]";
+            sqlString += " FROM [devpa].[dbo].[PA_Event] as a left join [devpa].[dbo].PA_School as b on a.School_Id = b.School_Id left join [devpa].[dbo].PA_School_Room as c on a.Location_Id = c.Room_Id left join [devpa].[dbo].PA_Subject as d on a.Subject_Id = d.Id";
             sqlString += " where User_Id = " + uid + " and a.BDate > '" + StartDate + " 00:00:00.000' and a.BDate < '" + EndDate + " 23:59:59.000'";
             Microsoft.Data.SqlClient.SqlDataAdapter da = new SqlDataAdapter(sqlString, connectionString);
             da.Fill(dt);
@@ -329,6 +343,7 @@ namespace EvaluatePa.Controllers
                     calendarInfo_item.Location_Name = dt.Rows[i].ItemArray[24].ToString();
                     calendarInfo_item.Subject_Name = dt.Rows[i].ItemArray[25].ToString();
                     calendarInfo_item.Subject_Level = dt.Rows[i].ItemArray[26].ToString();
+                    calendarInfo_item.UnitName = dt.Rows[i].ItemArray[27].ToString();
                     Calendar_Info_.Add(calendarInfo_item);
                 }
             }
@@ -624,8 +639,8 @@ namespace EvaluatePa.Controllers
                 sqlString += " ,[Event_Status] = 100";
                 sqlString += " ,[Event_Type] = Null";
                 sqlString += " ,[Event_SubType] = Null";
-                sqlString += " ,[Unit_Id] = Null";
-                sqlString += " ,[UnitName] = '" + "" + "'";
+                sqlString += " ,[Unit_Id] = " + Unit_Id;
+                sqlString += " ,[UnitName] = '" + UnitName+ "'";
                 sqlString += " WHERE [Event_Id] = " + Event_Id;
 
                 if (Event_Id == "-1")
@@ -638,7 +653,7 @@ namespace EvaluatePa.Controllers
                     sqlString += "'" + Summary + "','" + Description + "','" + BDate + "','" + EDate + "'," + Location_Id + ",'" + "Y" + "','" + RR_FREQ + "','" +
                     "" + "','" + "" + "','" + "" + "','" + RR_BYDAY + "','" + "" + "','" + "" + "','" + "" + "','" +
                     "" + "','" + "" + "','" + "" + "'," + User_Id + "," + Subject_Id + "," + SubSchool_Id + "," + School_Id + ",'" + dftDate + "','" +
-                    dftDate + "','" + dftDate + "','" + dftDate + "'," + "-1" + "," + "100" + "," + "-1" + "," + "-1" + "," + "-1" + ",'" + "" + "'" + ")";
+                    dftDate + "','" + dftDate + "','" + dftDate + "'," + "-1" + "," + "100" + "," + "-1" + "," + "-1" + "," + Unit_Id + ",'" + UnitName + "'" + ")";
 
                 }
                 
@@ -870,7 +885,7 @@ namespace EvaluatePa.Controllers
             connection.Open();
             System.Data.DataTable dt = new DataTable();
             String sqlString = null;
-            sqlString += " SELECT [Id],[Name],[Level],[SubjectCode],[School_Id] FROM [" + dbName + "].[dbo].[PA_Subject]";
+            sqlString += " SELECT [Id],[Name],[Level],[SubjectCode],[School_Id] FROM [" + dbName + "].[dbo].[PA_Subject] order by [SubjectCode]";
 
             Microsoft.Data.SqlClient.SqlDataAdapter da = new Microsoft.Data.SqlClient.SqlDataAdapter(sqlString, connectionString);
             da.Fill(dt);

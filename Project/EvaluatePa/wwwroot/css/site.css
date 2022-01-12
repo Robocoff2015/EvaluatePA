@@ -331,9 +331,9 @@ border:none;
     height: 28px;
     text-align:center;
 }
-
+/**************************************/
 /*the container must be positioned relative:*/
-.autocomplete {
+.autocomplete, .autocomplete-class, .autocomplete-room {
     position: relative;
     display: inline-block;
 }
@@ -364,8 +364,8 @@ input {
         cursor: pointer;
     }
 
-.autocomplete-items {
-    font-size:14px;
+.autocomplete-items, .autocomplete-class-items, .autocomplete-room-items {
+    font-size: 14px;
     position: absolute;
     border: 1px solid #d4d4d4;
     border-bottom: none;
@@ -379,23 +379,23 @@ input {
     overflow: auto; /* to get scroll */
 }
 
-    .autocomplete-items div {
+    .autocomplete-items div, .autocomplete-class-items div, .autocomplete-room-items div {
         padding: 10px;
         cursor: pointer;
         background-color: #fff;
         border-bottom: 1px solid #d4d4d4;
         color: black;
-        align-items:center;
+        align-items: center;
         max-height: 40px;
     }
 
         /*when hovering an item:*/
-        .autocomplete-items div:hover {
+        .autocomplete-items div:hover, .autocomplete-class-items div:hover, .autocomplete-room-items div:hover {
             background-color: #e9e9e9;
         }
 
 /*when navigating through the items using the arrow keys:*/
-.autocomplete-active {
+.autocomplete-active, .autocomplete-class-active, .autocomplete-room-active {
     background-color: DodgerBlue !important;
     color: #ffffff;
 }
@@ -403,7 +403,7 @@ input {
 
 .flex-container {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 ._autocomplete-items {
@@ -442,6 +442,9 @@ input {
     color: #ffffff;
 }
 
+
+/**************************************/
+
 .font-14 {
     font-size: 14px;
 }
@@ -451,30 +454,32 @@ input {
 }
 
 /**/
-.tooltip {
+
+.tooltips {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black;
+/*    border-bottom: 1px dotted black;*/
 }
 
-    .tooltip .tooltiptext {
-        visibility: hidden;
-        width: 120px;
-        background-color: black;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px 0;
-        /* Position the tooltip */
-        position: absolute;
-        z-index: 1;
-    }
+.tooltips .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(187, 187, 187,1.0);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
 
-    .tooltip:hover .tooltiptext {
-        visibility: visible;
-    }
+.tooltips:hover .tooltiptext {
+    visibility: visible;
+}
+
+
 /**/
-
 p.normal {
     font-weight: normal;
 }

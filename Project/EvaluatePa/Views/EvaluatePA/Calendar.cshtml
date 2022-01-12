@@ -39,6 +39,9 @@
 
         /**/
 
+
+
+
     </style>
 }
 <div class="container">
@@ -71,10 +74,12 @@
                                     <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1" onclick="location.href = '@Url.Action("Management_Index","EvaluatePA", new { user_id=@id_,mgSection="Calendar"})';" style="width:29px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;"><i class="fa fa-plus"></i></div>
                                     @*<p><i class="fa fa-file fa-fw w3-margin-right w3-text-theme"></i>แบบฟอร์มพัฒนางาน (PA)</p>*@
                                 </div>
-                                <div class="la">
-                                    <div class="btn btn-outline-secondary btn-x p-0 pt-1 text-center pl-3 pr-3" onclick="location.href = '@Url.Action("Management_Index","EvaluatePA", new { user_id=@id_,mgSection="Calendar"})';" style="min-width:60px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;border-radius:14px">
+                                <div class="la d-flex justify-content-between">
+                                    <div class="btn rounded-circle btn-outline-secondary btn-x p-0" onclick="AJ_Calendar_Prev();" style="width:29px;height:29px;font-size:1.15rem;font-weight:bold;border-color:#ffffff;"><i class='fa fa-angle-left'></i></div>
+                                    <div class="p-0 pt-1 text-center pl-3 pr-3 mr-2 ml-2 disabled bg-light" onclick="location.href = '';" style="min-width:60px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;border-radius:14px">
                                         @ViewBag.StartDate - @ViewBag.EndDate
                                     </div>
+                                    <div class="btn rounded-circle btn-outline-secondary btn-x p-0" onclick="AJ_Calendar_Next();" style="width:29px;height:29px;font-size:1.15rem;font-weight:bold;border-color:#ffffff;"><i class='fa fa-angle-right m-0'></i></div>
                                 </div>
                                 <div class="float-right">
                                     <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1" onclick="location.href = '@Url.Action("Management_Index","EvaluatePA", new { user_id=@id_,mgSection="Calendar"})';" style="width:29px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;">W</div>
@@ -370,51 +375,58 @@
                                                                         var found = 0;
                                                                         foreach (var item in Model)
                                                                         {
-                                                                            string[] day_week = new String[] { "SU", "MO", "TU", "WE", "TH", "FR", "SA" };
+                                                                            string[] day_week = new String[] {"", "SU", "MO", "TU", "WE", "TH", "FR", "SA" };
                                                                             var date_ = Convert.ToDateTime(ViewBag.StartDate).AddDays(d - 1).ToString("yyyy-MM-dd");
-                                                                            if ((item.BDate.Substring(11, 5) == PTime_Begin && @item.BDate.Substring(0, 10) == date_) ||
-                                                                                            (item.RR_BYDAY.ToUpper() == day_week[d]))
+
+
+                                                                            //if ((item.BDate.Substring(11, 5) == PTime_Begin && @item.BDate.Substring(0, 10) == date_) &&
+                                                                            //                (item.RR_BYDAY.ToUpper() == day_week[d]))
+
+                                                                            if ((item.BDate.Substring(11, 5) == PTime_Begin ) && (item.RR_BYDAY.ToUpper() == day_week[d]))
                                                                             {
                                                                                 //txt1 = @item.Summary;
                                                                                 //txt2 = @item.Location_Name;
                                                                                 //cls = "event";
                                                                                 found = 1;
-                                                                                <div class="dates_num text-center event">
-                                                                                    <div id="EventID_@i@d" style="display:none">@item.Event_Id</div>
-                                                                                    <div id="Day_@i@d" style="display:none">@d</div>
-                                                                                    <div id="Period_@i@d" style="display:none">@i</div>
-                                                                                    <div id="PTime_Begin_@i@d" style="display:none">@PTime_Begin</div>
-                                                                                    <div id="PTime_End_@i@d" style="display:none">@PTime_End</div>
-                                                                                    <div id="Room_Id_@i@d" style="display:none">@item.Location_Id</div>
-                                                                                    <div id="RoomName_@i@d" style="display:none">@item.Location_Name</div>
-                                                                                    <div id="ClasstName_@i@d" style="display:none">@item.UnitName</div>
-                                                                                    <div id="Subject_Id_@i@d">@item.Subject_Id</div>
-                                                                                    <div id="SubjectCode_@i@d">@item.Summary</div>
-                                                                                    <div id="SubjectName_@i@d">@item.Description</div>
-                                                                                    <div id="SubSchool_Id_@i@d">@item.SubSchool_Id</div>
-                                                                                    <div id="School_Id_@i@d">@item.School_Id</div>
-                                                                                    <div id="Method_@i@d" style="display:none">EDIT</div>
-                                                                                </div>
+                                                                                                                                        <div class="dates_num text-center event">
+                                                                                                                                            <div id="EventID_@i@d" style="display:none">@item.Event_Id</div>
+                                                                                                                                            <div id="Day_@i@d" style="display:none">@d</div>
+                                                                                                                                            <div id="Period_@i@d" style="display:none">@i</div>
+                                                                                                                                            <div id="PTime_Begin_@i@d" style="display:none">@PTime_Begin</div>
+                                                                                                                                            <div id="PTime_End_@i@d" style="display:none">@PTime_End</div>
+                                                                                                                                            <div id="Room_Id_@i@d" style="display:none">@item.Location_Id</div>
+                                                                                                                                            <div id="RoomName_@i@d" style="display:none">@item.Location_Name</div>
+
+                                                                                                                                            <div id="Subject_Id_@i@d" style="display:none">@item.Subject_Id</div>
+                                                                                                                                            <div id="SubjectCode_@i@d">@item.Summary</div>
+                                                                                                                                            <div id="SubjectName_@i@d">@item.Description</div>
+                                                                                                                                            <div id="ClasstName_@i@d">@item.UnitName</div>
+                                                                                                                                            <div id="Class_Id_@i@d" style="display:none">@item.Location_Id</div>
+                                                                                                                                            <div id="SubSchool_Id_@i@d" style="display:none">@item.SubSchool_Id</div>
+                                                                                                                                            <div id="School_Id_@i@d" style="display:none">@item.School_Id</div>
+                                                                                                                                            <div id="Method_@i@d" style="display:none">EDIT</div>
+                                                                                                                                        </div>
                                                                             }
                                                                         }
                                                                         if (found == 0)
                                                                         {
-                                                                            <div class="dates_num text-center">
-                                                                                <div id="EventID_@i@d" style="display:none"></div>
-                                                                                <div id="Day_@i@d" style="display:none">@d</div>
-                                                                                <div id="Period_@i@d" style="display:none">@i</div>
-                                                                                <div id="PTime_Begin_@i@d" style="display:none">@PTime_Begin</div>
-                                                                                <div id="PTime_End_@i@d" style="display:none">@PTime_End</div>
-                                                                                <div id="Room_Id_@i@d" style="display:none"></div>
-                                                                                <div id="RoomName_@i@d" style="display:none"></div>
-                                                                                <div id="ClasstName_@i@d" style="display:none"></div>
-                                                                                <div id="Subject_Id_@i@d"></div>
-                                                                                <div id="SubjectCode_@i@d"></div>
-                                                                                <div id="SubjectName_@i@d"></div>
-                                                                                <div id="SubSchool_Id_@i@d"></div>
-                                                                                <div id="School_Id_@i@d"></div>
-                                                                                <div id="Method_@i@d" style="display:none">NEW</div>
-                                                                            </div>
+                                                                <div class="dates_num text-center">
+                                                                    <div id="EventID_@i@d" style="display:none"></div>
+                                                                    <div id="Day_@i@d" style="display:none">@d</div>
+                                                                    <div id="Period_@i@d" style="display:none">@i</div>
+                                                                    <div id="PTime_Begin_@i@d" style="display:none">@PTime_Begin</div>
+                                                                    <div id="PTime_End_@i@d" style="display:none">@PTime_End</div>
+                                                                    <div id="Room_Id_@i@d" style="display:none"></div>
+                                                                    <div id="RoomName_@i@d" style="display:none"></div>
+
+                                                                    <div id="Subject_Id_@i@d" style="display:none"></div>
+                                                                    <div id="SubjectCode_@i@d"></div>
+                                                                    <div id="SubjectName_@i@d"></div>
+                                                                    <div id="ClasstName_@i@d"></div>
+                                                                    <div id="SubSchool_Id_@i@d" style="display:none"></div>
+                                                                    <div id="School_Id_@i@d" style="display:none"></div>
+                                                                    <div id="Method_@i@d" style="display:none">NEW</div>
+                                                                </div>
                                                                         }
                                                                     }
                                                                 </div>
@@ -561,7 +573,8 @@
                                 <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color:#099882;width:95px;border-radius:10px 0px 0px 10px;">
                                     <label class="form-label" for="Day_">วัน :</label>
                                 </div>
-                                <input type="text" id="Day_" name="Day_" class="form-control form-control-lg font-14" style="width:195px" value="" />
+                                <input type="text" id="Day_thai" name="Day_" class="form-control form-control-lg font-14" style="width:195px" value="" />
+                                <input type="text" id="Day_" hidden name="Day_" class="form-control form-control-lg font-14" style="width:195px" value="" />
                                 <label class="chevron-label"><span class="chevron right"></span></label>
                             </div>
                             <div class="d-inline-flex floating-label-group m-0">
@@ -598,14 +611,16 @@
                                 <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
                                     <label class="form-label" for="Room">ห้องเรียน :</label>
                                 </div>
-                                <input type="text" id="Room" name="Room" class="form-control form-control-lg font-14" style="width: 195px" value="" />
+                                <input type="text" id="Room" name="Room" autocomplete="off" class="form-control form-control-lg font-14" style="width: 195px" value="" />
+                                <input type="text" id="Room_id" name="Room_id" hidden class="form-control form-control-lg font-14" style="width: 195px" value="" />
                                 <label class="chevron-label"><span class="chevron right"></span></label>
                             </div>
                             <div class="d-inline-flex floating-label-group m-0">
                                 <div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
                                     <label class="form-label" for="Class">ชั้นเรียน :</label>
                                 </div>
-                                <input type="text" id="Class" name="Class" class="form-control form-control-lg font-14" style="width: 195px" value="" />
+                                <input type="text" id="Class" name="Class" autocomplete="off" class="form-control form-control-lg font-14" style="width: 195px" value="" />
+                                <input type="text" id="Class_id" hidden name="Class_id" class="form-control form-control-lg font-14" style="width: 195px" value="" />
                                 <label class="chevron-label"><span class="chevron right"></span></label>
                                 <input type="hidden" id="blockNum" name="blockNum" value="" />
                             </div>
@@ -645,25 +660,32 @@
             //$('.Level').val("");
             //alert(this_id);
             const dayText = ["", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            const dayText_thai = ["", "วันอาทิตย์", "วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัส", "วันศุกร์", "วันเสาร์"];
             var id = "#SubjectCode_" + this_id;
             var subjectCode = ($("#SubjectCode_" + this_id).html());
             var subjectName = ($("#SubjectName_" + this_id).html());
             var className = ($("#ClasstName_" + this_id).html());
             var Day_ = ($("#Day_" + this_id).html());
+            
             var this_dayText = dayText[Number(Day_)];
+            var this_dayText_thai = dayText_thai[Number(Day_)];
             //alert(this_dayText);
             //alert(Day_);
             var RoomName = ($("#RoomName_" + this_id).html());
             //alert(RoomName);
-            var RoomId = ($("#RoomId_" + this_id).html());
+            var RoomId = ($("#Room_Id_" + this_id).html());
+            var ClassId = ($("#Class_Id_" + this_id).html());
             //alert(Day_);
             document.getElementById("PA_Form").reset();
+            $("#Day_thai").val(this_dayText_thai);
             $("#Day_").val(this_dayText);
             $("#Period").val(period_);
             $("#SubjectCode").val(subjectCode);
             $("#SubjectName").val(subjectName);
             $("#Room").val(RoomName);
+            $("#Room_id").val(RoomId);
             $("#Class").val(className);
+            $("#Class_id").val(ClassId);
             $("#blockNum").val(this_id);
             $(".loader-wrapper2").css('display', 'flex');
             $(".loader-wrapper2").fadeIn(2000);
@@ -684,7 +706,75 @@
                 function AJ_Calendar_Save_() {
 
                     alert("Update");
-                }
+        }
+
+        function AJ_Calendar_Prev() {
+            var uid = '@Context.Session.GetString("userId")';
+            var date_ = '@Html.Raw(ViewBag.StartDate)';
+           // var date_arr[] = date_.split('-');
+           // var var_ = date_arr[1] + ' ' + date_arr[0] + ', ' + date_arr[2];
+           // alert(var_);
+            var date__ = new Date(date_);// Date.parse(var_);
+            var date___ = new Date(date__.setDate(date__.getDate() - 7));
+            var dd = date___.getDate().toString().padStart(2, '0');
+            var MM = (Number(date___.getMonth()) + 1).toString().padStart(2, '0');
+            var YYYY = date___.getFullYear().toString();
+
+            var targetDate = YYYY + '-' + MM + '-' + dd + ' 00:00:00.000';
+            //alert(targetDate);
+
+            var param = "user_id=" + uid + "&dateTime=" + targetDate
+                + "&mode=" + 'week';
+            //alert(param);
+            window.location.assign("/EvaluatePA/Calendar?" + param);
+            //$.ajax({
+
+            //    type: 'GET',
+            //    url: '/EvaluatePA/Calendar?' + param,
+            //    success: function (result) {
+            //        alert("");
+            //        //hideModal('myModal');
+            //        //window.location.assign("/EvaluatePA/Calendar?user_Id=" + user_Id);
+
+            //    }
+            //});
+
+            
+
+
+        }
+        function AJ_Calendar_Next() {
+            var uid = '@Context.Session.GetString("userId")';
+            var date_ = '@Html.Raw(ViewBag.StartDate)';
+           // var date_arr[] = date_.split('-');
+           // var var_ = date_arr[1] + ' ' + date_arr[0] + ', ' + date_arr[2];
+           // alert(var_);
+            var date__ = new Date(date_);// Date.parse(var_);
+            var date___ = new Date(date__.setDate(date__.getDate() + 7));
+            var dd = date___.getDate().toString().padStart(2, '0');
+            var MM = (Number(date___.getMonth()) + 1).toString().padStart(2, '0');
+            var YYYY = date___.getFullYear().toString();
+
+            var targetDate = YYYY + '-' + MM + '-' + dd + ' 00:00:00.000';
+            //alert(targetDate);
+
+            var param = "user_id=" + uid + "&dateTime=" + targetDate
+                + "&mode=" + 'week';
+            //alert(param);
+            window.location.assign("/EvaluatePA/Calendar?" + param);
+            //$.ajax({
+
+            //    type: 'GET',
+            //    url: '/EvaluatePA/Calendar?' + param,
+            //    success: function (result) {
+            //        //hideModal('myModal');
+            //        //window.location.assign("/EvaluatePA/Calendar?user_Id=" + user_Id);
+
+            //    }
+            //});
+
+
+        }
                 function AJ_Calendar_Save() {
 
                     let this_id_ = $('#blockNum').val();
@@ -698,11 +788,11 @@
 
                     let uid = '@Context.Session.GetString("userId")';
                     //alert(uid);
-                    var Location_Id = $("#Room_Id_" + this_id_).html();
+                    var Location_Id = $("#Room_id").val();//$("#Room_Id_" + this_id_).html();
                     //alert(Location_Id);
                     //var Subject_Id = $("#Subject_Id_" + this_id_).html();
                     var Subject_Id = $("#SubjectId").val();
-                    alert(Subject_Id);
+                    //alert(Subject_Id);
                     var SubSchool_Id = $("#SubSchool_Id_" + this_id_).html();
                     //alert(SubSchool_Id);
 
@@ -723,13 +813,14 @@
                     //alert(PTime_End);
                     let StartDate = '@ViewBag.StartDate';
                     let StartTime = '@ViewBag.StartTime';
-                    //alert(StartDate + " " + StartTime);
+                    var targetDate = (StartDate + " " + StartTime);
                     //alert("Update");
 
                     let Day_ = $("#Day_").val();
                     let Period = $("#Period").val();
                     let Room = $("#Room").val();
                     let Class = $("#Class").val();
+                    let Class_id = $("#Class_id").val();
                     //alert(Summary);
                     //alert(Day_);
                     //alert(Period);
@@ -746,10 +837,13 @@
                         + "&BDate=" + BDate + "&EDate=" + EDate
                         + "&Location_Id=" + Location_Id + "&Event_Id=" + eid
                         + "&User_Id=" + uid + "&Subject_Id=" + Subject_Id
-                        + "&SubSchool_Id=" + SubSchool_Id + "&School_Id=" + School_Id
-                        + "&Unit_Id=" + '0' + "&UnitName=" + ''
+                        + "&SubSchool_Id=" + SubSchool_Id + "&School_Id=" + School_Id + "&Unit_Id=" + Class_id + "&UnitName=" + Class
                         + "&RR_FREQ=" + "WEEKLY" + "&RR_BYDAY=" + Day_.substring(0, 2).toUpperCase();
-                    //alert(param);
+                    alert(param);
+
+                    var param2 = "user_id=" + uid + "&dateTime=" + targetDate
+                        + "&mode=" + 'week';
+
                         //+ "BDate=" + BDate + "&EDate=" + EDate
                         //+ "BDate=" + BDate + "&EDate=" + EDate
 
@@ -764,8 +858,10 @@
                         type: 'GET',
                         url: '/EvaluatePA/UpdateEvent_AJ?' + param,
                         success: function (result) {
+                            //alert("");
                             hideModal('myModal');
-                            window.location.assign("/EvaluatePA/Calendar?user_Id=" + user_Id);
+                            //window.location.assign("/EvaluatePA/Calendar?" + param);
+                            window.location.assign("/EvaluatePA/Calendar?" + param2);
 
                        }
                     });
@@ -773,10 +869,9 @@
 
 
 
-                
+
     </script>
     <script>
-
         function autocompleteV2(inp, sbj_arr) {
             //alert(sbj_arr[0].value);
             /*the autocomplete function takes two arguments,
@@ -960,15 +1055,385 @@
             });
         }
 
+        function autocompleteV2_Class(inp, sbj_arr) {
+            //alert(sbj_arr[0].value);
+            /*the autocomplete function takes two arguments,
+            the text field element and an array of possible autocompleted values:*/
+            var currentFocus;
+            inp.addEventListener("click", function (e) {
+                var a, b, i, val = this.value;
+                /*close any already open lists of autocompleted values*/
+                closeAllLists();
+                //if (!val) { return false;}
+                currentFocus = -1;
+                /*create a DIV element that will contain the items (values):*/
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-class-list");
+                a.setAttribute("class", "autocomplete-class-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                this.parentNode.appendChild(a);
+                /*for each item in the array...*/
+                for (i = 0; i < sbj_arr.length; i++) {
+                    /*check if the item starts with the same letters as the text field value:*/
+                    //alert(sbj_arr.length);
+                    if (true == true) {
+                        /*create a DIV element for each matching element:*/
+                        b = document.createElement("DIV");
+                        /*make the matching letters bold:*/
+                        b.innerHTML = "<strong>" + sbj_arr[i][1].substr(0, val.length) + "</strong>";
+                        b.innerHTML += sbj_arr[i][1].substr(val.length);
+                        var ext = sbj_arr[i][1];
+                        if (sbj_arr[i][1].length > 30) {
+                            ext = sbj_arr[i][1].substr(0, 30) + " ... ";
+                        }
+
+                        //b.innerHTML += " : <small>" + ext + "</small>";
+
+                        /*insert a input field that will hold the current array item's value:*/
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][0] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][1] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][2] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][3] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][4] + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].Mobile_num + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_HH + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_H + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_L + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_LL + "'>";
+                        /*execute a function when someone clicks on the item value (DIV element):*/
+                        b.addEventListener("click", function (e) {
+                            /*insert the value for the autocomplete text field:*/
+                            //alert(inp.value);
+                            inp.value = this.getElementsByTagName("input")[1].value;
+                            //alert(document.getElementById("SubjectName").value);
+                            //alert(this.getElementsByTagName("input")[4].value);
+                            //document.getElementById("Class").value = this.getElementsByTagName("input")[0].value;
+                            //document.getElementById("Class").value = this.getElementsByTagName("input")[1].value;
+                            document.getElementById("Class_id").value = this.getElementsByTagName("input")[3].value;
+                            //alert(this.getElementsByTagName("input")[1].value);
+                            //document.getElementById("Factory_MobileNum").value = this.getElementsByTagName("input")[1].value;
+                            //document.getElementById("Factory_HH").value = this.getElementsByTagName("input")[2].value;
+                            //document.getElementById("Factory_H").value = this.getElementsByTagName("input")[3].value;
+                            //document.getElementById("Factory_L").value = this.getElementsByTagName("input")[4].value;
+                            //document.getElementById("Factory_LL").value = this.getElementsByTagName("input")[5].value;
+                            /*close the list of autocompleted values,
+                            (or any other open lists of autocompleted values:*/
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                    }
+                }
+            });
+            /*execute a function when someone writes in the text field:*/
+            inp.addEventListener("input", function (e) {
+                var a, b, i, val = this.value;
+                /*close any already open lists of autocompleted values*/
+                closeAllLists();
+                if (!val) { return false; }
+                currentFocus = -1;
+                /*create a DIV element that will contain the items (values):*/
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-class-list");
+                a.setAttribute("class", "autocomplete-class-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                this.parentNode.appendChild(a);
+                /*for each item in the array...*/
+                for (i = 0; i < sbj_arr.length; i++) {
+                    /*check if the item starts with the same letters as the text field value:*/
+                    if (sbj_arr[i][3].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                        /*create a DIV element for each matching element:*/
+                        b = document.createElement("DIV");
+                        /*make the matching letters bold:*/
+                        b.innerHTML = "<strong>" + sbj_arr[i][1].substr(0, val.length) + "</strong>";
+                        b.innerHTML += sbj_arr[i][1].substr(val.length);
+                        //b.innerHTML += " : " + sbj_arr[i][1];
+                        /*insert a input field that will hold the current array item's value:*/
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][0] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][1] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][2] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][3] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][4] + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].Serial_Num + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].Mobile_num + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_HH + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_H + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_L + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_LL + "'>";
+                        /*execute a function when someone clicks on the item value (DIV element):*/
+                        b.addEventListener("click", function (e) {
+                            /*insert the value for the autocomplete text field:*/
+                            inp.value = this.getElementsByTagName("input")[1].value;
+                            //alert("");
+                            //document.getElementById("SubjectId").value = this.getElementsByTagName("input")[0].value;
+                            //document.getElementById("SubjectName").value = this.getElementsByTagName("input")[1].value;
+                            document.getElementById("Class_id").value = this.getElementsByTagName("input")[3].value;
+                            //alert(this.getElementsByTagName("input")[1].value);
+                            ////document.getElementById("Factory_MobileNum").value = this.getElementsByTagName("input")[1].value;
+                            ////document.getElementById("Factory_HH").value = this.getElementsByTagName("input")[2].value;
+                            ////document.getElementById("Factory_H").value = this.getElementsByTagName("input")[3].value;
+                            ////document.getElementById("Factory_L").value = this.getElementsByTagName("input")[4].value;
+                            ////document.getElementById("Factory_LL").value = this.getElementsByTagName("input")[5].value;
+                            /*close the list of autocompleted values,
+                            (or any other open lists of autocompleted values:*/
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                    }
+                }
+            });
+            /*execute a function presses a key on the keyboard:*/
+            inp.addEventListener("keydown", function (e) {
+                var x = document.getElementById(this.id + "autocomplete-class-list");
+                if (x) x = x.getElementsByTagName("div");
+                if (e.keyCode == 40) {
+                    /*If the arrow DOWN key is pressed,
+                    increase the currentFocus variable:*/
+                    currentFocus++;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 38) { //up
+                    /*If the arrow UP key is pressed,
+                    decrease the currentFocus variable:*/
+                    currentFocus--;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 13) {
+                    /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                    e.preventDefault();
+                    if (currentFocus > -1) {
+                        /*and simulate a click on the "active" item:*/
+                        if (x) x[currentFocus].click();
+                    }
+                }
+            });
+            function addActive(x) {
+                /*a function to classify an item as "active":*/
+                if (!x) return false;
+                /*start by removing the "active" class on all items:*/
+                removeActive(x);
+                if (currentFocus >= x.length) currentFocus = 0;
+                if (currentFocus < 0) currentFocus = (x.length - 1);
+                /*add class "autocomplete-active":*/
+                x[currentFocus].classList.add("autocomplete-class-active");
+            }
+            function removeActive(x) {
+                /*a function to remove the "active" class from all autocomplete items:*/
+                for (var i = 0; i < x.length; i++) {
+                    x[i].classList.remove("autocomplete-class-active");
+                }
+            }
+            function closeAllLists(elmnt) {
+                /*close all autocomplete lists in the document,
+                except the one passed as an argument:*/
+                var x = document.getElementsByClassName("autocomplete-class-items");
+                for (var i = 0; i < x.length; i++) {
+                    if (elmnt != x[i] && elmnt != inp) {
+                        x[i].parentNode.removeChild(x[i]);
+                    }
+                }
+            }
+            /*execute a function when someone clicks in the document:*/
+            document.addEventListener("click", function (e) {
+                closeAllLists(e.target);
+            });
+        }
+
+        function autocompleteV2_Room(inp, sbj_arr) {
+            //alert(sbj_arr[0].value);
+            /*the autocomplete function takes two arguments,
+            the text field element and an array of possible autocompleted values:*/
+            var currentFocus;
+            inp.addEventListener("click", function (e) {
+                var a, b, i, val = this.value;
+                /*close any already open lists of autocompleted values*/
+                closeAllLists();
+                //if (!val) { return false;}
+                currentFocus = -1;
+                /*create a DIV element that will contain the items (values):*/
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-room-list");
+                a.setAttribute("class", "autocomplete-room-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                this.parentNode.appendChild(a);
+                /*for each item in the array...*/
+                for (i = 0; i < sbj_arr.length; i++) {
+                    /*check if the item starts with the same letters as the text field value:*/
+                    //alert(sbj_arr.length);
+                    if (true == true) {
+                        /*create a DIV element for each matching element:*/
+                        b = document.createElement("DIV");
+                        /*make the matching letters bold:*/
+                        b.innerHTML = "<strong>" + sbj_arr[i][1].substr(0, val.length) + "</strong>";
+                        b.innerHTML += sbj_arr[i][1].substr(val.length);
+                        var ext = sbj_arr[i][1];
+                        if (sbj_arr[i][1].length > 30) {
+                            ext = sbj_arr[i][1].substr(0, 30) + " ... ";
+                        }
+
+                        //b.innerHTML += " : <small>" + ext + "</small>";
+
+                        /*insert a input field that will hold the current array item's value:*/
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][0] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][1] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][2] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][3] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][4] + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].Mobile_num + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_HH + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_H + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_L + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_LL + "'>";
+                        /*execute a function when someone clicks on the item value (DIV element):*/
+                        b.addEventListener("click", function (e) {
+                            /*insert the value for the autocomplete text field:*/
+                            //alert(inp.value);
+                            inp.value = this.getElementsByTagName("input")[1].value;
+                            //alert(document.getElementById("SubjectName").value);
+                            //alert(this.getElementsByTagName("input")[4].value);
+                            //document.getElementById("Class").value = this.getElementsByTagName("input")[0].value;
+                            //document.getElementById("Class").value = this.getElementsByTagName("input")[1].value;
+                            document.getElementById("Room_id").value = this.getElementsByTagName("input")[0].value;
+                            //alert(this.getElementsByTagName("input")[1].value);
+                            //document.getElementById("Factory_MobileNum").value = this.getElementsByTagName("input")[1].value;
+                            //document.getElementById("Factory_HH").value = this.getElementsByTagName("input")[2].value;
+                            //document.getElementById("Factory_H").value = this.getElementsByTagName("input")[3].value;
+                            //document.getElementById("Factory_L").value = this.getElementsByTagName("input")[4].value;
+                            //document.getElementById("Factory_LL").value = this.getElementsByTagName("input")[5].value;
+                            /*close the list of autocompleted values,
+                            (or any other open lists of autocompleted values:*/
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                    }
+                }
+            });
+            /*execute a function when someone writes in the text field:*/
+            inp.addEventListener("input", function (e) {
+                var a, b, i, val = this.value;
+                /*close any already open lists of autocompleted values*/
+                closeAllLists();
+                if (!val) { return false; }
+                currentFocus = -1;
+                /*create a DIV element that will contain the items (values):*/
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-room-list");
+                a.setAttribute("class", "autocomplete-room-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                this.parentNode.appendChild(a);
+                /*for each item in the array...*/
+                for (i = 0; i < sbj_arr.length; i++) {
+                    /*check if the item starts with the same letters as the text field value:*/
+                    if (sbj_arr[i][3].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                        /*create a DIV element for each matching element:*/
+                        b = document.createElement("DIV");
+                        /*make the matching letters bold:*/
+                        b.innerHTML = "<strong>" + sbj_arr[i][1].substr(0, val.length) + "</strong>";
+                        b.innerHTML += sbj_arr[i][1].substr(val.length);
+                        //b.innerHTML += " : " + sbj_arr[i][1];
+                        /*insert a input field that will hold the current array item's value:*/
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][0] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][1] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][2] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][3] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][4] + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].Serial_Num + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].Mobile_num + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_HH + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_H + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_L + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_LL + "'>";
+                        /*execute a function when someone clicks on the item value (DIV element):*/
+                        b.addEventListener("click", function (e) {
+                            /*insert the value for the autocomplete text field:*/
+                            inp.value = this.getElementsByTagName("input")[1].value;
+                            //alert("");
+                            //document.getElementById("SubjectId").value = this.getElementsByTagName("input")[0].value;
+                            //document.getElementById("SubjectName").value = this.getElementsByTagName("input")[1].value;
+                            document.getElementById("Room_id").value = this.getElementsByTagName("input")[0].value;
+                            //alert(this.getElementsByTagName("input")[1].value);
+                            ////document.getElementById("Factory_MobileNum").value = this.getElementsByTagName("input")[1].value;
+                            ////document.getElementById("Factory_HH").value = this.getElementsByTagName("input")[2].value;
+                            ////document.getElementById("Factory_H").value = this.getElementsByTagName("input")[3].value;
+                            ////document.getElementById("Factory_L").value = this.getElementsByTagName("input")[4].value;
+                            ////document.getElementById("Factory_LL").value = this.getElementsByTagName("input")[5].value;
+                            /*close the list of autocompleted values,
+                            (or any other open lists of autocompleted values:*/
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                    }
+                }
+            });
+            /*execute a function presses a key on the keyboard:*/
+            inp.addEventListener("keydown", function (e) {
+                var x = document.getElementById(this.id + "autocomplete-room-list");
+                if (x) x = x.getElementsByTagName("div");
+                if (e.keyCode == 40) {
+                    /*If the arrow DOWN key is pressed,
+                    increase the currentFocus variable:*/
+                    currentFocus++;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 38) { //up
+                    /*If the arrow UP key is pressed,
+                    decrease the currentFocus variable:*/
+                    currentFocus--;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 13) {
+                    /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                    e.preventDefault();
+                    if (currentFocus > -1) {
+                        /*and simulate a click on the "active" item:*/
+                        if (x) x[currentFocus].click();
+                    }
+                }
+            });
+            function addActive(x) {
+                /*a function to classify an item as "active":*/
+                if (!x) return false;
+                /*start by removing the "active" class on all items:*/
+                removeActive(x);
+                if (currentFocus >= x.length) currentFocus = 0;
+                if (currentFocus < 0) currentFocus = (x.length - 1);
+                /*add class "autocomplete-active":*/
+                x[currentFocus].classList.add("autocomplete-room-active");
+            }
+            function removeActive(x) {
+                /*a function to remove the "active" class from all autocomplete items:*/
+                for (var i = 0; i < x.length; i++) {
+                    x[i].classList.remove("autocomplete-room-active");
+                }
+            }
+            function closeAllLists(elmnt) {
+                /*close all autocomplete lists in the document,
+                except the one passed as an argument:*/
+                var x = document.getElementsByClassName("autocomplete-room-items");
+                for (var i = 0; i < x.length; i++) {
+                    if (elmnt != x[i] && elmnt != inp) {
+                        x[i].parentNode.removeChild(x[i]);
+                    }
+                }
+            }
+            /*execute a function when someone clicks in the document:*/
+            document.addEventListener("click", function (e) {
+                closeAllLists(e.target);
+            });
+        }
+
+
         //alert("");
         //var School_arr = [[ "300001", "โรงเรียนน้ำยืนวิทยา", "อุบลราชธานี" ]];
         var School_arr = @Html.Raw(ViewBag.School);
         //alert(School_arr[0][0]);
     var Subject_arr = @Html.Raw(ViewBag.Subject);
     var Location_arr =  @Html.Raw(ViewBag.Location);
-    var Class_arr =  @Html.Raw(ViewBag.Class);
+        var Class_arr =  @Html.Raw(ViewBag.Class);
+        var Room_arr =  @Html.Raw(ViewBag.Location);
         autocompleteV2(document.getElementById("SubjectCode"), Subject_arr);
-        
+        autocompleteV2_Class(document.getElementById("Class"), Class_arr);
+        autocompleteV2_Room(document.getElementById("Room"), Room_arr);
+
         //alert("");
     </script>
 
