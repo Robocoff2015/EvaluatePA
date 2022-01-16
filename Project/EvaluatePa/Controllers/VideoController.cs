@@ -96,7 +96,7 @@ namespace EvaluatePa.Controllers
             { }
             else
             {
-                user_id = "300001";
+                //user_id = "300001";
                 userPath = "\\" + user_id;
                 if (!Directory.Exists("wwwroot\\SharedData" + "\\" + user_id))
                 {

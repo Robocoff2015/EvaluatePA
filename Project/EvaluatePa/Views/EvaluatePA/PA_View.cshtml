@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http;
-@model PA_Form_Full;
+@model bObject.PA_Form_Full;
 @{
     ViewData["Title"] = "PA";
     Layout = "_Layout_NoMenu2";
@@ -425,7 +425,7 @@
                         <br>
                         <div class="header justify-content-end">
                             <div class="ml-5">ลงชื่อ........................................................................</div>
-                            <div class="ml-5">(xxxxxxxx  xxxxxxxx)</div>
+                            <div class="ml-5">(&nbsp;&nbsp;@Model.UserInfo_UserName &nbsp;&nbsp; @Model.UserInfo_LastName &nbsp;&nbsp;)</div>
                             <div class="ml-5">ตำแหน่ง  ครู  วิทยฐานะ ครูชำนาญการพิเศษ</div>
                             <div class="ml-5">ผู้จัดทำข้อตกลงในการพัฒนางาน</div>
                             <div class="ml-5">.........../.............../............</div>

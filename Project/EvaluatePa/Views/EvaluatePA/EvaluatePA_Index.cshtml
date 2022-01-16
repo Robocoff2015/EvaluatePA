@@ -380,7 +380,8 @@
                 url: '/Home/UpdateUser_AJ?' + param,
                 success: function (result) {
                     hideModal_Info();
-                    window.location.assign("/Home/Main?user_Id=" + user_Id);
+                    window.location.reload(true);
+                    //window.location.assign("/Home/Main?user_Id=" + user_Id);
 
                 }
             });
@@ -400,7 +401,8 @@
                     url: '/EvaluatePA/DeleteForm_AJ?' + param,
                     success: function (result) {
                         //hideModal_Info();
-                        location.reload();
+                        //location.reload();
+                        window.location.reload(true);
                         //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
 
                     }

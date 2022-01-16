@@ -11,6 +11,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using System.Windows;
 using System.IO;
+using bObject;
+
+
 
 namespace EvaluatePa.Controllers
 {
@@ -220,8 +223,11 @@ namespace EvaluatePa.Controllers
 
         public IActionResult PA_Add(string PA_Name, string Id)
         {
+            bObject.PA_Form_Full PA_Form = new bObject.PA_Form_Full();
+            string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
+            PA_Form.setDbProperty(connectionString,dbName);
             string sessionUser_ = HttpContext.Session.GetString("userId");
-            PA_Form_Full PA_Form = getPAForm_detail(sessionUser_, Id);
+            PA_Form = PA_Form.getPAForm_detail(sessionUser_, Id);
             //string sessionUser_ = HttpContext.Session.GetString("userId");
             if (PA_Form.Sbj_Hr == null || PA_Form.Sbj_Hr == "")
             { PA_Form.Sbj_Hr = "[{\"Total\":0}]"; }
@@ -367,7 +373,7 @@ namespace EvaluatePa.Controllers
             //sqlString += " SELECT [Name],[Description],[Subject],[Type],[DateTime],a.[Status],b.[UserPosition],a.[Id]  FROM [" + dbName + "].[dbo].[PA_Media] as a right join [" + dbName + "].[dbo].[PA_User] as b on a.OwnerId = b.Id";
 
             sqlString += " SELECT [Name],a.[Description],[Subject],[Type],a.[MDateTime],a.[Status],b.[UserPosition],a.[Id],c.[description]  FROM [" + dbName + "].[dbo].[PA_Form] as a right join [" + dbName + "].[dbo].[PA_User] as b on a.OwnerId = b.Id left join [" + dbName + "].[dbo].[PA_Submission_Status] as c on a.status = c.Id";
-            sqlString += " where a.[OwnerId] = '" + uname + "' and a.[Status] <> 204 ORDER BY [DateTime] ASC";
+            sqlString += " where a.[OwnerId] = '" + uname + "' and a.[Status] <> 204 and a.[AP_Status] >= 200 ORDER BY [DateTime] ASC";
             Microsoft.Data.SqlClient.SqlDataAdapter da = new SqlDataAdapter(sqlString, connectionString);
             da.Fill(dt);
             int c = dt.Rows.Count;
