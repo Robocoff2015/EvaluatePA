@@ -35,6 +35,16 @@ namespace EvaluatePa.Controllers
             }
             return View();
         }
+        public IActionResult Admin()
+        {
+
+            string session_ = HttpContext.Session.GetString("userName");
+            if (session_ == "" || session_ == null)
+            {
+                return RedirectToAction("Login");
+            }
+            return View();
+        }
 
         public User setHttpContext_session(string user_id)
         {
@@ -148,6 +158,13 @@ namespace EvaluatePa.Controllers
                 HttpContext.Session.SetString("userName", firstName);
                 return RedirectToAction("EvaluatePA_Index","EvaluatePA");
             }
+
+            if (firstName == "admin@email.com" && Password == "12345")
+            {
+                HttpContext.Session.SetString("userName", firstName);
+                return RedirectToAction("Admin", "Home");
+            }
+
             HttpContext.Session.SetString("userId", "");
             HttpContext.Session.SetString("userEmail", "");
             HttpContext.Session.SetString("userName", "");

@@ -13,15 +13,56 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     @RenderSection("Style_", required: false)
+    <style>
+        .ul_ {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+
+        }
+
+        .li_ {
+            float: left;
+        }
+
+            .li_ a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+                .li_ a:hover:not(.active) {
+                    background-color: #111;
+                }
+
+        .active {
+            background-color: #04AA6D;
+        }       
+    </style>
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-xl navbar-toggleable-xl navbar-light bg-green-custom box-shadow d-inline-flex">
-            <div class="Narhu-container-top">
-                <Div class="Narhu-top"><div><strong>NARHU</strong> Powered By Education Sphere</div></Div>
-
-            </div><div class="box"></div>
-        </nav>
+        <div class="ul_">
+            <div class="li_ d-inline-flex">
+                <div class="Narhu-container-top">
+                    <Div class="Narhu-top"><div><strong>NARHU</strong> Powered By Education Sphere</div></Div>
+                </div>
+                <div class="box"></div>
+            </div>
+            <div class="li_ d-inline-flex pr-5" style="float:right">
+                
+                <div class="w3-center m-0 mt-1"><img src="~/images/avatar3.png" class="w3-circle" style="height:38px;width:38px" alt="Avatar"></div>
+                    <div class="p-0 pt-1 text-center pl-3 pr-3 mr-2 ml-2 disabled bg-light mt-2" onclick="location.href = '';" style="min-width:120px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;border-radius:14px">
+                        firstName and LastName good
+                    </div>
+                    <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pl-1 mt-2" onclick="AJ_Calendar_Next();" style="width:29px;height:29px;font-size:1.15rem;font-weight:bold;border-color:#ffffff;"><i class='fa fa-sign-out' style='color: white'></i></div>
+               
+            </div>
+        </div>
     </header>
     <div class="container-fluid">
         <main role="main">
@@ -37,7 +78,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
