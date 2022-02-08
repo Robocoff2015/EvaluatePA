@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,26 +8,25 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Kanit&subset=thai,latin' type='text/css'>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     @RenderSection("Style_", required: false)
     <style>
-        .ul_ {
+        .narhu_navbar {
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
-
         }
 
-        .li_ {
+        /*        .narhu_navitem_ {
             float: left;
         }
 
-            .li_ a {
+            .narhu_navitem_ a {
                 display: block;
                 color: white;
                 text-align: center;
@@ -34,33 +34,41 @@
                 text-decoration: none;
             }
 
-                .li_ a:hover:not(.active) {
+                .narhu_navitem_ a:hover:not(.active) {
                     background-color: #111;
                 }
 
         .active {
             background-color: #04AA6D;
-        }       
+        } */
     </style>
 
 </head>
 <body>
     <header>
-        <div class="ul_">
-            <div class="li_ d-inline-flex">
+        <div class="narhu_navbar">
+            <div class="narhu_navitem_ d-inline-flex float-left">
                 <div class="Narhu-container-top">
                     <Div class="Narhu-top"><div><strong>NARHU</strong> Powered By Education Sphere</div></Div>
                 </div>
                 <div class="box"></div>
             </div>
-            <div class="li_ d-inline-flex pr-5" style="float:right">
-                
-                <div class="w3-center m-0 mt-1"><img src="~/images/avatar3.png" class="w3-circle" style="height:38px;width:38px" alt="Avatar"></div>
-                    <div class="p-0 pt-1 text-center pl-3 pr-3 mr-2 ml-2 disabled bg-light mt-2" onclick="location.href = '';" style="min-width:120px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;border-radius:14px">
-                        firstName and LastName good
-                    </div>
-                    <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pl-1 mt-2" onclick="AJ_Calendar_Next();" style="width:29px;height:29px;font-size:1.15rem;font-weight:bold;border-color:#ffffff;"><i class='fa fa-sign-out' style='color: white'></i></div>
-               
+            <div class="narhu_navitem_ d-inline-flex pr-5 float-right">
+
+                @{ var userName = Context.Session.GetString("userName");
+                    if (Context.Session.GetString("userName") != null && Context.Session.GetString("userName") !="")
+                    {
+                        <div class="w3-center m-0 mt-1"><img src="~/images/avatar3.png" class="w3-circle" style="height:38px;width:38px" alt="Avatar"></div>
+                        <div class="p-0 pt-1 text-center pl-3 pr-3 mr-2 ml-2 disabled bg-light mt-2" style="min-width:120px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ff0000;border-radius:14px">
+                            @userName
+                        </div>
+                        <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pl-1 mt-2 narhu_item" onclick="location.href='@Url.Action("Logout", "Home")'" style="width:29px;height:29px;font-size:1.15rem;font-weight:bold;border-color:#ffffff;">
+                            <i class='fa fa-sign-out' style='color: white'></i>
+                            <span class="tooltiptext" style="width:100px;margin-left:-60px;">ออกจากระบบ</span>
+                        </div>
+
+                    }
+                }
             </div>
         </div>
     </header>

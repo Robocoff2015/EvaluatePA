@@ -224,7 +224,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                    <div class="col-xl-4 col-lg-6 col-md-12 pt-0 d-none">
                                         <div>
                                             <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
                                             <div class="btn btn-outline-danger ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
@@ -236,84 +236,256 @@
                 </div>
                 <div id="page_2_form" style="display:none;">
                     <div class="card-body border-light shadow">
-                        <div class="col-md-12 mb-4">
-                            <p>1. ภาระงาน [] เป็นไปตามที่ก.ค.ศ. กำหนด [] ไม่เป็นไปตามที่ก.ค.ศ. กำหนด</p>
+                        <div class="col-md-12 mb-4 d-inline-flex justify-content-between">
+                            <p class="text-nowrap">1. ภาระงาน</p>
+                            <label class="container_check">
+                                เป็นไปตามที่ ก.ค.ศ. กำหนด
+                                <input type="checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container_check">
+                                ไม่เป็นไปตามที่ ก.ค.ศ. กำหนด
+                                <input type="checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            
                         </div>
                         <div class="col-md-12 mb-4">
                             <p>2. การปฏิบัติงานและผลการปฏิบัติงานตามมาตราฐานตำแหน่งครู</p>
-                            <table class="border border-light">
-                                <tr>
-                                    <th colspan="1" rowspan="2">ลักษณะงาน</th>
-                                    <th colspan="4">ผลการประเมิน</th>
+                            <table class="w-100 eval-table">
+                                <tr class="border-top">
+                                    <th colspan="1" rowspan="2" class="text-left pl-5">ลักษณะงาน</th>
+                                    <th colspan="4" class="text-center">ผลการประเมิน</th>
                                 </tr>
-                                <tr>
+                                <tr class="border-bottom-2">
                                     <th>1</th>
                                     <th>2</th>
                                     <th>3</th>
                                     <th>4</th>
                                 </tr>
-                                <tr>
-                                    <td>1. ด้านการจัดการเรียนรู้</td>
+                                <tr class="border-bottom">
+                                    <td class="text-left pl-5">1. ด้านการจัดการเรียนรู้</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
-                                <tr>
-                                    <td>1.1</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
+                                <tr class="border-bottom">
+                                    <td class="text-left pl-5">1.1</td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>1.2</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
+                                <tr class="border-bottom">
+                                    <td class="text-left pl-5">1.2</td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>1.3</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
+                                <tr class="border-bottom">
+                                    <td class="text-left pl-5">1.3</td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>1.4</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
+                                <tr class="border-bottom">
+                                    <td class="text-left pl-5">1.4</td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>1.5</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
+                                <tr class="border-bottom">
+                                    <td class="text-left pl-5">1.5</td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-3">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>1.6</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
+                                <tr class="border-bottom">
+                                    <td class="text-left pl-5">1.6</td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>1.7</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
+                                <tr class="border-bottom">
+                                    <td class="text-left pl-5">1.7</td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>1.8</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
+                                <tr class="border-bottom-2">
+                                    <td class="text-left pl-5">1.8</td>
+                                    <td class="pb-3">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -328,51 +500,112 @@
                 <div id="page_3_form" style="display:none;">
                     <div class="card-body border-light shadow">
                         <div class="col-md-12 mb-4">
-                            <table class="border border-light">
-                                <tr>
+                            <table class="w-100 eval-table">
+                                <tr class="border-top">
                                     <th colspan="1" rowspan="2">ลักษณะงาน</th>
                                     <th colspan="4">ผลการประเมิน</th>
                                 </tr>
-                                <tr>
+                                <tr class="border-bottom-2">
                                     <th>1</th>
                                     <th>2</th>
                                     <th>3</th>
                                     <th>4</th>
                                 </tr>
-                                <tr>
-                                    <td>1. วิธีการดำเนินการ (20 คะแนน)</td>
+
+                                <tr class="border-bottom">
+                                    <td class="text-left pl-5">1. วิธีการดำเนินการ (20 คะแนน)</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
-                                <tr>
-                                    <td>พิจารณาจากการดำเนินการ</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
+                                <tr class="border-bottom">
+                                    <td class="text-left pl-5">พิจารณาจากการดำเนินการ</td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>2. ผลลัพธ์การเรียนรู้ของผู้เรียนที่คาดหวัง (20 คะแนน)</td>
+                                <tr class="border-bottom">
+                                    <td class="text-left pl-5">2. ผลลัพธ์การเรียนรู้ของผู้เรียนที่คาดหวัง (20 คะแนน)</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
-                                <tr>
-                                    <td>2.1 เชิงปริมาณ (10 คะแนน)</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
+                                <tr class="border-bottom">
+                                    <td class="text-left pl-5">2.1 เชิงปริมาณ (10 คะแนน)</td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>2.2 เชิงคุณภาพ (10 คะแนน)</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
-                                    <td>[]</td>
+                                <tr class="border-bottom-2">
+                                    <td class="text-left pl-5">2.2 เชิงคุณภาพ (10 คะแนน)</td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pb-2">
+                                        <label class="container_check">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
                                 </tr>
                             </table>
                         </div>

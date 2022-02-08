@@ -41,6 +41,18 @@ font-14 {
 
     
 }
+
+.narhu_navbar {
+    list-style-type: none;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    margin: 0;
+    padding: 0;
+    height: 45px;
+    /*            overflow: hidden;*/
+}
+
 a.active_, .active_:hover {
     color: white;
     border-color: #ababab;
@@ -196,6 +208,21 @@ border:none;
     opacity: 0.8;
 }
 .loader-wrapper2 {
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    /*top: 45px;*/
+    left: 0;
+    background-color: rgba(210,210,210,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 1.0;
+}
+
+.loader-wrapper-calendar {
     overflow-y: scroll;
     width: 100%;
     height: 100%;
@@ -841,6 +868,128 @@ input:not(:focus):valid ~ .floating-label {
 
 .form_input {
     text-decoration: underline;
+}
+
+/*  Tooltip  */
+
+.narhu_item {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+    .narhu_item .tooltiptext {
+        visibility: hidden;
+        background-color: #888;
+        color: #fff;
+        text-align: center;
+        border-radius: 15px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 99999;
+        bottom: -30px;
+/*        margin-left: -150%;*/
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size:11px;
+        font-weight:100;
+    }
+    .item-text {
+        z-index: -1;
+    }
+
+        .narhu_item .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            margin-left: 0px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent #888 transparent;
+        }
+
+    .narhu_item:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+
+/* The container for checkbox */
+.container_check {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    /* Hide the browser's default checkbox */
+    .container_check input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container_check:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container_check input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container_check input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container_check .checkmark:after {
+    left: 10px;
+    top: 6px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.eval-table th {
+font-size:16px;
+font-weight:300;
+}
+
+.eval-table td {
+    font-size: 16px;
+    font-weight: 100;
 }
 
 

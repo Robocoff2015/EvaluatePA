@@ -19,9 +19,11 @@
     <link rel="stylesheet" href="~/css/site.css" />
     @RenderSection("Style_", required: false)
     @{
+        //var userName = @Context.Session.GetString("userName");
         var userId = @Context.Session.GetString("userId");
     }
     <style>
+        
         .container-fluid {
             width: 100%;
             padding-left: 5%;
@@ -60,13 +62,32 @@
 </head>
 <body class="bg-light">
     <header>
-        <nav class="navbar navbar-expand-xl navbar-toggleable-xl navbar-light bg-green-custom box-shadow d-inline-flex">
-            <div class="Narhu-container-top">
-                <Div class="Narhu-top"><div><strong>NARHU</strong> Powered By Education Sphere</div></Div>
+        <div class="narhu_navbar">
+            <div class="narhu_navitem_ d-inline-flex float-left">
+                <div class="Narhu-container-top">
+                    <Div class="Narhu-top"><div><strong>NARHU</strong> Powered By Education Sphere</div></Div>
+                </div>
+                <div class="box"></div>
+            </div>
+            <div class="narhu_navitem_ d-inline-flex pr-5 float-right">
+                @{ var userName = Context.Session.GetString("userName");
+                    if (Context.Session.GetString("userName") != null && Context.Session.GetString("userName") != "")
+                    {
+                        <div class="w3-center m-0 mt-1"><img src="~/images/avatar3.png" class="w3-circle" style="height:38px;width:38px" alt="Avatar"></div>
+                        <div class="p-0 pt-1 text-center pl-3 pr-3 mr-2 ml-2 disabled bg-light mt-2" style="min-width:120px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ff0000;border-radius:14px">
+                            @userName
+                        </div>
+                        <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pl-1 mt-2 narhu_item" onclick="location.href='@Url.Action("Logout", "Home")'" style="width:29px;height:29px;font-size:1.15rem;font-weight:bold;border-color:#ffffff;">
+                            <i class='fa fa-sign-out' style='color: white'></i>
+                            <span class="tooltiptext" style="width:100px;margin-left:-60px;">ออกจากระบบ</span>
+                        </div>
 
-            </div><div class="box"></div>
-        </nav>
-        
+                    }
+                }
+
+            </div>
+        </div>
+
     </header>
     <div class="container-fluid mr-5">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white pt-3 pb-1">
