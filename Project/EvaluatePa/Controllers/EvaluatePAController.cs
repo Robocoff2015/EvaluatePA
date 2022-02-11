@@ -128,8 +128,17 @@ namespace EvaluatePa.Controllers
             HttpContext.Session.SetString("userId", user);
             if (user != null)
             {
-                return View(getPAForm(user));
+                List<PA_Form_Short> PA_Form = getPAForm(user);
+                if (PA_Form.Count > 0)
+                {
+                    ViewBag.AddFormEnabled = "disable";
+                }
+                else {
+                    ViewBag.AddFormEnabled = "";
+                }
+                return View(PA_Form);
             }
+            ViewBag.AddFormEnabled = "disable";
             return View(new List<PA_Form_Short>());
         }
 
@@ -398,7 +407,7 @@ namespace EvaluatePa.Controllers
             //sqlString += " SELECT [Name],[Description],[Subject],[Type],[DateTime],a.[Status],b.[UserPosition],a.[Id]  FROM [" + dbName + "].[dbo].[PA_Media] as a right join [" + dbName + "].[dbo].[PA_User] as b on a.OwnerId = b.Id";
 
             sqlString += " SELECT [Name],a.[Description],[Subject],[Type],a.[MDateTime],a.[Status],b.[UserPosition],a.[Id],c.[description]  FROM [" + dbName + "].[dbo].[PA_Form] as a right join [" + dbName + "].[dbo].[PA_User] as b on a.OwnerId = b.Id left join [" + dbName + "].[dbo].[PA_Submission_Status] as c on a.status = c.Id";
-            sqlString += " where a.[OwnerId] = '" + uname + "' and a.[Status] <> 204 and a.[AP_Status] >= 200 ORDER BY [DateTime] ASC";
+            sqlString += " where a.[OwnerId] = '" + uname + "' and a.[Status] <> 204 ORDER BY [DateTime] ASC";  //and a.[AP_Status] >= 200
             Microsoft.Data.SqlClient.SqlDataAdapter da = new SqlDataAdapter(sqlString, connectionString);
             da.Fill(dt);
             int c = dt.Rows.Count;
@@ -564,6 +573,9 @@ namespace EvaluatePa.Controllers
                 //sqlString += " INSERT INTO [" + dbName + "].[dbo].[PA_Media]([Name],[DateTime],[OwnerId],[Status]) VALUES ('" + PA_Name + "','" + DateTime_ + "'," + user_Id + ",0)";
                 //sqlString += "IF NOT EXISTS (SELECT [Name] FROM [" + dbName + "].[dbo].[PA_Form] WHERE [Name] = '" + PA_Name + "' and [Status] <> 204)";
                 //sqlString += " BEGIN INSERT INTO [" + dbName + "].[dbo].[PA_Form]([Id],[Name],[DateTime],[OwnerId],[Status]) VALUES (default,'" + PA_Name + "','" + DateTime_ + "'," + user_Id + ",0) END";
+                sqlString += " UPDATE [" + dbName + "].[dbo].[PA_User]";
+                sqlString += " SET [UserName] = '" + FirstName + "', [LastName] = '" + LastName + "',[UserPosition] = '" + position + "',[CDate] = '" + CDate + "',[School] = '" + school_id + "'";
+                sqlString += " WHERE Id = " + user_Id;
                 sqlString += " UPDATE [" + dbName + "].[dbo].[PA_Form]";
                 sqlString += " SET [MDateTime] = '" + DateTime_ + "', [Total_Hour_Schedule] = " + Total_Hour_Schedule_str + ",[Subject_Hour] = '" + Subject_Hour + "'";
                 sqlString += " ,[Total_Hour_Learning_Promotion_Support] = " + Total_Hour_Learning_Promotion_Support_str + ",[Subject_1_Hour] = '" + Subject_1_Hour + "'";

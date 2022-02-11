@@ -570,7 +570,7 @@
                     <div class="card-body p-3 pt-1">
                         <form id="PA_Form" class="flex-column">
 
-                            <div class="d-flex justify-content-between mt-2 border" style="z-index:40; width:100%;height:33px;padding:0 10%;border-color:#000000;border-radius:16px;opacity:1.0;">
+                            <div class="d-flex justify-content-between mt-2 border" style="z-index:40; width:100%;height:33px;padding:0 10%;border-color:#000000;border-radius:16px;opacity:1.0;position:relative;">
                                 <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">S</p>
                                     <span class="tooltiptext" style="width:84px;margin-left:-42px;">Sunday</span>
@@ -601,8 +601,8 @@
                                 </div>
 
                             </div>
-                            <div class="d-flex justify-content-between mt-2 border" style="z-index: 20; width: 100%; height: 33px; padding: 0 10%; border-color: #000000; border-radius: 16px; opacity: 1.0;">
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
+                            <div class="d-flex justify-content-between mt-2 border" style="z-index:20; width: 100%; height: 33px; padding: 0 10%; border-color: #000000; border-radius: 16px; opacity: 1.0;position:absolute;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;z-index:21;">
                                     <p class="vertical-center text-center w-100 item-text">1</p>
                                     <span class="tooltiptext" style="width:74px;margin-left:-37px;">คาบที่ 1</span>
                                 </div>
@@ -645,20 +645,20 @@
 
                             </div>
 
-                            <div class="d-inline-block floating-label-group m-0">
+                            <div class="d-inline-block floating-label-group m-0 mt-5">
                                 @*<div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color:#099882;width:95px;border-radius:10px 0px 0px 10px;">
-                                    <label class="form-label" for="Day_">วัน :</label>
-                                </div>*@
+                <label class="form-label" for="Day_">วัน :</label>
+            </div>*@
                                 <input type="text" id="Day_thai" hidden name="Day_" class="form-control form-control-lg font-14" style="width:100%" value="" />
                                 <input type="text" id="Day_" hidden name="Day_" class="form-control form-control-lg font-14" style="width:100%" value="" />
                                 @*<div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color: #099882; width: 95px; border-radius: 10px 0px 0px 10px;">
-                                    <label class="form-label" for="Period">คาบเรียน :</label>
-                                </div>*@
+                <label class="form-label" for="Period">คาบเรียน :</label>
+            </div>*@
                                 <input type="text" id="Period" hidden name="Period" class="form-control form-control-lg font-14" style="width: 100%" value="" />
                                 <input type="text" id="Lecturer" hidden name="Lecturer" class="form-control form-control-lg font-14" style="width: 100%" value="@ViewBag.Fullname" />
                             </div>
                             <div class="d-inline-block floating-label-group m-0 w-100">
-                                <div class="p-0 pt-1 pl-2 text-dark text-left" >
+                                <div class="p-0 pt-1 pl-2 text-dark text-left">
                                     <label class="form-label" for="SubjectCode">รหัสรายวิชา :</label>
                                 </div>
                                 <input type="text" id="SubjectCode" name="SubjectCode" autocomplete="off" class="form-control form-control-lg font-14" style="width:100%" value="" />
@@ -682,6 +682,15 @@
                                 </div>
                                 <input type="text" id="Class" name="Class" autocomplete="off" class="form-control form-control-lg font-14" style="width: 100%" value="" />
                                 <input type="text" id="Class_id" hidden name="Class_id" class="form-control form-control-lg font-14" style="width: 100%" value="" />
+
+                                <input type="hidden" id="blockNum" name="blockNum" value="" />
+                            </div>
+                            <div class="d-inline-block floating-label-group m-0 p-0 w-100">
+                                <div class="p-0 pt-1 pl-2 text-dark text-left">
+                                    <label class="form-label" for="Class">หน่วยการเรียนรู้ :</label>
+                                </div>
+                                <input type="text" id="unitPlan" name="unitPlan" autocomplete="off" class="form-control form-control-lg font-14" style="width: 100%" value="" />
+                                @*<input type="text" id="Class_id" hidden name="Class_id" class="form-control form-control-lg font-14" style="width: 100%" value="" />*@
 
                                 <input type="hidden" id="blockNum" name="blockNum" value="" />
                             </div>
