@@ -38,7 +38,10 @@
 
 
         /**/
-
+        .active {
+            background-color:#43c343;
+            color:#fafafa;
+        }
 
 
 
@@ -388,45 +391,49 @@
                                                                                 //txt2 = @item.Location_Name;
                                                                                 //cls = "event";
                                                                                 found = 1;
-                                                                                <div class="dates_num text-center event">
-                                                                                    <div id="EventID_@i@d" style="display:none">@item.Event_Id</div>
-                                                                                    <div id="Day_@i@d" style="display:none">@d</div>
-                                                                                    <div id="Period_@i@d" style="display:none">@i</div>
-                                                                                    <div id="PTime_Begin_@i@d" style="display:none">@PTime_Begin</div>
-                                                                                    <div id="PTime_End_@i@d" style="display:none">@PTime_End</div>
-                                                                                    <div id="Room_Id_@i@d" style="display:none">@item.Location_Id</div>
-                                                                                    <div id="RoomName_@i@d" style="display:none">@item.Location_Name</div>
+                                                                                                                                        <div class="dates_num text-center event">
+                                                                                                                                            <div id="EventID_@i@d" style="display:none">@item.Event_Id</div>
+                                                                                                                                            <div id="Day_@i@d" style="display:none">@d</div>
+                                                                                                                                            <div id="Period_@i@d" style="display:none">@i</div>
+                                                                                                                                            <div id="PTime_Begin_@i@d" style="display:none">@PTime_Begin</div>
+                                                                                                                                            <div id="PTime_End_@i@d" style="display:none">@PTime_End</div>
+                                                                                                                                            <div id="Room_Id_@i@d" style="display:none">@item.Location_Id</div>
+                                                                                                                                            <div id="RoomName_@i@d" style="display:none">@item.Location_Name</div>
 
-                                                                                    <div id="Subject_Id_@i@d" style="display:none">@item.Subject_Id</div>
-                                                                                    <div id="SubjectCode_@i@d">@item.Summary</div>
-                                                                                    <div id="SubjectName_@i@d">@item.Description</div>
-                                                                                    <div id="ClasstName_@i@d">@item.UnitName</div>
-                                                                                    <div id="Class_Id_@i@d" style="display:none">@item.Location_Id</div>
-                                                                                    <div id="SubSchool_Id_@i@d" style="display:none">@item.SubSchool_Id</div>
-                                                                                    <div id="School_Id_@i@d" style="display:none">@item.School_Id</div>
-                                                                                    <div id="Method_@i@d" style="display:none">EDIT</div>
-                                                                                </div>
+                                                                                                                                            <div id="Subject_Id_@i@d" style="display:none">@item.Subject_Id</div>
+                                                                                                                                            <div id="SubjectCode_@i@d">@item.Summary</div>
+                                                                                                                                            <div id="SubjectName_@i@d">@item.Description</div>
+                                                                                                                                            <div id="ClasstName_@i@d">@item.UnitName</div>
+                                                                                                                                            <div id="Class_Id_@i@d" style="display:none">@item.Location_Id</div>
+                                                                                                                                            <div id="SubSchool_Id_@i@d" style="display:none">@item.SubSchool_Id</div>
+                                                                                                                                            <div id="School_Id_@i@d" style="display:none">@item.School_Id</div>
+                                                                                                                                            <div id="UnitPlan_Id_@i@d" style="display:none">@item.UnitPlan_Id</div>
+                                                                                                                                            <div id="UnitPlan_Name_@i@d" style="display:none">@item.UnitPlan_Name</div>
+                                                                                                                                            <div id="Method_@i@d" style="display:none">EDIT</div>
+                                                                                                                                        </div>
                                                                             }
                                                                         }
                                                                         if (found == 0)
                                                                         {
-                                                                            <div class="dates_num text-center">
-                                                                                <div id="EventID_@i@d" style="display:none"></div>
-                                                                                <div id="Day_@i@d" style="display:none">@d</div>
-                                                                                <div id="Period_@i@d" style="display:none">@i</div>
-                                                                                <div id="PTime_Begin_@i@d" style="display:none">@PTime_Begin</div>
-                                                                                <div id="PTime_End_@i@d" style="display:none">@PTime_End</div>
-                                                                                <div id="Room_Id_@i@d" style="display:none"></div>
-                                                                                <div id="RoomName_@i@d" style="display:none"></div>
+                                                                <div class="dates_num text-center">
+                                                                    <div id="EventID_@i@d" style="display:none"></div>
+                                                                    <div id="Day_@i@d" style="display:none">@d</div>
+                                                                    <div id="Period_@i@d" style="display:none">@i</div>
+                                                                    <div id="PTime_Begin_@i@d" style="display:none">@PTime_Begin</div>
+                                                                    <div id="PTime_End_@i@d" style="display:none">@PTime_End</div>
+                                                                    <div id="Room_Id_@i@d" style="display:none"></div>
+                                                                    <div id="RoomName_@i@d" style="display:none"></div>
 
-                                                                                <div id="Subject_Id_@i@d" style="display:none"></div>
-                                                                                <div id="SubjectCode_@i@d"></div>
-                                                                                <div id="SubjectName_@i@d"></div>
-                                                                                <div id="ClasstName_@i@d"></div>
-                                                                                <div id="SubSchool_Id_@i@d" style="display:none"></div>
-                                                                                <div id="School_Id_@i@d" style="display:none"></div>
-                                                                                <div id="Method_@i@d" style="display:none">NEW</div>
-                                                                            </div>
+                                                                    <div id="Subject_Id_@i@d" style="display:none"></div>
+                                                                    <div id="SubjectCode_@i@d"></div>
+                                                                    <div id="SubjectName_@i@d"></div>
+                                                                    <div id="ClasstName_@i@d"></div>
+                                                                    <div id="SubSchool_Id_@i@d" style="display:none"></div>
+                                                                    <div id="School_Id_@i@d" style="display:none"></div>
+                                                                    <div id="UnitPlan_Id_@i@d" style="display:none"></div>
+                                                                    <div id="UnitPlan_Name_@i@d" style="display:none"></div>
+                                                                    <div id="Method_@i@d" style="display:none">NEW</div>
+                                                                </div>
                                                                         }
                                                                     }
                                                                 </div>
@@ -559,7 +566,8 @@
                 <div class="card border shadow">
                     <div class="card-header bg-green-custom border-0 p-0 pl-3 pr-3 text-white" style="height:45px">
                         <div class="form-inline justify-content-between pt-0">
-                            <div class="pt-2">
+                            <div class="pt-2 d-inline-flex">
+                                <i class="fa fa-calendar mt-1 mr-3"></i>
                                 <h5>ตารางเรียน</h5>
                             </div>
                             <span class="pointer-event pt-1" onclick="hideModal_fast();">
@@ -569,83 +577,83 @@
                     </div>
                     <div class="card-body p-3 pt-1">
                         <form id="PA_Form" class="flex-column">
-
                             <div class="d-flex justify-content-between mt-2 border" style="z-index:40; width:100%;height:33px;padding:0 10%;border-color:#000000;border-radius:16px;opacity:1.0;position:relative;">
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center active" name="day__" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">S</p>
                                     <span class="tooltiptext" style="width:84px;margin-left:-42px;">Sunday</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="day__" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">M</p>
                                     <span class="tooltiptext" style="width:84px;margin-left:-42px;">Monday</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="day__" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">T</p>
                                     <span class="tooltiptext" style="width:84px;margin-left:-42px;">Tuesday</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="day__" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">W</p>
                                     <span class="tooltiptext" style="width:84px;margin-left:-42px;">Wednesday</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="day__" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">T</p>
                                     <span class="tooltiptext" style="width:85px;margin-left:-42px;">Thutsday</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="day__" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">F</p>
                                     <span class="tooltiptext" style="width:84px;margin-left:-42px;">Friday</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="day__" style="width:25px;height:25px;font-size:0.80rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">S</p>
                                     <span class="tooltiptext" style="width:84px;margin-left:-42px;">Saturday</span>
                                 </div>
 
                             </div>
-                            <div class="d-flex justify-content-between mt-2 border" style="z-index:20; width: 100%; height: 33px; padding: 0 10%; border-color: #000000; border-radius: 16px; opacity: 1.0;position:absolute;">
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;z-index:21;">
+                            
+                            <div class="d-flex justify-content-between mt-2 border" style="z-index:20; width: 100%; height: 33px; padding: 0 10%; border-color: #000000; border-radius: 16px; opacity: 1.0;position:relative;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center active" name="period__" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;z-index:21;">
                                     <p class="vertical-center text-center w-100 item-text">1</p>
                                     <span class="tooltiptext" style="width:74px;margin-left:-37px;">คาบที่ 1</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="period__" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">2</p>
                                     <span class="tooltiptext" style="width:74px;margin-left:-37px;">คาบที่ 2</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="period__" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">3</p>
                                     <span class="tooltiptext" style="width:74px;margin-left:-37px;">คาบที่ 3</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="period__" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">4</p>
                                     <span class="tooltiptext" style="width:74px;margin-left:-37px;">คาบที่ 4</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="period__" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">5</p>
                                     <span class="tooltiptext" style="width:74px;margin-left:-37px;">คาบที่ 5</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="period__" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">6</p>
                                     <span class="tooltiptext" style="width:74px;margin-left:-37px;">คาบที่ 6</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="period__" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">7</p>
                                     <span class="tooltiptext" style="width:74px;margin-left:-37px;">คาบที่ 7</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="period__" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">8</p>
                                     <span class="tooltiptext" style="width:74px;margin-left:-37px;">คาบที่ 8</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="period__" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">9</p>
                                     <span class="tooltiptext" style="width:74px;margin-left:-37px;">คาบที่ 9</span>
                                 </div>
-                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" onclick="location.href = '/EvaluatePA/Management_Index?user_id=1000002&amp;mgSection=Calendar';" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
+                                <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1 narhu_item vertical-center" name="period__" style="width:25px;height:25px;font-size:0.75rem;font-weight:normal;border-color:#ffffff;">
                                     <p class="vertical-center text-center w-100">10</p>
                                     <span class="tooltiptext" style="width:74px;margin-left:-37px;">คาบที่ 10</span>
                                 </div>
 
                             </div>
 
-                            <div class="d-inline-block floating-label-group m-0 mt-5">
+                            <div class="d-inline-block floating-label-group m-0 mt-2">
                                 @*<div class="border p-0 pt-1 pl-2 text-white text-left" style="background-color:#099882;width:95px;border-radius:10px 0px 0px 10px;">
                 <label class="form-label" for="Day_">วัน :</label>
             </div>*@
@@ -659,9 +667,10 @@
                             </div>
                             <div class="d-inline-block floating-label-group m-0 w-100">
                                 <div class="p-0 pt-1 pl-2 text-dark text-left">
-                                    <label class="form-label" for="SubjectCode">รหัสรายวิชา :</label>
+                                    <label class="form-label" for="SubjectCode">รหัสรายวิชา/ชื่อวิชา :</label>
                                 </div>
                                 <input type="text" id="SubjectCode" name="SubjectCode" autocomplete="off" class="form-control form-control-lg font-14" style="width:100%" value="" />
+                                @*<input type="text" id="SubjectCode_" name="SubjectCode_" hidden class="form-control form-control-lg font-14" style="width:100%" value="" />*@
                                 <input type="text" id="School_Id_" name="School_Id_" hidden class="form-control form-control-lg font-14" style="width:100%" value="" />
 
                                 <input type="text" id="SubjectName" name="SubjectName" hidden class="form-control form-control-lg font-14" style="width: 100%" disabled value="" />
@@ -690,6 +699,7 @@
                                     <label class="form-label" for="Class">หน่วยการเรียนรู้ :</label>
                                 </div>
                                 <input type="text" id="unitPlan" name="unitPlan" autocomplete="off" class="form-control form-control-lg font-14" style="width: 100%" value="" />
+                                <input type="text" id="unitPlan_id" name="unitPlan_id" hidden autocomplete="off" class="form-control form-control-lg font-14" style="width: 100%" value="" />
                                 @*<input type="text" id="Class_id" hidden name="Class_id" class="form-control form-control-lg font-14" style="width: 100%" value="" />*@
 
                                 <input type="hidden" id="blockNum" name="blockNum" value="" />
@@ -733,6 +743,7 @@
 
             //alert(this_id);
 
+
             const dayText = ["", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
             const dayText_thai = ["", "วันอาทิตย์", "วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัส", "วันศุกร์", "วันเสาร์"];
             var id = "#SubjectCode_" + this_id;
@@ -743,21 +754,52 @@
 
             var this_dayText = dayText[Number(Day_)];
             var this_dayText_thai = dayText_thai[Number(Day_)];
+            var dayelements = document.getElementsByName('day__');
+            //int j = 0;
+            for (var i = 0; i < dayelements.length; i++) {
+                
+                dayelements[i].classList.remove('active');
+                if (i + 1 == Number(Day_)) {
+                    dayelements[i].classList.add('active');
+                }
+            }
+
+            var periodelements = document.getElementsByName('period__');
+            //int j = 0;
+            for (var j = 0; j< periodelements.length; j++) {
+
+                periodelements[j].classList.remove('active');
+                if (j + 1 == Number(period_.replace("คาบเรียนที่ : ",""))) {
+                    periodelements[j].classList.add('active');
+                }
+            }
+            //alert(period_);
+
+
             //alert(this_dayText);
             //alert(Day_);
             var RoomName = ($("#RoomName_" + this_id).html());
             //alert(RoomName);
             var RoomId = ($("#Room_Id_" + this_id).html());
+
+            var UnitPlan_Name = ($("#UnitPlan_Name_" + this_id).html());
+            //alert(RoomName);
+            var UnitPlan_Id = ($("#UnitPlan_Id_" + this_id).html());
+
             var ClassId = ($("#Class_Id_" + this_id).html());
             //alert(Day_);
             document.getElementById("PA_Form").reset();
             $("#Day_thai").val(this_dayText_thai);
             $("#Day_").val(this_dayText);
             $("#Period").val(period_);
-            $("#SubjectCode").val(subjectCode);
+            $("#SubjectCode").val(subjectCode + " : " + subjectName);
             $("#SubjectName").val(subjectName);
             $("#Room").val(RoomName);
             $("#Room_id").val(RoomId);
+            //alert(UnitPlan_Id);
+            $("#unitPlan_id").val(UnitPlan_Id);
+            //alert(UnitPlan_Name);
+            $("#unitPlan").val(UnitPlan_Name);
             $("#Class").val(className);
             $("#Class_id").val(ClassId);
             $("#blockNum").val(this_id);
@@ -856,7 +898,8 @@
                     let eid = $("#EventID_" + this_id_).html();
                     //alert(eid);
 
-                    let Summary = $('#SubjectCode').val();
+                    let Summary_ = $('#SubjectCode').val().split(":");
+                    let Summary = Summary_[0].replace(" ",""); //$('#SubjectId').val();
                     let SubjectName = $("#SubjectName").val();
                     var PTime_Begin = $("#PTime_Begin_" + this_id_).html();
                     var PTime_End = $("#PTime_End_" + this_id_).html();
@@ -895,7 +938,10 @@
                     let Period = $("#Period").val();
                     let Room = $("#Room").val();
                     let Class = $("#Class").val();
-                    let Class_id = $("#Class_id").val();
+            let Class_id = $("#Class_id").val();
+            let UnitPlan_id = $("#unitPlan_id").val();
+            let UnitPlan_Name = $("#unitPlan").val();
+
                     //alert(Summary);
                     //alert(Day_);
                     //alert(Period);
@@ -912,9 +958,14 @@
                         + "&BDate=" + BDate + "&EDate=" + EDate
                         + "&Location_Id=" + Location_Id + "&Event_Id=" + eid
                         + "&User_Id=" + uid + "&Subject_Id=" + Subject_Id
-                        + "&SubSchool_Id=" + SubSchool_Id + "&School_Id=" + School_Id + "&Unit_Id=" + Class_id + "&UnitName=" + Class
+                        + "&SubSchool_Id=" + SubSchool_Id + "&School_Id=" + School_Id + "&Unit_Id=" + Class_id + "&UnitName=" + Class + "&UnitPlan_id=" + UnitPlan_id + "&UnitPlan_Name=" + UnitPlan_Name 
                         + "&RR_FREQ=" + "WEEKLY" + "&RR_BYDAY=" + Day_.substring(0, 2).toUpperCase();
-                    alert(param);
+           //alert(param);
+
+            if (Summary == "" || Location_Id == "" || Class_id == "") {
+                alert("Invalid Entry!!");
+                return false;
+            }
 
                     var param2 = "user_id=" + uid + "&dateTime=" + targetDate
                         + "&mode=" + 'week';
@@ -996,7 +1047,7 @@
                         b.addEventListener("click", function (e) {
                             /*insert the value for the autocomplete text field:*/
                             //alert(inp.value);
-                            inp.value = this.getElementsByTagName("input")[3].value;
+                            inp.value = this.getElementsByTagName("input")[3].value + " : " + this.getElementsByTagName("input")[1].value;
                             //alert(document.getElementById("SubjectName").value);
                             //alert(this.getElementsByTagName("input")[4].value);
                             document.getElementById("SubjectId").value = this.getElementsByTagName("input")[0].value;
@@ -1054,7 +1105,7 @@
                         /*execute a function when someone clicks on the item value (DIV element):*/
                         b.addEventListener("click", function (e) {
                             /*insert the value for the autocomplete text field:*/
-                            inp.value = this.getElementsByTagName("input")[3].value;
+                            inp.value = this.getElementsByTagName("input")[3].value + " : " + this.getElementsByTagName("input")[1].value;
                             //alert("");
                             document.getElementById("SubjectId").value = this.getElementsByTagName("input")[0].value;
                             document.getElementById("SubjectName").value = this.getElementsByTagName("input")[1].value;
@@ -1496,6 +1547,188 @@
             });
         }
 
+        function autocompleteV2_UnitPlan(inp, sbj_arr) {
+            //alert(sbj_arr[0].value);
+            /*the autocomplete function takes two arguments,
+            the text field element and an array of possible autocompleted values:*/
+            var currentFocus;
+            inp.addEventListener("click", function (e) {
+                var a, b, i, val = this.value;
+                /*close any already open lists of autocompleted values*/
+                closeAllLists();
+                //if (!val) { return false;}
+                currentFocus = -1;
+                /*create a DIV element that will contain the items (values):*/
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-unitPlan-list");
+                a.setAttribute("class", "autocomplete-unitPlan-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                this.parentNode.appendChild(a);
+                /*for each item in the array...*/
+                for (i = 0; i < sbj_arr.length; i++) {
+                    /*check if the item starts with the same letters as the text field value:*/
+                    //alert(sbj_arr.length);
+                    if (true == true) {
+                        /*create a DIV element for each matching element:*/
+                        b = document.createElement("DIV");
+                        /*make the matching letters bold:*/
+                        b.innerHTML = "<strong>" + sbj_arr[i][1].substr(0, val.length) + "</strong>";
+                        b.innerHTML += sbj_arr[i][1].substr(val.length);
+                        var ext = sbj_arr[i][1];
+                        if (sbj_arr[i][1].length > 30) {
+                            ext = sbj_arr[i][1].substr(0, 30) + " ... ";
+                        }
+
+                        //b.innerHTML += " : <small>" + ext + "</small>";
+
+                        /*insert a input field that will hold the current array item's value:*/
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][0] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][1] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][2] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][3] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][4] + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].Mobile_num + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_HH + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_H + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_L + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_LL + "'>";
+                        /*execute a function when someone clicks on the item value (DIV element):*/
+                        b.addEventListener("click", function (e) {
+                            /*insert the value for the autocomplete text field:*/
+                            //alert(inp.value);
+                            inp.value = this.getElementsByTagName("input")[1].value;
+                            //alert(document.getElementById("SubjectName").value);
+                            //alert(this.getElementsByTagName("input")[4].value);
+                            //document.getElementById("Class").value = this.getElementsByTagName("input")[0].value;
+                            //document.getElementById("Class").value = this.getElementsByTagName("input")[1].value;
+                            document.getElementById("unitPlan_id").value = this.getElementsByTagName("input")[0].value;
+                            //alert(this.getElementsByTagName("input")[1].value);
+                            //document.getElementById("Factory_MobileNum").value = this.getElementsByTagName("input")[1].value;
+                            //document.getElementById("Factory_HH").value = this.getElementsByTagName("input")[2].value;
+                            //document.getElementById("Factory_H").value = this.getElementsByTagName("input")[3].value;
+                            //document.getElementById("Factory_L").value = this.getElementsByTagName("input")[4].value;
+                            //document.getElementById("Factory_LL").value = this.getElementsByTagName("input")[5].value;
+                            /*close the list of autocompleted values,
+                            (or any other open lists of autocompleted values:*/
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                    }
+                }
+            });
+            /*execute a function when someone writes in the text field:*/
+            inp.addEventListener("input", function (e) {
+                var a, b, i, val = this.value;
+                /*close any already open lists of autocompleted values*/
+                closeAllLists();
+                if (!val) { return false; }
+                currentFocus = -1;
+                /*create a DIV element that will contain the items (values):*/
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-unitPlan-list");
+                a.setAttribute("class", "autocomplete-unitPlan-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                this.parentNode.appendChild(a);
+                /*for each item in the array...*/
+                for (i = 0; i < sbj_arr.length; i++) {
+                    /*check if the item starts with the same letters as the text field value:*/
+                    if (sbj_arr[i][3].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                        /*create a DIV element for each matching element:*/
+                        b = document.createElement("DIV");
+                        /*make the matching letters bold:*/
+                        b.innerHTML = "<strong>" + sbj_arr[i][1].substr(0, val.length) + "</strong>";
+                        b.innerHTML += sbj_arr[i][1].substr(val.length);
+                        //b.innerHTML += " : " + sbj_arr[i][1];
+                        /*insert a input field that will hold the current array item's value:*/
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][0] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][1] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][2] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][3] + "'>";
+                        b.innerHTML += "<input type='hidden' value='" + sbj_arr[i][4] + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].Serial_Num + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].Mobile_num + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_HH + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_H + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_L + "'>";
+                        ////b.innerHTML += "<input type='hidden' value='" + sensor_arr[i].P_Setting_LL + "'>";
+                        /*execute a function when someone clicks on the item value (DIV element):*/
+                        b.addEventListener("click", function (e) {
+                            /*insert the value for the autocomplete text field:*/
+                            inp.value = this.getElementsByTagName("input")[1].value;
+                            //alert("");
+                            //document.getElementById("SubjectId").value = this.getElementsByTagName("input")[0].value;
+                            //document.getElementById("SubjectName").value = this.getElementsByTagName("input")[1].value;
+                            document.getElementById("unitPlan_id").value = this.getElementsByTagName("input")[0].value;
+                            //alert(this.getElementsByTagName("input")[1].value);
+                            ////document.getElementById("Factory_MobileNum").value = this.getElementsByTagName("input")[1].value;
+                            ////document.getElementById("Factory_HH").value = this.getElementsByTagName("input")[2].value;
+                            ////document.getElementById("Factory_H").value = this.getElementsByTagName("input")[3].value;
+                            ////document.getElementById("Factory_L").value = this.getElementsByTagName("input")[4].value;
+                            ////document.getElementById("Factory_LL").value = this.getElementsByTagName("input")[5].value;
+                            /*close the list of autocompleted values,
+                            (or any other open lists of autocompleted values:*/
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                    }
+                }
+            });
+            /*execute a function presses a key on the keyboard:*/
+            inp.addEventListener("keydown", function (e) {
+                var x = document.getElementById(this.id + "autocomplete-unitPlan-list");
+                if (x) x = x.getElementsByTagName("div");
+                if (e.keyCode == 40) {
+                    /*If the arrow DOWN key is pressed,
+                    increase the currentFocus variable:*/
+                    currentFocus++;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 38) { //up
+                    /*If the arrow UP key is pressed,
+                    decrease the currentFocus variable:*/
+                    currentFocus--;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 13) {
+                    /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                    e.preventDefault();
+                    if (currentFocus > -1) {
+                        /*and simulate a click on the "active" item:*/
+                        if (x) x[currentFocus].click();
+                    }
+                }
+            });
+            function addActive(x) {
+                /*a function to classify an item as "active":*/
+                if (!x) return false;
+                /*start by removing the "active" class on all items:*/
+                removeActive(x);
+                if (currentFocus >= x.length) currentFocus = 0;
+                if (currentFocus < 0) currentFocus = (x.length - 1);
+                /*add class "autocomplete-active":*/
+                x[currentFocus].classList.add("autocomplete-unitPlan-active");
+            }
+            function removeActive(x) {
+                /*a function to remove the "active" class from all autocomplete items:*/
+                for (var i = 0; i < x.length; i++) {
+                    x[i].classList.remove("autocomplete-unitPlan-active");
+                }
+            }
+            function closeAllLists(elmnt) {
+                /*close all autocomplete lists in the document,
+                except the one passed as an argument:*/
+                var x = document.getElementsByClassName("autocomplete-unitPlan-items");
+                for (var i = 0; i < x.length; i++) {
+                    if (elmnt != x[i] && elmnt != inp) {
+                        x[i].parentNode.removeChild(x[i]);
+                    }
+                }
+            }
+            /*execute a function when someone clicks in the document:*/
+            document.addEventListener("click", function (e) {
+                closeAllLists(e.target);
+            });
+        }
 
         //alert("");
         //var School_arr = [[ "300001", "โรงเรียนน้ำยืนวิทยา", "อุบลราชธานี" ]];
@@ -1505,9 +1738,11 @@
     var Location_arr =  @Html.Raw(ViewBag.Location);
         var Class_arr =  @Html.Raw(ViewBag.Class);
         var Room_arr =  @Html.Raw(ViewBag.Location);
+         var UnitPlan_arr =  @Html.Raw(ViewBag.UnitPlan);
         autocompleteV2(document.getElementById("SubjectCode"), Subject_arr);
         autocompleteV2_Class(document.getElementById("Class"), Class_arr);
         autocompleteV2_Room(document.getElementById("Room"), Room_arr);
+        autocompleteV2_UnitPlan(document.getElementById("unitPlan"), UnitPlan_arr);
 
         //alert("");
     </script>

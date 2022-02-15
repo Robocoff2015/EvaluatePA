@@ -462,7 +462,7 @@
                                 </tr>
                                 <tr class="border-bottom-2">
                                     <td class="text-left pl-5">1.8</td>
-                                    <td class="pb-3">
+                                    <td class="pb-2">
                                         <label class="container_check">
                                             <input type="checkbox">
                                             <span class="checkmark"></span>
@@ -502,8 +502,8 @@
                         <div class="col-md-12 mb-4">
                             <table class="w-100 eval-table">
                                 <tr class="border-top">
-                                    <th colspan="1" rowspan="2">ลักษณะงาน</th>
-                                    <th colspan="4">ผลการประเมิน</th>
+                                    <th colspan="1" rowspan="2" class="text-left pl-5">ลักษณะงาน</th>
+                                    <th colspan="4" class="text-center">ผลการประเมิน</th>
                                 </tr>
                                 <tr class="border-bottom-2">
                                     <th>1</th>
@@ -724,6 +724,13 @@
         p2.style.display = "none";
         p3.style.display = "none";
         p4.style.display = "block";
+    }
+</script>
+
+<script>
+    function BACK() {
+        let user_Id = $('#userId').val();
+        window.location.assign("/EvaluatePA2/EvaluatePA2_Index?user=" + user_Id);
     }
 </script>
 

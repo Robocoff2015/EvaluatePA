@@ -22,6 +22,7 @@
 
                         <div class="mt-2">
                             <h5><i class="fa fa-book fa-fw w3-margin-right w3-text-theme"></i>หน่วยการเรียนรู้</h5>
+                            <input type="text" id="userId" hidden name="userId" value="@id_" />
                         </div>
                         <div class="right">
 
@@ -77,9 +78,9 @@
                                                 <div class="btn btn-success p-0 pt-1" onclick="" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
                                             </td>
                                             <td class="text-center">
-                                                <div id="PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-eye w3-text-theme"></i></div>
+                                                <div id="PA_Report_Model.Form_Id" class="btn view bg-light btn-sm pt-0" onclick="View_UP('@Model.Rows[i].ItemArray[0].ToString()');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-eye w3-text-theme"></i></div>
                                                 <div id="PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="Edit_UP('@Model.Rows[i].ItemArray[0].ToString()');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
-                                                <div id="PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>     
+                                                <div id="PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="Delete_UP('@Model.Rows[i].ItemArray[0].ToString()','@Model.Rows[i].ItemArray[1].ToString()');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>     
                                             </td>
                                         </tr>
                                         }
@@ -228,6 +229,28 @@
             //hideModal();
 
         }
+
+        function Delete_UP(id, Name) {
+
+            var param = "Id=" + id
+                + "&submit=yes";
+            if (confirm("Delete Unit Plan : " + Name + " ?")) {
+                let url_ = '/Curriculum/DeleteUP_AJ?' + param;
+                alert(url_);
+                $.ajax({
+
+                    type: 'GET',
+                    url: url_,
+                    success: function (result) {
+                        window.location.reload(true);
+                    }
+                });
+            }
+            else
+            {
+            }
+        }
+
 
 
         function AJ_Save() {

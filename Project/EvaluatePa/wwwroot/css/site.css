@@ -391,7 +391,10 @@ input {
         cursor: pointer;
     }
 
-.autocomplete-items, .autocomplete-class-items, .autocomplete-room-items {
+.autocomplete-items, 
+.autocomplete-class-items, 
+.autocomplete-room-items, 
+.autocomplete-unitPlan-items {
     font-size: 14px;
     position: absolute;
     border: 1px solid #d4d4d4;
@@ -406,7 +409,10 @@ input {
     overflow: auto; /* to get scroll */
 }
 
-    .autocomplete-items div, .autocomplete-class-items div, .autocomplete-room-items div {
+    .autocomplete-items div, 
+    .autocomplete-class-items div, 
+    .autocomplete-room-items div, 
+    .autocomplete-unitPlan-items div {
         padding: 10px;
         cursor: pointer;
         background-color: #fff;
@@ -417,12 +423,18 @@ input {
     }
 
         /*when hovering an item:*/
-        .autocomplete-items div:hover, .autocomplete-class-items div:hover, .autocomplete-room-items div:hover {
+        .autocomplete-items div:hover, 
+        .autocomplete-class-items div:hover, 
+        .autocomplete-room-items div:hover, 
+        .autocomplete-unitPlan-items div:hover {
             background-color: #e9e9e9;
         }
 
 /*when navigating through the items using the arrow keys:*/
-.autocomplete-active, .autocomplete-class-active, .autocomplete-room-active {
+.autocomplete-active, 
+.autocomplete-class-active, 
+.autocomplete-room-active, 
+.autocomplete-unitPlan-active {
     background-color: DodgerBlue !important;
     color: #ffffff;
 }

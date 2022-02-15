@@ -139,7 +139,7 @@ namespace EvaluatePa.Controllers
             {
                 string sqlString = "SELECT [Id],[Name],[Description],[Cu_Id],[Subject_Id],[PlanDuration],[DateTime],[MDateTime],[Objective],[LearningStrands]"
                                     + ",[LearningStandards],[Indicators],[WorkLoad],[TeachingActivities],[Evaluate],[OwnerId],[Status]"
-                                    + " FROM[devpa].[dbo].[Cu_UnitPlan]";
+                                    + " FROM [devpa].[dbo].[Cu_UnitPlan] where [OwnerId] = " + user;
                 return View("UnitPlan_Index", get_datatable(sqlString));
             }
             return View("UnitPlan_Index", new System.Data.DataTable());
@@ -194,7 +194,7 @@ namespace EvaluatePa.Controllers
                 //sqlString += " INSERT INTO [" + dbName + "].[dbo].[PA_Media]([Name],[DateTime],[OwnerId],[Status]) VALUES ('" + PA_Name + "','" + DateTime_ + "'," + user_Id + ",0)";
                 sqlString += "IF NOT EXISTS (SELECT [Name] FROM [" + dbName + "].[dbo].[Cu_UnitPlan] WHERE [Name] = 'การออกเสียง' and [Status] <> 204 and OwnerId = NULL)";
                 sqlString += " BEGIN INSERT INTO[" + dbName + "].[dbo].[Cu_UnitPlan]([Id],[Name],[Description],[Cu_Id],[Subject_Id],[PlanDuration],[DateTime],[MDateTime],[Objective],[LearningStrands],[LearningStandards]";
-                sqlString += " ,[Indicators],[WorkLoad],[TeachingActivities],[Evaluate],[OwnerId],[Status]) VALUES (NEWID(), '" + UP_Name + "', '', '', 0, 0, GETDATE(), GETDATE(),'', '', '', '', '', '', '', 0, 200)";
+                sqlString += " ,[Indicators],[WorkLoad],[TeachingActivities],[Evaluate],[OwnerId],[Status]) VALUES (NEWID(), '" + UP_Name + "', '', '', 0, 0, GETDATE(), GETDATE(),'', '', '', '', '', '', '', " + user_Id + ", 200)";
                 sqlString += " END ELSE BEGIN SELECT -1 END";
                 connection.Open();
                 SqlCommand command2 = new SqlCommand(sqlString, connection);
@@ -220,6 +220,44 @@ namespace EvaluatePa.Controllers
 
 
         }
+
+        public IActionResult DeleteUP_AJ(string Id)
+        {
+            //HttpContext.Session.SetString("userId", user);
+            string sqlString = "SELECT [Id],[Name],[Description],[Cu_Id],[Subject_Id],[PlanDuration],[DateTime],[MDateTime],[Objective]"
+                                + " ,[LearningStrands],[LearningStandards],[Indicators],[WorkLoad],[TeachingActivities],[Evaluate],[OwnerId],[Status] FROM [" + dbName + "].[dbo].[Cu_UnitPlan]"
+                                + " where [Id] = CAST('" + Id + "' as uniqueidentifier)";
+            if (Id != null)
+            {
+                //return View("UnitPlan_Edit", get_datatable(sqlString));
+            }
+
+            string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
+            //string dbName = configuration.GetConnectionString("dbSource");
+            //connection.Open();
+            System.Data.DataTable dt = new DataTable();
+            String sqlString2 = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //string myPassSHA = GenerateSHA256String(Password);
+                string DateTime_ = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                //sqlString += " INSERT INTO [" + dbName + "].[dbo].[PA_Media]([Name],[DateTime],[OwnerId],[Status]) VALUES ('" + PA_Name + "','" + DateTime_ + "'," + user_Id + ",0)";
+                //sqlString += "IF NOT EXISTS (SELECT [Name] FROM [" + dbName + "].[dbo].[PA_Form] WHERE [Name] = '" + PA_Name + "')";
+                //sqlString += " DELETE FROM [" + dbName + "].[dbo].[PA_Form] WHERE [Id] = '" + Id + "'";
+                sqlString2 += " delete from [" + dbName + "].[dbo].[Cu_UnitPlan]  WHERE [Id] = CAST('" + Id + "' as uniqueidentifier)";
+                connection.Open();
+                SqlCommand command2 = new SqlCommand(sqlString2, connection);
+                command2.ExecuteNonQuery();
+                command2.Dispose();
+                connection.Close();
+            }
+            return View("UnitPlan_Edit", new System.Data.DataTable());
+
+            //return View("Curriculum_Index", new System.Data.DataTable());
+
+
+        }
+
 
 
 

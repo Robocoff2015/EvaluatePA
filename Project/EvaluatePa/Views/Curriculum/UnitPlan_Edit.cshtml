@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Unit Plan Edit";
     Layout = "_Layout_NoMenu2";
+    var id_ = @Context.Session.GetString("userId");
 }
 
 @section Style_{
@@ -163,6 +164,7 @@
                         <div class="d-xl-inline-flex">
                             <div id="page_1" class="mt-2 p-0 pl-4 pr-4 active" onclick='fadin(); fireTrigger();showpage_1();fadout();'>
                                 <p class="m-0 mt-1 mb-1">แบบฟอร์มการสร้างหน่วยการเรียนรู้</p>
+                                <input type="text" id="userId" hidden name="userId" value="@id_" />
                             </div>
                         </div>
                         <div class="btn btn-outline-success ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">กลับ</div>
@@ -213,7 +215,7 @@
                                 <div class="col-md-12 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="subject">วิชา</label>
-                                        <input type="text" id="Course" name="Course" class="form-control form-control-lg" placeholder="วิชา" style="font-size: 14px; height: 35px;" value="" />
+                                        <input type="text" id="subject" name="subject" class="form-control form-control-lg" placeholder="วิชา" style="font-size: 14px; height: 35px;" value="" />
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-4">
@@ -1129,7 +1131,7 @@
         }
         function BACK() {
             let user_Id = $('#userId').val();
-            window.location.assign("/Curriculum/Curriculum_Index?user=" + user_Id);
+            window.location.assign("/Curriculum/UnitPlan_Index?user=" + user_Id);
 
         }
         function isBlank(str) {
@@ -1139,93 +1141,87 @@
         function AJ_Submit() {
 
 
-            //alert("submit");
-            //let total = document.getElementById("Total_Hour_Schedule_str")
-            //total.value = e.target.value;
-            //alert(inputTextValue);
-            let input_subject = document.getElementsByName("subject-name");
-            //var sum = 0;
-            for (var i = 0; i <= input_subject.length - 1; i++) {
-                //alert(input_subject[i].value);
-                if (isBlank(input_subject[i].value)) {
-                    alert("Subject cannot be empty.");
-                    return false;
-                }
+            ////alert("submit");
+            ////let total = document.getElementById("Total_Hour_Schedule_str")
+            ////total.value = e.target.value;
+            ////alert(inputTextValue);
+            //let input_subject = document.getElementsByName("subject-name");
+            ////var sum = 0;
+            //for (var i = 0; i <= input_subject.length - 1; i++) {
+            //    //alert(input_subject[i].value);
+            //    if (isBlank(input_subject[i].value)) {
+            //        alert("Subject cannot be empty.");
+            //        return false;
+            //    }
 
 
-            }
+            //}
 
-            let input_ = document.getElementsByName("subject-hour");
-            //var sum = 0;
-            for (var j = 0; j <= input_.length - 1; j++) {
-                //alert(input_[j].value);
-                if (isBlank(input_[j].value)) {
-                    alert("Hour cannot be empty.");
-                    return false;
-                }
+            //let input_ = document.getElementsByName("subject-hour");
+            ////var sum = 0;
+            //for (var j = 0; j <= input_.length - 1; j++) {
+            //    //alert(input_[j].value);
+            //    if (isBlank(input_[j].value)) {
+            //        alert("Hour cannot be empty.");
+            //        return false;
+            //    }
 
-                if (!Number(input_[j].value)) {
-                    //alert("Hour must be a number.");
-                    //document.getElementsByName("subject-hour")[j].value = 0;
-                    //return false;
-                }
+            //    if (!Number(input_[j].value)) {
+            //        //alert("Hour must be a number.");
+            //        //document.getElementsByName("subject-hour")[j].value = 0;
+            //        //return false;
+            //    }
 
-                ///
+            //    ///
 
-            }
+            //}
 
 
-            //////
+            ////////
 
 
 
             let Prefix = 0;
             let Prefix_mr = $('#mr').prop("checked"),
                 Prefix_mrs = $('#mrs').prop("checked"),
-                Prefix_miss = $('#miss').prop("checked"),
-                user_Id = $('#userId').val(),
-                FirstName = $('#FirstName').val(),
-                LastName = $('#LastName').val(),
-                position = $('#position').val(),
-                school = $('#school').val(),
-                CDate = $('#CDate').val(),
-                memberOf = $('#memberOf').val(),
-                salaryLevel = $('#salaryLevel').val(),
-                salaryRate = $('#salaryRate').val(),
-                classroomType = $('#classroomType').val();
-            //
+                Prefix_miss = $('#miss').prop("checked")
+            let Course_ = $('#Course').val(),
+                SubjectCode_ = $('#SubjectCode').val(),
+                duratiom_ = $('#duratiom').val(),
+                class_ = $('#class').val(),
+                symester_ = $('#symester').val(),
+                schoolYear_ = $('#schoolYear').val(),
+                unitPlanNum_ = $('#unitPlanNum').val(),
+                learningStandard_ = $('#learningStandard').val(),
+                objective_ = $('#objective').val(),
+                info_ = $('#info').val(),
+                unitPlan_ = $('#unitPlan').val(),
+                learningInfo_ = $('#learningInfo').val(),
+                competency_ = $('#competency').val(),
+                expectChar_ = $('#expectChar').val(),
+                focus_ = $('#focus').val(),
+                warmUpProcedure_ = $('#warmUpProcedure').val(),
+                warmUpResource_ = $('#warmUpResource').val(),
+                warmUpTiming_ = $('#warmUpTiming').val(),
+                PresentationProcedure_ = $('#PresentationProcedure').val(),
+                PresentationResource_ = $('#PresentationResource').val(),
+                PresentationTiming_ = $('#PresentationTiming').val(),
+                PracticeProcedure_ = $('#PracticeProcedure').val(),
+                PracticeResource_ = $('#PracticeResource').val(),
+                PracticeTiming_ = $('#PracticeTiming').val(),
+                ProductionProcedure_ = $('#ProductionProcedure').val(),
+                ProductionResource_ = $('#ProductionResource').val(),
+                ProductionTiming_ = $('#ProductionTiming').val(),
+                AssessmentProcedure_ = $('#AssessmentProcedure').val(),
+                AssessmentResource_ = $('#AssessmentResource').val(),
+                AssessmentTiming_ = $('#AssessmentTiming').val(),
+                WarpUpProcedure_ = $('#WarpUpProcedure').val(),
+                WarpUpResource_ = $('#WarpUpResource').val(),
+                WarpUpTiming_ = $('#WarpUpTiming').val(),
+                workLoad_ = $('#workLoad').val(),
+                measureEvaluation_ = $('#measureEvaluation').val(),
+                learningRecord_ = $('#learningRecord').val()
 
-            //let Total_Hour_Schedule_str = $('#Total_Hour_Schedule_str').val();
-            //let Total_Hour_Learning_Promotion_Support_str = $('#Total_Hour_Learning_Promotion_Support_str').val();
-            //let Total_Hour_Q_Education_Mng_Devstr = $('#Total_Hour_Q_Education_Mng_Devstr').val();
-            //let Total_Hour_Policy_Focus_Sup_str = $('#Total_Hour_Policy_Focus_Sup_str').val();
-
-            let Total_Hour_Schedule_str = 0;//$('#Total_Hour_subject').val();
-            let Total_Hour_Learning_Promotion_Support_str = 0;// $('#Total_Hour_subject-1').val();
-            let Total_Hour_Q_Education_Mng_Devstr = 0;// $('#Total_Hour_subject-2').val();
-            let Total_Hour_Policy_Focus_Sup_str = 0;// $('#Total_Hour_subject-3').val();
-
-
-            let formId = $('#formId').val();
-            let LM_Task = $('#LM_Task').val();
-            let LM_Outcomes = $('#LM_Outcomes').val();
-            let LM_Indicators = $('#LM_Indicators').val();
-
-            let PS_Task = $('#PS_Task').val();
-            let PS_Outcomes = $('#PS_Outcomes').val();
-            let PS_Indicators = $('#PS_Indicators').val();
-
-            let SP_Dev_Task = $('#SP_Dev_Task').val();
-            let SP_Dev_Dev_Outcomes = $('#SP_Dev_Dev_Outcomes').val();
-            let SP_Dev_Dev_Indicators = $('#SP_Dev_Dev_Indicators').val();
-
-            let CL_Point = $('#CL_Point').val();
-            let CL_Point_Text = $('#CL_Point_Text').val();
-            let Problem_State = $('#Problem_State').val();
-
-            let Method_To_Acheivment = $('#Method_To_Acheivment').val();
-            let QT_Expect_Result = $('#QT_Expect_Result').val();
-            let QL_Expect_Result = $('#QL_Expect_Result').val();
 
             input_subject = document.getElementsByName("subject-name");
             input_ = document.getElementsByName("subject-hour");

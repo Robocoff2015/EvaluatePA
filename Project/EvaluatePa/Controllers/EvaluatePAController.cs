@@ -196,6 +196,7 @@ namespace EvaluatePa.Controllers
             ViewBag.Subject = getSubject_array();
             ViewBag.Location = getLocation_array();
             ViewBag.Class = getClass_array();
+            ViewBag.UnitPlan = getUnitPlan_array(userId);
 
 
             if (user_id != null)
@@ -344,7 +345,7 @@ namespace EvaluatePa.Controllers
             String EndDate = DateTime.Now.AddDays(7 - today_ - 1).ToString("yyyy-MM-dd");
             String ThisDate = DateTime.Now.AddDays(0).ToString("yyyy-MM-dd");
             //
-            sqlString += " SELECT [Event_Id],[Summary],a.[Description],[BDate],[EDate],[Location_Id],[RRULE],[RR_FREQ],[RR_UNTIL],[RR_INTERVAL],[RR_COUNT],[RR_BYDAY],[RR_BYWEEKNO],[RR_BYMONTH],[RR_BYMONTHDAY],[RR_BYYEARDAY],[RR_BYSETPOS],[RR_WKST],[User_Id],[Subject_Id],[SubSchool_Id],a.[School_Id],b.[Name],b.[province],c.[Name],d.[Name],d.[Level],a.[UnitName]";
+            sqlString += " SELECT [Event_Id],[Summary],a.[Description],[BDate],[EDate],[Location_Id],[RRULE],[RR_FREQ],[RR_UNTIL],[RR_INTERVAL],[RR_COUNT],[RR_BYDAY],[RR_BYWEEKNO],[RR_BYMONTH],[RR_BYMONTHDAY],[RR_BYYEARDAY],[RR_BYSETPOS],[RR_WKST],[User_Id],[Subject_Id],[SubSchool_Id],a.[School_Id],b.[Name],b.[province],c.[Name],d.[Name],d.[Level],a.[UnitName],a.[UnitPlan_Id],a.[UnitPlan_Name]";
             sqlString += " FROM [devpa].[dbo].[PA_Event] as a left join [devpa].[dbo].PA_School as b on a.School_Id = b.School_Id left join [devpa].[dbo].PA_School_Room as c on a.Location_Id = c.Room_Id left join [devpa].[dbo].PA_Subject as d on a.Subject_Id = d.Id";
             sqlString += " where User_Id = " + uid + " and a.BDate > '" + StartDate + " 00:00:00.000' and a.BDate < '" + EndDate + " 23:59:59.000'";
             Microsoft.Data.SqlClient.SqlDataAdapter da = new SqlDataAdapter(sqlString, connectionString);
@@ -384,6 +385,8 @@ namespace EvaluatePa.Controllers
                     calendarInfo_item.Subject_Name = dt.Rows[i].ItemArray[25].ToString();
                     calendarInfo_item.Subject_Level = dt.Rows[i].ItemArray[26].ToString();
                     calendarInfo_item.UnitName = dt.Rows[i].ItemArray[27].ToString();
+                    calendarInfo_item.UnitPlan_Id = dt.Rows[i].ItemArray[28].ToString();
+                    calendarInfo_item.UnitPlan_Name = dt.Rows[i].ItemArray[29].ToString();
                     Calendar_Info_.Add(calendarInfo_item);
                 }
             }
@@ -610,7 +613,7 @@ namespace EvaluatePa.Controllers
         ////
         public IActionResult UpdateEvent_AJ(string Summary, string Description, string BDate, string EDate
             , string Location_Id, string Event_Id, string User_Id, string Subject_Id, string SubSchool_Id, string School_Id, string Unit_Id
-            , string UnitName, string RR_FREQ, string RR_BYDAY)
+            , string UnitName, string UnitPlan_id, string UnitPlan_Name, string RR_FREQ, string RR_BYDAY)
             {
             if (SubSchool_Id == null)
             {
@@ -683,7 +686,9 @@ namespace EvaluatePa.Controllers
                 sqlString += " ,[Event_Type] = Null";
                 sqlString += " ,[Event_SubType] = Null";
                 sqlString += " ,[Unit_Id] = " + Unit_Id;
-                sqlString += " ,[UnitName] = '" + UnitName+ "'";
+                sqlString += " ,[UnitName] = '" + UnitName + "'";
+                sqlString += " ,[UnitPlan_Id] = '" + UnitPlan_id + "'";
+                sqlString += " ,[UnitPlan_Name] = '" + UnitPlan_Name + "'";
                 sqlString += " WHERE [Event_Id] = " + Event_Id;
 
                 if (Event_Id == "-1")
@@ -691,12 +696,12 @@ namespace EvaluatePa.Controllers
                     sqlString = "INSERT INTO [" + dbName + "].[dbo].[PA_Event]([Summary],[Description],[BDate],[EDate],[Location_Id],[RRULE],[RR_FREQ]";
                     sqlString += ",[RR_UNTIL],[RR_INTERVAL],[RR_COUNT],[RR_BYDAY],[RR_BYWEEKNO],[RR_BYMONTH],[RR_BYMONTHDAY]";
                     sqlString += ",[RR_BYYEARDAY],[RR_BYSETPOS],[RR_WKST],[User_Id],[Subject_Id],[SubSchool_Id],[School_Id],[CDate]";
-                    sqlString += ",[OpenDate],[CloseDate],[DDate],[Parent_Event_Id],[Event_Status],[Event_Type],[Event_SubType],[Unit_Id],[UnitName]) VALUES (";
+                    sqlString += ",[OpenDate],[CloseDate],[DDate],[Parent_Event_Id],[Event_Status],[Event_Type],[Event_SubType],[Unit_Id],[UnitName],[UnitPlan_Id],[UnitPlan_Name]) VALUES (";
                     var dftDate = "1900-01-01 00:00:00.000";
                     sqlString += "'" + Summary + "','" + Description + "','" + BDate + "','" + EDate + "'," + Location_Id + ",'" + "Y" + "','" + RR_FREQ + "','" +
                     "" + "','" + "" + "','" + "" + "','" + RR_BYDAY + "','" + "" + "','" + "" + "','" + "" + "','" +
                     "" + "','" + "" + "','" + "" + "'," + User_Id + "," + Subject_Id + "," + SubSchool_Id + "," + School_Id + ",'" + dftDate + "','" +
-                    dftDate + "','" + dftDate + "','" + dftDate + "'," + "-1" + "," + "100" + "," + "-1" + "," + "-1" + "," + Unit_Id + ",'" + UnitName + "'" + ")";
+                    dftDate + "','" + dftDate + "','" + dftDate + "'," + "-1" + "," + "100" + "," + "-1" + "," + "-1" + "," + Unit_Id + ",'" + UnitName + "'" + ",'" + UnitPlan_id + "'" + ",'" + UnitPlan_Name + "'" + ")";
 
                 }
                 
@@ -951,6 +956,40 @@ namespace EvaluatePa.Controllers
 
         }
 
+        private List<UnitPlan> GetUnitPlanList(string userId)
+        {
+            string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            connection.Open();
+            System.Data.DataTable dt = new DataTable();
+            String sqlString = null;
+            //sqlString += " SELECT [School_Id],[Name],[Province] FROM [" + dbName + "].[dbo].[PA_School]";
+            sqlString += "SELECT [Id],[Name],[Description],[OwnerId] FROM [" + dbName + "].[dbo].[Cu_UnitPlan] where OwnerId = " + userId;
+
+            Microsoft.Data.SqlClient.SqlDataAdapter da = new Microsoft.Data.SqlClient.SqlDataAdapter(sqlString, connectionString);
+            da.Fill(dt);
+            int c = dt.Rows.Count;
+            List<UnitPlan> UnitPlan_ = new List<UnitPlan> { };
+            if (c > 0)
+            {
+                for (int i = 0; i <= c - 1; i++)
+                {
+                    UnitPlan unitPlan = new UnitPlan();
+                    unitPlan.Id = dt.Rows[i].ItemArray[0].ToString();
+                    unitPlan.Name = dt.Rows[i].ItemArray[1].ToString();
+                    unitPlan.Description = dt.Rows[i].ItemArray[2].ToString();
+                    unitPlan.OwnerId = Convert.ToInt32(dt.Rows[i].ItemArray[3].ToString());
+
+
+
+                    UnitPlan_.Add(unitPlan);
+                }
+            }
+            return UnitPlan_;
+
+        }
+
 
         private string getSchool_array()
         {
@@ -1076,6 +1115,36 @@ namespace EvaluatePa.Controllers
 
         }
 
+        private string getUnitPlan_array(string userid)
+        {
+            List<UnitPlan> UnitPlan_list = GetUnitPlanList(userid);
+            string objString = "";
+            //string F_Id_ = "";
+            for (int i = 0; i <= UnitPlan_list.Count - 1; i++)
+            {
+                if (i == 0)
+                {
+                    objString += "[\"" + UnitPlan_list[i].Id.ToString() + "\",";
+                    objString += "\"" + UnitPlan_list[i].Name.ToString() + "\",";
+                    objString += "\"" + UnitPlan_list[i].Description.ToString() + "\",";
+                    objString += "\"" + UnitPlan_list[i].OwnerId.ToString() + "\"]";
+
+                }
+                else
+                {
+                    objString += ", " + "[\"" + UnitPlan_list[i].Id.ToString() + "\",";
+                    objString += "\"" + UnitPlan_list[i].Name.ToString() + "\",";
+                    objString += "\"" + UnitPlan_list[i].Description.ToString() + "\",";
+                    objString += "\"" + UnitPlan_list[i].OwnerId.ToString() + "\"]";
+
+                }
+
+
+            }
+            //ViewBag.Sensor_ = "[" + objString + "]";
+            return "[" + objString + "]";
+
+        }
 
 
 

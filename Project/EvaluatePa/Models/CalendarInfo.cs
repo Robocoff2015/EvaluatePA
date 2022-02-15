@@ -49,8 +49,11 @@ namespace EvaluatePa.Models
         public int Unit_Id { get; set; }
         public string UnitName { get; set; }
 
+        public string UnitPlan_Id { get; set; }
+        public string UnitPlan_Name { get; set; }
+
         //public CalendarInfo createNew() { 
-        
+
         //}
 
 
