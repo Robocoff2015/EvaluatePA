@@ -1,0 +1,1045 @@
+﻿@using Microsoft.AspNetCore.Http;
+@model bObject.PA_Form_Full;
+@{
+    ViewData["Title"] = "PA";
+    Layout = "_Layout_NoMenu2";
+}
+
+@section Style_{
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .active {
+            border: 1px solid #a9a7a7;
+            border-radius: 7px 7px 0px 0px;
+        }
+
+        .border-bottom-2 {
+            border-bottom: 2px solid #0d140d;
+        }
+
+        .subform {
+            border: 0px;
+            border-bottom: 1px solid #a9a7a7;
+            border-radius: 7px 7px 0px 0px;
+        }
+
+            .subform .active {
+                border: 1px solid #a9a7a7;
+                border-bottom: 0px;
+                border-radius: 7px 7px 0px 0px;
+            }
+
+        input {
+            font: 5rem;
+        }
+
+        .close {
+            position: absolute;
+            right: 32px;
+            top: 32px;
+            width: 32px;
+            height: 32px;
+            opacity: 0.3;
+        }
+
+            .close:hover {
+                opacity: 1;
+            }
+
+            .close:before, .close:after {
+                position: absolute;
+                left: 15px;
+                content: ' ';
+                height: 33px;
+                width: 2px;
+                background-color: #333;
+            }
+
+            .close:before {
+                transform: rotate(45deg);
+            }
+
+            .close:after {
+                transform: rotate(-45deg);
+            }
+
+        #mdiv {
+            width: 32px;
+            height: 32px;
+            /*            background-color: red;*/
+            border: 0.1rem solid #838383;
+            border-radius: 4px;
+            background-color: #dcdada;
+        }
+
+        #mdiv2 {
+            width: 240px;
+            height: 32px;
+            color: white;
+            /*            background-color: red;*/
+            border: 0.1rem solid #838383;
+            border-radius: 4px;
+            background-color: #acaaaa;
+        }
+
+        #mdiv:hover {
+            /*//width: 18px;
+            //height: 18px;*/
+            /*            background-color: red;*/
+            background-color: #c4c2c2;
+        }
+
+        .mdiv {
+            height: 18px;
+            width: 3px;
+            margin-left: 7px;
+            background-color: red;
+            transform: rotate(45deg);
+            Z-index: 1;
+        }
+
+        .md {
+            height: 18px;
+            width: 3px;
+            background-color: red;
+            transform: rotate(90deg);
+            Z-index: 2;
+        }
+
+        textarea {
+            font-size: 14px;
+            /*overflow-y: hidden;*/
+        }
+
+        .dynamicDiv {
+            width: 200px;
+            height: 100px;
+            border: solid 1px #c0c0c0;
+            background-color: #e1e1e1;
+            padding: 5px;
+        }
+    </style>
+}
+<div class="container">
+    <div class="col-lg-12 col-xl-12 mt-2">
+        <div class="card border-0">
+            <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
+                <div class="border-bottom-2 pt-1">
+                    <form class="form-inline justify-content-between" asp-route="">
+                        <div class="d-xl-inline-flex">
+                            <div id="page_1" class="mt-2 p-0 pl-4 pr-4 active" onclick='fadin(); fireTrigger();showpage_1();fadout();'>
+                                <p class="m-0 mt-1 mb-1">แบบฟอร์มพัฒนางาน (PA)</p>
+                            </div>
+                            <div id="page_2" class="mt-2 p-0 pl-4 pr-4" onclick='fadin(); fireTrigger();showpage_2();fadout();'>
+                                <p class="m-0 mt-1 mb-1">ข้อตกลงการพัฒนา</p>
+                            </div>
+                            <div id="page_3" class="mt-2 p-0 pl-4 pr-4" onclick='fadin(); fireTrigger();showpage_3();fadout();'>
+                                <p class="m-0 mt-1 mb-1">ประเด็นท้าทายในการพัฒนา</p>
+                            </div>
+                        </div>
+
+                        <div class="btn btn-outline-success ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">กลับ</div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body border-0 p-1">
+
+                <div id="page_1_form" style="display:block;">
+                    <div class="card-body border-light shadow">
+                        <form name="page_1_" asp-action="PA_1" asp-controller="EvaluatePA" style="border-style: none; border-color: #BEDDFE; width: auto;">
+                            <div class="row p-5 pt-1">
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-check-label" for="prefix">คำนำหน้า : </label>
+                                    <p></p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input"
+                                               type="radio"
+                                               name="inlineRadioOptions"
+                                               id="mr"
+                                               value="option1"
+                                               checked />
+                                        <label class="form-check-label" for="femaleGender">นาย</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input"
+                                               type="radio"
+                                               name="inlineRadioOptions"
+                                               id="mrs"
+                                               value="option2" />
+                                        <label class="form-check-label" for="maleGender">นาง</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input"
+                                               type="radio"
+                                               name="inlineRadioOptions"
+                                               id="miss"
+                                               value="option3" />
+                                        <label class="form-check-label" for="otherGender">นางสาว</label>
+                                    </div>
+
+                                </div>
+                                <br>
+                                <div class="row pl-3 d-inline-flex">
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="form-label" for="FirstName">ชื่อ</label>
+                                            <input type="text" id="FirstName" name="FirstName" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_UserName" />
+                                            <input type="hidden" id="userId" name="userId" value="@Context.Session.GetString("userId")">
+                                            <input type="hidden" id="formId" name="userId" value="@Context.Session.GetString("formId")">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="form-label" for="LastName">นามสกุล</label>
+                                            <input type="text" id="LastName" name="LastName" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_LastName" />
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="position">ตำแหน่งวิทยฐานะ</label>
+                                        <input type="text" id="position" name="position" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_UserPosition" />
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="CDate">วันที่ได้รับวิทยฐานะ</label>
+                                        <input type="text" id="CDate" name="CDate" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_CDate" />
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="school">สถานศึกษา</label>
+                                        <input type="text" id="school" name="school" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_School" />
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="memberOf">สังกัด</label>
+                                        <input type="text" id="memberOf" name="memberOf" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_memberOf" />
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="salaryLevel">รับเงินเดือนในอันดับ คศ.</label>
+                                        <input type="text" id="salaryLevel" name="salaryLevel" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_salaryLevel" />
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="salaryRate">อัตราเงินเดือน</label>
+                                        <input type="text" id="salaryRate" name="salaryRate" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_salaryRate" />
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="classroomType">ประเภทห้องเรียนที่จัดการเรียนรู้</label>
+                                        <label class="form-label" for="">(สามารถระบุได้มากกว่า 1 ประเภทห้องเรียนตามสภาพการจัดการเรียนรู้จริง)</label>
+                                        <input type="text" id="classroomType" name="classroomType" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_classroomType" />
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                    <div>
+                                        <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                        <div class="btn btn-outline-danger ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <div id="page_2_form" style="display:none;">
+                    <div class="card border-light shadow">
+                        <div class="card-header bg-white sh p-0 pl-1 pr-1">
+                            <div class="pl-5 pr-5">
+                                <form class="form-inline subform" asp-route="">
+                                    <div id="subpage_1" class="mt-2 p-0 pl-4 pr-4 active" onclick='fadin();showsubpage_1();fadout();'>
+                                        <p class="m-0 mt-1 mb-1">ภาระงาน</p>
+                                    </div>
+                                    <div id="subpage_2" class="mt-2 p-0 pl-4 pr-4" onclick='fadin();showsubpage_2();fadout();'>
+                                        <p class="m-0 mt-1 mb-1">ด้านจัดการเรียนรู้</p>
+                                    </div>
+                                    <div id="subpage_3" class="mt-2 p-0 pl-4 pr-4" onclick='fadin();showsubpage_3();fadout();'>
+                                        <p class="m-0 mt-1 mb-1">ด้านการส่งเสริมและสนับสนุน</p>
+                                    </div>
+                                    <div id="subpage_4" class="mt-2 p-0 pl-4 pr-4" onclick='fadin();showsubpage_4();fadout();'>
+                                        <p class="m-0 mt-1 mb-1">ด้านการพัฒนาตนเองและวิชาชีพ</p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card-body border-0 p-5">
+                            <div id="page_1_subform" style="display:block;">
+                                <div class="card-body" style="padding:10px;">
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="form-label" for="">ข้าพเจ้าขอแสดงเจตจำนงค์ทำข้อตกลงในการพัฒนางานตำแหน่งครู วิทยฐานะ @Model.UserInfo_UserPosition ซึ่งเป็นตำแหน่งและวิทยฐานะที่ดำรงอยู่ในปัจจุบันกับ</label>
+                                            <label class="form-label" for="">ผู้อำนวยการสถานศึกษา ไว้ดังนี้</label>
+                                        </div>
+                                        <p>1. ภาระงาน จะมีภาระงานเป็นไปตามที่ก.ค.ศ. กำหนด</p>
+
+                                    </div>
+
+
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-inline">
+                                            <label class="form-label" for="Total_Hour_subject">1.1 ชั่วโมงสอนตามตารางสอน รวมจำนวน </label>
+                                            <input type="text" id="Total_Hour_subject" name="Total_Hour_subject" class="form-control form-control-lg ml-5 mr-5 text-center" disabled style="font-size: 16px; height: 35px;" value="@Model.Total_Hour_Schedule_str" />
+
+                                            <label class="form-label" for="">&nbsp;ต่อสัปดาห์&nbsp;ดังนี้</label>
+                                            <table id="table-subject" class="table table-hover border shadow m-2">
+
+                                                <!-- Table body -->
+                                                <tbody id="tbody-subject">
+                                                    @*<tr style="height:44px;">
+                                                            <td style="padding:5px 0px 5px 5px;">
+                                                                <div id="mdiv" style="padding:5px 0px 4px 6px;" onclick="deleteItem();alert('Delete subject');">
+                                                                    <div class="mdiv">
+                                                                        <div class="md" ></div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding:0;font-size:16px;">
+                                                                <div class="d-inline-flex pt-1 pb-1">
+                                                                    <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
+                                                                    <input type="text" id="subject" name="subject" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px;" />
+                                                                    <span class="pt-1">จำนวน</span>
+                                                                    <input type="text" id="Hours" name="Hours" class="form-control form-control-lg ml-3 mr-3 text-center" style="font-size: 14px; height: 35px; width: 100px" />
+                                                                    <span class="pt-1">ชั่วโมง/สัปดาห์</span>
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>*@
+                                                    @*<tr>
+                                                            <td>
+                                                                <div id="mdiv">
+                                                                    <div class="mdiv">
+                                                                        <div class="md"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding:0;font-size:16px;">
+                                                                <div class="d-inline-flex pt-1 pb-1">
+                                                                    <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
+                                                                    <input type="text" id="subject" name="subject" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px;" />
+                                                                    <span class="pt-1">จำนวน</span>
+                                                                    <input type="text" id="Hours" name="Hours" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px; width: 100px" />
+                                                                    <span class="pt-1">ชั่วโมง/สัปดาห์</span>
+                                                                </div>
+                                                            </td>
+                                                        </tr>*@
+                                                    <tr style="height:44px;">
+                                                        <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
+                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','0','0','subject');">
+                                                                <i class="fa fa-plus w3-text-theme text-success"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding: 5px 0px 5px 0px; font-size:16px;text-align:center;">
+                                                            <div style="padding: 2px 0px 0px 0px; align-items:center; vertical-align: central;" id="mdiv2">
+                                                                <span class="pt-3">เพิ่มกลุ่มสาระการเรียนรู้ / รายวิชา</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                                <!-- Table body -->
+                                            </table>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-inline">
+                                            <label class="form-label" for="Total_Hour_subject-1">1.2 งานส่งเสริมและสนับสนุนการเรียนรู้ จำนวน </label>
+                                            <input type="text" id="Total_Hour_subject-1" name="Total_Hour_subject-1" class="form-control form-control-lg ml-5 mr-5 text-center" disabled style="font-size: 16px; height: 35px;" value="@Model.Total_Hour_Learning_Promotion_Support_str" />
+                                            <label class="form-label" for="">&nbsp;ต่อสัปดาห์&nbsp;ดังนี้</label>
+                                            <table id="table-subject-1" class="table table-hover border shadow m-2">
+
+                                                <!-- Table body -->
+                                                <tbody id="tbody-subject-1">
+                                                    <tr style="height:44px;">
+                                                        <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
+                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','0','0','subject-1');">
+                                                                <i class="fa fa-plus w3-text-theme text-success"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding: 5px 0px 5px 0px; font-size:16px;text-align:center;">
+                                                            <div style="padding: 2px 0px 0px 0px; align-items:center; vertical-align: central;" id="mdiv2">
+                                                                <span class="pt-3">เพิ่มกลุ่มสาระการเรียนรู้ / รายวิชา</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                                <!-- Table body -->
+                                            </table>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-inline">
+                                            <label class="form-label" for="Total_Hour_subject-2">1.3 งานพัฒนาคุณภาพการจัดการการศึกษา จำนวน </label>
+                                            <input type="text" id="Total_Hour_subject-2" name="Total_Hour_subject-2" class="form-control form-control-lg ml-5 mr-5 text-center" disabled style="font-size: 16px; height: 35px;" value="@Model.Total_Hour_Q_Education_Mng_Dev_str" />
+                                            <label class="form-label" for="">&nbsp;ต่อสัปดาห์&nbsp;ดังนี้</label>
+                                            <table id="table-subject-2" class="table table-hover border shadow m-2">
+
+                                                <!-- Table body -->
+                                                <tbody id="tbody-subject-2">
+                                                    <tr style="height:44px;">
+                                                        <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
+                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','0','0','subject-2');">
+                                                                <i class="fa fa-plus w3-text-theme text-success"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding: 5px 0px 5px 0px; font-size:16px;text-align:center;">
+                                                            <div style="padding: 2px 0px 0px 0px; align-items:center; vertical-align: central;" id="mdiv2">
+                                                                <span class="pt-3">เพิ่มกลุ่มสาระการเรียนรู้ / รายวิชา</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                                <!-- Table body -->
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-inline">
+                                            <label class="form-label" for="Total_Hour_subject-3">1.4 งานตอบสนองนโยบายและจุดเน้น จำนวน </label>
+                                            <input type="text" id="Total_Hour_subject-3" name="Total_Hour_subject-3" class="form-control form-control-lg ml-5 mr-5 text-center" disabled style="font-size: 16px; height: 35px;" value="@Model.Total_Hour_Policy_Focus_Sup_str" />
+                                            <label class="form-label" for="">&nbsp;ต่อสัปดาห์&nbsp;ดังนี้</label>
+                                            <table id="table-subject-3" class="table table-hover border shadow m-2">
+
+                                                <!-- Table body -->
+                                                <tbody id="tbody-subject-3">
+                                                    <tr style="height:44px;">
+                                                        <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
+                                                            <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','0','0','subject-3');">
+                                                                <i class="fa fa-plus w3-text-theme text-success"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding: 5px 0px 5px 0px; font-size:16px;text-align:center;">
+                                                            <div style="padding: 2px 0px 0px 0px; align-items:center; vertical-align: central;" id="mdiv2">
+                                                                <span class="pt-3">เพิ่มกลุ่มสาระการเรียนรู้ / รายวิชา</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                                <!-- Table body -->
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                        <div>
+                                            <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                            <div class="btn btn-outline-danger ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div id="page_2_subform" style="display:none;">
+                                <div class="card-body" style="padding:10px;">
+                                    <p class="thick">2. งานที่จะปฏิบัติตามมาตรฐานตำแหน่งครู</p> (ให้ระบุรายละเอียดของงานที่จะปฏิบัติในแต่ละด้านว่าจะดำเนินการอย่างไร โดยอาจระบุระยะเวลาที่ใช้ในการดำเนินการด้วยก็ได้)
+                                    <p>
+                                        2.1 ลักษณะงานที่เสนอให้ครอบคลุมถึงการสร้างและหรือพัฒนาหลักสูตรการออกแบบการจัดการเรียนรู้การจัดกิจกรรมการเรียนรู้การสร้างและหรือพัฒนาสื่อ นวัตกรรม เทคโนโลยี และแหล่งเรียนรู้ การวัดและประเมินผลการจัดการเรียนรู้
+                                        การศึกษา วิเคราะห์ สังเคราะห์เพื่อแก้ปัญหาหรือพัฒนาการเรียนรู้ การจัดบรรยากาศที่ส่งเสริมและพัฒนาผู้เรียนและการอบรมและพัฒนา
+                                        คุณลักษณะที่ดีของผู้เรียน
+                                    </p>
+
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="form-label" for="LM_Task">งาน (Task) (โปรดระบุ)</label>
+                                            <textarea id="LM_Task" name="LM_Task" class="form-control form-control-lg" placeholder="งาน" style="font-size:14px;">@Model.LM_Task </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="form-label" for="LM_Outcomes">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
+                                            <textarea id="LM_Outcomes" name="LM_Outcomes" class="form-control form-control-lg" style="font-size:14px;">@Model.LM_Outcomes </textarea>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="LM_Indicators">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
+                                            <textarea id="LM_Indicators" name="LM_Indicators" class="form-control form-control-lg" style="font-size:14px;">@Model.LM_Indicators </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                        <div>
+                                            <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                            <div class="btn btn-outline-danger ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="page_3_subform" style="display:none;">
+                                <div class="card-body" style="padding:10px;">
+                                    <p>2.2 ลักษณะงานที่เสนอให้ครอบคลุมถึงการจัดทำข้อมูลสารสนเทศของผู้เรียนและรายวิชา การดำเนินการตามระบบ ดูแลช่วยเหลือผู้เรียน การปฏิบัติงานวิชาการและงานอื่น ๆ ของสถานศึกษา และการประสานความร่วมมือกับผู้ปกครอง ภาคีเครือข่าย และหรือสถานประกอบการ</p>
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="form-label" for="PS_Task">งาน (Task) (โปรดระบุ)</label>
+                                            <textarea id="PS_Task" name="PS_Task" class="form-control form-control-lg" placeholder="งาน" style="font-size:14px;">@Model.PS_Task </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="form-label" for="PS_Outcomes">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
+                                            <textarea id="PS_Outcomes" name="PS_Outcomes" class="form-control form-control-lg" style="font-size:14px;">@Model.PS_Outcomes </textarea>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="PS_Indicators">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
+                                            <textarea id="PS_Indicators" name="PS_Indicators" class="form-control form-control-lg" style="font-size:14px;">@Model.PS_Indicators </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                        <div>
+                                            <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                            <div class="btn btn-outline-danger ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="page_4_subform" style="display:none;">
+                                <div class="card-body" style="padding:10px;">
+                                    <p>2.3 ลักษณะงานที่เสนอให้ครอบคลุมถึงการพัฒนาตนเองอย่างเป็นระบบ	และต่อเนื่อง การมีส่วนร่วม ในการแลกเปลี่ยนเรียนรู้ทางวิชาชีพเพื่อพัฒนาการจัดการเรียนรู้และการนำความรู้ความสามารถ ทักษะที่ได้จากการพัฒนาตนเอง และวิชาชีพมาใช้ในการพัฒนาการจัดการเรียนรู้ การพัฒนาคุณภาพผู้เรียน และการพัฒนานวัตกรรม	การจัดการเรียนรู้</p>
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="form-label" for="SP_Dev_Task">งาน (Task) (โปรดระบุ)</label>
+                                            <textarea id="SP_Dev_Task" name="SP_Dev_Task" class="form-control form-control-lg" placeholder="งาน" style="font-size:14px;">@Model.SP_Dev_Task </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="form-label" for="SP_Dev_Dev_Outcomes">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
+                                            <textarea id="SP_Dev_Dev_Outcomes" name="SP_Dev_Dev_Outcomes" class="form-control form-control-lg" style="font-size:14px;">@Model.SP_Dev_Dev_Outcomes </textarea>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="SP_Dev_Dev_Indicators">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
+                                            <textarea id="SP_Dev_Dev_Indicators" name="SP_Dev_Dev_Indicators" class="form-control form-control-lg" style="font-size:14px;">@Model.SP_Dev_Dev_Indicators </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                        <div>
+                                            <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                            <div class="btn btn-outline-danger ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="page_3_form" style="display:none;">
+                    <div class="card-body border-light shadow" style="padding:10px;">
+                        <form name="page_1_" asp-action="PA_1" asp-controller="EvaluatePA" style="border-style: none; border-color: #BEDDFE; width: auto;">
+                            <div class="row p-5 pt-1">
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <p>
+                                            ส่วนที่ 2 ข้อตกลงในการพัฒนางานที่เป็นประเด็นท้าทายในการพัฒนาผลลัพธ์การเรียนรู้ของผู้เรียน
+                                        </p>
+                                        <label class="form-label" for="CL_Point">ประเด็นที่ท้าทายในการพัฒนาผลลัพธ์การเรียนรู้ของผู้เรียนของผู้จัดทำข้อตกลง ซึ่งปัจจุบันดำรงตำแหน่งครู วิทยฐานะครูชำนาญพิเศษ ต้องแสดงให้เห็นถึงระดับการปฏิบัติที่คาดหวังของวิทยฐานะเชี่ยวชาญ คือ การคิดค้น และการปรับเปลี่ยน ให้คุณภาพการเรียนรู้ของผู้เรียนสูงขึ้น เป็นแบบอย่างที่ดีและให้คำปรึกษาผู้อื่น (ทั้งนี้ ประเด็นท้าทายอาจจะแสดงให้เห็นถึงระดับการปฏิบัติที่คาดหวังในวิทยฐานะที่สูงกว่าได้)</label>
+                                        @*<input type="text" id="CL_Point" name="CL_Point" class="form-control form-control-lg" style="font-size:14px;" value="@Model.CL_Point"/>*@
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="CL_Point_Text">ประเด็นท้าทาย เรื่อง</label>
+                                        @*<input type="text" id="CL_Point_Text" name="CL_Point_Text" class="form-control form-control-lg" style="font-size:14px;" value="@Model.CL_Point_Text" />*@
+                                        <textarea id="CL_Point_Text" name="CL_Point_Text" class="form-control form-control-lg" style="font-size:14px;">@Model.CL_Point_Text </textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="Problem_State">1.สภาพปัญหาการจัดการเรียนรู้ และคุณภาพการเรียนรู้ของผู้เรียน</label>
+                                        <textarea id="Problem_State" name="Problem_State" class="form-control form-control-lg" style="font-size:14px;">@Model.Problem_State </textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="Method_To_Acheivment">2.วิธีการดำเนินการให้บรรลุผล</label>
+                                        <textarea id="Method_To_Acheivment" name="Method_To_Acheivment" class="form-control form-control-lg" style="font-size:14px;">@Model.Method_To_Acheiivment </textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="QT_Expect_Result">3. ผลลัพธ์การพัฒนาที่คาดหวัง<br />3.1 เชิงปริมาณ</label>
+
+                                        <textarea id="QT_Expect_Result" name="QT_Expect_Result" class="form-control form-control-lg" style="font-size:14px;">@Model.QT_Expect_Result </textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="QL_Expect_Result">3.2 เชิงคุณภาพ</label>
+                                        <textarea id="QL_Expect_Result" name="QL_Expect_Result" class="form-control form-control-lg" style="font-size:14px;">@Model.QL_Expect_Result </textarea>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                    <div>
+                                        <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                        <div class="btn btn-outline-danger ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
+
+
+
+
+
+
+
+@section Scripts {
+    <script src="~/js/PA_View.js"></script>
+    <script>
+        $(window).on("load", function () {
+            setTimeout(fadout, 500);
+            populate_sbj("subject", '@(ViewBag.Sbj_Hr)'.replace(/&quot;/g, '"'));
+            populate_sbj("subject-1", '@(ViewBag.Sbj_Hr_1)'.replace(/&quot;/g, '"'));
+            populate_sbj("subject-2", '@(ViewBag.Sbj_Hr_2)'.replace(/&quot;/g, '"'));
+            populate_sbj("subject-3", '@(ViewBag.Sbj_Hr_3)'.replace(/&quot;/g, '"'));
+        });
+        function populate_sbj(sbj, sbj_hr) {
+
+            var res = sbj_hr;//'@(ViewBag.Sbj_Hr)'.replace(/&quot;/g, '"');
+            var sbj_Json = JSON.parse(res);
+            for (var s = 0; s <= sbj_Json.length - 1; s++) {
+                if (sbj_Json[s].hasOwnProperty('subject')) {
+                    var str = sbj_Json[s].subject;
+                    var elem = document.createElement("div");
+                    elem.innerHTML = str;
+                    createRow(elem.textContent, sbj_Json[s].hour, sbj_Json[s].min, sbj);
+                }
+                else if (sbj_Json[s].hasOwnProperty('Total')) {
+                    calculateTotal(sbj);
+                }
+            }
+
+        }
+        function fadin() {
+            $(".loader-wrapper").fadeIn(5);
+        }
+        function fadout() {
+            $(".loader-wrapper").fadeOut(500);
+            $("textarea").trigger("click");
+        }
+        function animate() {
+            fadin();
+            fadout();
+        }
+    </script>
+
+    <script type="text/javascript">
+        $('.active_').removeClass('active_');
+        $('.a-EvaluatePA').addClass('active_');
+        $('.a-EvaluatePA').removeClass('text-dark');
+    </script>
+    <script>
+        function textAreaFit() {
+            var tx = document.getElementsByTagName('textarea');
+            for (var i = 0; i < tx.length; i++) {
+                tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;font-size:14px;');
+
+            }
+        }
+        $(document).on('click', 'textarea', function () {
+            $(this).outerHeight(38).outerHeight(this.scrollHeight + 3); // 38 or '1em' -min-height
+        })
+        $(document).on('input', 'textarea', function () {
+            $(this).outerHeight(38).outerHeight(this.scrollHeight + 3); // 38 or '1em' -min-height
+        })
+        function fireTrigger() {
+            $("textarea").trigger("click");
+        }
+
+        function deleteItem(x) {
+
+            var clickDiv = document.getElementsByClassName(x.className)[0];
+            var td_ = clickDiv.parentNode;   //td
+            var tr_ = td_.parentNode;   //tr
+            var tbody_ = tr_.parentNode;
+            var thisSbj = tbody_.id.replace('table-', '');
+            tr_.parentNode.removeChild(tr_);
+            calculateTotal(thisSbj);
+        }
+
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        function createDiv() {
+            var divTag = document.createElement("div");
+            divTag.id = "div1";
+            divTag.setAttribute("align", "center");
+            divTag.style.margin = "0px auto";
+            //divTag.className = "dynamicDiv";
+            divTag.innerHTML = "This HTML Div tag is created dynamically using Javascript.";
+            document.body.appendChild(divTag);
+        }
+    </script>
+    <script>
+        var btn_p1 = document.getElementById("page_1");
+        var btn_p2 = document.getElementById("page_2");
+        var btn_p3 = document.getElementById("page_3");
+        var p1 = document.getElementById("page_1_form");
+        var p2 = document.getElementById("page_2_form");
+        var p3 = document.getElementById("page_3_form");
+
+        var btn_sub_p1 = document.getElementById("subpage_1");
+        var btn_sub_p2 = document.getElementById("subpage_2");
+        var btn_sub_p3 = document.getElementById("subpage_3");
+        var btn_sub_p4 = document.getElementById("subpage_4");
+        var sub_p1 = document.getElementById("page_1_subform");
+        var sub_p2 = document.getElementById("page_2_subform");
+        var sub_p3 = document.getElementById("page_3_subform");
+        var sub_p4 = document.getElementById("page_4_subform");
+
+
+        function showpage_1() {
+            btn_p1.classList.add("active");
+            btn_p2.classList.remove("active");
+            btn_p3.classList.remove("active");
+            p1.style.display = "block";
+            p2.style.display = "none";
+            p3.style.display = "none";
+        }
+        function showpage_2() {
+            btn_p1.classList.remove("active");
+            btn_p2.classList.add("active");
+            btn_p3.classList.remove("active");
+            p1.style.display = "none";
+            p2.style.display = "block";
+            p3.style.display = "none";
+        }
+        function showpage_3() {
+            btn_p1.classList.remove("active");
+            btn_p2.classList.remove("active");
+            btn_p3.classList.add("active");
+            p1.style.display = "none";
+            p2.style.display = "none";
+            p3.style.display = "block";
+        }
+        function showsubpage_1() {
+            btn_sub_p1.classList.add("active");
+            btn_sub_p2.classList.remove("active");
+            btn_sub_p3.classList.remove("active");
+            btn_sub_p4.classList.remove("active");
+            sub_p1.style.display = "block";
+            sub_p2.style.display = "none";
+            sub_p3.style.display = "none";
+            sub_p4.style.display = "none";
+        }
+        function showsubpage_2() {
+            btn_sub_p1.classList.remove("active");
+            btn_sub_p2.classList.add("active");
+            btn_sub_p3.classList.remove("active");
+            btn_sub_p4.classList.remove("active");
+            sub_p1.style.display = "none";
+            sub_p2.style.display = "block";
+            sub_p3.style.display = "none";
+            sub_p4.style.display = "none";
+        }
+        function showsubpage_3() {
+            btn_sub_p1.classList.remove("active");
+            btn_sub_p2.classList.remove("active");
+            btn_sub_p3.classList.add("active");
+            btn_sub_p4.classList.remove("active");
+            sub_p1.style.display = "none";
+            sub_p2.style.display = "none";
+            sub_p3.style.display = "block";
+            sub_p4.style.display = "none";
+        }
+        function showsubpage_4() {
+            btn_sub_p1.classList.remove("active");
+            btn_sub_p2.classList.remove("active");
+            btn_sub_p3.classList.remove("active");
+            btn_sub_p4.classList.add("active");
+            sub_p1.style.display = "none";
+            sub_p2.style.display = "none";
+            sub_p3.style.display = "none";
+            sub_p4.style.display = "block";
+        }
+        function BACK() {
+            let user_Id = $('#userId').val();
+            window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+        }
+        function isBlank(str) {
+            return (!str || /^\s*$/.test(str));
+        }
+
+        function AJ_Submit() {
+            let input_subject = document.getElementsByName("subject-name");
+            for (var i = 0; i <= input_subject.length - 1; i++) {
+                if (isBlank(input_subject[i].value)) {
+                    alert("Subject cannot be empty.");
+                    return false;
+                }
+            }
+
+            let input_ = document.getElementsByName("subject-hour");
+            for (var j = 0; j <= input_.length - 1; j++) {
+                if (isBlank(input_[j].value)) {
+                    alert("Hour cannot be empty.");
+                    return false;
+                }
+                if (!Number(input_[j].value)) {
+                }
+            }
+            let Prefix = 0;
+            let Prefix_mr = $('#mr').prop("checked"),
+                Prefix_mrs = $('#mrs').prop("checked"),
+                Prefix_miss = $('#miss').prop("checked"),
+                user_Id = $('#userId').val(),
+                FirstName = $('#FirstName').val(),
+                LastName = $('#LastName').val(),
+                position = $('#position').val(),
+                school = $('#school').val(),
+                CDate = $('#CDate').val(),
+                memberOf = $('#memberOf').val(),
+                salaryLevel = $('#salaryLevel').val(),
+                salaryRate = $('#salaryRate').val(),
+                classroomType = $('#classroomType').val();
+            //
+
+            let Total_Hour_Schedule_str = 0;//$('#Total_Hour_subject').val();
+            let Total_Hour_Learning_Promotion_Support_str = 0;// $('#Total_Hour_subject-1').val();
+            let Total_Hour_Q_Education_Mng_Devstr = 0;// $('#Total_Hour_subject-2').val();
+            let Total_Hour_Policy_Focus_Sup_str = 0;// $('#Total_Hour_subject-3').val();
+
+
+            let formId = $('#formId').val();
+            let LM_Task = $('#LM_Task').val();
+            let LM_Outcomes = $('#LM_Outcomes').val();
+            let LM_Indicators = $('#LM_Indicators').val();
+
+            let PS_Task = $('#PS_Task').val();
+            let PS_Outcomes = $('#PS_Outcomes').val();
+            let PS_Indicators = $('#PS_Indicators').val();
+
+            let SP_Dev_Task = $('#SP_Dev_Task').val();
+            let SP_Dev_Dev_Outcomes = $('#SP_Dev_Dev_Outcomes').val();
+            let SP_Dev_Dev_Indicators = $('#SP_Dev_Dev_Indicators').val();
+
+            let CL_Point = $('#CL_Point').val();
+            let CL_Point_Text = $('#CL_Point_Text').val();
+            let Problem_State = $('#Problem_State').val();
+
+            let Method_To_Acheivment = $('#Method_To_Acheivment').val();
+            let QT_Expect_Result = $('#QT_Expect_Result').val();
+            let QL_Expect_Result = $('#QL_Expect_Result').val();
+
+            input_subject = document.getElementsByName("subject-name");
+            input_ = document.getElementsByName("subject-hour");
+            input_min = document.getElementsByName("subject-min");
+            var JsonResult = JsonBuild(input_subject, input_, input_min);
+
+            let Subject_Hour = JsonBuild(document.getElementsByName("subject-name"), document.getElementsByName("subject-hour"), document.getElementsByName("subject-min"));
+            let Subject_1_Hour = JsonBuild(document.getElementsByName("subject-1-name"), document.getElementsByName("subject-1-hour"), document.getElementsByName("subject-1-min"));
+            let Subject_2_Hour = JsonBuild(document.getElementsByName("subject-2-name"), document.getElementsByName("subject-2-hour"), document.getElementsByName("subject-2-min"));
+            let Subject_3_Hour = JsonBuild(document.getElementsByName("subject-3-name"), document.getElementsByName("subject-3-hour"), document.getElementsByName("subject-3-min"));
+
+            if (Prefix_mr) {
+                Prefix = 1;
+            }
+            if (Prefix_mrs) {
+                Prefix = 2;
+            }
+            if (Prefix_miss) {
+                Prefix = 3;
+            }
+            var param = "Prefix=" + Prefix + "&FirstName=" + FirstName
+                + "&LastName=" + LastName + "&position=" + position + "&school_id=" + school + "&CDate=" + CDate
+                + "&memberOf=" + memberOf + "&salaryLevel=" + salaryLevel
+                + "&Total_Hour_Schedule_str=" + Total_Hour_Schedule_str + "&Subject_Hour=" + Subject_Hour
+                + "&Total_Hour_Learning_Promotion_Support_str=" + Total_Hour_Learning_Promotion_Support_str + "&Subject_1_Hour=" + Subject_1_Hour
+                + "&Total_Hour_Q_Education_Mng_Devstr=" + Total_Hour_Q_Education_Mng_Devstr + "&Subject_2_Hour=" + Subject_2_Hour
+                + "&Total_Hour_Policy_Focus_Sup_str=" + Total_Hour_Policy_Focus_Sup_str + "&Subject_3_Hour=" + Subject_3_Hour
+                + "&salaryRate=" + salaryRate + "&classroomType=" + classroomType + "&user_Id=" + user_Id
+                + "&LM_Task=" + LM_Task + "&LM_Outcomes=" + LM_Outcomes + "&LM_Indicators=" + LM_Indicators
+                + "&PS_Task=" + PS_Task + "&PS_Outcomes=" + PS_Outcomes + "&PS_Indicators=" + PS_Indicators
+                + "&CL_Point=" + CL_Point + "&CL_Point_Text=" + CL_Point_Text + "&Problem_State=" + Problem_State
+                + "&Method_To_Acheivment=" + Method_To_Acheivment + "&QT_Expect_Result=" + QT_Expect_Result
+                + "&QL_Expect_Result=" + QL_Expect_Result + "&formId=" + formId
+                + "&submit=yes";
+            $.post("/EvaluatePA/UpdateUserAll_AJ",
+                {
+                    formId: formId,
+                    user_Id: user_Id,
+                    Prefix: Prefix,
+                    FirstName: FirstName,
+                    LastName: LastName,
+                    position: position,
+                    school_id: school,
+                    CDate: CDate,
+                    memberOf: memberOf,
+                    salaryLevel: salaryLevel,
+                    Total_Hour_Schedule_str: Total_Hour_Schedule_str,
+                    Subject_Hour: Subject_Hour,
+                    Subject_1_Hour: Subject_1_Hour,
+                    Subject_2_Hour: Subject_2_Hour,
+                    Subject_3_Hour: Subject_3_Hour,
+                    Total_Hour_Learning_Promotion_Support_str: Total_Hour_Learning_Promotion_Support_str,
+                    Total_Hour_Q_Education_Mng_Devstr: Total_Hour_Q_Education_Mng_Devstr,
+                    Total_Hour_Policy_Focus_Sup_str: Total_Hour_Policy_Focus_Sup_str,
+                    salaryRate: salaryRate,
+                    classroomType: classroomType,
+                    LM_Task: LM_Task,
+                    LM_Outcomes: LM_Outcomes,
+                    LM_Indicators: LM_Indicators,
+                    PS_Task: PS_Task,
+                    PS_Outcomes: PS_Outcomes,
+                    PS_Indicators: PS_Indicators,
+                    CL_Point: CL_Point,
+                    CL_Point_Text: CL_Point_Text,
+                    SP_Dev_Task: SP_Dev_Task,
+                    SP_Dev_Dev_Outcomes: SP_Dev_Dev_Outcomes,
+                    SP_Dev_Dev_Indicators: SP_Dev_Dev_Indicators,
+                    Problem_State: Problem_State,
+                    Method_To_Acheivment: Method_To_Acheivment,
+                    QT_Expect_Result: QT_Expect_Result,
+                    QL_Expect_Result: QL_Expect_Result
+                },
+                function (data, status) {
+                    fadin();
+                    alert("Successfully Update Information..");
+                    fadout();
+                });
+        }
+    </script>
+    <script>
+        function JsonBuild(this_input_subject, this_input_, this_input_min) {
+
+            for (var j = 0; j <= this_input_.length - 1; j++) {
+
+                if (isBlank(this_input_[j].value)) {
+                    alert("Hour cannot be empty.");
+                    return false;
+                }
+                if (!Number(this_input_[j].value)) {
+                }
+            }
+            var JsonRes = "[";
+            var sum_ = 0;
+            var sum_min = 0;
+            var sum_tot = 0;
+            for (var i = 0; i <= this_input_subject.length - 1; i++) {
+                if (isBlank(this_input_subject[i].value)) {
+                    alert("Subject cannot be empty.");
+                    return false;
+                }
+                JsonRes += "{" + "\"subject\"" + ":\"" + this_input_subject[i].value + "\",";
+                JsonRes += "\"hour\"" + ":" + this_input_[i].value + ",";
+                JsonRes += "\"min\"" + ":" + this_input_min[i].value + "},";
+                if (isNaN(this_input_[i].value)) { }
+                else {
+                    sum_min = Number(sum_min) + Number(this_input_min[i].value);
+                    sum_ = Number(sum_) + Number(this_input_[i].value);
+                    sum_tot = Number(sum_) * 60 + Number(sum_min);
+                }
+            }
+            JsonRes += "{" + "\"Total\"" + ":" + sum_tot + "}";
+            JsonRes += "]";
+            return JsonRes;
+        }
+
+    </script>
+}

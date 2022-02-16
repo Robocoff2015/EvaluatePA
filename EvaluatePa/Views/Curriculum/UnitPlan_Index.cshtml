@@ -1,0 +1,280 @@
+﻿@using Microsoft.AspNetCore.Http;
+@model System.Data.DataTable;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    //Layout = "_Layout_Management";
+    ViewData["Title"] = "Unit Plan";
+    var id_ = @Context.Session.GetString("userId");
+
+}
+
+
+
+<div class="row">
+
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">
+        <div class="card border-0">
+            <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
+                <div class="border-top pt-1">
+                    <form class="form-inline justify-content-between" asp-route="">
+
+                        <div class="mt-2">
+                            <h5><i class="fa fa-book fa-fw w3-margin-right w3-text-theme"></i>หน่วยการเรียนรู้</h5>
+                            <input type="text" id="userId" hidden name="userId" value="@id_" />
+                        </div>
+                        <div class="right">
+
+                            @*<div class="btn btn-success p-0 pt-1" onclick="showModal();location.href='@Url.Action("PA_Add", "EvaluatePA")'" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;บันทึกแบบฟอร์ม</div>*@
+                            @*<div class="btn btn-success p-0 pt-1" onclick="showModal_Create();" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;สร้างแบบฟอร์ม</div>*@
+                            <div class="btn btn-success p-0 pt-1" onclick="showModal_Create();" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;สร้างหน่วยการเรียนรู้</div>                        
+    @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>*@
+                            @*<button type="button" class="btn btn-info btn-lg" onclick="showModal();">X</button>*@
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="card-body border-0 p-1">
+                <!--Grid row-->
+                <div class="row wow fadeIn p-0">
+
+                    <!--Grid column-->
+                    <div class="col-md-12 mb-12 p0">
+
+                        <!--Card-->
+                        <div class="card border-0 p-0">
+
+                            <!--Card content-->
+                            <div class="card-body border-0 p-0">
+
+                                <!-- Table  -->
+                                <table class="table border-bottom">
+                                    <!-- Table head -->
+                                    <thead class="blue-grey lighten-4 border-top">
+                                        <tr>
+                                            <th class="text-center">ลำดับ</th>
+                                            <th>หน่วยการเรียนรู้</th>
+                                            <th class="text-center">Date/Time</th>
+                                            
+                                            <th class="text-center">Export</th>
+                                            <th class="text-center">เครื่องมือ</th>
+                                        </tr>
+                                    </thead>
+                                    <!-- Table head -->
+                                    <!-- Table body -->
+                                    <tbody>
+                                        @for (int i = 0; i <= Model.Rows.Count - 1; i++)
+                                        {
+                                            int j = i + 1;
+                                            
+                                        <tr>
+                                            <td class="text-center">@j</td>
+                                            <td> @Model.Rows[i].ItemArray[1].ToString()</td>
+                                            <td class="text-center">@Model.Rows[i].ItemArray[7].ToString()</td>
+                                            
+                                            <td class="text-center">
+                                                <div class="btn btn-success p-0 pt-1" onclick="" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div id="PA_Report_Model.Form_Id" class="btn view bg-light btn-sm pt-0" onclick="View_UP('@Model.Rows[i].ItemArray[0].ToString()');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-eye w3-text-theme"></i></div>
+                                                <div id="PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="Edit_UP('@Model.Rows[i].ItemArray[0].ToString()');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
+                                                <div id="PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="Delete_UP('@Model.Rows[i].ItemArray[0].ToString()','@Model.Rows[i].ItemArray[1].ToString()');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>     
+                                            </td>
+                                        </tr>
+                                        }
+                                        
+                                    </tbody>
+                                    <!-- Table body -->
+                                </table>
+                                <!-- Table  -->
+
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
+<div class="loader-wrapper2">
+    @*<span class="loader"><span class="loader-inner" onclick="hideModal();"></span>
+        </span>*@
+
+
+    <div class="row p-5 pt-1">
+        <div class="col-md-12 mb-4">
+
+            <div class="form-outline" style="opacity:1.0;">
+                <div class="card border shadow p-0">
+                    <div class="card-header bg-white border-0 border-bottom p-1">
+                        <div class="form-inline justify-content-between bg-light p-2 pb-1 ">
+                            <div class="pt-0">
+                                <h5>สร้างหน่วยการเรียนรู้</h5>
+                            </div>
+                            <div class="pr-2">
+                                <span onclick="hideModal_fast();">
+                                    <i class="fa fa-times"></i>
+                                </span>
+                                </div>
+
+                            </div>
+                            <div class="card-body p-3 pb-3 mt-3">
+                                <form id="PA_Form">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="ClassRoom">ระบุชื่อหน่วยการเรียนรู้ :</label>
+                                        <input type="text" id="UnitPlanName" name="UnitPlanName" class="form-control form-control-lg mt-2" style="width:350px;font-size:16px;" />
+                                    </div>
+                                    <div class="btn btn-success mt-3 pt-2" onclick="AJ_Save();" style="width:100%;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>
+                                </form>
+
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    <script>
+        $(window).on("load", function () {
+            setTimeout(fad_out, 500);
+        });
+
+        function fad_out() {
+            $(".loader-wrapper").fadeOut("slow");
+        }
+        function hideModal() {
+            $(".loader-wrapper2").fadeOut("slow");
+        }
+        function hideModal_fast() {
+            $(".loader-wrapper2").fadeOut("fast");
+        }
+        function showModal() {
+            $(".loader-wrapper").fadeIn("slow");
+            $(".loader-wrapper").fadeOut("slow");
+        }
+        function showModal_Create() {
+            // $('.formName').val("");
+            //$('.Level').val("");
+            //document.getElementById("PA_Form").reset();
+            $(".loader-wrapper2").css('display', 'flex');
+            $(".loader-wrapper2").fadeIn(2000);
+            //$(".loader-wrapper").fadeOut("slow");
+        }
+
+    </script>
+    <script type="text/javascript">
+        $('.active_').removeClass('active_');
+        $('.a-UnitPlan').addClass('active_');
+        $('.a-UnitPlan').removeClass('text-dark');
+
+        function View_CL(id, Name) {
+            //alert("");
+
+            //let user_Id = Id;
+            //let PA_Name = Name;
+            var param = "PA_Name=" + Name + "&Id=" + id
+                + "&submit=yes&display=block";
+            //alert(param);
+            window.location.assign("/ManagementPA/PA_View?" + param);
+            //$.ajax({
+
+            //    type: 'GET',
+            //    url: '/EvaluatePA/EditForm_AJ?' + param,
+            //    success: function (result) {
+            //        //hideModal_Info();
+            //        //location.reload();
+            //        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+            //    }
+            //});
+            //hideModal();
+
+        }
+        function Edit_UP(id) {
+            //alert("");
+
+            //let user_Id = Id;
+            //let PA_Name = Name;
+            var param = "Id=" + id
+                + "&submit=yes&display=block";
+            //alert(param);
+            window.location.assign("/Curriculum/Edit_UP?" + param);
+            //$.ajax({
+
+            //    type: 'GET',
+            //    url: '/EvaluatePA/EditForm_AJ?' + param,
+            //    success: function (result) {
+            //        //hideModal_Info();
+            //        //location.reload();
+            //        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+            //    }
+            //});
+            //hideModal();
+
+        }
+
+        function Delete_UP(id, Name) {
+
+            var param = "Id=" + id
+                + "&submit=yes";
+            if (confirm("Delete Unit Plan : " + Name + " ?")) {
+                let url_ = '/Curriculum/DeleteUP_AJ?' + param;
+                alert(url_);
+                $.ajax({
+
+                    type: 'GET',
+                    url: url_,
+                    success: function (result) {
+                        window.location.reload(true);
+                    }
+                });
+            }
+            else
+            {
+            }
+        }
+
+
+
+        function AJ_Save() {
+            let user_Id = $('#userId').val();
+            let UnitPlanName = $('#UnitPlanName').val();
+            var param = "UP_Name=" + UnitPlanName + "&user_Id=" + user_Id
+                + "&submit=yes";
+            alert(param);
+
+            $.ajax({
+
+                type: 'GET',
+                url: '/Curriculum/NewUnitPlan_AJ?' + param,
+                success: function (result) {
+                    //hideModal_Info();
+                    location.reload();
+                    //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+                }
+            });
+            hideModal();
+        }
+
+
+    </script>
+
+}

@@ -1,0 +1,685 @@
+﻿@using Microsoft.AspNetCore.Http;
+@model IEnumerable<PA_Form_Short>
+@{
+    ViewData["Title"] = "PA";
+    var id_ = @Context.Session.GetString("userId");
+}
+@section Style_{
+    <style>
+        .btn-x {
+            color: #a0a0a0;
+            background-color: #fafafa;
+            
+        }
+            .btn-x:hover {
+                color: #ffffff;
+                background-color:#e0e0e0;
+                box-shadow:rgba(155,155,155,0.5) 1px 1px 5px;
+            }
+        </style>
+}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3 mt-2">
+                <div class="card border-0">
+                    <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
+                        <div class="border-top pt-2">
+                            <h5><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-text-theme"></i>วิทยฐานะ</h5>
+                            <input type="hidden" id="userId" name="userId" value="@Context.Session.GetString(" userId")">
+                        </div>
+                    </div>
+                    <div class="card-body p-1">
+                        <input type="button" value="แบบฟอร์มพัฒนางาน (PA)" class="btn bg-light" onclick="location.href='@Url.Action(" Main", "Home" , new { user_id=@id_})'" style="width:100%;border-color:#d4d4d4;height:35px;">
+                        <input type="button" value="จัดการวิดีโอที่บันทึกในห้องเรียน" class="btn bg-light mt-1" onclick="location.href='@Url.Action(" Index", "Video" , new { user_id=@id_})'" style="width:100%;border-color:#d4d4d4;height:35px;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-8 col-xl-9 mt-2">
+                <div class="card border-0 p-0">
+                    <div class="card-header bg-white border-0 border-top p-0 pr-2">
+                        <div class="border-top pt-1">
+                            <form class="form-inline" asp-route="">
+                                <div class="mt-2" style="width:100%;height:39px;padding:5px;background-color:#dfdfdf;border-radius:20px;opacity:1.0;">
+                                    <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1" onclick="location.href = '@Url.Action("Management_Index","EvaluatePA", new { user_id=@id_,mgSection="School"})';" style="width:29px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;"><i class="fa fa-university"></i></div>
+                                    <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1" onclick="location.href = '@Url.Action("Management_Index","EvaluatePA", new { user_id=@id_,mgSection="Lecturer"})';" style="width:29px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;"><i class="fa fa-user"></i></div>
+                                    <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1" onclick="location.href = '@Url.Action("Management_Index","EvaluatePA", new { user_id=@id_,mgSection="Calendar"})';" style="width:29px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;"><i class="fa fa-calendar"></i></div>
+                                    <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1" onclick="location.href = '@Url.Action("Management_Index","EvaluatePA", new { user_id=@id_,mgSection="Calendar"})';" style="width:29px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;"><i class="fa fa-plus"></i></div>
+                                    @*<p><i class="fa fa-file fa-fw w3-margin-right w3-text-theme"></i>แบบฟอร์มพัฒนางาน (PA)</p>*@
+                                    
+                                <div class="float-right">
+                                    @*<div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1" onclick="location.href = '@Url.Action("Management_Index","EvaluatePA", new { user_id=@id_,mgSection="Calendar"})';" style="width:29px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;">W</div>
+        <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1" onclick="location.href = '@Url.Action("Management_Index","EvaluatePA", new { user_id=@id_,mgSection="Calendar"})';" style="width:29px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;">M</div>
+        <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1" onclick="location.href = '@Url.Action("Management_Index","EvaluatePA", new { user_id=@id_,mgSection="Calendar"})';" style="width:29px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;">Y</div>
+                                    *@
+                                    <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1" onclick="location.href = '@Url.Action("Management_Index","EvaluatePA", new { user_id=@id_,mgSection="Calendar"})';" style="width:29px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;"><i class="fa fa-plus"></i></div>
+                                    <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pt-1" onclick="location.href = '@Url.Action("Management_Index","EvaluatePA", new { user_id=@id_,mgSection="Calendar"})';" style="width:29px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;"><i class="fa fa-ellipsis-h"></i></div>
+                                </div>
+
+                                </div>
+
+
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-body border-0 p-1">
+                        <!--Grid row-->
+                        <div class="row wow fadeIn p-0">
+                            @if (ViewBag.mgSection == "School")
+                            {
+                                <!--Grid column-->
+                                <div class="col-md-12 mb-12 p0">
+
+                                    <!--Card-->
+                                    <div class="card border-0 p-0">
+
+                                        <!--Card content-->
+                                        <div class="card-body border-0 p-0">
+
+                                            <!-- Table  -->
+                                            <table class="table table-hover border-bottom">
+                                                <!-- Table head -->
+                                                <thead class="blue-grey lighten-4 border-top">
+                                                    <tr>
+                                                        <th class="text-center">ลำดับ</th>
+                                                        <th>สถานศึกษา</th>
+                                                        <th class="text-center">จังหวัด</th>
+                                                        @*<th class="text-center">สถานะ</th>
+                                    <th class="text-center">Export</th>
+                                    <th class="text-center">เครื่องมือ</th>*@
+                                                    </tr>
+                                                </thead>
+                                                <!-- Table head -->
+                                                <!-- Table body -->
+                                                <tbody>
+
+                                                    @if (Model != null)
+                                                    {
+                                                        @*var i = 1;
+                                    foreach (var PA_Report_Model in Model)
+                                    {
+
+                                        <tr>
+                                            <td class="text-center" scope="row">@i</td>
+                                            <td>@PA_Report_Model.Form_Name</td>
+                                            <td class="text-center">@PA_Report_Model.Date_Time</td>
+                                            <td class="text-center">
+                                                <div id="status_" class="status @PA_Report_Model.status">
+                                                    @PA_Report_Model.status
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action(" PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="View_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-eye w3-text-theme"></i></div>
+                                                <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="Edit_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
+                                                <div id="@PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="Delete_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
+                                            </td>
+                                        </tr>
+
+                                        i++;
+                                    }*@
+                                                    }
+                                                    else
+                                                    { }
+
+
+                                                </tbody>
+                                                <!-- Table body -->
+                                            </table>
+                                            <!-- Table  -->
+
+                                        </div>
+
+                                    </div>
+                                    <!--/.Card-->
+
+                                </div>
+                                <!--Grid column-->
+
+                            }
+                            else if (ViewBag.mgSection == "Lecturer")
+                            {
+
+
+                                            <!-- Table  -->
+                                            <table class="table table-hover border-bottom">
+                                                <!-- Table head -->
+                                                <thead class="blue-grey lighten-4 border-top">
+                                                    <tr>
+                                                        <th class="text-center">ลำดับ</th>
+                                                        <th>ชื่อ/นามสกุล</th>
+                                                        <th class="text-center">วิทยฐานะ</th>
+                                                        @*<th class="text-center">สถานะ</th>
+                                    <th class="text-center">Export</th>
+                                    <th class="text-center">เครื่องมือ</th>*@
+                                                    </tr>
+                                                </thead>
+                                                <!-- Table head -->
+                                                <!-- Table body -->
+                                                <tbody>
+
+                                                    @if (Model != null)
+                                                    {
+                                                        @*var i = 1;
+                                    foreach (var PA_Report_Model in Model)
+                                    {
+
+                                        <tr>
+                                            <td class="text-center" scope="row">@i</td>
+                                            <td>@PA_Report_Model.Form_Name</td>
+                                            <td class="text-center">@PA_Report_Model.Date_Time</td>
+                                            <td class="text-center">
+                                                <div id="status_" class="status @PA_Report_Model.status">
+                                                    @PA_Report_Model.status
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action(" PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="View_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-eye w3-text-theme"></i></div>
+                                                <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="Edit_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
+                                                <div id="@PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="Delete_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
+                                            </td>
+                                        </tr>
+
+                                        i++;
+                                    }*@
+                                                    }
+                                                    else
+                                                    { }
+
+
+                                                </tbody>
+                                                <!-- Table body -->
+                                            </table>
+                                            <!-- Table  -->
+
+
+
+                            }
+                            else if (ViewBag.mgSection == "Calendar")
+                            {
+                                <!--Grid column-->
+                                <!--<div class="col-md-12 mb-12 p0">-->
+
+                                    <!--Card-->
+                                    <!--<div class="card border-0 p-0">-->
+
+                                        <!--Card content-->
+                                        <!--<div class="card-body border-0 p-0">-->
+
+                                            <!-- Table  -->
+                                            <!--<table class="table table-hover border-bottom">-->
+                                                <!-- Table head -->
+                                                <!--<thead class="blue-grey lighten-4 border-top">
+
+                                                    <tr>
+                                                        <th><div class="text-center" style="width:80px;">คาบที่/เวลา</div></th>
+                                                        <th><div class="text-center day holiday">Sun</div></th>
+                                                        <th><div class="text-center day workday">Mon</div></th>
+                                                        <th><div class="text-center day workday">Tue</div></th>
+                                                        <th><div class="text-center day workday">Wed</div></th>
+                                                        <th><div class="text-center day workday">Thu</div></th>
+                                                        <th><div class="text-center day workday">Fri</div></th>
+                                                        <th><div class="text-center day holiday">Sat</div></th>
+                                                        <th><div class="text-center" style="width:80px;">หมายเหตุ</div></th>
+                                                    </tr>
+                                                </thead>-->
+                                                <!-- Table head -->
+                                                <!-- Table body -->
+                                                <!--<tbody>
+
+
+                                                    <tr>
+                                                        <td><div class="text-center" style="width:80px;">1</div></td>
+                                                        <td><div class="text-center day-info holiday"></div></td>
+                                                        <td><div class="text-center day-info workday"></div></td>
+                                                        <td><div class="text-center day-info workday"></div></td>
+                                                        <td><div class="text-center day-info workday"></div></td>
+                                                        <td><div class="text-center day-info workday"></div></td>
+                                                        <td><div class="text-center day-info workday"></div></td>
+                                                        <td><div class="text-center day-info holiday"></div></td>
+                                                        <td><div class="text-center" style="width:80px;">หมายเหตุ</div></td>
+                                                    </tr>
+
+
+                                                </tbody>-->
+                                                <!-- Table body -->
+                                            <!--</table>-->
+                                            <!-- Table  -->
+
+                                        <!--</div>
+
+                                    </div>-->
+                                    <!--/.Card-->
+
+                                <!--</div>-->
+                                <!--Grid column-->
+                                <div class="row pt-0">
+                                    <div class="col-12 p-0">
+                                        <div class="card box-shadow p-0">
+                                            <div class="card-body pt-0 pb-2">
+                                                <div id="calendar" class="calendar">
+
+                                                    <div class="weekdays_ text-center">
+                                                        <div class="weekdays">
+                                                            <div class="text-center mr-1">คาบเรียน</div>
+                                                            @{ 
+                                                                string[] day_of_week = new String[] { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
+                                                                int day_ = ViewBag.Today;
+                                                                for (int i = 0; i <= 6; i++)
+                                                                {
+                                                                    string class_ = "";
+                                                                    if (day_ == i)
+                                                                    { class_ = "thisday";  }
+
+                                                                    <div class="text-center @class_">@day_of_week[i]</div>
+                                                                }
+                                                            }
+
+                                                            @*<div class="text-center">Sun</div>
+                                                            <div class="text-center">Mon</div>
+                                                            <div class="text-center">Tue</div>
+                                                            <div class="text-center">Wed</div>
+                                                            <div class="text-center">Thu</div>
+                                                            <div class="text-center">Fri</div>
+                                                            <div class="text-center">Sat</div>*@
+
+                                                        </div>
+                                                    </div>
+                                                    @for (int i = 1; i <= 10; i++)
+                                                    {
+                                                       
+                                                        <div class="days">
+                                                            <div class="dates_ prev-date mr-1">
+                                                                <div class="dates_num">@i</div>
+
+                                                            </div>
+                                                            <div class="dates_ prev-date">
+                                                                <div class="dates_num"></div>
+
+                                                            </div>
+                                                            <div class="dates_">
+                                                                <a href='dashboard_View?factoryId=0&year_=2021&month_=12&date_=2021-12-1'>
+                                                                    <div class="dates_num">N:</div>
+         
+                                                                </a>
+                                                            </div>
+                                                            <div class="dates_">
+                                                                <a href='dashboard_View?factoryId=0&year_=2021&month_=12&date_=2021-12-1'>
+                                                                    <div class="dates_num">N:</div>
+     
+                                                                </a>
+                                                            </div>
+                                                            <div class="dates_">
+                                                                <a href='dashboard_View?factoryId=0&year_=2021&month_=12&date_=2021-12-1'>
+                                                                    <div class="dates_num">N:</div>
+                                                                    
+                                                                </a>
+                                                            </div>
+                                                            <div class="dates_">
+                                                                <a href='dashboard_View?factoryId=0&year_=2021&month_=12&date_=2021-12-1'>
+                                                                    <div class="dates_num">N:</div>
+                                                                    
+                                                                </a>
+                                                            </div>
+                                                            <div class="dates_">
+                                                                <a href='dashboard_View?factoryId=0&year_=2021&month_=12&date_=2021-12-1'>
+                                                                    <div class="dates_num">N:</div>
+                                                                    
+                                                                </a>
+                                                            </div>
+                                                            <div class="dates_ next-date">
+                                                                <div class="dates_num"></div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <!--Grid column-->
+                                <div class="col-md-12 mb-12 p0">
+
+                                    <!--Card-->
+                                    <div class="card border-0 p-0">
+
+                                        <!--Card content-->
+                                        <div class="card-body border-0 p-0">
+
+                                            <!-- Table  -->
+                                            <table class="table table-hover border-bottom">
+                                                <!-- Table head -->
+                                                <thead class="blue-grey lighten-4 border-top">
+                                                    <tr>
+                                                        <th class="text-center">ลำดับ</th>
+                                                        <th>แบบฟอร์มพัฒนางาน</th>
+                                                        <th class="text-center">Date/Time</th>
+                                                        <th class="text-center">สถานะ</th>
+                                                        <th class="text-center">Export</th>
+                                                        <th class="text-center">เครื่องมือ</th>
+                                                    </tr>
+                                                </thead>
+                                                <!-- Table head -->
+                                                <!-- Table body -->
+                                                <tbody>
+
+                                                    @if (Model != null)
+                                                    {
+                                                        var i = 1;
+                                                        foreach (var PA_Report_Model in Model)
+                                                        {
+
+                                                            <tr>
+                                                                <td class="text-center" scope="row">@i</td>
+                                                                <td>@PA_Report_Model.Form_Name</td>
+                                                                <td class="text-center">@PA_Report_Model.Date_Time</td>
+                                                                <td class="text-center">
+                                                                    <div id="status_" class="status @PA_Report_Model.status">
+                                                                        @PA_Report_Model.status
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <div class="btn btn-success p-0 pt-1" onclick="location.href='@Url.Action(" PA_Export", "EvaluatePA")'" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="View_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-eye w3-text-theme"></i></div>
+                                                                    <div id="@PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="Edit_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
+                                                                    <div id="@PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="Delete_PA('@PA_Report_Model.Form_Id', '@PA_Report_Model.Form_Name');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
+                                                                </td>
+                                                            </tr>
+
+                                                            i++;
+                                                        }
+                                                    }
+                                                    else
+                                                    { }
+
+
+                                                </tbody>
+                                                <!-- Table body -->
+                                            </table>
+                                            <!-- Table  -->
+
+                                        </div>
+
+                                    </div>
+                                    <!--/.Card-->
+
+                                </div>
+                                <!--Grid column-->
+                            }
+                        </div>
+                                            <!--Grid row-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-default" onclick="hideModal('myModal');">Close</button>*@
+                    <button type="button" class="btn btn-info btn-lg" onclick="hideModal('myModal');">X</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    <div class="loader-wrapper2">
+        @*<span class="loader">
+            <span class="loader-inner" onclick="hideModal();"></span>
+        </span>*@
+
+
+        <div class="row p-5 pt-1">
+            <div class="col-md-12 mb-4">
+
+                <div class="form-outline" style="opacity:1.0;">
+                    <div class="card border shadow p-3">
+                        <div class="card-header bg-white border-0 border-top p-0 pl-3 pr-3">
+                            <div class="form-inline justify-content-between">
+                                <div class="pt-2">
+                                    <label class="form-label" for="fileName">ชื่อแบบฟอร์ม :</label>
+                                </div>
+                                <span onclick="hideModal_fast();">
+                                    <i class="fa fa-times"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body p-1 pb-2">
+                            <form id="PA_Form">
+                                <input type="text" id="formName" name="formName" class="form-control form-control-lg mt-2" style="width:350px;font-size:16px;" />
+                                <div class="pt-2 pl-3">
+                                    <label class="form-label" for="Level">ระดับวิทยฐานะ :</label>
+                                </div>
+                                <input type="text" id="Level" name="Level" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="@Context.Session.GetString(" userPosition")" />
+                                <div class="btn btn-success mt-3 pt-2" onclick="AJ_Save();" style="width:350px;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>
+                            </form>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    @section Scripts {
+
+    <script>
+        $(window).on("load", function () {
+            setTimeout(fad_out, 500);
+        });
+
+        function fad_out() {
+            $(".loader-wrapper").fadeOut("slow");
+        }
+        function hideModal() {
+            $(".loader-wrapper2").fadeOut("slow");
+        }
+        function hideModal_fast() {
+            $(".loader-wrapper2").fadeOut("fast");
+        }
+        function showModal() {
+            $(".loader-wrapper").fadeIn("slow");
+            $(".loader-wrapper").fadeOut("slow");
+        }
+        function showModal_Create() {
+            // $('.formName').val("");
+            //$('.Level').val("");
+            document.getElementById("PA_Form").reset();
+            $(".loader-wrapper2").css('display', 'flex');
+            $(".loader-wrapper2").fadeIn(2000);
+            //$(".loader-wrapper").fadeOut("slow");
+        }
+
+    </script>
+    <script type="text/javascript">
+        $('.active_').removeClass('active_');
+        $('.a-EvaluatePA').addClass('active_');
+        $('.a-EvaluatePA').removeClass('text-dark');
+    </script>
+    <script>
+        function AJ_Submit() {
+            let Prefix = 0;
+
+            let Prefix_mr = $('#mr').prop("checked"),
+                Prefix_mrs = $('#mrs').prop("checked"),
+                Prefix_miss = $('#miss').prop("checked"),
+                user_Id = $('#userId').val(),
+                FirstName = $('#FirstName').val(),
+                LastName = $('#LastName').val(),
+                position = $('#position').val(),
+                school = $('#school').val(),
+                CDate = $('#CDate').val(),
+                memberOf = $('#memberOf').val(),
+                salaryLevel = $('#salaryLevel').val(),
+                salaryRate = $('#salaryRate').val(),
+                classroomType = $('#classroomType').val();
+            if (Prefix_mr) {
+                Prefix = 1;
+            }
+            if (Prefix_mrs) {
+                Prefix = 2;
+            }
+            if (Prefix_miss) {
+                Prefix = 3;
+            }
+
+            //alert(Prefix);
+            //alert(FirstName);
+            //alert(LastName);
+            //alert(position);
+            //alert(school);
+            //alert(CDate);
+            //alert(memberOf);
+            //alert(salaryLevel);
+            //alert(salaryRate);
+            //alert(classroomType);
+
+            var param = "Prefix=" + Prefix + "&FirstName=" + FirstName
+                + "&LastName=" + LastName + "&position=" + position + "&school_id=" + school + "&CDate=" + CDate
+                + "&memberOf=" + memberOf + "&salaryLevel=" + salaryLevel
+                + "&salaryRate=" + salaryRate + "&classroomType=" + classroomType + "&user_Id=" + user_Id
+                + "&submit=yes";
+            //alert(param);
+
+            $.ajax({
+
+                type: 'GET',
+                url: '/Home/UpdateUser_AJ?' + param,
+                success: function (result) {
+                    hideModal_Info();
+                    window.location.assign("/Home/Main?user_Id=" + user_Id);
+
+                }
+            });
+        }
+
+        function Delete_PA(id, Name) {
+            //alert("Delete PA : " + id + "-" + Name + " ?");
+            var param = "PA_Name=" + Name + "&Id=" + id
+                + "&submit=yes";
+            if (confirm("Delete PA : " + id + "-" + Name + " ?")) {
+                // Save it!
+                //console.log('Thing was saved to the database.');
+
+                $.ajax({
+
+                    type: 'GET',
+                    url: '/EvaluatePA/DeleteForm_AJ?' + param,
+                    success: function (result) {
+                        //hideModal_Info();
+                        location.reload();
+                        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+                    }
+                });
+
+            } else {
+                // Do nothing!
+
+                //console.log('Thing was not saved to the database.');
+            }
+
+        }
+        function Edit_PA(id, Name) {
+            //alert("");
+
+            //let user_Id = Id;
+            //let PA_Name = Name;
+            var param = "PA_Name=" + Name + "&Id=" + id
+                + "&submit=yes";
+            //alert(param);
+            window.location.assign("/EvaluatePA/PA_Add?" + param);
+            //$.ajax({
+
+            //    type: 'GET',
+            //    url: '/EvaluatePA/EditForm_AJ?' + param,
+            //    success: function (result) {
+            //        //hideModal_Info();
+            //        //location.reload();
+            //        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+            //    }
+            //});
+            //hideModal();
+
+        }
+        function View_PA(id, Name) {
+            //alert("");
+
+            //let user_Id = Id;
+            //let PA_Name = Name;
+            var param = "PA_Name=" + Name + "&Id=" + id
+                + "&submit=yes";
+            //alert(param);
+            window.location.assign("/EvaluatePA/PA_View?" + param);
+            //$.ajax({
+
+            //    type: 'GET',
+            //    url: '/EvaluatePA/EditForm_AJ?' + param,
+            //    success: function (result) {
+            //        //hideModal_Info();
+            //        //location.reload();
+            //        //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+            //    }
+            //});
+            //hideModal();
+
+        }
+        function AJ_Save() {
+            let user_Id = $('#userId').val();
+            let PA_Name = $('#formName').val();
+            var param = "PA_Name=" + PA_Name + "&user_Id=" + user_Id
+                + "&submit=yes";
+            //alert(param);
+
+            $.ajax({
+
+                type: 'GET',
+                url: '/EvaluatePA/NewForm_AJ?' + param,
+                success: function (result) {
+                    //hideModal_Info();
+                    location.reload();
+                    //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+                }
+            });
+            hideModal();
+        }
+    </script>
+
+
+    }

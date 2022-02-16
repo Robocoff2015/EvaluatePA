@@ -1,0 +1,155 @@
+﻿@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EvaluatePa</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Kanit&subset=thai,latin' type='text/css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@100&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/bootstrap3-wysihtml5.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("Style_", required: false)
+    @{
+        //var userName = @Context.Session.GetString("userName");
+        var userId = @Context.Session.GetString("userId");
+    }
+    <style>
+        
+        .container-fluid {
+            width: 100%;
+            padding-left: 5%;
+            padding-right: 5%;
+            min-height: 100%;
+            margin-bottom: 0px;
+            /*height:100%;*/
+        }
+
+        main {
+            width: 100%;
+            padding-left: 10%;
+            padding-right: 10%;
+            height: 85vh;
+            /*height:100%;*/
+        }
+
+        @@media only screen and (max-width: 1370px) {
+            main {
+                width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+                height: 80vh;
+            }
+        }
+
+        @@media only screen and (max-width: 780px) {
+            main {
+                width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <header>
+        <div class="navbar narhu_navbar">
+            <div class="nav-item narhu_navitem_ d-inline-flex float-left">
+                <div class="Narhu-container-top">
+                    <Div class="Narhu-top"><div><strong>NARHU</strong> Powered By Education Sphere</div></Div>
+                </div>
+                <div class="box"></div>
+            </div>
+            <div class="narhu_navitem_ d-inline-flex pr-5 float-right">
+                @{ var userName = Context.Session.GetString("userName");
+                    var userRole = Context.Session.GetString("userRole");
+                    var myIcon = "<i class='fa-solid fa-shield-check'></i>";
+                    
+                    if (Context.Session.GetString("userName") != null && Context.Session.GetString("userName") != "")
+                    {
+                        <div class="w3-center m-0 mt-1"><img src="~/images/avatar3.png" class="w3-circle" style="height:38px;width:38px" alt="Avatar"></div>
+                        <div class="p-0 pt-1 text-center pl-3 pr-3 mr-2 ml-2 disabled bg-light mt-2" style="min-width:120px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ff0000;border-radius:14px">
+
+                            @if (userRole == "admin")
+                            {
+                                <i class="fa fa-shield"></i>
+                            }
+                            @userName
+                        </div>
+                        <div class="btn rounded-circle btn-outline-secondary btn-x p-0 pl-1 mt-2 narhu_item" onclick="location.href='@Url.Action("Logout", "Home")'" style="width:29px;height:29px;font-size:1.15rem;font-weight:bold;border-color:#ffffff;">
+                            <i class='fa fa-sign-out' style='color: white'></i>
+                            <span class="tooltiptext" style="width:100px;margin-left:-60px;z-index:99999;">ออกจากระบบ</span>
+                        </div>
+
+                    }
+                }
+
+            </div>
+        </div>
+
+    </header>
+    <div class="container-fluid mr-5">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white pt-3 pb-1">
+            <div class="container-fluid pt-0 border-bottom" style="border-top: 2px solid #9e9eff">
+                <div class="float-left">
+                    <button class="navbar-toggler float-left" style="margin-top:-2px;" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" style="margin-left:0px;padding-top:0px;">
+                        <ul class="navbar-nav flex-grow-1">
+                            @if (Context.Session.GetString("userName") != null && Context.Session.GetString("userRole") == "admin")
+                            {
+                                <li class="nav-item box-shadow keep-margin-left  keep-margin-top text-nowrap" style="display:block">
+                                    <a class="nav-link text-dark keep-padding-left a-Dashboard" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="ManagementPA" asp-action="Dashboard_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-bar-chart fa-fw w3-margin-right w3-text-theme"></i>แดชบอร์ด</a>
+                                </li>
+                            }
+                            <li class="nav-item box-shadow-blue keep-margin-left text-nowrap">
+                                <a class="nav-link text-dark keep-padding-left a-Curriculum" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="Curriculum" asp-action="Curriculum_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-book fa-fw w3-margin-right w3-text-theme"></i>หลักสูตร</a>
+                            </li>
+                            <li class="nav-item box-shadow keep-margin-left text-nowrap">
+                                <a class="nav-link text-dark keep-padding-left a-UnitPlan" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="Curriculum" asp-action="UnitPlan_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-language fa-fw w3-margin-right w3-text-theme"></i>หน่วยการเรียนรู้</a>
+                            </li>
+                            <li class="nav-item box-shadow keep-margin-left text-nowrap">
+                                <a class="nav-link text-dark keep-padding-left a-EvaluatePA" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="EvaluatePA" asp-action="EvaluatePA_Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-text-theme"></i>วิทยฐานะ</a>
+                            </li>
+                            <li class="nav-item box-shadow keep-margin-left text-nowrap">
+                                <a class="nav-link text-dark keep-padding-left a-Manage" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="EvaluatePA" asp-action="Std_Observe_Ev" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i>จัดการผู้เรียน</a>
+                            </li>
+                            <li class="nav-item box-shadow keep-margin-left text-nowrap">
+                                <a class="nav-link text-dark keep-padding-left a-Video" style="padding-left:20px;padding-right:20px" asp-area="" asp-controller="Video" asp-action="Index" asp-route-user="@Context.Session.GetString("userId")"><i class="fa fa-film fa-fw w3-margin-right w3-text-theme"></i>จัดการไฟล์วิดีโอ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="float-right">
+                    <div class="btn btn-outline-light ml-5" onclick="location.href='@Url.Action("Logout", "Home")'" style="font-size:12px;color:#464646; padding:3px;width:80px;height:28px;margin-left:0px;margin:4px;">Signout</div>
+                </div>
+            </div>
+        </nav>
+        <main role="main" class="bg-white">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-0 footer text-muted">
+        @*<div class="container">
+                &copy; 2021 - EvaluatePa - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>*@
+    </footer>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,288 @@
+﻿@model IEnumerable<MediaInfo>
+@{
+    ViewData["Title"] = "Video";
+}
+
+
+<div class="row">
+    <div class="col-sm-12 col-md-12  col-lg-6 col-xl-4 mt-2">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <i class="fa fa-file-o fa-fw w3-margin-right w3-text-theme"></i>ไฟล์วีดิโอของฉัน
+                    </div>
+
+                    <div class="tooltips">
+
+                        <div class="btn rounded-circle btn-secondary btn-x p-0 pt-1" onclick="showModal_Add();" style="width:29px;height:29px;font-size:0.85rem;font-weight:normal;border-color:#ffffff;"><i class="fa fa-plus"></i></div>
+                        <span class="tooltiptext">เพิ่มไฟล์วิดีโอ</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <div class="w3-card w3-round">
+                    <div class="w3-white">
+                        @if (Model != null)
+                        {
+                            var i = 1;
+                            foreach (var Media_Model in Model)
+                            {
+                        <button onclick="myFunction('subject-@i')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-margin-bottom"><i class="fa fa-film fa-fw w3-margin-right"></i>@Media_Model.Information2</button>
+                                <div id="subject-@i" class="w3-hide w3-container">
+                                    <div class="w3-row-padding">
+                                        
+                                        <div class="w3-half">
+                                            <img src="~/images/film.jpg" style="width:80%" class="w3-margin-bottom" onclick="loadVideo1('@Media_Model.Information')">
+                            <p class="w3-center"></p>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                i++;
+                            }
+                        }
+                    
+                        <!--<button onclick="myFunction('subject-2')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-margin-bottom"><i class="fa fa-film fa-fw w3-margin-right"></i>--> @*รหัสวิชา : M-102*@
+                        <!--</button>
+    <div id="subject-2" class="w3-hide w3-container">
+        <div class="w3-row-padding">
+            <br>
+
+            <div class="w3-half">
+                <img src="~/images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
+                <p class="w3-center">วันที่ 14-06-2564</p>
+            </div>
+            <div class="w3-half">
+                <img src="~/images/forest.jpg" style="width:100%" class="w3-margin-bottom">
+                <p class="w3-center">วันที่ 02-07-2564</p>
+            </div>
+        </div>
+    </div>
+    <button onclick="myFunction('subject-3')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-margin-bottom"><i class="fa fa-film fa-fw w3-margin-right"></i>-->
+                        @*รหัสวิชา : BIO-101*@
+                        <!--</button>
+    <div id="subject-3" class="w3-hide w3-container">
+        <div class="w3-row-padding">
+            <br>
+            <div class="w3-half">
+                <img src="~/images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+                <p class="w3-center">วันที่ 11-09-2564</p>
+            </div>
+            <div class="w3-half">
+                <img src="~/images/snow.jpg" style="width:100%" class="w3-margin-bottom">
+                <p class="w3-center">วันที่ 17-10-2564</p>
+            </div>
+        </div>
+    </div>-->
+                    </div>
+                </div>
+                <br>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 mt-2">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-play fa-fw w3-margin-right w3-text-theme"></i>แสดงไฟล์วิดีโอ
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <video controls="controls">
+                                    <source src="" type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
+<div class="loader-wrapper2">
+    @*<span class="loader"><span class="loader-inner" onclick="hideModal();"></span>
+        </span>*@
+
+
+    <div class="row p-5 pt-1">
+        <div class="col-md-12 mb-4">
+
+            <div class="form-outline" style="opacity:1.0;">
+                <div class="card border shadow p-0">
+                    <div class="card-header border p-0 pl-3 pr-3" style="height:50px;">
+                        <div class="form-inline justify-content-between">
+                            <div class="p-1 pt-3">
+                                <label class="form-label" for="fileName">โหลดไฟล์วิดีโอ :</label>
+                            </div>
+                            <span onclick="hideModal_fast();">
+                                <i class="fa fa-times"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body p-3 pb-3">
+
+                        <form id="PA_Form" asp-controller="Video" asp-action="UploadFile" method="post" enctype="multipart/form-data">
+                            @*<form id="PA_Form">*@
+                            @*<input type="text" id="formName" name="formName" class="form-control form-control-lg mt-2" style="width:350px;font-size:16px;" />
+                                <div class="pt-2 pl-3">
+                                    <label class="form-label" for="Level">รายละเอียด :</label>
+                                </div>
+                                <input type="text" id="Level" name="Level" class="form-control form-control-lg" style="width:350px;font-size:16px;" value="" />
+                                <div class="btn btn-success mt-3 pt-2" onclick="AJ_Save();" style="width:350px;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>*@
+                            @*<form accept-charset="UTF-8" action="https://getform.io/f/{your-form-endpoint-goes-here}" method="POST" target="_blank">*@
+                            @*<div class="form-group">
+                                    <label for="exampleInputName">Full Name</label>
+                                    <input type="text" name="fullname" class="form-control" id="exampleInputName" placeholder="Enter your name and surname" required="required">
+                                </div>*@
+
+                            @*<div class="form-group">
+                                    <label for="exampleFormControlSelect1">Favourite Platform</label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="platform" required="required">
+                                        <option>Github</option>
+                                        <option>Gitlab</option>
+                                        <option>Bitbucket</option>
+                                    </select>
+                                </div>*@
+
+                            <div class="form-group mt-1 p-0">
+                                <label class="mr-2">โหลดไฟล์วิดีโอ :</label>
+                                <input type="file" name="file" style="height:50px;">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="detail">รายละเอียด</label>
+                                <input type="text" name="detail" class="form-control" id="detail" placeholder="รายละเอียด">
+                                <input type="text" name="user_id" hidden class="form-control" id="user_id" value="@ViewBag.user_id">
+                            </div>
+                            @*<div class="btn btn-success mt-3 pt-2" onclick="AJ_Upload();" style="width:100%;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>*@
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+        $(window).on("load", function () {
+            setTimeout(fad_out, 500);
+        });
+
+        function fad_out() {
+            $(".loader-wrapper").fadeOut("slow");
+        }
+        function hideModal() {
+            $(".loader-wrapper2").fadeOut("slow");
+        }
+        function hideModal_fast() {
+            $(".loader-wrapper2").fadeOut("fast");
+        }
+        function showModal() {
+            $(".loader-wrapper").fadeIn("slow");
+            $(".loader-wrapper").fadeOut("slow");
+        }
+    </script>
+    <script type="text/javascript">
+        $('.active_').removeClass('active_');
+        $('.a-Video').addClass('active_');
+        $('.a-Video').removeClass('text-dark');
+    </script>
+
+    <script>
+        function showModal_Add() {
+            // $('.formName').val("");
+            //$('.Level').val("");
+            document.getElementById("PA_Form").reset();
+            $(".loader-wrapper2").css('display', 'flex');
+            $(".loader-wrapper2").fadeIn(2000);
+            //$(".loader-wrapper").fadeOut("slow");
+
+        }
+        // Accordion
+        function myFunction(id) {
+           // alert(id);
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+                x.previousElementSibling.className += " w3-theme-d1";
+            } else {
+                x.className = x.className.replace("w3-show", "");
+                x.previousElementSibling.className =
+                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+            }
+        }
+
+        // Used to toggle the menu on smaller screens when clicking on the menu button
+        function openNav() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+
+        function loadVideo1(src) {
+            var user = '@ViewBag.user_id';
+            //alert(user);
+            //alert('/SharedData/' + user + '/' + src);
+            //~/SharedData/300001/M101.mp4
+            var videoEl = document.getElementsByTagName('video')[0];
+            var sourceEl = videoEl.getElementsByTagName('source')[0];
+            sourceEl.src = '/SharedData/' + user + '/' + src;
+            //<video controls="controls">
+            //    <source src="~/movies/M101.mp4" type="video/mp4" />
+            //</video>
+            videoEl.load();
+        }
+
+        function AJ_Upload() {
+            //alert("Upload");
+            let user_id = '@Html.Raw(ViewBag.user_id)';//$('#user_id').val();
+            let detail = $('#detail').val();
+            let file = $('#file').val();
+            var param = "user_id=" + user_id + "&detail=" + detail + "&file=" + file
+                + "&submit=yes";
+            //alert(param);
+
+            $.ajax({
+
+                type: 'GET',
+                url: '/Video/UploadFile?' + param,
+                success: function (result) {
+                    //hideModal_Info();
+                    location.reload();
+                    //window.location.assign("/EvaluatePA/EvaluatePA_Index?user=" + user_Id);
+
+                }
+            });
+            hideModal();
+        }
+
+
+    </script>
+
+}
+

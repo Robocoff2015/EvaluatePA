@@ -1,0 +1,436 @@
+﻿@using Microsoft.AspNetCore.Http;
+@model IEnumerable<PA_Form_Short>
+@{
+    ViewData["Title"] = "PA";
+    var id_ = @Context.Session.GetString("userId");
+}
+
+@section Style_{
+    <style>
+
+
+        .tools {
+            position: absolute;
+            right: 12px;
+            top: 13px;
+            width: 32px;
+            height: 32px;
+            opacity: 0.3;
+        }
+
+            .tools:hover {
+                opacity: 1;
+            }
+
+        #mdiv {
+            width: 18px;
+            height: 18px;
+            /*            background-color: red;*/
+            border: 0px solid black;
+        }
+
+        .mdiv {
+            height: 18px;
+            width: 3px;
+            margin-left: 7px;
+            background-color: red;
+            transform: rotate(45deg);
+            Z-index: 1;
+        }
+
+        .md {
+            height: 18px;
+            width: 3px;
+            background-color: red;
+            transform: rotate(90deg);
+            Z-index: 2;
+        }
+
+        label {
+            font-size: 12px;
+        }
+
+        date .local {
+            font-size: 14px;
+        }
+
+        .topic .local {
+            font-size: 12px;
+            color: #8e8e8e;
+        }
+
+        main {
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            /*background-color: chartreuse;*/
+        }
+    </style>
+}
+
+<div class="row h-100">
+
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-9 mt-2">
+        <div class="card border-0">
+            <div class="card-header bg-white border-0 border-top p-0 pl-1 pr-1">
+                <div class="border-bottom-2 pt-1">
+                    <form class="form-inline justify-content-between" asp-route="">
+                        <input type="hidden" id="userId" name="userId" value="@Context.Session.GetString("userId")">
+                        <div class="d-xl-inline-flex">
+                            <div id="page_1" class="mt-2 p-0 pl-4 pr-4 active" onclick='fadin(); fireTrigger();showpage_1();fadout();'>
+                                <p class="m-0 mt-1 mb-1">Edit Daily Note</p>
+                            </div>
+                            <div id="page_2" class="mt-2 p-0 pl-4 pr-4" onclick='fadin(); fireTrigger();showpage_2();fadout();'>
+                                <p class="m-0 mt-1 mb-1">Progress Report</p>
+                            </div>
+                            <div id="page_3" class="mt-2 p-0 pl-4 pr-4" onclick='fadin(); fireTrigger();showpage_3();fadout();'>
+                                <p class="m-0 mt-1 mb-1">Teacher Observation Record</p>
+                            </div>
+                            <div id="page_4" class="mt-2 p-0 pl-4 pr-4" onclick='fadin(); fireTrigger();showpage_4();fadout();'>
+                                <p class="m-0 mt-1 mb-1">D'Eng Club Learning : DELM</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body border-0 p-1">
+                <div id="page_1_form" style="display:block;">
+                    <div class="card-body border-light shadow">
+
+                        <form name="page_1_" asp-action="PA_1" asp-controller="EvaluatePA" style="border-style: none; border-color: #BEDDFE; width: auto;">
+                            <div class="row p-5 pt-1">
+
+
+
+
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="Course" style="width:120px;">Course</label>
+                                        <select style="width:100%">
+                                            <option value="value">text</option>
+                                        </select>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="ClassRoom" style="width:120px;">Class Room</label>
+                                        <select style="width:100%">
+                                            <option value="value">text</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="CoachingWeek" style="width:120px;">Coaching Week</label>
+                                        <select style="width:100%">
+                                            <option value="value">text</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="LearningDate" style="width:120px;">Learning Date</label>
+                                        <select style="width:100%">
+                                            <option value="value">text</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="Topic" style="width:120px;">Topic</label>
+                                        <select style="width:100%">
+                                            <option value="value">text</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="Student" style="width:120px;">Student</label>
+                                        <select style="width:100%">
+                                            <option value="value">text</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="Listening" style="width:120px;">Listening</label>
+                                        <textarea id="Listening" name="Listening" class="form-control form-control-lg" style="font-size:14px;"></textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="Speaking" style="width:120px;">Speaking</label>
+                                        <textarea id="Listening" name="Listening" class="form-control form-control-lg" style="font-size:14px;"></textarea>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <div id="page_2_form" style="display:none;">
+                    <div class="card-body border-light shadow">
+                        <div class="col-md-12 mb-4">
+
+                            <div class="form-outline">
+                                <label class="form-label" for="Course" style="width:120px;">Course</label>
+                                <select style="width:100%">
+                                    <option value="value">text</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 mb-4">
+
+                            <div class="form-outline">
+                                <label class="form-label" for="ClassRoom" style="width:120px;">Class Room</label>
+                                <select style="width:100%">
+                                    <option value="value">text</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 mb-4">
+
+                            <div class="form-outline">
+                                <label class="form-label" for="CoachingWeek" style="width:120px;">Coaching Week</label>
+                                <select style="width:100%">
+                                    <option value="value">text</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 mb-4">
+
+                            <div class="form-outline">
+                                <label class="form-label" for="LearningDate" style="width:120px;">Learning Date</label>
+                                <select style="width:100%">
+                                    <option value="value">text</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="page_3_form" style="display:none;">
+                    <div class="card-body border-light shadow">
+                        <div class="col-md-12 mb-4">
+
+                            <div class="form-outline">
+                                <label class="form-label" for="LearningDate" style="width:120px;">Teacher</label>
+                                <input type="text" id="LastName" name="LastName" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="" />
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 mb-4">
+
+                            <div class="form-outline">
+                                <label class="form-label" for="LearningDate" style="width:120px;">Evaluator</label>
+                                <input type="text" id="LastName" name="LastName" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="" />
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 mb-4">
+
+                            <div class="form-outline">
+                                <label class="form-label" for="LearningDate" style="width:120px;">School</label>
+                                <input type="text" id="LastName" name="LastName" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="" />
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 mb-4">
+
+                            <div class="form-outline">
+                                <label class="form-label" for="LearningDate" style="width:120px;">Date</label>
+                                <input type="text" id="LastName" name="LastName" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="" />
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="page_4_form" style="display:none;">
+                    <div class="card-body border-light shadow">
+                        <div class="col-md-12 mb-4">
+
+                            <div class="form-outline">
+                                <label class="form-label" for="Speaking" style="width:220px;">1. Preparation before activity</label>
+                                <textarea id="Preparation" name="Preparation" class="form-control form-control-lg" style="font-size:14px;"></textarea>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 mb-4">
+
+                            <div class="form-outline">
+                                <label class="form-label" for="Speaking" style="width:220px;">2. Readiness Equipment</label>
+                                <textarea id="ReadinessEquipment" name="ReadinessEquipment" class="form-control form-control-lg" style="font-size:14px;"></textarea>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 mb-4">
+
+                            <div class="form-outline">
+                                <label class="form-label" for="Speaking" style="width:220px;">3. D'Eng club Learning Model Steps</label>
+                                <textarea id="LearningModelSteps" name="LearningModelSteps" class="form-control form-control-lg" style="font-size:14px;"></textarea>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 mb-4">
+
+                            <div class="form-outline">
+                                <label class="form-label" for="Speaking" style="width:220px;">4. Pronunciation</label>
+                                <textarea id="Pronunciation" name="Pronunciation" class="form-control form-control-lg" style="font-size:14px;"></textarea>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
+
+
+<script type="text/javascript">
+    //alert("");
+    setTimeout(fadout, 500);
+    $(window).on("load", function () {
+        setTimeout(fadout, 500);
+    });
+
+    function fadin() {
+        $(".loader-wrapper").fadeIn(5);
+    }
+    function fadout() {
+
+        $(".loader-wrapper").fadeOut(500);
+
+    }
+    function animate() {
+
+        fadin();
+        fadout();
+    }
+    function fireTrigger() {
+
+        //var tx = document.getElementsByTagName('textarea');
+        //for (var i = 0; i < tx.length; i++) {
+        //    tx[i].setAttribute('style', 'height:' + '125' + 'px;overflow-y:hidden;font-size:14px;');
+
+        //    //tx[i].addEventListener("input", OnInput, false);
+        //}
+        $("textarea").trigger("click");
+        //alert("clicked");
+    }
+
+
+</script>
+
+<script>
+
+    var btn_p1 = document.getElementById("page_1");
+    var btn_p2 = document.getElementById("page_2");
+    var btn_p3 = document.getElementById("page_3");
+    var btn_p4 = document.getElementById("page_4");
+    var p1 = document.getElementById("page_1_form");
+    var p2 = document.getElementById("page_2_form");
+    var p3 = document.getElementById("page_3_form");
+    var p4 = document.getElementById("page_4_form");
+
+    function showpage_1() {
+        //alert("test");
+
+        btn_p1.classList.add("active");
+        btn_p2.classList.remove("active");
+        btn_p3.classList.remove("active");
+        btn_p4.classList.remove("active");
+        p1.style.display = "block";
+        p2.style.display = "none";
+        p3.style.display = "none";
+        p4.style.display = "none";
+
+
+    }
+    function showpage_2() {
+
+        btn_p1.classList.remove("active");
+        btn_p2.classList.add("active");
+        btn_p3.classList.remove("active");
+        btn_p4.classList.remove("active");
+        p1.style.display = "none";
+        p2.style.display = "block";
+        p3.style.display = "none";
+        p4.style.display = "none";
+
+
+    }
+    function showpage_3() {
+
+        btn_p1.classList.remove("active");
+        btn_p2.classList.remove("active");
+        btn_p3.classList.add("active");
+        btn_p4.classList.remove("active");
+        p1.style.display = "none";
+        p2.style.display = "none";
+        p3.style.display = "block";
+        p4.style.display = "none";
+
+
+    }
+
+    function showpage_4() {
+
+        btn_p1.classList.remove("active");
+        btn_p2.classList.remove("active");
+        btn_p3.classList.remove("active");
+        btn_p4.classList.add("active");
+        p1.style.display = "none";
+        p2.style.display = "none";
+        p3.style.display = "none";
+        p4.style.display = "block";
+
+
+    }
+
+
+
+</script>
+
