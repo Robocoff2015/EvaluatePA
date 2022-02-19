@@ -28,8 +28,8 @@
 
                             @*<div class="btn btn-success p-0 pt-1" onclick="showModal();location.href='@Url.Action("PA_Add", "EvaluatePA")'" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;บันทึกแบบฟอร์ม</div>*@
                             @*<div class="btn btn-success p-0 pt-1" onclick="showModal_Create();" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;สร้างแบบฟอร์ม</div>*@
-                            <div class="btn btn-success p-0 pt-1" onclick="showModal_Create();" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;สร้างหน่วยการเรียนรู้</div>                        
-    @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>*@
+                            <div class="btn btn-success p-0 pt-1" onclick="showModal_Create();" style="width:140px;height:30px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-plus w3-text-theme text-white"></i>&nbsp;สร้างหน่วยการเรียนรู้</div>
+                            @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>*@
                             @*<button type="button" class="btn btn-info btn-lg" onclick="showModal();">X</button>*@
                         </div>
 
@@ -57,7 +57,7 @@
                                             <th class="text-center">ลำดับ</th>
                                             <th>หน่วยการเรียนรู้</th>
                                             <th class="text-center">Date/Time</th>
-                                            
+
                                             <th class="text-center">Export</th>
                                             <th class="text-center">เครื่องมือ</th>
                                         </tr>
@@ -68,23 +68,23 @@
                                         @for (int i = 0; i <= Model.Rows.Count - 1; i++)
                                         {
                                             int j = i + 1;
-                                            
-                                        <tr>
-                                            <td class="text-center">@j</td>
-                                            <td> @Model.Rows[i].ItemArray[1].ToString()</td>
-                                            <td class="text-center">@Model.Rows[i].ItemArray[7].ToString()</td>
-                                            
-                                            <td class="text-center">
-                                                <div class="btn btn-success p-0 pt-1" onclick="" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div id="PA_Report_Model.Form_Id" class="btn view bg-light btn-sm pt-0" onclick="View_UP('@Model.Rows[i].ItemArray[0].ToString()');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-eye w3-text-theme"></i></div>
-                                                <div id="PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="Edit_UP('@Model.Rows[i].ItemArray[0].ToString()');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
-                                                <div id="PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="Delete_UP('@Model.Rows[i].ItemArray[0].ToString()','@Model.Rows[i].ItemArray[1].ToString()');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>     
-                                            </td>
-                                        </tr>
+
+                                            <tr>
+                                                <td class="text-center">@j</td>
+                                                <td> @Model.Rows[i].ItemArray[1].ToString()</td>
+                                                <td class="text-center">@Model.Rows[i].ItemArray[7].ToString()</td>
+
+                                                <td class="text-center">
+                                                    <div class="btn btn-success p-0 pt-1" onclick="" style="width:90px;height:25px;font-size:0.65rem;font-weight:normal;"><i class="fa fa-share w3-text-theme text-white"></i>&nbsp;Export PDF</div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div id="PA_Report_Model.Form_Id" class="btn view bg-light btn-sm pt-0" onclick="View_UP('@Model.Rows[i].ItemArray[0].ToString()');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-eye w3-text-theme"></i></div>
+                                                    <div id="PA_Report_Model.Form_Id" class="btn edit bg-light btn-sm pt-0" onclick="Edit_UP('@Model.Rows[i].ItemArray[0].ToString()');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
+                                                    <div id="PA_Report_Model.Form_Id" class="btn delete bg-light btn-sm pt-0" onclick="Delete_UP('@Model.Rows[i].ItemArray[0].ToString()','@Model.Rows[i].ItemArray[1].ToString()');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
+                                                </td>
+                                            </tr>
                                         }
-                                        
+
                                     </tbody>
                                     <!-- Table body -->
                                 </table>
@@ -110,44 +110,62 @@
 <div class="loader-wrapper">
     <span class="loader"><span class="loader-inner"></span></span>
 </div>
-<div class="loader-wrapper2">
-    @*<span class="loader"><span class="loader-inner" onclick="hideModal();"></span>
-        </span>*@
+<!--<div class="loader-wrapper2">-->
+@*<span class="loader"><span class="loader-inner" onclick="hideModal();"></span>
+    </span>*@
 
 
-    <div class="row p-5 pt-1">
-        <div class="col-md-12 mb-4">
+<!--<div class="row p-5 pt-1">
+    <div class="col-md-12 mb-4">
 
-            <div class="form-outline" style="opacity:1.0;">
-                <div class="card border shadow p-0">
-                    <div class="card-header bg-white border-0 border-bottom p-1">
-                        <div class="form-inline justify-content-between bg-light p-2 pb-1 ">
-                            <div class="pt-0">
-                                <h5>สร้างหน่วยการเรียนรู้</h5>
-                            </div>
-                            <div class="pr-2">
-                                <span onclick="hideModal_fast();">
-                                    <i class="fa fa-times"></i>
-                                </span>
-                                </div>
-
-                            </div>
-                            <div class="card-body p-3 pb-3 mt-3">
-                                <form id="PA_Form">
-
-                                    <div class="form-outline">
-                                        <label class="form-label" for="ClassRoom">ระบุชื่อหน่วยการเรียนรู้ :</label>
-                                        <input type="text" id="UnitPlanName" name="UnitPlanName" class="form-control form-control-lg mt-2" style="width:350px;font-size:16px;" />
-                                    </div>
-                                    <div class="btn btn-success mt-3 pt-2" onclick="AJ_Save();" style="width:100%;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>
-                                </form>
-
-                            </div>
+        <div class="form-outline" style="opacity:1.0;">
+            <div class="card border shadow p-0">
+                <div class="card-header bg-white border-0 border-bottom p-1">
+                    <div class="form-inline justify-content-between bg-light p-2 pb-1 ">
+                        <div class="pt-0">
+                            <h5>สร้างหน่วยการเรียนรู้</h5>
                         </div>
+                        <div class="pr-2">
+                            <span onclick="hideModal_fast();">
+                                <i class="fa fa-times"></i>
+                            </span>-->
+<div class="loader-wrapper2">
+
+
+    <div class="row p-5 justify-content-center">
+        <div class="col-md-12 mb-4">
+            <div class="form-outline" style="opacity:1.0;width:100%">
+                <div class="card border shadow">
+                    <div class="card-header bg-green-custom border-0 p-0 pl-3 pr-3 text-white" style="height:45px">
+                        <div class="form-inline justify-content-between pt-0">
+                            <div class="pt-2 d-inline-flex">
+                                <i class="fa fa-calendar mt-1 mr-3"></i>
+                                <h5>สร้างหน่วยการเรียนรู้ :</h5>
+                            </div>
+                            <span class="pointer-event pt-1" onclick="hideModal_fast();">
+                                <i class="fa fa-times"></i>
+                            </span>
+
+                        </div>
+
+                    </div>
+                    <div class="card-body p-3 pb-3 mt-3">
+                        <form id="PA_Form">
+
+                            <div class="form-outline">
+                                <label class="form-label" for="ClassRoom">ระบุชื่อหน่วยการเรียนรู้ :</label>
+                                <input type="text" id="UnitPlanName" name="UnitPlanName" class="form-control form-control-lg mt-2" style="width:350px;font-size:16px;" />
+                            </div>
+                            <div class="btn btn-success mt-3 pt-2" onclick="AJ_Save();" style="width:100%;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>
+                        </form>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+                            
 @section Scripts {
 
     <script>
@@ -246,8 +264,7 @@
                     }
                 });
             }
-            else
-            {
+            else {
             }
         }
 
@@ -258,7 +275,7 @@
             let UnitPlanName = $('#UnitPlanName').val();
             var param = "UP_Name=" + UnitPlanName + "&user_Id=" + user_Id
                 + "&submit=yes";
-            alert(param);
+            //alert(param);
 
             $.ajax({
 

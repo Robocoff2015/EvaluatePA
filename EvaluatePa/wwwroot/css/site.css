@@ -391,9 +391,15 @@ input {
         cursor: pointer;
     }
 
-.autocomplete-items, 
-.autocomplete-class-items, 
-.autocomplete-room-items, 
+/*ADD this class for all autocommplete dropdown items*/
+.autocomplete-schoolType-items,
+.autocomplete-classroomType-items,
+.autocomplete-position1-items,
+.autocomplete-position-items,
+.autocomplete-school-items,
+.autocomplete-items,
+.autocomplete-class-items,
+.autocomplete-room-items,
 .autocomplete-unitPlan-items {
     font-size: 14px;
     position: absolute;
@@ -408,10 +414,14 @@ input {
     max-height: 200px; /* you can change as you need it */
     overflow: auto; /* to get scroll */
 }
-
-    .autocomplete-items div, 
-    .autocomplete-class-items div, 
-    .autocomplete-room-items div, 
+    .autocomplete-schoolType-items div,
+    .autocomplete-classroomType-items div,
+    .autocomplete-position1-items div,
+    .autocomplete-position-items div,
+    .autocomplete-school-items div,
+    .autocomplete-items div,
+    .autocomplete-class-items div,
+    .autocomplete-room-items div,
     .autocomplete-unitPlan-items div {
         padding: 10px;
         cursor: pointer;
@@ -423,9 +433,14 @@ input {
     }
 
         /*when hovering an item:*/
-        .autocomplete-items div:hover, 
-        .autocomplete-class-items div:hover, 
-        .autocomplete-room-items div:hover, 
+        .autocomplete-schoolType-items div:hover,
+        .autocomplete-classroomType-items div:hover,
+        .autocomplete-position1-items div:hover,
+        .autocomplete-position-items div:hover,
+        .autocomplete-school-items div:hover,
+        .autocomplete-items div:hover,
+        .autocomplete-class-items div:hover,
+        .autocomplete-room-items div:hover,
         .autocomplete-unitPlan-items div:hover {
             background-color: #e9e9e9;
         }

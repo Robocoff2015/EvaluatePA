@@ -178,59 +178,62 @@
                             <div class="row p-5 pt-1">
                                 <div class="col-md-12 mb-4">
                                     <div class="form-outline">
-                                        <label class="form-label" for="curriculumName">หลักสูตร</label>
-                                        <input type="text" id="Course" name="Course" class="form-control form-control-lg" placeholder="หลักสูตร" style="font-size: 14px; height: 35px;" value="" />
+                                        <label class="form-label" for="curriculumName">หน่วยการเรียนรู้</label>
+                                        <input type="text" id="UnitPlan" name="UnitPlan" class="form-control form-control-lg" placeholder="หน่วยการเรียนรู้" style="font-size: 14px; height: 35px;" value="@Model.Rows[0].ItemArray[1].ToString()" />
+                                        <input type="text" id="UP_Id" name="UP_Id" hidden class="form-control form-control-lg" placeholder="" style="font-size: 14px; height: 35px;" value="@Model.Rows[0].ItemArray[0].ToString()" />
                                     </div>
                                 </div>
-                                <div class="col-md-12 mb-4">
+                                @*<div class="col-md-12 mb-4">
+            <div class="form-outline">
+                <label class="form-label" for="curriculumName">หลักสูตร</label>
+                <input type="text" id="Course" name="Course" class="form-control form-control-lg" placeholder="หลักสูตร" style="font-size: 14px; height: 35px;" value="" />
+            </div>
+        </div>*@
+                                @*<div class="col-md-12 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="subjectCode">รหัสวิชา</label>
                                         <input type="text" id="SubjectCode" name="SubjectCode" class="form-control form-control-lg" placeholder="รหัสวิชา" style="font-size: 14px; height: 35px;" value="" />
+                                    </div>
+                                </div>*@
+                                <div class="col-md-12 mb-4">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="subject">รายละเอียด</label>
+                                        <input type="text" id="description" name="description" class="form-control form-control-lg" placeholder="รายละเอียด" style="font-size: 14px; height: 35px;" value="@Model.Rows[0].ItemArray[2].ToString()" />
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="duratiom">ระยะเวลาการสอน</label>
-                                        <input type="text" id="duratiom" name="duratiom" class="form-control form-control-lg" placeholder="ระยะเวลาการสอน" style="font-size: 14px; height: 35px;" value="" />
+                                        <input type="text" id="duratiom" name="duratiom" class="form-control form-control-lg" placeholder="ระยะเวลาการสอน" style="font-size: 14px; height: 35px;" value="@Model.Rows[0].ItemArray[5].ToString()" />
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-4">
                                     <div class="form-outline">
-                                        <label class="form-label" for="class">ชั้นปีการศึกษา</label>
-                                        <input type="text" id="class" name="class" class="form-control form-control-lg" placeholder="ชั้นปีการศึกษา" style="font-size: 14px; height: 35px;" value="" />
+                                        <label class="form-label" for="class">ระดับชั้นการศึกษา</label>
+                                        <input type="text" id="class_" name="class_" class="form-control form-control-lg" placeholder="ชั้นปีการศึกษา" style="font-size: 14px; height: 35px;" value="@Model.Rows[0].ItemArray[9].ToString()" />
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="symester">ภาคเรียนที่</label>
-                                        <input type="text" id="symester" name="symester" class="form-control form-control-lg" placeholder="ภาคเรียนที่" style="font-size: 14px; height: 35px;" value="" />
+                                        <input type="text" id="symester" name="symester" class="form-control form-control-lg" placeholder="ภาคเรียนที่" style="font-size: 14px; height: 35px;" value="@Model.Rows[0].ItemArray[10].ToString()" />
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="schoolYear">ปีการศึกษา</label>
-                                        <input type="text" id="schoolYear" name="schoolYear" class="form-control form-control-lg" placeholder="ปีการศึกษา" style="font-size: 14px; height: 35px;" value="" />
+                                        <input type="text" id="schoolYear" name="schoolYear" class="form-control form-control-lg" placeholder="ปีการศึกษา" style="font-size: 14px; height: 35px;" value="@Model.Rows[0].ItemArray[11].ToString()" />
                                     </div>
                                 </div>
-                                <div class="col-md-12 mb-4">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="subject">วิชา</label>
-                                        <input type="text" id="subject" name="subject" class="form-control form-control-lg" placeholder="วิชา" style="font-size: 14px; height: 35px;" value="" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-4">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="unitPlanNum">หน่วยงานเรียนรู้ที่</label>
-                                        <input type="text" id="unitPlanNum" name="unitPlanNum" class="form-control form-control-lg" placeholder="หน่วยงานเรียนรู้ที่" style="font-size: 14px; height: 35px;" value="" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-4">
+
+
+                                @*<div class="col-md-12 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="learningStandard">1. มาตรฐานการเรียนรู้</label>
                                         <textarea id="learningStandard" name="learningStandard" class="form-control form-control-lg" placeholder="มาตรฐานการเรียนรู้" style="font-size:14px;"></textarea>
 
                                     </div>
-                                </div>
+                                </div>*@
                                 <div class="col-md-12 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="objective">2. จุดประสงค์การเรียนรู้</label>
@@ -238,14 +241,14 @@
 
                                     </div>
                                 </div>
-                                <div class="col-md-12 mb-4">
+                                @*<div class="col-md-12 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="info">- สาระสำคัญ</label>
                                         <textarea id="info" name="info" class="form-control form-control-lg" placeholder="สาระสำคัญ" style="font-size:14px;"></textarea>
 
                                     </div>
-                                </div>
-                                <div class="col-md-12 mb-4">
+                                </div>*@
+                                @*<div class="col-md-12 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="unitPlan">หน่วยการเรียนรู้ที่</label>
                                         <textarea id="unitPlan" name="unitPlan" class="form-control form-control-lg" placeholder="หน่วยการเรียนรู้ที่" style="font-size:14px;"></textarea>
@@ -279,7 +282,7 @@
                                         <textarea id="focus" name="focus" class="form-control form-control-lg" placeholder="จุดเน้นสู่การพัฒนาทักษะในศตวรรษที่ 21" style="font-size:14px;"></textarea>
 
                                     </div>
-                                </div>
+                                </div>*@
 
                                 <div class="col-md-12 mb-4 d-inline-block">
                                     <label class="form-label" for="learningActivity">5. กิจกรรมการเรียนรู้</label>
@@ -288,150 +291,172 @@
                                             <label class="form-label" for="Warmup">Warm up</label>
                                         </div>
                                         <div class="card-body">
+                                            @{ 
+                                                var wu = @Model.Rows[0].ItemArray[15].ToString().Split("%%");
+
+                                            }
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="warmUpProcedure">Teaching-Learning Strategies / Procedures</label>
-                                                    <textarea id="warmUpProcedure" name="warmUpProcedure" class="form-control form-control-lg" placeholder="Teaching-Learning Strategies / Procedures" style="font-size:14px;"></textarea>
+                                                    <textarea id="warmUpProcedure" name="warmUpProcedure" class="form-control form-control-lg" placeholder="Teaching-Learning Strategies / Procedures" style="font-size:14px;">@wu[0]</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="warmUpResource">สื่อการเรียนรู้ / แหล่งเรียนรู้</label>
-                                                    <textarea id="warmUpResource" name="warmUpResource" class="form-control form-control-lg" placeholder="Resource" style="font-size:14px;"></textarea>
+                                                    <textarea id="warmUpResource" name="warmUpResource" class="form-control form-control-lg" placeholder="" style="font-size:14px;">@wu[1]</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="warmUpTiming">Timing</label>
-                                                    <textarea id="warmUpTiming" name="warmUpTiming" class="form-control form-control-lg" placeholder="Timing" style="font-size:14px;"></textarea>
+                                                    <textarea id="warmUpTiming" name="warmUpTiming" class="form-control form-control-lg" placeholder="" style="font-size:14px;">@wu[2]</textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-4 d-inline-block">
-                                    
+
                                     <div class="card border shadow">
+
                                         <div class="card-header" style="height:40px">
                                             <label class="form-label" for="Presentation">Presentation</label>
                                         </div>
                                         <div class="card-body">
+                                            @{
+                                                var ps = @Model.Rows[0].ItemArray[16].ToString().Split("%%");
+
+                                            }
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="PresentationProcedure">Teaching-Learning Strategies / Procedures</label>
-                                                    <textarea id="PresentationProcedure" name="PresentationProcedure" class="form-control form-control-lg" placeholder="Teaching-Learning Strategies / Procedures" style="font-size:14px;"></textarea>
+                                                    <textarea id="PresentationProcedure" name="PresentationProcedure" class="form-control form-control-lg" placeholder="Teaching-Learning Strategies / Procedures" style="font-size:14px;">@ps[0]</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="PresentationResource">สื่อการเรียนรู้ / แหล่งเรียนรู้</label>
-                                                    <textarea id="PresentationResource" name="PresentationResource" class="form-control form-control-lg" placeholder="Resource" style="font-size:14px;"></textarea>
+                                                    <textarea id="PresentationResource" name="PresentationResource" class="form-control form-control-lg" placeholder="" style="font-size:14px;">@ps[1]</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="PresentationTiming">Timing</label>
-                                                    <textarea id="PresentationTiming" name="PresentationTiming" class="form-control form-control-lg" placeholder="Timing" style="font-size:14px;"></textarea>
+                                                    <textarea id="PresentationTiming" name="PresentationTiming" class="form-control form-control-lg" placeholder="" style="font-size:14px;">@ps[2]</textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-4 d-inline-block">
-                                    
+
                                     <div class="card border shadow">
                                         <div class="card-header" style="height:40px">
                                             <label class="form-label" for="Warmup">Practice</label>
                                         </div>
                                         <div class="card-body">
+                                            @{
+                                                var pt = @Model.Rows[0].ItemArray[17].ToString().Split("%%");
+
+                                            }
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="PracticeProcedure">Teaching-Learning Strategies / Procedures</label>
-                                                    <textarea id="PracticeProcedure" name="PracticeProcedure" class="form-control form-control-lg" placeholder="Teaching-Learning Strategies / Procedures" style="font-size:14px;"></textarea>
+                                                    <textarea id="PracticeProcedure" name="PracticeProcedure" class="form-control form-control-lg" placeholder="Teaching-Learning Strategies / Procedures" style="font-size:14px;">@pt[0]</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="PracticeResource">สื่อการเรียนรู้ / แหล่งเรียนรู้</label>
-                                                    <textarea id="PracticeResource" name="PracticeResource" class="form-control form-control-lg" placeholder="Resource" style="font-size:14px;"></textarea>
+                                                    <textarea id="PracticeResource" name="PracticeResource" class="form-control form-control-lg" placeholder="" style="font-size:14px;">@pt[1]</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="PracticeTiming">Timing</label>
-                                                    <textarea id="PracticeTiming" name="PracticeTiming" class="form-control form-control-lg" placeholder="Timing" style="font-size:14px;"></textarea>
+                                                    <textarea id="PracticeTiming" name="PracticeTiming" class="form-control form-control-lg" placeholder="" style="font-size:14px;">@pt[2]</textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-4 d-inline-block">
-                                    
+
                                     <div class="card border shadow">
                                         <div class="card-header" style="height:40px">
                                             <label class="form-label" for="Production">Production</label>
                                         </div>
                                         <div class="card-body">
+                                            @{
+                                                var pd = @Model.Rows[0].ItemArray[18].ToString().Split("%%");
+
+                                            }
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="ProductionProcedure">Teaching-Learning Strategies / Procedures</label>
-                                                    <textarea id="ProductionProcedure" name="ProductionProcedure" class="form-control form-control-lg" placeholder="Teaching-Learning Strategies / Procedures" style="font-size:14px;"></textarea>
+                                                    <textarea id="ProductionProcedure" name="ProductionProcedure" class="form-control form-control-lg" placeholder="Teaching-Learning Strategies / Procedures" style="font-size:14px;">@pd[0]</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="ProductionResource">สื่อการเรียนรู้ / แหล่งเรียนรู้</label>
-                                                    <textarea id="ProductionResource" name="ProductionResource" class="form-control form-control-lg" placeholder="Resource" style="font-size:14px;"></textarea>
+                                                    <textarea id="ProductionResource" name="ProductionResource" class="form-control form-control-lg" placeholder="" style="font-size:14px;">@pd[1]</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="ProductionTiming">Timing</label>
-                                                    <textarea id="ProductionTiming" name="ProductionTiming" class="form-control form-control-lg" placeholder="Timing" style="font-size:14px;"></textarea>
+                                                    <textarea id="ProductionTiming" name="ProductionTiming" class="form-control form-control-lg" placeholder="" style="font-size:14px;">@pd[2]</textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-4 d-inline-block">
-                                    
+
                                     <div class="card border shadow">
                                         <div class="card-header" style="height:40px">
                                             <label class="form-label" for="Assessment">Assessment</label>
                                         </div>
                                         <div class="card-body">
+                  
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="AssessmentProcedure">Teaching-Learning Strategies / Procedures</label>
-                                                    <textarea id="AssessmentProcedure" name="AssessmentProcedure" class="form-control form-control-lg" placeholder="Teaching-Learning Strategies / Procedures" style="font-size:14px;"></textarea>
+                                                    <textarea id="AssessmentProcedure" name="AssessmentProcedure" class="form-control form-control-lg" placeholder="Teaching-Learning Strategies / Procedures" style="font-size:14px;">@Model.Rows[0].ItemArray[19].ToString()</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="AssessmentResource">สื่อการเรียนรู้ / แหล่งเรียนรู้</label>
-                                                    <textarea id="AssessmentResource" name="AssessmentResource" class="form-control form-control-lg" placeholder="Resource" style="font-size:14px;"></textarea>
+                                                    <textarea id="AssessmentResource" name="AssessmentResource" class="form-control form-control-lg" placeholder="" style="font-size:14px;"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="AssessmentTiming">Timing</label>
-                                                    <textarea id="AssessmentTiming" name="AssessmentTiming" class="form-control form-control-lg" placeholder="Timing" style="font-size:14px;"></textarea>
+                                                    <textarea id="AssessmentTiming" name="AssessmentTiming" class="form-control form-control-lg" placeholder="" style="font-size:14px;"></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-4 d-inline-block">
-                                    
+
                                     <div class="card border shadow">
                                         <div class="card-header" style="height:40px">
                                             <label class="form-label" for="Warmup">Warp Up</label>
                                         </div>
                                         <div class="card-body">
+                                            @{
+                                                var wp = @Model.Rows[0].ItemArray[20].ToString().Split("%%");
+
+                                            }
                                             <div class="col-md-12 mb-4">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="WarpUpProcedure">Teaching-Learning Strategies / Procedures</label>
-                                                    <textarea id="WarpUpProcedure" name="WarpUpProcedure" class="form-control form-control-lg" placeholder="Teaching-Learning Strategies / Procedures" style="font-size:14px;"></textarea>
+                                                    <textarea id="WarpUpProcedure" name="WarpUpProcedure" class="form-control form-control-lg" placeholder="Teaching-Learning Strategies / Procedures" style="font-size:14px;">@Model.Rows[0].ItemArray[20].ToString()</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mb-4">
@@ -454,19 +479,19 @@
                                 <div class="col-md-12 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="workLoad">6. ชิ้นงานหรือภาระงาน</label>
-                                        <textarea id="workLoad" name="workLoad" class="form-control form-control-lg" placeholder="ชิ้นงานหรือภาระงาน" style="font-size:14px;"></textarea>
+                                        <textarea id="workLoad" name="workLoad" class="form-control form-control-lg" placeholder="ชิ้นงานหรือภาระงาน" style="font-size:14px;">@Model.Rows[0].ItemArray[21].ToString()</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="measureEvaluation">7. การวัดและประเมินผล (Progress Report)</label>
-                                        <textarea id="measureEvaluation" name="measureEvaluation" class="form-control form-control-lg" placeholder="การวัดและประเมินผลการเรียนรู้" style="font-size:14px;"></textarea>
+                                        <textarea id="measureEvaluation" name="measureEvaluation" class="form-control form-control-lg" placeholder="การวัดและประเมินผลการเรียนรู้" style="font-size:14px;">@Model.Rows[0].ItemArray[22].ToString()</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="CDate">8. การบันทึกผลหลังการเรียนรู้ (Daily Note)</label>
-                                        <textarea id="learningRecord" name="learningRecord" class="form-control form-control-lg" placeholder="การบันทึกผลหลังการเรียนรู้" style="font-size:14px;"></textarea>
+                                        <textarea id="learningRecord" name="learningRecord" class="form-control form-control-lg" placeholder="การบันทึกผลหลังการเรียนรู้" style="font-size:14px;">@Model.Rows[0].ItemArray[23].ToString()</textarea>
                                     </div>
                                 </div>
 
@@ -1139,190 +1164,168 @@
         }
 
         function AJ_Submit() {
+            //alert("submit");
+            //////let total = document.getElementById("Total_Hour_Schedule_str")
+            //////total.value = e.target.value;
+            //////alert(inputTextValue);
+            ////let input_subject = document.getElementsByName("subject-name");
+            //////var sum = 0;
+            ////for (var i = 0; i <= input_subject.length - 1; i++) {
+            ////    //alert(input_subject[i].value);
+            ////    if (isBlank(input_subject[i].value)) {
+            ////        alert("Subject cannot be empty.");
+            ////        return false;
+            ////    }
+            ////}
+            ////let input_ = document.getElementsByName("subject-hour");
+            //////var sum = 0;
+            ////for (var j = 0; j <= input_.length - 1; j++) {
+            ////    //alert(input_[j].value);
+            ////    if (isBlank(input_[j].value)) {
+            ////        alert("Hour cannot be empty.");
+            ////        return false;
+            ////    }
+            ////    if (!Number(input_[j].value)) {
+            ////        //alert("Hour must be a number.");
+            ////        //document.getElementsByName("subject-hour")[j].value = 0;
+            ////        //return false;
+            ////    }
+            ////    ///
+            ////}
+            //////////
+            //let Prefix = 0;
+            //let Prefix_mr = $('#mr').prop("checked"),
+            //    Prefix_mrs = $('#mrs').prop("checked"),
+            //    Prefix_miss = $('#miss').prop("checked")
+            //let Course_ = $('#Course').val(),
+            //    SubjectCode_ = $('#SubjectCode').val(),
+            //    duratiom_ = $('#duratiom').val(),
+            //    class_ = $('#class').val(),
+            //    symester_ = $('#symester').val(),
+            //    schoolYear_ = $('#schoolYear').val(),
+            //    unitPlanNum_ = $('#unitPlanNum').val(),
+            //    learningStandard_ = $('#learningStandard').val(),
+            //    objective_ = $('#objective').val(),
+            //    info_ = $('#info').val(),
+            //    unitPlan_ = $('#unitPlan').val(),
+            //    learningInfo_ = $('#learningInfo').val(),
+            //    competency_ = $('#competency').val(),
+            //    expectChar_ = $('#expectChar').val(),
+            //    focus_ = $('#focus').val(),
+            //    warmUpProcedure_ = $('#warmUpProcedure').val(),
+            //    warmUpResource_ = $('#warmUpResource').val(),
+            //    warmUpTiming_ = $('#warmUpTiming').val(),
+            //    PresentationProcedure_ = $('#PresentationProcedure').val(),
+            //    PresentationResource_ = $('#PresentationResource').val(),
+            //    PresentationTiming_ = $('#PresentationTiming').val(),
+            //    PracticeProcedure_ = $('#PracticeProcedure').val(),
+            //    PracticeResource_ = $('#PracticeResource').val(),
+            //    PracticeTiming_ = $('#PracticeTiming').val(),
+            //    ProductionProcedure_ = $('#ProductionProcedure').val(),
+            //    ProductionResource_ = $('#ProductionResource').val(),
+            //    ProductionTiming_ = $('#ProductionTiming').val(),
+            //    AssessmentProcedure_ = $('#AssessmentProcedure').val(),
+            //    AssessmentResource_ = $('#AssessmentResource').val(),
+            //    AssessmentTiming_ = $('#AssessmentTiming').val(),
+            //    WarpUpProcedure_ = $('#WarpUpProcedure').val(),
+            //    WarpUpResource_ = $('#WarpUpResource').val(),
+            //    WarpUpTiming_ = $('#WarpUpTiming').val(),
+            //    workLoad_ = $('#workLoad').val(),
+            //    measureEvaluation_ = $('#measureEvaluation').val(),
+            //    learningRecord_ = $('#learningRecord').val()
+            //input_subject = document.getElementsByName("subject-name");
+            //input_ = document.getElementsByName("subject-hour");
+            //input_min = document.getElementsByName("subject-min");
+            //var JsonResult = JsonBuild(input_subject, input_, input_min);
+            ////let Subject_Hour = JsonResult;
+            ////alert(JsonResult);
+            //let Subject_Hour = JsonBuild(document.getElementsByName("subject-name"), document.getElementsByName("subject-hour"), document.getElementsByName("subject-min"));
+            //let Subject_1_Hour = JsonBuild(document.getElementsByName("subject-1-name"), document.getElementsByName("subject-1-hour"), document.getElementsByName("subject-1-min"));
+            //let Subject_2_Hour = JsonBuild(document.getElementsByName("subject-2-name"), document.getElementsByName("subject-2-hour"), document.getElementsByName("subject-2-min"));
+            //let Subject_3_Hour = JsonBuild(document.getElementsByName("subject-3-name"), document.getElementsByName("subject-3-hour"), document.getElementsByName("subject-3-min"));
 
 
-            ////alert("submit");
-            ////let total = document.getElementById("Total_Hour_Schedule_str")
-            ////total.value = e.target.value;
-            ////alert(inputTextValue);
-            //let input_subject = document.getElementsByName("subject-name");
-            ////var sum = 0;
-            //for (var i = 0; i <= input_subject.length - 1; i++) {
-            //    //alert(input_subject[i].value);
-            //    if (isBlank(input_subject[i].value)) {
-            //        alert("Subject cannot be empty.");
-            //        return false;
-            //    }
 
-
+            //if (Prefix_mr) {
+            //    Prefix = 1;
+            //}
+            //if (Prefix_mrs) {
+            //    Prefix = 2;
+            //}
+            //if (Prefix_miss) {
+            //    Prefix = 3;
             //}
 
-            //let input_ = document.getElementsByName("subject-hour");
-            ////var sum = 0;
-            //for (var j = 0; j <= input_.length - 1; j++) {
-            //    //alert(input_[j].value);
-            //    if (isBlank(input_[j].value)) {
-            //        alert("Hour cannot be empty.");
-            //        return false;
-            //    }
+            ////alert(Prefix);
+            ////alert(FirstName);
+            ////alert(LastName);
+            ////alert(position);
+            ////alert(school);
+            ////alert(CDate);
+            ////alert(memberOf);
+            ////alert(salaryLevel);
+            ////alert(salaryRate);
+            ////alert(classroomType);
 
-            //    if (!Number(input_[j].value)) {
-            //        //alert("Hour must be a number.");
-            //        //document.getElementsByName("subject-hour")[j].value = 0;
-            //        //return false;
-            //    }
+            //var param = "Prefix=" + Prefix + "&FirstName=" + FirstName
+            //    + "&LastName=" + LastName + "&position=" + position + "&school_id=" + school + "&CDate=" + CDate
+            //    + "&memberOf=" + memberOf + "&salaryLevel=" + salaryLevel
+            //    + "&Total_Hour_Schedule_str=" + Total_Hour_Schedule_str + "&Subject_Hour=" + Subject_Hour
+            //    + "&Total_Hour_Learning_Promotion_Support_str=" + Total_Hour_Learning_Promotion_Support_str + "&Subject_1_Hour=" + Subject_1_Hour
+            //    + "&Total_Hour_Q_Education_Mng_Devstr=" + Total_Hour_Q_Education_Mng_Devstr + "&Subject_2_Hour=" + Subject_2_Hour
+            //    + "&Total_Hour_Policy_Focus_Sup_str=" + Total_Hour_Policy_Focus_Sup_str + "&Subject_3_Hour=" + Subject_3_Hour
+            //    + "&salaryRate=" + salaryRate + "&classroomType=" + classroomType + "&user_Id=" + user_Id
+            //    + "&LM_Task=" + LM_Task + "&LM_Outcomes=" + LM_Outcomes + "&LM_Indicators=" + LM_Indicators
+            //    + "&PS_Task=" + PS_Task + "&PS_Outcomes=" + PS_Outcomes + "&PS_Indicators=" + PS_Indicators
+            //    + "&CL_Point=" + CL_Point + "&CL_Point_Text=" + CL_Point_Text + "&Problem_State=" + Problem_State
+            //    + "&Method_To_Acheivment=" + Method_To_Acheivment + "&QT_Expect_Result=" + QT_Expect_Result
+            //    + "&QL_Expect_Result=" + QL_Expect_Result + "&formId=" + formId
+            //    + "&submit=yes";
 
-            //    ///
+            ////alert(param);
+            ////alert(param);
 
-            //}
+            ////$.ajax({
 
+            ////    type: 'GET',
+            ////    url: '/EvaluatePA/UpdateUserAll_AJ?' + param,
+            ////    success: function (result) {
+            ////        hideModal_Info();
+            ////        window.location.assign("/Home/Main?user_Id=" + user_Id);
 
-            ////////
-
-
-
-            let Prefix = 0;
-            let Prefix_mr = $('#mr').prop("checked"),
-                Prefix_mrs = $('#mrs').prop("checked"),
-                Prefix_miss = $('#miss').prop("checked")
-            let Course_ = $('#Course').val(),
-                SubjectCode_ = $('#SubjectCode').val(),
-                duratiom_ = $('#duratiom').val(),
-                class_ = $('#class').val(),
-                symester_ = $('#symester').val(),
-                schoolYear_ = $('#schoolYear').val(),
-                unitPlanNum_ = $('#unitPlanNum').val(),
-                learningStandard_ = $('#learningStandard').val(),
-                objective_ = $('#objective').val(),
-                info_ = $('#info').val(),
-                unitPlan_ = $('#unitPlan').val(),
-                learningInfo_ = $('#learningInfo').val(),
-                competency_ = $('#competency').val(),
-                expectChar_ = $('#expectChar').val(),
-                focus_ = $('#focus').val(),
-                warmUpProcedure_ = $('#warmUpProcedure').val(),
-                warmUpResource_ = $('#warmUpResource').val(),
-                warmUpTiming_ = $('#warmUpTiming').val(),
-                PresentationProcedure_ = $('#PresentationProcedure').val(),
-                PresentationResource_ = $('#PresentationResource').val(),
-                PresentationTiming_ = $('#PresentationTiming').val(),
-                PracticeProcedure_ = $('#PracticeProcedure').val(),
-                PracticeResource_ = $('#PracticeResource').val(),
-                PracticeTiming_ = $('#PracticeTiming').val(),
-                ProductionProcedure_ = $('#ProductionProcedure').val(),
-                ProductionResource_ = $('#ProductionResource').val(),
-                ProductionTiming_ = $('#ProductionTiming').val(),
-                AssessmentProcedure_ = $('#AssessmentProcedure').val(),
-                AssessmentResource_ = $('#AssessmentResource').val(),
-                AssessmentTiming_ = $('#AssessmentTiming').val(),
-                WarpUpProcedure_ = $('#WarpUpProcedure').val(),
-                WarpUpResource_ = $('#WarpUpResource').val(),
-                WarpUpTiming_ = $('#WarpUpTiming').val(),
-                workLoad_ = $('#workLoad').val(),
-                measureEvaluation_ = $('#measureEvaluation').val(),
-                learningRecord_ = $('#learningRecord').val()
-
-
-            input_subject = document.getElementsByName("subject-name");
-            input_ = document.getElementsByName("subject-hour");
-            input_min = document.getElementsByName("subject-min");
-            var JsonResult = JsonBuild(input_subject, input_, input_min);
-            //let Subject_Hour = JsonResult;
-            //alert(JsonResult);
-
-            let Subject_Hour = JsonBuild(document.getElementsByName("subject-name"), document.getElementsByName("subject-hour"), document.getElementsByName("subject-min"));
-            let Subject_1_Hour = JsonBuild(document.getElementsByName("subject-1-name"), document.getElementsByName("subject-1-hour"), document.getElementsByName("subject-1-min"));
-            let Subject_2_Hour = JsonBuild(document.getElementsByName("subject-2-name"), document.getElementsByName("subject-2-hour"), document.getElementsByName("subject-2-min"));
-            let Subject_3_Hour = JsonBuild(document.getElementsByName("subject-3-name"), document.getElementsByName("subject-3-hour"), document.getElementsByName("subject-3-min"));
-
-
-
-            if (Prefix_mr) {
-                Prefix = 1;
-            }
-            if (Prefix_mrs) {
-                Prefix = 2;
-            }
-            if (Prefix_miss) {
-                Prefix = 3;
-            }
-
-            //alert(Prefix);
-            //alert(FirstName);
-            //alert(LastName);
-            //alert(position);
-            //alert(school);
-            //alert(CDate);
-            //alert(memberOf);
-            //alert(salaryLevel);
-            //alert(salaryRate);
-            //alert(classroomType);
-
-            var param = "Prefix=" + Prefix + "&FirstName=" + FirstName
-                + "&LastName=" + LastName + "&position=" + position + "&school_id=" + school + "&CDate=" + CDate
-                + "&memberOf=" + memberOf + "&salaryLevel=" + salaryLevel
-                + "&Total_Hour_Schedule_str=" + Total_Hour_Schedule_str + "&Subject_Hour=" + Subject_Hour
-                + "&Total_Hour_Learning_Promotion_Support_str=" + Total_Hour_Learning_Promotion_Support_str + "&Subject_1_Hour=" + Subject_1_Hour
-                + "&Total_Hour_Q_Education_Mng_Devstr=" + Total_Hour_Q_Education_Mng_Devstr + "&Subject_2_Hour=" + Subject_2_Hour
-                + "&Total_Hour_Policy_Focus_Sup_str=" + Total_Hour_Policy_Focus_Sup_str + "&Subject_3_Hour=" + Subject_3_Hour
-                + "&salaryRate=" + salaryRate + "&classroomType=" + classroomType + "&user_Id=" + user_Id
-                + "&LM_Task=" + LM_Task + "&LM_Outcomes=" + LM_Outcomes + "&LM_Indicators=" + LM_Indicators
-                + "&PS_Task=" + PS_Task + "&PS_Outcomes=" + PS_Outcomes + "&PS_Indicators=" + PS_Indicators
-                + "&CL_Point=" + CL_Point + "&CL_Point_Text=" + CL_Point_Text + "&Problem_State=" + Problem_State
-                + "&Method_To_Acheivment=" + Method_To_Acheivment + "&QT_Expect_Result=" + QT_Expect_Result
-                + "&QL_Expect_Result=" + QL_Expect_Result + "&formId=" + formId
-                + "&submit=yes";
-
-            //alert(param);
-            //alert(param);
-
-            //$.ajax({
-
-            //    type: 'GET',
-            //    url: '/EvaluatePA/UpdateUserAll_AJ?' + param,
-            //    success: function (result) {
-            //        hideModal_Info();
-            //        window.location.assign("/Home/Main?user_Id=" + user_Id);
-
-            //    }
-            //});
-            $.post("/EvaluatePA/UpdateUserAll_AJ",
+            ////    }
+            ////});
+            $.post("/Curriculum/UpdateUP_AJ",
                 {
-                    formId: formId,
-                    user_Id: user_Id,
-                    Prefix: Prefix,
-                    FirstName: FirstName,
-                    LastName: LastName,
-                    position: position,
-                    school_id: school,
-                    CDate: CDate,
-                    memberOf: memberOf,
-                    salaryLevel: salaryLevel,
-                    Total_Hour_Schedule_str: Total_Hour_Schedule_str,
-                    Subject_Hour: Subject_Hour,
-                    Subject_1_Hour: Subject_1_Hour,
-                    Subject_2_Hour: Subject_2_Hour,
-                    Subject_3_Hour: Subject_3_Hour,
-                    Total_Hour_Learning_Promotion_Support_str: Total_Hour_Learning_Promotion_Support_str,
-                    Total_Hour_Q_Education_Mng_Devstr: Total_Hour_Q_Education_Mng_Devstr,
-                    Total_Hour_Policy_Focus_Sup_str: Total_Hour_Policy_Focus_Sup_str,
-                    salaryRate: salaryRate,
-                    classroomType: classroomType,
-                    LM_Task: LM_Task,
-                    LM_Outcomes: LM_Outcomes,
-                    LM_Indicators: LM_Indicators,
-                    PS_Task: PS_Task,
-                    PS_Outcomes: PS_Outcomes,
-                    PS_Indicators: PS_Indicators,
-                    CL_Point: CL_Point,
-                    CL_Point_Text: CL_Point_Text,
-                    SP_Dev_Task: SP_Dev_Task,
-                    SP_Dev_Dev_Outcomes: SP_Dev_Dev_Outcomes,
-                    SP_Dev_Dev_Indicators: SP_Dev_Dev_Indicators,
-                    Problem_State: Problem_State,
-                    Method_To_Acheivment: Method_To_Acheivment,
-                    QT_Expect_Result: QT_Expect_Result,
-                    QL_Expect_Result: QL_Expect_Result
+                    id: $('#UP_Id').val(),
+                    Name: $('#UnitPlan').val(),
+                    //Description: '',
+                    //Cu_Id: '',
+                    //Subject_Id: 0,
+                    Description: $('#description').val(),
+                    PlanDuration: $('#duratiom').val(),  //duratiom
+                    DateTime: '',
+                    MDateTime: '',
+                    Class: $('#class_').val(),
+                    Symester: $('#symester').val(),
+                    SchoolYear: $('#schoolYear').val(),
+                    Objective: $('#Objective').val(),
+                    LearningStrands: $('#learningStandard').val(),
+                    LearningStandards: $('#duratiom').val(),
+                    Indicators: $('#duratiom').val(),
+                    TA_WarmUp: $('#warmUpProcedure').val() + "%%" + $('#warmUpResource').val() + "%%" + $('#warmUpTiming').val(),
+                    TA_Presentation: $('#PresentationProcedure').val() + "%%" + $('#PresentationResource').val() + "%%" + $('#PresentationTiming').val(),
+                    TA_Pratice: $('#PracticeProcedure').val() + "%%" + $('#PresentationResource').val() + "%%" + $('#PresentationTiming').val(),
+                    TA_Production: $('#ProductionProcedure').val() + "%%" + $('#ProductionResource').val() + "%%" + $('#ProductionTiming').val(),
+                    TA_Assessment: $('#AssessmentProcedure').val() + "%%" + $('#AssessmentResource').val() + "%%" + $('#AssessmentTiming').val(),
+                    TA_WarpUp: $('#WarpUpProcedure').val(),
+                    WorkLoad: $('#workLoad').val(),  //workLoad
+                    ProgressReport: $('#measureEvaluation').val(),
+                    DailyNote: $('#learningRecord').val(),
+                    TeachingActivities: '',
+                    Evaluate: $('#measureEvaluation').val(),
+                    OwnerId: 10000,
+                    Status: 200
                 },
                 function (data, status) {
                     //alert("Data: " + data + "\nStatus: " + status);

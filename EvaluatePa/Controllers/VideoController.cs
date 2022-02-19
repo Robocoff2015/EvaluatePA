@@ -87,7 +87,7 @@ namespace EvaluatePa.Controllers
         }
 
         //[HttpPost]
-        public async Task<IActionResult> UploadFile(IFormFile file, string user_id, string detail)
+        public async Task<IActionResult> UploadFile(IFormFile file, string user_id, string detail, string detail2)
         {
             if (user_id == "0")
             { user_id = ""; }
@@ -121,7 +121,7 @@ namespace EvaluatePa.Controllers
                 await file.CopyToAsync(stream);
             }
 
-            InsertShareInfo(fileName, user_id, detail);
+            InsertShareInfo(fileName, user_id, detail, detail2);
             List<MediaInfo> MediaInfo_ = getMediaInfo(user_id);
             //string currentDateTime = DateTime.Now.ToString("dd MMM yyyy HH:mm:ss");
             //ViewBag.DateTime_ = currentDateTime;
@@ -141,7 +141,7 @@ namespace EvaluatePa.Controllers
             string currentDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //string connectionString = "Server = localhost\\SQLEXPRESS; Database = SPHERE; Trusted_Connection = True;";  //configuration.GetConnectionString("DefaultConnectionString1_");
             string condition = " [ExpiredDate] >= '" + currentDateTime + "' AND (user_id = " + user_id + ")";         // AND [Deliv  Date] <= '2021-03-30'";
-            string sqlString = "SELECT [MESSAGEID],[Date],[Message],[Information],[Information2],[user_id],[Status],[UpdateDate],[ExpiredDate] FROM [devpa].[dbo].[" + "PA_Media_" + "] WHERE " + condition + " order by information, [Date]";
+            string sqlString = "SELECT [MESSAGEID],[Date],[Message],[Information],[Information2],[user_id],[Status],[UpdateDate],[ExpiredDate],[Detail2] FROM [devpa].[dbo].[" + "PA_Media_" + "] WHERE " + condition + " order by information, [Date]";
 
             #region "Query SQL String Statement"
             using SqlConnection connection = new SqlConnection(connectionString);
@@ -170,6 +170,7 @@ namespace EvaluatePa.Controllers
                         MediaInfo.Status = dtRow.ItemArray[6].ToString();
                         MediaInfo.UpdateDate = dtRow.ItemArray[7].ToString();
                         MediaInfo.ExpiredDate = dtRow.ItemArray[8].ToString();
+                        MediaInfo.Detail2 = dtRow.ItemArray[9].ToString();
 
                         MediaInfo_.Add(MediaInfo);
 
@@ -184,7 +185,7 @@ namespace EvaluatePa.Controllers
         }
 
 
-        private int InsertShareInfo(string FileName, String user_id, string detail_)
+        private int InsertShareInfo(string FileName, String user_id, string detail_, string detail2_)
         {
             string connectionString = configuration.GetConnectionString("DefaultConnectionString2");
             string currentDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -196,13 +197,14 @@ namespace EvaluatePa.Controllers
             sqlString += " update [devpa].[dbo].[PA_Media_] set ";
             sqlString += " Date = '" + currentDateTime + "', ";
             sqlString += " Information2 = '" + detail_ + "', ";
+            sqlString += " Detail2 = '" + detail2_ + "', ";
             sqlString += " UpdateDate = '" + currentDateTime + "', ";
             sqlString += " ExpiredDate = '" + ExpiredDate + "' where Information = '" + FileName + "' AND user_id = '" + user_id + "'";
             sqlString += " ELSE ";
 
 
-            sqlString += "INSERT INTO [devpa].[dbo].[PA_Media_]([Date],[Message],[Information],[Information2],[user_id],[Status],[UpdateDate],[ExpiredDate]) VALUES ";
-            sqlString += "('" + currentDateTime + "','" + "File" + "','" + FileName + "','" + detail_+ "','" + user_id + "','1','" + currentDateTime + "','" + ExpiredDate + "');";
+            sqlString += "INSERT INTO [devpa].[dbo].[PA_Media_]([Date],[Message],[Information],[Information2],[Detail2],[user_id],[Status],[UpdateDate],[ExpiredDate]) VALUES ";
+            sqlString += "('" + currentDateTime + "','" + "File" + "','" + FileName + "','" + detail_ + "','" + detail2_ + "','" + user_id + "','1','" + currentDateTime + "','" + ExpiredDate + "');";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

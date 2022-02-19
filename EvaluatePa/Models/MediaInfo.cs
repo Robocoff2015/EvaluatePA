@@ -15,6 +15,7 @@ namespace EvaluatePa.Models
         public string Message { get; set; }
         public string Information { get; set; }
         public string Information2 { get; set; }
+        public string Detail2 { get; set; }
         public string user_id { get; set; }
         public string Status { get; set; }
         public string UpdateDate { get; set; }

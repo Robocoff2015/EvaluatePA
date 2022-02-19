@@ -121,6 +121,12 @@
             background-color: #e1e1e1;
             padding: 5px;
         }
+        .show {
+            display:block;
+        }
+        .hidden {
+            display:none;
+        }
     </style>
 }
 <div class="container">
@@ -206,14 +212,30 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 mb-4">
+                                <div class="d-inline-flex col-md-12 m-0 mb-4">
+                                    <div class="col-md-5 col-sm-5 m-0 p-0 mr-2">
 
-                                    <div class="form-outline">
-                                        <label class="form-label" for="position">ตำแหน่งวิทยฐานะ</label>
-                                        <input type="text" id="position" name="position" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_UserPosition" />
+                                        <div class="d-inline-block floating-label-group m-0 p-0 pr-2 w-100">
+                                            <div class="p-0 pt-1 pl-2 text-dark text-left">
+                                                <label class="form-label" for="position1">ตำแหน่ง</label>
+                                            </div>
+
+                                            <input type="text" id="position1" name="position1" class="form-control form-control-lg" autocomplete="off" style="font-size: 14px; height: 35px;" value="" />
+
+                                        </div>
 
                                     </div>
+                                    <div class="col-md-7 col-sm-7 m-0 p-0">
 
+                                        <div class="d-inline-block floating-label-group m-0 p-0 pr-2 w-100">
+                                            <div class="p-0 pt-1 pl-2 text-dark text-left">
+                                                <label class="form-label" for="position">วิทยฐานะ</label>
+                                            </div>
+                                            <input type="text" id="position" name="position" class="form-control form-control-lg" autocomplete="off" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_UserPosition" />
+
+                                        </div>
+
+                                    </div>
                                 </div>
                                 <div class="col-md-12 mb-4">
 
@@ -228,7 +250,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="school">สถานศึกษา</label>
-                                        <input type="text" id="school" name="school" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_School" />
+                                        <input type="text" id="school" name="school" class="form-control form-control-lg" autocomplete="off" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_School" />
 
                                     </div>
 
@@ -237,7 +259,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="memberOf">สังกัด</label>
-                                        <input type="text" id="memberOf" name="memberOf" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_memberOf" />
+                                        <input type="text" id="memberOf" name="memberOf" class="form-control form-control-lg" autocomplete="off" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_memberOf" />
 
                                     </div>
 
@@ -246,7 +268,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="salaryLevel">รับเงินเดือนในอันดับ คศ.</label>
-                                        <input type="text" id="salaryLevel" name="salaryLevel" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_salaryLevel" />
+                                        <input type="text" id="salaryLevel" name="salaryLevel" class="form-control form-control-lg" autocomplete="off" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_salaryLevel" />
 
                                     </div>
 
@@ -255,17 +277,38 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="salaryRate">อัตราเงินเดือน</label>
-                                        <input type="text" id="salaryRate" name="salaryRate" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_salaryRate" />
+                                        <input type="text" id="salaryRate" name="salaryRate" class="form-control form-control-lg" autocomplete="off" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_salaryRate" />
 
                                     </div>
 
+                                </div>
+
+                                <div class="d-inline-flex col-md-12 m-0 mb-4">
+                                    <div class="col-md-5 col-sm-5 m-0 p-0 mr-2">
+
+                                        <div class="d-inline-block floating-label-group m-0 p-0 w-100">
+                                            <div class="p-0 pt-1 pl-2 text-dark text-left">
+                                                <label class="form-label" for="schoolType">ประเภทสถานศึกษา</label>
+                                            </div>
+                                            <input type="text" id="schoolType" name="schoolType" class="form-control form-control-lg" autocomplete="off" style="font-size: 14px; height: 35px;" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-sm-7 m-0 p-0 text-center">
+
+                                        <div class="d-inline-block floating-label-group m-0 p-0 pr-2 w-100">
+                                            <div class="p-0 pt-1 pl-2 text-dark text-left">
+                                                <label class="form-label" for="schoolSubType">&nbsp;</label>
+                                            </div>                                            
+                                            <input type="text" id="schoolSubType" name="schoolSubType" class="form-control form-control-lg" autocomplete="off" style="font-size: 14px; height: 35px;" value="" />
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-12 mb-4">
 
                                     <div class="form-outline">
                                         <label class="form-label" for="classroomType">ประเภทห้องเรียนที่จัดการเรียนรู้</label>
                                         <label class="form-label" for="">(สามารถระบุได้มากกว่า 1 ประเภทห้องเรียนตามสภาพการจัดการเรียนรู้จริง)</label>
-                                        <input type="text" id="classroomType" name="classroomType" class="form-control form-control-lg" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_classroomType" />
+                                        <input type="text" id="classroomType" name="classroomType" class="form-control form-control-lg" autocomplete="off" style="font-size: 14px; height: 35px;" value="@Model.UserInfo_classroomType" />
 
                                     </div>
 
@@ -285,27 +328,65 @@
                     </div>
                 </div>
                 <div id="page_2_form" style="display:none;">
+                    @{
+                        var typeKru = "Management";
+                        var showKru = "hidden";
+                        var showMgt = "show";
+                        if (typeKru == "Kru")
+                        {
+                            showKru = "show";
+                            showMgt = "hidden";
+                        }
+                    
+                        
+                    
                     <div class="card border-light shadow">
                         <div class="card-header bg-white sh p-0 pl-1 pr-1">
                             <div class="pl-5 pr-5">
-                                <form class="form-inline subform" asp-route="">
-                                    <div id="subpage_1" class="mt-2 p-0 pl-4 pr-4 active" onclick='fadin();showsubpage_1();fadout();'>
+                                <div class="form-inline subform" asp-route="">
+
+
+                                    <div id="subpage_1" name="Kru" class="mt-2 p-0 pl-4 pr-4 active @showKru" onclick='fadin();showsubpage_1();fadout();'>
                                         <p class="m-0 mt-1 mb-1">ภาระงาน</p>
                                     </div>
-                                    <div id="subpage_2" class="mt-2 p-0 pl-4 pr-4" onclick='fadin();showsubpage_2();fadout();'>
+
+                                    <div id="subpage_2" name="Kru" class="mt-2 p-0 pl-4 pr-4 @showKru" onclick='fadin();showsubpage_2();fadout();'>
                                         <p class="m-0 mt-1 mb-1">ด้านจัดการเรียนรู้</p>
                                     </div>
-                                    <div id="subpage_3" class="mt-2 p-0 pl-4 pr-4" onclick='fadin();showsubpage_3();fadout();'>
+                                    <div id="subpage_3" name="Kru" class="mt-2 p-0 pl-4 pr-4 @showKru" onclick='fadin();showsubpage_3();fadout();'>
                                         <p class="m-0 mt-1 mb-1">ด้านการส่งเสริมและสนับสนุน</p>
                                     </div>
-                                    <div id="subpage_4" class="mt-2 p-0 pl-4 pr-4" onclick='fadin();showsubpage_4();fadout();'>
+                                    <div id="subpage_4" name="Kru" class="mt-2 p-0 pl-4 pr-4 @showKru" onclick='fadin();showsubpage_4();fadout();'>
                                         <p class="m-0 mt-1 mb-1">ด้านการพัฒนาตนเองและวิชาชีพ</p>
                                     </div>
-                                </form>
+
+
+
+                                    <div id="subpage_5" name="Mgt" class="mt-2 p-0 pl-4 pr-4 active @showMgt" onclick='fadin();showsubpage_5();fadout();'>
+                                        <p class="m-0 mt-1 mb-1">ภาระงานด้านการบริหาร</p>
+                                    </div>
+
+                                    <div id="subpage_6" name="Mgt" class="mt-2 p-0 pl-4 pr-4 @showMgt" onclick='fadin();showsubpage_6();fadout();'>
+                                        <p class="m-0 mt-1 mb-1">ด้านการบริหารวิชาการและความเป็นผู้นำทางวิชาการ</p>
+                                    </div>
+                                    <div id="subpage_7" name="Mgt" class="mt-2 p-0 pl-4 pr-4 @showMgt" onclick='fadin();showsubpage_7();fadout();'>
+                                        <p class="m-0 mt-1 mb-1">ด้านการบริหารจัดการสถานศึกษา</p>
+                                    </div>
+                                    <div id="subpage_8" name="Mgt" class="mt-2 p-0 pl-4 pr-4 @showMgt" onclick='fadin();showsubpage_8();fadout();'>
+                                        <p class="m-0 mt-1 mb-1">ด้านการบริหารการเปลี่ยนแปลงเชิงกลยุทธ์และนวัตกรรม</p>
+                                    </div>
+                                    <div id="subpage_9" name="Mgt" class="mt-2 p-0 pl-4 pr-4 @showMgt" onclick='fadin();showsubpage_9();fadout();'>
+                                        <p class="m-0 mt-1 mb-1">ด้านการบริหารงานชุมชนและเครือข่าย</p>
+                                    </div>
+                                    <div id="subpage_10" name="Mgt" class="mt-2 p-0 pl-4 pr-4 @showMgt" onclick='fadin();showsubpage_10();fadout();'>
+                                        <p class="m-0 mt-1 mb-1">ด้านการพัฒนาตนเองและวิชาชีพ</p>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                         <div class="card-body border-0 p-5">
-                            <div id="page_1_subform" style="display:block;">
+                            <div id="page_1_subform" name="Kru" class="@showKru">
                                 <div class="card-body" style="padding:10px;">
                                     <div class="col-md-12 mb-4">
 
@@ -330,42 +411,42 @@
                                                 <!-- Table body -->
                                                 <tbody id="tbody-subject">
                                                     @*<tr style="height:44px;">
-                                                            <td style="padding:5px 0px 5px 5px;">
-                                                                <div id="mdiv" style="padding:5px 0px 4px 6px;" onclick="deleteItem();alert('Delete subject');">
-                                                                    <div class="mdiv">
-                                                                        <div class="md" ></div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="padding:0;font-size:16px;">
-                                                                <div class="d-inline-flex pt-1 pb-1">
-                                                                    <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
-                                                                    <input type="text" id="subject" name="subject" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px;" />
-                                                                    <span class="pt-1">จำนวน</span>
-                                                                    <input type="text" id="Hours" name="Hours" class="form-control form-control-lg ml-3 mr-3 text-center" style="font-size: 14px; height: 35px; width: 100px" />
-                                                                    <span class="pt-1">ชั่วโมง/สัปดาห์</span>
+                                            <td style="padding:5px 0px 5px 5px;">
+                                                <div id="mdiv" style="padding:5px 0px 4px 6px;" onclick="deleteItem();alert('Delete subject');">
+                                                    <div class="mdiv">
+                                                        <div class="md" ></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td style="padding:0;font-size:16px;">
+                                                <div class="d-inline-flex pt-1 pb-1">
+                                                    <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
+                                                    <input type="text" id="subject" name="subject" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px;" />
+                                                    <span class="pt-1">จำนวน</span>
+                                                    <input type="text" id="Hours" name="Hours" class="form-control form-control-lg ml-3 mr-3 text-center" style="font-size: 14px; height: 35px; width: 100px" />
+                                                    <span class="pt-1">ชั่วโมง/สัปดาห์</span>
 
-                                                                </div>
-                                                            </td>
-                                                        </tr>*@
+                                                </div>
+                                            </td>
+                                        </tr>*@
                                                     @*<tr>
-                                                            <td>
-                                                                <div id="mdiv">
-                                                                    <div class="mdiv">
-                                                                        <div class="md"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="padding:0;font-size:16px;">
-                                                                <div class="d-inline-flex pt-1 pb-1">
-                                                                    <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
-                                                                    <input type="text" id="subject" name="subject" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px;" />
-                                                                    <span class="pt-1">จำนวน</span>
-                                                                    <input type="text" id="Hours" name="Hours" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px; width: 100px" />
-                                                                    <span class="pt-1">ชั่วโมง/สัปดาห์</span>
-                                                                </div>
-                                                            </td>
-                                                        </tr>*@
+                                            <td>
+                                                <div id="mdiv">
+                                                    <div class="mdiv">
+                                                        <div class="md"></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td style="padding:0;font-size:16px;">
+                                                <div class="d-inline-flex pt-1 pb-1">
+                                                    <span class="pt-1">กลุ่มสาระการเรียนรู้/รายวิชา</span>
+                                                    <input type="text" id="subject" name="subject" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px;" />
+                                                    <span class="pt-1">จำนวน</span>
+                                                    <input type="text" id="Hours" name="Hours" class="form-control form-control-lg ml-3 mr-3" style="font-size: 14px; height: 35px; width: 100px" />
+                                                    <span class="pt-1">ชั่วโมง/สัปดาห์</span>
+                                                </div>
+                                            </td>
+                                        </tr>*@
                                                     <tr style="height:44px;">
                                                         <td style="padding: 5px 0px 5px 5px; font-size: 19px; width: 44px;">
                                                             <div style="padding: 1px 0px 3px 7px;align-items:center;vertical-align:central;width:32px;" id="mdiv" onclick="createRow('','0','0','subject');">
@@ -484,7 +565,7 @@
 
 
                             </div>
-                            <div id="page_2_subform" style="display:none;">
+                            <div id="page_2_subform" name="Kru" style="display:none;">
                                 <div class="card-body" style="padding:10px;">
                                     <p class="thick">2. งานที่จะปฏิบัติตามมาตรฐานตำแหน่งครู</p> (ให้ระบุรายละเอียดของงานที่จะปฏิบัติในแต่ละด้านว่าจะดำเนินการอย่างไร โดยอาจระบุระยะเวลาที่ใช้ในการดำเนินการด้วยก็ได้)
                                     <p>
@@ -523,7 +604,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="page_3_subform" style="display:none;">
+                            <div id="page_3_subform" name="Kru" style="display:none;">
                                 <div class="card-body" style="padding:10px;">
                                     <p>2.2 ลักษณะงานที่เสนอให้ครอบคลุมถึงการจัดทำข้อมูลสารสนเทศของผู้เรียนและรายวิชา การดำเนินการตามระบบ ดูแลช่วยเหลือผู้เรียน การปฏิบัติงานวิชาการและงานอื่น ๆ ของสถานศึกษา และการประสานความร่วมมือกับผู้ปกครอง ภาคีเครือข่าย และหรือสถานประกอบการ</p>
                                     <div class="col-md-12 mb-4">
@@ -557,7 +638,7 @@
 
                                 </div>
                             </div>
-                            <div id="page_4_subform" style="display:none;">
+                            <div id="page_4_subform" name="Kru" style="display:none;">
                                 <div class="card-body" style="padding:10px;">
                                     <p>2.3 ลักษณะงานที่เสนอให้ครอบคลุมถึงการพัฒนาตนเองอย่างเป็นระบบ	และต่อเนื่อง การมีส่วนร่วม ในการแลกเปลี่ยนเรียนรู้ทางวิชาชีพเพื่อพัฒนาการจัดการเรียนรู้และการนำความรู้ความสามารถ ทักษะที่ได้จากการพัฒนาตนเอง และวิชาชีพมาใช้ในการพัฒนาการจัดการเรียนรู้ การพัฒนาคุณภาพผู้เรียน และการพัฒนานวัตกรรม	การจัดการเรียนรู้</p>
                                     <div class="col-md-12 mb-4">
@@ -590,8 +671,326 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id="page_5_subform" name="Mgt" class="@showMgt">
+                                <div class="card-body" style="padding:10px;">
+                                    <div class="col-md-12 mb-4">
+
+                                        <div class="form-outline pl-2 border-bottom-2">
+                                            <label class="container_check m-0">
+                                                ข้าพเจ้าขอแสดงเจตจำนงในการจัดทำข้อตกลงในการพัฒนางาน ตำแหน่งผู้บริหารสถานศึกษา วิทยฐานะ @Model.UserInfo_UserPosition ซึ่งเป็นตำแหน่งและวิทยฐานะที่ดำรงอยู่ในปัจจุบัน กับผู้บังคับบัญชา ไว้ดังนี้
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+
+                                        </div>
+                                        <div class="pb-3">
+
+                                            <p class="thick">1. ภาระงาน</p> จะมีภาระงานด้านการบริหารวิชาการและความเป็นผู้นำทางวิชาการ
+                                            ด้านการบริหารจัดการสถานศึกษา ด้านการบริหารการเปลี่ยนแปลงเชิงยุทธ์นวัตกรรม ด้านการบริหารงานชุมชนและเครือข่ายและด้านการพัฒนาตนเองและวิชาชีพ เป็นไปตามที่ ก.ค.ศ. กำหนด
+                                        </div>
+                                        <div class="card border bg-light rounded m-0 p-2">
+                                            <div class="card-body m-0 p-0 ">
+                                                <label class="container_check m-0">
+                                                    เต็มเวลา
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                            <div class="card-body m-0 p-0">
+                                                <label class="container_check m-0">
+                                                    ไม่เต็มเวลา เนื่องจาก
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <textarea id="reason_Text" name="reason_Text" class="form-control form-control-lg mt-2" style="font-size:14px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 pt-2 border-top">
+                                            <p>
+                                                โดยภาระงานด้านการบริหารวิชาการและความเป็นผู้นำทางวิชาการ จะมีการปฏิบัติการสอน
+                                                ไม่ต่ำกว่า.......11.........ชั่วโมง/สัปดาห์ (ตำแหน่งผู้อำนวยการสถานศึกษา ไม่ต่ำกว่า 5 ชั่วโมง/สัปดาห์
+                                                และรองผู้อำนวยการสถานศึกษา ไม่ต่ำกว่า 10 ชั่วโมง/สัปดาห์) โดยมีการปฏิบัติการสอน/การจัดกิจกรรม
+                                                การเรียนการสอนในสถานศึกษาอย่างใดอย่างหนึ่งหรือหลายอย่าง ดังนี้
+
+                                            </p>
+                                        </div>
+                                        <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                            <div class="card-body m-0 p-0 ">
+                                                <label class="container_check m-0">
+                                                    ปฏิบัติการสอนประจำวิชา จำนวน.............ชั่วโมง/สัปดาห์
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                            <div class="card-body m-0 p-0 ">
+                                                <label class="container_check m-0">
+                                                    ปฏิบัติการสอนร่วมกับครูประจำชั้น/ประจำวิชา จำนวน............. ชั่วโมง/สัปดาห์
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                            <div class="card-body m-0 p-0 ">
+                                                <label class="container_check m-0">
+                                                    สังเกตการสอนและสะท้อนผลการสอนร่วมกับครูในกิจกรรมเปิดชั้นเรียน จำนวน............. ชั่วโมง/สัปดาห์
+
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                            <div class="card-body m-0 p-0 ">
+                                                <label class="container_check m-0">
+                                                    เป็นผู้นำกิจกรรมแลกเปลี่ยนเรียนรู้ในชุมชนการเรียนรู้ทางวิชาชีพ (PLC) ของโรงเรียน จำนวน............. ชั่วโมง/สัปดาห์
+
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                            <div class="card-body m-0 p-0 ">
+                                                <label class="container_check m-0">
+                                                    นิเทศการสอนเพื่อเป็นพี่เลี้ยงการจัดกิจกรรมการเรียนรู้ให้กับครู จำนวน............. ชั่วโมง/สัปดาห์
+
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                            <div class="card-body m-0 p-0 ">
+                                                <label class="container_check m-0">
+                                                    จัดกิจกรรมเสริมการเรียนรู้และอบรมบ่มนิสัยผู้เรียน จำนวน............. ชั่วโมง/สัปดาห์
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="page_6_subform" name="Mgt" style="display:none;">
+                                <div class="card-body" style="padding:10px;">
+                                    <div class="pb-3">
+                                        <p class="thick">2. งานที่จะปฏิบัติตามมาตรฐานตำแหน่งผู้บริหารสถานศึกษา</p> (ให้ระบุรายละเอียดของงานที่จะปฏิบัติในแต่ละด้านว่าจะดำเนินการอย่างไร โดยอาจระบุระยะเวลาที่ใช้ในการดำเนินการด้วยก็ได้)
+                                        <p>
+                                            2.1 ด้านการบริหารวิชาการและ ความเป็นผู้นำทางวิชาการ
+                                        </p>
+                                        ลักษณะงานที่เสนอให้ครอบคลุมถึงการวางแผนพัฒนามาตรฐานการเรียนรู้ของผู้เรียน การจัดทำและพัฒนาหลักสูตรสถานศึกษา
+                                        การพัฒนากระบวนการจัดการเรียนรู้
+                                        ที่เน้นผู้เรียนเป็นสำคัญและการปฏิบัติการสอน การส่งเสริม สนับสนุน การพัฒนาหรือการนำสื่อ นวัตกรรม
+                                        และเทคโนโลยีทางการศึกษา มาใช้ในการจัดการเรียนรู้ การนิเทศ กำกับ ติดตาม ประเมินผล การจัดการเรียนรู้ของครูในสถานศึกษา และมีการประกันคุณภาพการศึกษาภายในสถานศึกษา การศึกษา วิเคราะห์
+                                        หรือวิจัย เพื่อแก้ปัญหาและพัฒนา
+                                        การจัดการเรียนรู้เพื่อยกระดับคุณภาพการศึกษาของสถานศึกษา
+                                    </div>
+
+
+                                    <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                        <div class="card-body m-0 p-0 ">
+
+                                            <label class="form-label" for="MGT1_Task">งาน (Task) (โปรดระบุ)</label>
+                                            <textarea id="MGT1_Task" name="MGT1_Task" class="form-control form-control-lg" placeholder="งาน" style="font-size:14px;">@Model.LM_Task </textarea>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                        <div class="card-body m-0 p-0 ">
+                                            <label class="form-label" for="MGT1_Outcomes">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
+                                            <textarea id="MGT1_Outcomes" name="MGT1_Outcomes" class="form-control form-control-lg" style="font-size:14px;">@Model.LM_Outcomes </textarea>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                        <div class="card-body m-0 p-0 ">
+                                            <label class="form-label" for="MGT1_Indicators">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
+                                            <textarea id="MGT1_Indicators" name="MGT1_Indicators" class="form-control form-control-lg" style="font-size:14px;">@Model.LM_Indicators </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                        <div>
+                                            <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                            <div class="btn btn-outline-danger ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    </div>
+                            <div id="page_7_subform" name="Mgt" style="display:none;">
+                                <div class="card-body" style="padding:10px;">
+                                    <div class="pb-3">
+                                        <p>
+                                            2.2 ด้านการบริหารจัดการสถานศึกษา
+                                        </p>
+                                        การบริหารจัดการสถานศึกษา
+                                        ให้เป็นไปตามกฎหมาย ระเบียบ ข้อบังคับ
+                                        นโยบาย และตามหลักบริหารกิจการ
+                                        บ้านเมืองที่ดีการบริหารกิจการผู้เรียน
+                                        และการส่งเสริมพัฒนาผู้เรียน
+                                        การจัดระบบดูแลช่วยเหลือผู้เรียน
+                                    </div>
+
+                                    <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                        <div class="card-body m-0 p-0 ">
+                                            <label class="form-label" for="MGT2_Task">งาน (Task) (โปรดระบุ)</label>
+                                            <textarea id="MGT2_Task" name="MGT2_Task" class="form-control form-control-lg" placeholder="งาน" style="font-size:14px;">@Model.LM_Task </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                        <div class="card-body m-0 p-0 ">
+                                            <label class="form-label" for="MGT2_Outcomes">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
+                                            <textarea id="MGT2_Outcomes" name="MGT2_Outcomes" class="form-control form-control-lg" style="font-size:14px;">@Model.LM_Outcomes </textarea>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                        <div class="card-body m-0 p-0 ">
+                                            <label class="form-label" for="MGT2_Indicators">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
+                                            <textarea id="MGT2_Indicators" name="MGT2_Indicators" class="form-control form-control-lg" style="font-size:14px;">@Model.LM_Indicators </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                        <div>
+                                            <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                            <div class="btn btn-outline-danger ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="page_8_subform" name="Mgt" style="display:none;">
+                                <div class="card-body" style="padding:10px;">
+                                    <div class="pb-3">
+                                        <p>
+                                            2.3 ด้านการบริหารการเปลี่ยนแปลงเชิงกลยุทธ์และนวัตกรรม
+                                        </p>
+                                        การกำหนดนโยบาย กลยุทธ์ การใช้เครื่องมือหรือนวัตกรรมทางการบริหาร และการนำไปปฏิบัติ การบริหาร
+                                        การเปลี่ยนแปลงและนวัตกรรม
+                                        ในสถานศึกษา เพื่อพัฒนาสถานศึกษา
+                                    </div>
+
+                                    <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                        <div class="card-body m-0 p-0 ">
+                                            <label class="form-label" for="MGT3_Task">งาน (Task) (โปรดระบุ)</label>
+                                            <textarea id="MGT3_Task" name="MGT3_Task" class="form-control form-control-lg" placeholder="งาน" style="font-size:14px;">@Model.LM_Task </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                        <div class="card-body m-0 p-0 ">
+                                            <label class="form-label" for="MGT3_Outcomes">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
+                                            <textarea id="MGT3_Outcomes" name="MGT3_Outcomes" class="form-control form-control-lg" style="font-size:14px;">@Model.LM_Outcomes </textarea>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                        <div class="card-body m-0 p-0 ">
+                                            <label class="form-label" for="MGT3_Indicators">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
+                                            <textarea id="MGT3_Indicators" name="MGT3_Indicators" class="form-control form-control-lg" style="font-size:14px;">@Model.LM_Indicators </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                        <div>
+                                            <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                            <div class="btn btn-outline-danger ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="page_9_subform" name="Mgt" style="display:none;">
+                                <div class="card-body" style="padding:10px;">
+                                    <div class="pb-3">
+                                        <p>
+                                            2.4 ด้านการบริหารงานชุมชนและเครือข่าย
+                                        </p>
+                                        การสร้างและพัฒนาเครือข่าย
+                                        เพื่อพัฒนาการเรียนรู้ การจัดระบบ
+                                        การให้บริการในสถานศึกษา
+                                        </div>
+
+                                        <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                            <div class="card-body m-0 p-0 ">
+                                                <label class="form-label" for="MGT4_Task">งาน (Task) (โปรดระบุ)</label>
+                                                <textarea id="MGT4_Task" name="MGT4_Task" class="form-control form-control-lg" placeholder="งาน" style="font-size:14px;">@Model.LM_Task </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                            <div class="card-body m-0 p-0 ">
+                                                <label class="form-label" for="MGT4_Outcomes">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
+                                                <textarea id="MGT4_Outcomes" name="MGT4_Outcomes" class="form-control form-control-lg" style="font-size:14px;">@Model.LM_Outcomes </textarea>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                            <div class="card-body m-0 p-0 ">
+                                                <label class="form-label" for="MGT4_Indicators">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
+                                                <textarea id="MGT4_Indicators" name="MGT4_Indicators" class="form-control form-control-lg" style="font-size:14px;">@Model.LM_Indicators </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                            <div>
+                                                <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                                <div class="btn btn-outline-danger ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div id="page_10_subform" name="Mgt" style="display:none;">
+                                <div class="card-body" style="padding:10px;">
+                                    <div class="pb-3">
+                                    <p>
+                                        2.5 ด้านการพัฒนาตนเองและวิชาชีพ
+                                    </p>
+                                    การพัฒนาตนเองและวิชาชีพ
+                                    การนำความรู้ ทักษะ ที่ได้จาก
+                                    การพัฒนาตนเองและวิชาชีพ
+                                    มาใช้ในการพัฒนาการบริหารจัดการสถานศึกษา ที่ส่งผลต่อคุณภาพผู้เรียน ครู และสถานศึกษา
+                                        </div>
+
+                                    <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                        <div class="card-body m-0 p-0 ">
+                                            <label class="form-label" for="MGT5_Task">งาน (Task) (โปรดระบุ)</label>
+                                            <textarea id="MGT5_Task" name="MGT5_Task" class="form-control form-control-lg" placeholder="งาน" style="font-size:14px;">@Model.LM_Task </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                        <div class="card-body m-0 p-0 ">
+                                            <label class="form-label" for="MGT5_Outcomes">ผลลัพธ์ (Outcomes) (โปรดระบุ)</label>
+                                            <textarea id="MGT5_Outcomes" name="MGT5_Outcomes" class="form-control form-control-lg" style="font-size:14px;">@Model.LM_Outcomes </textarea>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="card border bg-light rounded m-0 mb-2 p-2">
+                                        <div class="card-body m-0 p-0 ">
+                                            <label class="form-label" for="MGT5_Indicators">ตัวชี้วัด (Indicators) (โปรดระบุ)</label>
+                                            <textarea id="MGT5_Indicators" name="MGT5_Indicators" class="form-control form-control-lg" style="font-size:14px;">@Model.LM_Indicators </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 pt-0">
+                                        <div>
+                                            <div class="btn btn-outline-primary ml-3" onclick="AJ_Submit();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">บันทึก</div>
+                                            <div class="btn btn-outline-danger ml-5" onclick="BACK();" style="padding:3px;width:100px;height:32px;margin-left:0px;margin:4px;">ยกเลิก</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    }
                 </div>
                 <div id="page_3_form" style="display:none;">
                     <div class="card-body border-light shadow" style="padding:10px;">
@@ -600,7 +999,7 @@
                                 <div class="col-md-12 mb-4">
 
                                     <div class="form-outline">
-                                        <p>
+                                        <p class="thick">
                                             ส่วนที่ 2 ข้อตกลงในการพัฒนางานที่เป็นประเด็นท้าทายในการพัฒนาผลลัพธ์การเรียนรู้ของผู้เรียน
                                         </p>
                                         <label class="form-label" for="CL_Point">ประเด็นที่ท้าทายในการพัฒนาผลลัพธ์การเรียนรู้ของผู้เรียนของผู้จัดทำข้อตกลง ซึ่งปัจจุบันดำรงตำแหน่งครู วิทยฐานะครูชำนาญพิเศษ ต้องแสดงให้เห็นถึงระดับการปฏิบัติที่คาดหวังของวิทยฐานะเชี่ยวชาญ คือ การคิดค้น และการปรับเปลี่ยน ให้คุณภาพการเรียนรู้ของผู้เรียนสูงขึ้น เป็นแบบอย่างที่ดีและให้คำปรึกษาผู้อื่น (ทั้งนี้ ประเด็นท้าทายอาจจะแสดงให้เห็นถึงระดับการปฏิบัติที่คาดหวังในวิทยฐานะที่สูงกว่าได้)</label>
@@ -609,9 +1008,8 @@
                                     </div>
 
                                 </div>
-                                <div class="col-md-12 mb-4">
-
-                                    <div class="form-outline">
+                                <div class="col-12 card border bg-light rounded m-0 mb-2 p-2">
+                                    <div class="card-body m-0 p-0 ">
                                         <label class="form-label" for="CL_Point_Text">ประเด็นท้าทาย เรื่อง</label>
                                         @*<input type="text" id="CL_Point_Text" name="CL_Point_Text" class="form-control form-control-lg" style="font-size:14px;" value="@Model.CL_Point_Text" />*@
                                         <textarea id="CL_Point_Text" name="CL_Point_Text" class="form-control form-control-lg" style="font-size:14px;">@Model.CL_Point_Text </textarea>
@@ -619,37 +1017,41 @@
                                     </div>
 
                                 </div>
-                                <div class="col-md-12 mb-4">
-
-                                    <div class="form-outline">
+                                <div class="col-12 card border bg-light rounded m-0 mb-2 p-2">
+                                    <div class="card-body m-0 p-0 ">
                                         <label class="form-label" for="Problem_State">1.สภาพปัญหาการจัดการเรียนรู้ และคุณภาพการเรียนรู้ของผู้เรียน</label>
                                         <textarea id="Problem_State" name="Problem_State" class="form-control form-control-lg" style="font-size:14px;">@Model.Problem_State </textarea>
 
                                     </div>
 
                                 </div>
-                                <div class="col-md-12 mb-4">
-
-                                    <div class="form-outline">
+                                <div class="col-12 card border bg-light rounded m-0 mb-2 p-2">
+                                    <div class="card-body m-0 p-0 ">
                                         <label class="form-label" for="Method_To_Acheivment">2.วิธีการดำเนินการให้บรรลุผล</label>
                                         <textarea id="Method_To_Acheivment" name="Method_To_Acheivment" class="form-control form-control-lg" style="font-size:14px;">@Model.Method_To_Acheiivment </textarea>
 
                                     </div>
 
                                 </div>
-                                <div class="col-md-12 mb-4">
+                                <div class="col-md-12 mb-2 mt-4">
 
-                                    <div class="form-outline">
-                                        <label class="form-label" for="QT_Expect_Result">3. ผลลัพธ์การพัฒนาที่คาดหวัง<br />3.1 เชิงปริมาณ</label>
+                                <div class="form-outline">
+                                    <p class="thick">
+                                        ส่วนที่ 3. ผลลัพธ์การพัฒนาที่คาดหวัง
+                                    </p>
+                                </div>
+                            </div>
+                                <div class="col-12 card border bg-light rounded m-0 mb-2 p-2">
+                                    <div class="card-body m-0 p-0 ">
+                                        <label class="form-label" for="QT_Expect_Result">3.1 เชิงปริมาณ</label>
 
                                         <textarea id="QT_Expect_Result" name="QT_Expect_Result" class="form-control form-control-lg" style="font-size:14px;">@Model.QT_Expect_Result </textarea>
 
                                     </div>
 
                                 </div>
-                                <div class="col-md-12 mb-4">
-
-                                    <div class="form-outline">
+                                <div class="col-12 card border bg-light rounded m-0 mb-2 p-2">
+                                    <div class="card-body m-0 p-0 ">
                                         <label class="form-label" for="QL_Expect_Result">3.2 เชิงคุณภาพ</label>
                                         <textarea id="QL_Expect_Result" name="QL_Expect_Result" class="form-control form-control-lg" style="font-size:14px;">@Model.QL_Expect_Result </textarea>
 
@@ -788,11 +1190,23 @@
         var btn_sub_p2 = document.getElementById("subpage_2");
         var btn_sub_p3 = document.getElementById("subpage_3");
         var btn_sub_p4 = document.getElementById("subpage_4");
+        var btn_sub_p5 = document.getElementById("subpage_5");
+        var btn_sub_p6 = document.getElementById("subpage_6");
+        var btn_sub_p7 = document.getElementById("subpage_7");
+        var btn_sub_p8 = document.getElementById("subpage_8");
+        var btn_sub_p9 = document.getElementById("subpage_9");
+        var btn_sub_p10 = document.getElementById("subpage_10");
+
         var sub_p1 = document.getElementById("page_1_subform");
         var sub_p2 = document.getElementById("page_2_subform");
         var sub_p3 = document.getElementById("page_3_subform");
         var sub_p4 = document.getElementById("page_4_subform");
-
+        var sub_p5 = document.getElementById("page_5_subform");
+        var sub_p6 = document.getElementById("page_6_subform");
+        var sub_p7 = document.getElementById("page_7_subform");
+        var sub_p8 = document.getElementById("page_8_subform");
+        var sub_p9 = document.getElementById("page_9_subform");
+        var sub_p10 = document.getElementById("page_10_subform");
 
         function showpage_1() {
             btn_p1.classList.add("active");
@@ -857,6 +1271,110 @@
             sub_p2.style.display = "none";
             sub_p3.style.display = "none";
             sub_p4.style.display = "block";
+        }
+        function showsubpage_5() {
+            //btn_sub_p1.classList.remove("active");
+            //sub_p1.style.display = "none";
+
+            btn_sub_p5.classList.add("active");
+            btn_sub_p6.classList.remove("active");
+            btn_sub_p7.classList.remove("active");
+            btn_sub_p8.classList.remove("active");
+            btn_sub_p9.classList.remove("active");
+            btn_sub_p10.classList.remove("active");
+            sub_p5.style.display = "block";
+            sub_p6.style.display = "none";
+            sub_p7.style.display = "none";
+            sub_p8.style.display = "none";
+            sub_p9.style.display = "none";
+            sub_p10.style.display = "none";
+        }
+        function showsubpage_6() {
+            //btn_sub_p1.classList.remove("active");
+            //sub_p1.style.display = "none";
+
+            btn_sub_p5.classList.remove("active");
+            btn_sub_p6.classList.add("active");
+            btn_sub_p7.classList.remove("active");
+            btn_sub_p8.classList.remove("active");
+            btn_sub_p9.classList.remove("active");
+            btn_sub_p10.classList.remove("active");
+            sub_p5.style.display = "none";
+            sub_p6.style.display = "block";
+            sub_p7.style.display = "none";
+            sub_p8.style.display = "none";
+            sub_p9.style.display = "none";
+            sub_p10.style.display = "none";
+        }
+        function showsubpage_7() {
+            //btn_sub_p1.classList.remove("active");
+            //sub_p1.style.display = "none";
+
+            btn_sub_p5.classList.remove("active");
+            btn_sub_p6.classList.remove("active");
+            btn_sub_p7.classList.add("active");
+            btn_sub_p8.classList.remove("active");
+            btn_sub_p9.classList.remove("active");
+            btn_sub_p10.classList.remove("active");
+            sub_p5.style.display = "none";
+            sub_p6.style.display = "none";
+            sub_p7.style.display = "block";
+            sub_p8.style.display = "none";
+            sub_p9.style.display = "none";
+            sub_p10.style.display = "none";
+        }
+        function showsubpage_8() {
+            //btn_sub_p1.classList.remove("active");
+            //sub_p1.style.display = "none";
+
+            btn_sub_p5.classList.remove("active");
+            btn_sub_p6.classList.remove("active");
+            btn_sub_p7.classList.remove("active");
+            btn_sub_p8.classList.add("active");
+            btn_sub_p9.classList.remove("active");
+            btn_sub_p10.classList.remove("active");
+            sub_p5.style.display = "none";
+            sub_p6.style.display = "none";
+            sub_p7.style.display = "none";
+            sub_p8.style.display = "block";
+            sub_p9.style.display = "none";
+            sub_p10.style.display = "none";
+        }
+        function showsubpage_9() {
+            //btn_sub_p1.classList.remove("active");
+            //sub_p1.style.display = "none";
+
+            btn_sub_p5.classList.remove("active");
+            btn_sub_p6.classList.remove("active");
+            btn_sub_p7.classList.remove("active");
+            btn_sub_p8.classList.remove("active");
+            btn_sub_p9.classList.add("active");
+            btn_sub_p10.classList.remove("active");
+            sub_p5.style.display = "none";
+            sub_p6.style.display = "none";
+            sub_p7.style.display = "none";
+            sub_p8.style.display = "none";
+            sub_p9.style.display = "block";
+            sub_p10.style.display = "none";
+        }
+        function showsubpage_10() {
+            //btn_sub_p1.classList.remove("active");
+            //sub_p1.style.display = "none";
+
+            btn_sub_p5.classList.remove("active");
+            btn_sub_p6.classList.remove("active");
+            btn_sub_p7.classList.remove("active");
+            btn_sub_p8.classList.remove("active");
+            btn_sub_p9.classList.remove("active");
+            btn_sub_p10.classList.add("active");
+            sub_p5.style.display = "none";
+            sub_p6.style.display = "none";
+            sub_p7.style.display = "none";
+            sub_p8.style.display = "none";
+            sub_p9.style.display = "none";
+            sub_p10.style.display = "block";
+
+
         }
         function BACK() {
             let user_Id = $('#userId').val();
@@ -1041,5 +1559,123 @@
             return JsonRes;
         }
 
+        function autocompleteV1(inp_, arr, arr_ID) {
+            var inp = document.getElementById(inp_);
+            var currentFocus;
+            inp.addEventListener("click", function (e) {
+                var a, b, i, val = this.value;
+                closeAllLists();
+                currentFocus = -1;
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-list");
+                var class_ = "autocomplete-" + inp_ + "-items";
+                a.setAttribute("class", class_);
+                this.parentNode.appendChild(a);
+                for (i = 0; i < arr.length; i++) {
+                    if (true == true) {
+                        b = document.createElement("DIV");
+                        b.innerHTML = "" + arr[i].substr(0, arr[i].length) + "";
+                        b.innerHTML += "<input type='hidden' class='form-control form-control-lg font-14' value='" + arr[i] + "'>";
+                        b.addEventListener("click", function (e) {
+                            inp.value = this.getElementsByTagName("input")[0].value;
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                    }
+                }
+            });
+            inp.addEventListener("input", function (e) {
+                var a, b, i, val = this.value;
+                closeAllLists();
+                if (!val) { return false; }
+                currentFocus = -1;
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-list");
+                a.setAttribute("class", "autocomplete-" + inp_ + "-items");
+                this.parentNode.appendChild(a);
+                for (i = 0; i < arr.length; i++) {
+                    if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                        b = document.createElement("DIV");
+                        b.innerHTML = "" + arr[i].substr(0, val.length) + "";
+                        b.innerHTML += arr[i].substr(val.length);
+                        b.innerHTML += "<input type='hidden' class='form-control form-control-lg font-14' value='" + arr[i] + "'>";
+                        b.addEventListener("click", function (e) {
+                            inp.value = this.getElementsByTagName("input")[0].value;
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                    }
+                }
+            });
+            inp.addEventListener("keydown", function (e) {
+                var x = document.getElementById(this.id + "autocomplete-list");
+                if (x) x = x.getElementsByTagName("div");
+                if (e.keyCode == 40) {
+                    currentFocus++;
+                    addActive(x);
+                } else if (e.keyCode == 38) {
+                    currentFocus--;
+                    addActive(x);
+                } else if (e.keyCode == 13) {
+                    e.preventDefault();
+                    if (currentFocus > -1) {
+                        if (x) x[currentFocus].click();
+                    }
+                }
+            });
+            function addActive(x) {
+                if (!x) return false;
+                removeActive(x);
+                if (currentFocus >= x.length) currentFocus = 0;
+                if (currentFocus < 0) currentFocus = (x.length - 1);
+                x[currentFocus].classList.add("autocomplete-active");
+            }
+            function removeActive(x) {
+                for (var i = 0; i < x.length; i++) {
+                    x[i].classList.remove("autocomplete-active");
+                }
+            }
+            function closeAllLists(elmnt) {
+                var x = document.getElementsByClassName("autocomplete-" + inp_ + "-items");
+                for (var i = 0; i < x.length; i++) {
+                    if (elmnt != x[i] && elmnt != inp) {
+                        x[i].parentNode.removeChild(x[i]);
+                    }
+                }
+            }
+            document.addEventListener("click", function (e) {
+                closeAllLists(e.target);
+            });
+        }
+
+
+
+        /*An array containing all the country names in the world:*/
+        var schoolType_list = ["สถานศึกษาที่จัดการศึกษาขั้นพื้นฐาน", "สถานศึกษาที่จัดการศึกษาอาชีวศึกษา", "สถานศึกษาที่จัดการศึกษานอกระบบและการศึกษาตามอัธยาศัย", "สถานศึกษาระดับวิชาชีพ"];
+        var schoolSubType1_list = ["ระดับปฐมวัย", "ระดับประถมศึกษา", "ระดับมัธยมศึกษาตอนต้น", "ระดับมัธยมศึกษาตอนปลาย", "ระดับมัธยมศึกษาตอนปลาย", "การจัดการศึกษาพิเศษ (ไม่มีระดับชั้น)"];
+        var schoolSubType2_list = ["ประกาศนียบัตรวิชาชีพ", "ประกาศนียบัตรวิชาชีพชั้นสูง", "การฝึกอบรมวิชาชีพตามหลักสูตรวิชาชีพระยะสั้น"];
+        var schoolSubType3_list = ["การจัดการศึกษานอกระบบระดับการศึกษาขั้นพื้นฐาน", "การจัดการศึกษานอกระบบตามหลักสูตรประกาศนียบัตรวิชาชีพ"];
+        var schoolSubType4_list = ["การจัดการศึกษาต่อเนื่อง"];
+        var Type_ID = ["0", "1", "2", "3", "4"];
+        var classroomType_list = ["ห้องเรียนวิชาสามัญหรือวิชาพื้นฐาน", "ห้องเรียนปฐมวัย", "ห้องเรียนการศึกษาพิเศษ", "ห้องเรียนสายวิชาชีพ", "ห้องเรียนการศึกษานอกระบบ / ตามอัธยาศัย"];
+        var classroomType_ID = ["0", "1", "2", "3", "4", "5", "6"];
+
+        var position_list = ["ครูผู้ช่วย", "ครูชำนาญการ", "ครูชำนาญการพิเศษ", "ครูเชี่ยวชาญ", "ครูเชี่ยวชาญพิเศษ"];
+        var position_ID = ["0", "1", "2", "3", "4"];
+        var position_Main_list = ["ผู้บริหารสถานศึกษา", "ครู"];
+        var position_Main_ID = ["0", "1"];
+
+        var school_list = ["โรงเรียนน้ำยืนวิทยา"];
+
+        var school_ID = ["300001"];
+
+
+        //
+        autocompleteV1("position1", position_Main_list, position_Main_ID);
+        autocompleteV1("position", position_list, position_ID);
+        autocompleteV1("school", school_list, school_ID);
+
+        autocompleteV1("schoolType", schoolType_list, Type_ID);
+        autocompleteV1("classroomType", classroomType_list, Type_ID);
     </script>
 }

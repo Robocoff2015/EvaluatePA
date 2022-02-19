@@ -29,53 +29,64 @@
                             var i = 1;
                             foreach (var Media_Model in Model)
                             {
-                        <button onclick="myFunction('subject-@i')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-margin-bottom"><i class="fa fa-film fa-fw w3-margin-right"></i>@Media_Model.Information2</button>
+                                <button onclick="myFunction('subject-@i')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-margin-bottom">
+                                    <i class="fa fa-film fa-fw w3-margin-right"></i>@Media_Model.Information2</button>
                                 <div id="subject-@i" class="w3-hide w3-container">
-                                    <div class="w3-row-padding">
-                                        
-                                        <div class="w3-half">
-                                            <img src="~/images/film.jpg" style="width:80%" class="w3-margin-bottom" onclick="loadVideo1('@Media_Model.Information')">
-                            <p class="w3-center"></p>
+                                    <div class="w3-row-padding p-0 w3-margin-bottom">
+
+                                        <div class="w3-half p-0">
+                                            
+                                            <img src="~/images/film.jpg" style="width:80%" onclick="loadVideo1('@Media_Model.Information')">
+                                            
                                         </div>
-                                       
+                                        <div class="w3-half left">
+                                            <p class="w3-center">@Media_Model.Information2</p>
+                                            <p class="w3-center" style="font-size:12px;">@Media_Model.Detail2</p>
+                                            <div class="text-center bottom right">
+                                                <div class="btn edit bg-light btn-sm pt-0" onclick="View_Meaia('');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-play w3-text-theme"></i></div>
+                                                <div class="btn edit bg-light btn-sm pt-0" onclick="Edit_Media('');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-pencil w3-text-theme"></i></div>
+                                                <div class="btn delete bg-light btn-sm pt-0" onclick="Delete_Media('');" style="width:30px;height:25px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-trash-o w3-text-theme"></i></div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                                 i++;
                             }
                         }
-                    
+
                         <!--<button onclick="myFunction('subject-2')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-margin-bottom"><i class="fa fa-film fa-fw w3-margin-right"></i>--> @*รหัสวิชา : M-102*@
                         <!--</button>
-    <div id="subject-2" class="w3-hide w3-container">
-        <div class="w3-row-padding">
-            <br>
+                        <div id="subject-2" class="w3-hide w3-container">
+                            <div class="w3-row-padding">
+                                <br>
 
-            <div class="w3-half">
-                <img src="~/images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
-                <p class="w3-center">วันที่ 14-06-2564</p>
-            </div>
-            <div class="w3-half">
-                <img src="~/images/forest.jpg" style="width:100%" class="w3-margin-bottom">
-                <p class="w3-center">วันที่ 02-07-2564</p>
-            </div>
-        </div>
-    </div>
-    <button onclick="myFunction('subject-3')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-margin-bottom"><i class="fa fa-film fa-fw w3-margin-right"></i>-->
+                                <div class="w3-half">
+                                    <img src="~/images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
+                                    <p class="w3-center">วันที่ 14-06-2564</p>
+                                </div>
+                                <div class="w3-half">
+                                    <img src="~/images/forest.jpg" style="width:100%" class="w3-margin-bottom">
+                                    <p class="w3-center">วันที่ 02-07-2564</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="myFunction('subject-3')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-margin-bottom"><i class="fa fa-film fa-fw w3-margin-right"></i>-->
                         @*รหัสวิชา : BIO-101*@
                         <!--</button>
-    <div id="subject-3" class="w3-hide w3-container">
-        <div class="w3-row-padding">
-            <br>
-            <div class="w3-half">
-                <img src="~/images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-                <p class="w3-center">วันที่ 11-09-2564</p>
-            </div>
-            <div class="w3-half">
-                <img src="~/images/snow.jpg" style="width:100%" class="w3-margin-bottom">
-                <p class="w3-center">วันที่ 17-10-2564</p>
-            </div>
-        </div>
-    </div>-->
+                        <div id="subject-3" class="w3-hide w3-container">
+                            <div class="w3-row-padding">
+                                <br>
+                                <div class="w3-half">
+                                    <img src="~/images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+                                    <p class="w3-center">วันที่ 11-09-2564</p>
+                                </div>
+                                <div class="w3-half">
+                                    <img src="~/images/snow.jpg" style="width:100%" class="w3-margin-bottom">
+                                    <p class="w3-center">วันที่ 17-10-2564</p>
+                                </div>
+                            </div>
+                        </div>-->
                     </div>
                 </div>
                 <br>
@@ -110,22 +121,38 @@
 <div class="loader-wrapper">
     <span class="loader"><span class="loader-inner"></span></span>
 </div>
+<!--<div class="loader-wrapper2">-->
+@*<span class="loader"><span class="loader-inner" onclick="hideModal();"></span>
+    </span>*@
+
+
+<!--<div class="row p-5 pt-1">
+    <div class="col-md-12 mb-4">
+
+        <div class="form-outline" style="opacity:1.0;">
+            <div class="card border shadow p-0">
+                <div class="card-header border p-0 pl-3 pr-3" style="height:50px;">
+                    <div class="form-inline justify-content-between">
+                        <div class="p-1 pt-3">
+                            <label class="form-label" for="fileName">โหลดไฟล์วิดีโอ :</label>
+                        </div>
+                        <span onclick="hideModal_fast();">
+                            <i class="fa fa-times"></i>
+                        </span>-->
 <div class="loader-wrapper2">
-    @*<span class="loader"><span class="loader-inner" onclick="hideModal();"></span>
-        </span>*@
 
 
-    <div class="row p-5 pt-1">
+    <div class="row p-5 justify-content-center">
         <div class="col-md-12 mb-4">
-
-            <div class="form-outline" style="opacity:1.0;">
-                <div class="card border shadow p-0">
-                    <div class="card-header border p-0 pl-3 pr-3" style="height:50px;">
-                        <div class="form-inline justify-content-between">
-                            <div class="p-1 pt-3">
-                                <label class="form-label" for="fileName">โหลดไฟล์วิดีโอ :</label>
+            <div class="form-outline" style="opacity:1.0;width:100%">
+                <div class="card border shadow">
+                    <div class="card-header bg-green-custom border-0 p-0 pl-3 pr-3 text-white" style="height:45px">
+                        <div class="form-inline justify-content-between pt-0">
+                            <div class="pt-2 d-inline-flex">
+                                <i class="fa fa-calendar mt-1 mr-3"></i>
+                                <h5>โหลดไฟล์วิดีโอ :</h5>
                             </div>
-                            <span onclick="hideModal_fast();">
+                            <span class="pointer-event pt-1" onclick="hideModal_fast();">
                                 <i class="fa fa-times"></i>
                             </span>
                         </div>
@@ -161,12 +188,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="detail">รายละเอียด</label>
-                                <input type="text" name="detail" class="form-control" id="detail" placeholder="รายละเอียด">
+                                <label for="detail">ชื่อวิดีโอ</label>
+                                <input type="text" name="detail" class="form-control" id="detail" placeholder="ชื่อวิดีโอ">
                                 <input type="text" name="user_id" hidden class="form-control" id="user_id" value="@ViewBag.user_id">
                             </div>
+                            <div class="form-group">
+                                <label for="detail">รายละเอียด</label>
+                                <input type="text" name="detail2" class="form-control" id="detail2" placeholder="รายละเอียด">
+
+                            </div>
                             @*<div class="btn btn-success mt-3 pt-2" onclick="AJ_Upload();" style="width:100%;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>*@
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            @*<button type="submit" class="btn btn-primary">Submit</button>*@
+                            <div class="btn btn-success mt-3 pt-2" onclick="formSubmit();" style="width:100%;height:42px;font-size:0.85rem;font-weight:normal;"><i class="fa fa-save w3-text-theme text-white"></i>&nbsp;บันทึก</div>
                         </form>
 
                     </div>
@@ -211,6 +244,10 @@
     </script>
 
     <script>
+        function formSubmit() {
+            document.getElementById("PA_Form").submit();
+        }
+                                    
         function showModal_Add() {
             // $('.formName').val("");
             //$('.Level').val("");
